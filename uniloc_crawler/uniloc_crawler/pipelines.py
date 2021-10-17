@@ -29,9 +29,10 @@ class InstituicoesPipeline:
         return item
 
     def store_db(self, item):
-        self.curr.execute(""" INSERT INTO `instituicoes`(`ID`, `nome`) VALUES (%s,%s) """, (
+        self.curr.execute(""" INSERT INTO `instituicoes`(`ID`, `nome`, `tipos_ensino_ID`) VALUES (%s,%s,%s) """, (
             item['cod'],
-            item['nome']
+            item['nome'],
+            item['cod_tipo']
         ))
 
         self.conn.commit()

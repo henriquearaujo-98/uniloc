@@ -106,7 +106,6 @@ class cursoCrawler(scrapy.Spider):
         if next:
             yield scrapy.Request(url=link, callback=self.parse)
 
-
 # Popular a tabela associativa inst_curso
 class inst_cursoCrawler(scrapy.Spider):
     name = "inst_curso"
