@@ -52,6 +52,12 @@ class dgesSpider(scrapy.Spider):
 class instCrawler(scrapy.Spider):
     name = "insts"
 
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.InstituicoesPipeline': 400
+        }
+    }
+
     start_urls = [
         'https://dges.gov.pt/guias/indest.asp?reg=11',
         'https://dges.gov.pt/guias/indest.asp?reg=12',

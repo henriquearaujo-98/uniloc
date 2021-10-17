@@ -9,7 +9,7 @@ from itemadapter import ItemAdapter
 import mysql.connector
 import logging
 
-class UnilocCrawlerPipeline:
+class InstituicoesPipeline:
 
     def open_spider(self, spider):
         self.create_connection()
