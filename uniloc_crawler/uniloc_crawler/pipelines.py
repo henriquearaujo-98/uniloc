@@ -41,7 +41,6 @@ class InstituicoesPipeline:
         logging.info("\n\n FECHANDO SPIDER INSTITUICOES \n\n")
         self.client.close()
 
-
 class DistritosPipeline:
 
     def open_spider(self, spider):
