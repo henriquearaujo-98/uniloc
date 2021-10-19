@@ -186,6 +186,57 @@ class distCrawler(scrapy.Spider):
                     'id' : row.css("td.gras::text").get()
                 }
 
+class cidCrawler(scrapy.Spider):
+    name = "cid"
+
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.CidadesPipeline': 400
+        }
+    }
+
+    start_urls = [
+        'http://pt.gpspostcode.com/codigo-postal/portugal/#111'
+    ]
+
+    def parse(self, response):
+
+        for row in response.css('.table_milieu tr'):
+            if row.css("a::attr(href)").get():
+                link = response.urljoin(row.css("a::attr(href)").get())
+                yield scrapy.Request(url = link, callback=self.parse_cidade)
+    
+    def parse_cidade(self, response):
+
+        dist_cod = response.css("h1::text").get()[-3:-1] # O penultimo e ante-penultimo caracter
+        for row in response.css('.table_milieu tr '):
+
+            cid_nome = row.css("a::text").get()
+            link = response.urljoin(row.css("a::attr(href)").get())
+
+            yield scrapy.Request(url = link, callback=self.parse_codigos, meta = {'dist_cod' : dist_cod, 'cid_nome' : cid_nome})
+    
+    def parse_codigos(self, response):
+        cid_nome = response.request.meta['cid_nome']
+        dist_cod = response.request.meta['dist_cod']
+        
+        for row in response.css(".table_milieu tr"):
+            cod = row.css(" td:nth-child(2n):not(.xx)::text").get()
+            yield {
+                'nome' : cid_nome,
+                'dist_cod' : dist_cod,
+                'cod' : cod
+            }
+
+            ##response.css(".table_milieu tr td:nth-child(2n):not(.xx)::text").getall() gets us the code
+        
+
+
+
+
+ 
+                
+
 
 # process = CrawlerProcess()
 # ## Popular instituições
