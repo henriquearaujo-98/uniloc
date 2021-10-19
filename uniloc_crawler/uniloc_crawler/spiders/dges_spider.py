@@ -164,6 +164,28 @@ class inst_cursoCrawler(scrapy.Spider):
                 'nota_ult_ER' : "Informação não disponibilizada"
             }
 
+# Popular a tabela distritos
+class distCrawler(scrapy.Spider):
+    name = "dist"
+
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.DistritosPipeline': 400
+        }
+    }
+
+    start_urls = [
+        'http://pt.gpspostcode.com/codigo-postal/portugal/#111'
+    ]
+
+    def parse(self, response):
+
+        for row in response.css('.table_milieu tr'):
+                yield {
+                    'nome' : row.css("a::text").get(),
+                    'id' : row.css("td.gras::text").get()
+                }
+
 
 # process = CrawlerProcess()
 # ## Popular instituições

@@ -13,7 +13,7 @@ class InstituicoesPipeline:
 
     def open_spider(self, spider):
         self.create_connection()
-        logging.info("\n\n OPENING SPIDER \n\n")
+        logging.info("\n\n SPIDER INSTITUICOES \n\n")
     
     def create_connection(self):
         self.conn = mysql.connector.connect(
@@ -38,5 +38,39 @@ class InstituicoesPipeline:
         self.conn.commit()
     
     def close_spider(self, spider):
-        logging.info("\n\n CLOSING SPIDER \n\n")
+        logging.info("\n\n FECHANDO SPIDER INSTITUICOES \n\n")
+        self.client.close()
+
+
+class DistritosPipeline:
+
+    def open_spider(self, spider):
+        self.create_connection()
+        logging.info("\n\n SPIDER DISTRITOS \n\n")
+    
+    def create_connection(self):
+        self.conn = mysql.connector.connect(
+            host = 'localhost',
+            user = 'root',
+            passwd = '',
+            database = 'projeto_final'
+        )
+        self.curr = self.conn.cursor()
+    
+    def process_item(self, item, spider):
+        if item['id'] and item['nome']:
+            self.store_db(item)
+            return item
+            
+
+    def store_db(self, item):
+        self.curr.execute(""" INSERT INTO `distritos`(`ID`, `nome`) VALUES (%s,%s)""", (
+            item['id'],
+            item['nome'],
+        ))
+
+        self.conn.commit()
+    
+    def close_spider(self, spider):
+        logging.info("\n\n FECHANDO SPIDER DISTRITOS \n\n")
         self.client.close()
