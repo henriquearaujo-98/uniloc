@@ -50,6 +50,7 @@ class dgesSpider(scrapy.Spider):
 
 # Popular a tabela instituições
 class instCrawler(scrapy.Spider):
+    
     name = "insts"
 
     custom_settings = {
@@ -75,10 +76,10 @@ class instCrawler(scrapy.Spider):
 
     def parse(self, response):
         #.box9 é a classe que engloba os titulos de instituições
-        for post in response.css('.box9'):
+        for div in response.css('.box9'):
             yield {
-                'cod': post.css('div::text')[0].get(),
-                'nome': post.css('div::text')[1].get(),
+                'cod': div.css('div::text')[0].get(),
+                'nome': div.css('div::text')[1].get(),
                 'cod_tipo' : response.url[-2:],
             }
 
@@ -186,12 +187,12 @@ class distCrawler(scrapy.Spider):
                     'id' : row.css("td.gras::text").get()
                 }
 
-class cidCrawler(scrapy.Spider):
-    name = "cid"
+class cod_postCrawler(scrapy.Spider):
+    name = "cod_post"
 
     custom_settings = {
         'ITEM_PIPELINES': {
-            'uniloc_crawler.pipelines.CidadesPipeline': 400
+            'uniloc_crawler.pipelines.CodPostaisPipeline': 400
         }
     }
 
@@ -224,18 +225,43 @@ class cidCrawler(scrapy.Spider):
             cod = row.css(" td:nth-child(2n):not(.xx)::text").get()
             yield {
                 'nome' : cid_nome,
-                'dist_cod' : dist_cod,
                 'cod' : cod
             }
 
             ##response.css(".table_milieu tr td:nth-child(2n):not(.xx)::text").getall() gets us the code
         
+class ciddCrawler(scrapy.Spider):
+    name = "cidd"
 
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.CidadesPipeline': 400
+        }
+    }
 
+    start_urls = [
+        'http://pt.gpspostcode.com/codigo-postal/portugal/#111'
+    ]
 
+    def parse(self, response):
 
- 
-                
+        for row in response.css('.table_milieu tr'):
+            if row.css("a::attr(href)").get():
+                link = response.urljoin(row.css("a::attr(href)").get())
+                yield scrapy.Request(url = link, callback=self.parse_cidade)
+    
+    def parse_cidade(self, response):
+
+        dist_cod = response.css("h1::text").get()[-3:-1] # O penultimo e ante-penultimo caracter
+        for row in response.css('.table_milieu tr '):
+
+            cid_nome = row.css("a::text").get()
+
+            yield{
+                'nome' : cid_nome,
+                'dist_id' : dist_cod
+            }
+
 
 
 # process = CrawlerProcess()

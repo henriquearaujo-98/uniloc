@@ -78,7 +78,42 @@ class CidadesPipeline:
     
     def open_spider(self, spider):
         self.create_connection()
-        logging.info("\n\n SPIDER DISTRITOS \n\n")
+        logging.info("\n\n SPIDER CIDADES \n\n")
+    
+    def create_connection(self):
+        self.conn = mysql.connector.connect(
+            host = 'localhost',
+            user = 'root',
+            passwd = '',
+            database = 'projeto_final'
+        )
+        self.curr = self.conn.cursor()
+    
+
+    # Apesar de enviarmos muitos registos com a PK duplicada devido á formatação do codigo postal, a BD só irá aceitar aqueles que não são duplicados, exatamente por serem PK
+    # Efetuar uma query a todos os items seria mais demoro que deixar a BD lidar com a situação
+    def process_item(self, item, spider):
+        if item['nome'] and item['dist_id']:
+            self.store_db(item)
+            return item
+            
+    def store_db(self, item):
+        
+        self.curr.execute(""" INSERT INTO `cidades`(`nome`, `distritos_ID`, `qualidade`) VALUES (%s,%s,'N/A')""", (
+            item['nome'],
+            item['dist_id'],
+        ))
+
+        self.conn.commit()
+    
+    def close_spider(self, spider):
+        logging.info("\n\n FECHANDO SPIDER CIDADES \n\n")
+        self.client.close()
+
+class CodPostaisPipeline:
+    def open_spider(self, spider):
+        self.create_connection()
+        logging.info("\n\n SPIDER CODIGOS POSTAIS \n\n")
     
     def create_connection(self):
         self.conn = mysql.connector.connect(
@@ -94,27 +129,23 @@ class CidadesPipeline:
     # Efetuar uma query a todos os items seria mais demoro que deixar a BD lidar com a situação
     def process_item(self, item, spider):
 
-        if item['cod'] and item['dist_cod'] and item['nome']:
-            item['cod'] = item['cod'][:4] # Obter apenas os primeiros 4 digitos
+        if item['cod'] and item['nome']:
             self.store_db(item)
             return item
             
 
     def store_db(self, item):
         
-        self.curr.execute(""" INSERT INTO `cidades`(`cod_postal`, `nome`, `distritos_ID`) VALUES (%s,%s,%s)""", (
-            item['cod'],
+        self.curr.execute(""" INSERT INTO `codigos_postais`(`cod_postal`, `cidades_nome`) VALUES (%s,%s) """, (
+            item['cod'][:4],
             item['nome'],
-            item['dist_cod']
         ))
 
         self.conn.commit()
     
     def close_spider(self, spider):
-        logging.info("\n\n FECHANDO SPIDER DISTRITOS \n\n")
+        logging.info("\n\n FECHANDO SPIDER CIDADES \n\n")
         self.client.close()
-
-    
 
 
 
