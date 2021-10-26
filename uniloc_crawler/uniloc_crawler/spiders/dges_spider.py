@@ -77,16 +77,6 @@ class instCrawler(scrapy.Spider):
     def parse(self, response):
         #.box9 é a classe que engloba os titulos de instituições
         for div in response.css('.box9'):
-                # cod = div.css('div::text')[0].get(),
-                # nome = div.css('div::text')[1].get(),
-                # cod_tipo = response.url[-2:],
-                # #link = response.urljoin(div.css('.box9 + div .lin-ce-c3 a::attr(href)').get())
-                # #yield scrapy.Request(url = link, callback=self.parse_codigo, meta={'cod' : cod, 'nome' : nome, 'cod_tipo' : cod_tipo})
-                # yield{
-                #     'cod' :cod,
-                #     'nome' :nome,
-                #     'cod_tipo' :cod_tipo,
-                # }
                 cod = div.css('div::text')[0].get()
                 nome = div.css('div::text')[1].get()
                 cod_tipo = response.url[-2:]
@@ -95,23 +85,27 @@ class instCrawler(scrapy.Spider):
                 
             
     
-    def parse_codigo(self, response):
+    async def parse_codigo(self, response):
         cod = response.request.meta['cod']
         nome = response.request.meta['nome']
         cod_tipo = response.request.meta['cod_tipo']
-        lista_info = response.xpath("/html/body/div[2]/div/div/div/div/div/div[2]/div/div[5]/text()").extract()
-        cod_postal = 9500
-        for item in lista_info:
-            candt = item[:4]
-            if candt.isnumeric():
-                cod_postal = candt
-                break
+        cod_postal = await self.get_cod(response.xpath("/html/body/div[2]/div/div/div/div/div/div[2]/div/div[5]/text()").extract())
         yield {
                     'cod': cod,
                     'nome': nome,
                     'cod_tipo' : cod_tipo,
                     'cod_postal' : cod_postal
                 }
+    
+    async def get_cod(self, lista):
+        
+        cod_postal = 0000
+        for item in lista:
+            candt = item[:4]
+            if candt.isnumeric():
+                cod_postal = candt
+                break
+        return cod_postal
 
         
 
