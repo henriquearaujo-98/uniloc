@@ -82,7 +82,7 @@ class instCrawler(scrapy.Spider):
                 cod_tipo = response.url[-2:]
                 link = response.urljoin(div.css('.box9 + div .lin-ce-c3 a::attr(href)').get())
                 yield scrapy.Request(url = link, callback=self.parse_codigo, meta={'cod' : cod, 'nome' : nome, 'cod_tipo' : cod_tipo})
-                
+               
             
     
     async def parse_codigo(self, response):
