@@ -267,6 +267,7 @@ class cod_postCrawler(scrapy.Spider):
 
             # response.css(".table_milieu tr td:nth-child(2n):not(.xx)::text").getall() gets us the code
 
+
 class apartadoCrawler(scrapy.Spider):
     name = "apart"
 
@@ -279,7 +280,6 @@ class apartadoCrawler(scrapy.Spider):
     start_urls = [
         'https://www.codigo-postal.pt/?cp4=1049&cp3='
     ]
-    
 
     def parse(self, response):
         mydb = mysql.connector.connect(
@@ -294,19 +294,18 @@ class apartadoCrawler(scrapy.Spider):
         cursor.execute("SELECT DISTINCT instituicoes.cod_postal FROM instituicoes WHERE instituicoes.cod_postal NOT IN (SELECT DISTINCT codigos_postais.cod_postal FROM codigos_postais)")
 
         cod_list = cursor.fetchall()
-        
+
         for item in cod_list:
             cod = ''.join(filter(str.isdigit, str(item)))
             link = "https://www.codigo-postal.pt/?cp4="+cod+"&cp3="
             yield scrapy.Request(url=link, callback=self.parse_cod,  meta={'cod': cod})
-    
+
     def parse_cod(self, response):
         cod = response.request.meta['cod']
         yield{
-            'nome' : response.xpath('/html/body/div[4]/div/div/div[1]/div/p[3]/span[2]/text()[3]').extract(),
-            'cod' : cod
+            'nome': response.xpath('/html/body/div[4]/div/div/div[1]/div/p[3]/span[2]/text()[3]').extract(),
+            'cod': cod
         }
-
 
 
 class ciddCrawler(scrapy.Spider):
@@ -342,6 +341,7 @@ class ciddCrawler(scrapy.Spider):
                 'dist_id': dist_cod
             }
 
+
 class rankingCrawler(scrapy.Spider):
     name = "rank"
 
@@ -362,6 +362,30 @@ class rankingCrawler(scrapy.Spider):
                 'nome': row.css("a::text").get()
             }
 
+
+class areaCrawler(scrapy.Spider):
+    name = "area"
+
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.AreaPipeline': 400
+        }
+    }
+
+    start_urls = [
+        'https://www.dges.gov.pt/guias/indarea.asp'
+    ]
+
+    def parse(self, response):
+        for row in response.css('.areas'):
+            if row.css("a::text"):
+                yield {
+                    'nome': row.css("a::text").get()
+                }
+            elif row.css("strong::text"):
+                yield {
+                    'nome': row.css("strong::text").get()
+                }
 
 
 # process = CrawlerProcess()
