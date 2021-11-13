@@ -1,0 +1,3 @@
+SELECT DISTINCT instituicoes.cod_postal
+FROM instituicoes 
+WHERE instituicoes.cod_postal NOT IN (SELECT DISTINCT codigos_postais.cod_postal FROM codigos_postais)

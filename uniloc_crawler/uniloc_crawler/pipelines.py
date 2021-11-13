@@ -181,3 +181,43 @@ class RankPipeline:
     def close_spider(self, spider):
         logging.info("\n\n FECHANDO SPIDER RANKING \n\n")
         self.client.close()
+
+
+class ApartadosPipeline:
+    def open_spider(self, spider):
+        self.create_connection()
+        logging.info("\n\n SPIDER APARTADOS \n\n")
+
+    def create_connection(self):
+        self.conn = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            passwd='',
+            database='projeto_final'
+        )
+        self.curr = self.conn.cursor()
+
+    # Apesar de enviarmos muitos registos com a PK duplicada devido á formatação do codigo postal, a BD só irá aceitar aqueles que não são duplicados, exatamente por serem PK
+    # Efetuar uma query a todos os items seria mais demoro que deixar a BD lidar com a situação
+
+    def process_item(self, item, spider):
+
+        if item['cod'] != 0 and item['nome']:
+            nome = str(item['nome'])
+            n = ''.join(x for x in nome if x.isalpha() or x == " ")
+            item['nome'] = n.title().lstrip().rstrip() # Upper case on every first letter of a word, no spaces in front, no spaces behind
+            self.store_db(item)
+            return item
+
+    def store_db(self, item):
+
+        self.curr.execute(""" INSERT INTO `codigos_postais`(`cod_postal`, `cidades_nome`) VALUES (%s,%s) """, (
+            item['cod'],
+            item['nome'],
+        ))
+
+        self.conn.commit()
+
+    def close_spider(self, spider):
+        logging.info("\n\n FECHANDO SPIDER APARTADOS \n\n")
+        self.client.close()
