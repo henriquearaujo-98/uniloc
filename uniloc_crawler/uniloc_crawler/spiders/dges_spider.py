@@ -107,9 +107,6 @@ class instCrawler(scrapy.Spider):
                 break
         return cod_postal
 
-        
-
-       
 
 # Popular a tabela cursos
 class cursoCrawler(scrapy.Spider):
