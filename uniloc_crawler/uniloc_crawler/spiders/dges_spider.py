@@ -1,5 +1,6 @@
 import scrapy
 from scrapy.crawler import CrawlerProcess
+import mysql.connector
 
 
 # Lista de instituições e os seus respetivos cursos
@@ -266,6 +267,47 @@ class cod_postCrawler(scrapy.Spider):
 
             # response.css(".table_milieu tr td:nth-child(2n):not(.xx)::text").getall() gets us the code
 
+class apartadoCrawler(scrapy.Spider):
+    name = "apart"
+
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.ApartadosPipeline': 400
+        }
+    }
+
+    start_urls = [
+        'https://www.codigo-postal.pt/?cp4=1049&cp3='
+    ]
+    
+
+    def parse(self, response):
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="projeto_final"
+        )
+
+        cursor = mydb.cursor()
+
+        cursor.execute("SELECT DISTINCT instituicoes.cod_postal FROM instituicoes WHERE instituicoes.cod_postal NOT IN (SELECT DISTINCT codigos_postais.cod_postal FROM codigos_postais)")
+
+        cod_list = cursor.fetchall()
+        
+        for item in cod_list:
+            cod = ''.join(filter(str.isdigit, str(item)))
+            link = "https://www.codigo-postal.pt/?cp4="+cod+"&cp3="
+            yield scrapy.Request(url=link, callback=self.parse_cod,  meta={'cod': cod})
+    
+    def parse_cod(self, response):
+        cod = response.request.meta['cod']
+        yield{
+            'nome' : response.xpath('/html/body/div[4]/div/div/div[1]/div/p[3]/span[2]/text()[3]').extract(),
+            'cod' : cod
+        }
+
+
 
 class ciddCrawler(scrapy.Spider):
     name = "cidd"
@@ -300,21 +342,6 @@ class ciddCrawler(scrapy.Spider):
                 'dist_id': dist_cod
             }
 
-
-# process = CrawlerProcess()
-# ## Popular instituições
-# process.crawl(instCrawler)
-# process.start() # the script will block here until all crawling jobs are finished
-
-# ## Popular cursos
-# process.crawl(cursoCrawler)
-# process.start() # the script will block here until all crawling jobs are finished
-
-# ## Popular tabela associativa
-# process.crawl(cursoCrawler)
-# process.start() # the script will block here until all crawling jobs are finished
-
-
 class rankingCrawler(scrapy.Spider):
     name = "rank"
 
@@ -334,3 +361,18 @@ class rankingCrawler(scrapy.Spider):
                 'rank': row.css("b::text").get(),
                 'nome': row.css("a::text").get()
             }
+
+
+
+# process = CrawlerProcess()
+# ## Popular instituições
+# process.crawl(instCrawler)
+# process.start() # the script will block here until all crawling jobs are finished
+
+# ## Popular cursos
+# process.crawl(cursoCrawler)
+# process.start() # the script will block here until all crawling jobs are finished
+
+# ## Popular tabela associativa
+# process.crawl(cursoCrawler)
+# process.start() # the script will block here until all crawling jobs are finished
