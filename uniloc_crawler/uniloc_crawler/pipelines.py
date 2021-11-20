@@ -239,12 +239,13 @@ class AreaPipeline:
         self.curr = self.conn.cursor()
 
     def process_item(self, item, spider):
-        if item['nome'] is not None:
+        if item['codigo'] is not None and item['nome'] is not None:
             self.store_db(item)
             return item
 
     def store_db(self, item):
-        self.curr.execute(""" INSERT INTO `area_estudo` (`ID`, `nome`) VALUES (NULL, %s) """, (
+        self.curr.execute(""" INSERT INTO `area_estudo` (`ID`, `nome`) VALUES (%s, %s) """, (
+            item['codigo'],
             item['nome'],
         ))
 

@@ -114,7 +114,7 @@ class instCrawler(scrapy.Spider):
 
 # Popular a tabela cursos
 class cursoCrawler(scrapy.Spider):
-    name = "cursos"
+    name = "cursos_deprecated"
 
     start_urls = [
         'https://dges.gov.pt/guias/indcurso.asp?letra=A',
@@ -373,30 +373,94 @@ class areaCrawler(scrapy.Spider):
     }
 
     start_urls = [
-        'https://www.dges.gov.pt/guias/indarea.asp'
+        'https://www.dges.gov.pt/guias/indarea.asp?area=14'
     ]
 
     def parse(self, response):
         for row in response.css('.areas'):
             if row.css("a::text"):
                 yield {
+                    'codigo': row.css("a::attr(href)").get()[-2:],
                     'nome': row.css("a::text").get()
                 }
             elif row.css("strong::text"):
                 yield {
+                    'codigo': response.url[-2:],
                     'nome': row.css("strong::text").get()
                 }
 
 
-# process = CrawlerProcess()
-# ## Popular instituições
-# process.crawl(instCrawler)
-# process.start() # the script will block here until all crawling jobs are finished
+class cursosCrawler(scrapy.Spider):
+    name = "cursos"
 
-# ## Popular cursos
-# process.crawl(cursoCrawler)
-# process.start() # the script will block here until all crawling jobs are finished
+    # custom_settings = {
+    #     'ITEM_PIPELINES': {
+    #         'uniloc_crawler.pipelines.CursosPipeline': 400
+    #     }
+    # }
 
-# ## Popular tabela associativa
-# process.crawl(cursoCrawler)
-# process.start() # the script will block here until all crawling jobs are finished
+    start_urls = [
+        'https://www.dges.gov.pt/guias/indarea.asp?area=14'
+    ]
+
+    def parse(self, response):
+        linklist = response.css(".areas")
+
+        for item in linklist:
+
+            link = response.urljoin(item.css(" a::attr(href)").get())
+
+            yield response.follow(url=link, callback=self.parse_info)
+
+    def parse_info(self, response):
+        # for post in response.css('.inside'):
+
+        #     cursos = list()
+
+        #     concat = " + .lin-area "
+
+        #     while(post.css('.inside ' + concat).get() is not None):
+        #         curso = dict()
+        #         curso['cod'] = post.css('.lin-area-c1::text').get()
+        #         curso['nome'] = post.css('.lin-area-c2 a::text').get()
+
+        #         cursos.append(curso)
+        #         concat = concat + " + .lin-area "
+
+        #     yield {
+        #         'cod': post.css('div::text')[0].get(),
+        #         'nome': post.css('div::text')[1].get(),
+        #         'cod_area': response.url[-2:],
+        #         'cursos': cursos
+        #     }
+        for post in response.css('.lin-area'):
+
+            cursos = list()
+
+            while(post.css('.inside ' + concat).get() is not None):
+                curso = dict()
+                curso['cod'] = post.css('.lin-area-c1::text').get()
+                curso['nome'] = post.css('.lin-area-c2 a::text').get()
+
+                cursos.append(curso)
+                concat = concat + " + .lin-area "
+
+            yield {
+                'cod': post.css('div::text')[0].get(),
+                'nome': post.css('div::text')[1].get(),
+                'cod_area': response.url[-2:],
+                'cursos': cursos
+            }
+
+        # process = CrawlerProcess()
+        # ## Popular instituições
+        # process.crawl(instCrawler)
+        # process.start() # the script will block here until all crawling jobs are finished
+
+        # ## Popular cursos
+        # process.crawl(cursoCrawler)
+        # process.start() # the script will block here until all crawling jobs are finished
+
+        # ## Popular tabela associativa
+        # process.crawl(cursoCrawler)
+        # process.start() # the script will block here until all crawling jobs are finished
