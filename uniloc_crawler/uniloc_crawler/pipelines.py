@@ -205,7 +205,8 @@ class ApartadosPipeline:
         if item['cod'] != 0 and item['nome']:
             nome = str(item['nome'])
             n = ''.join(x for x in nome if x.isalpha() or x == " ")
-            item['nome'] = n.title().lstrip().rstrip() # Upper case on every first letter of a word, no spaces in front, no spaces behind
+            # Upper case on every first letter of a word, no spaces in front, no spaces behind
+            item['nome'] = n.title().lstrip().rstrip()
             self.store_db(item)
             return item
 
@@ -220,4 +221,36 @@ class ApartadosPipeline:
 
     def close_spider(self, spider):
         logging.info("\n\n FECHANDO SPIDER APARTADOS \n\n")
+        self.client.close()
+
+
+class AreaPipeline:
+    def open_spider(self, spider):
+        self.create_connection()
+        logging.info("\n\n SPIDER Area de Estudo \n\n")
+
+    def create_connection(self):
+        self.conn = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            passwd='',
+            database='projeto_final'
+        )
+        self.curr = self.conn.cursor()
+
+    def process_item(self, item, spider):
+        if item['codigo'] is not None and item['nome'] is not None:
+            self.store_db(item)
+            return item
+
+    def store_db(self, item):
+        self.curr.execute(""" INSERT INTO `area_estudo` (`ID`, `nome`) VALUES (%s, %s) """, (
+            item['codigo'],
+            item['nome'],
+        ))
+
+        self.conn.commit()
+
+    def close_spider(self, spider):
+        logging.info("\n\n FECHANDO SPIDER SPIDER Area de Estudo \n\n")
         self.client.close()
