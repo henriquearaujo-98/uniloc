@@ -222,7 +222,6 @@ class distCrawler(scrapy.Spider):
                 'id': row.css("td.gras::text").get()
             }
 
-
 class cod_postCrawler(scrapy.Spider):
     name = "cod_post"
 
@@ -306,8 +305,6 @@ class apartadoCrawler(scrapy.Spider):
             'nome' : response.xpath('/html/body/div[4]/div/div/div[1]/div/p[3]/span[2]/text()[3]').extract(),
             'cod' : cod
         }
-
-
 
 class ciddCrawler(scrapy.Spider):
     name = "cidd"
