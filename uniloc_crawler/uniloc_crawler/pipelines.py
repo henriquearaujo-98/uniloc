@@ -288,3 +288,38 @@ class CursosPipeline:
     def close_spider(self, spider):
         logging.info("\n\n FECHANDO SPIDER SPIDER Cursos \n\n")
         self.client.close()
+
+
+class Inst_CursosPipeline:
+
+    def open_spider(self, spider):
+        self.create_connection()
+        logging.info("\n\n SPIDER Instituições por Cursos \n\n")
+
+    def create_connection(self):
+        self.conn = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            passwd='',
+            database='projeto_final'
+        )
+        self.curr = self.conn.cursor()
+
+    def process_item(self, item, spider):
+        if item['curso'] is not None and item['inst'] is not None:
+            self.store_db(item)
+            return item
+
+    def store_db(self, item):
+        self.curr.execute(""" INSERT INTO `instituicoes_has_curso` (`cursos_ID`, `instituicoes_ID`, `nota_ult_1fase`, `nota_ult_2fase`) VALUES (%s, %s, %s, %s) """, (
+            item['curso'],
+            item['inst'],
+            item['nota_ult_EN'],
+            item['nota_ult_ER'],
+        ))
+
+        self.conn.commit()
+
+    def close_spider(self, spider):
+        logging.info("\n\n FECHANDO SPIDER Instituições por Cursos \n\n")
+        self.client.close()
