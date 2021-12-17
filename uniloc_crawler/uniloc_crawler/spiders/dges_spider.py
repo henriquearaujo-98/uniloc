@@ -3,7 +3,7 @@ from scrapy.crawler import CrawlerProcess
 import mysql.connector
 
 
-# Lista de instituições e os seus respetivos cursos
+# Lista de instituições e os seus respetivos cursos Old
 class dgesSpider(scrapy.Spider):
     #
     #   ESTE SCRIPT NÃO CORRESPONDE A NENHUMA TABELA
@@ -178,12 +178,12 @@ class inst_cursoCrawler(scrapy.Spider):
             if notas[len(notas)-2] is not None:
                 nota_ult_ER = notas[len(notas)-1]
             else:
-                nota_ult_ER = "Informação não disponível"
+                nota_ult_ER = None
 
             if notas[len(notas)-1] is not None:
-                nota_ult_EN = notas[len(notas)-1]
+                nota_ult_EN = notas[len(notas)-2]
             else:
-                nota_ult_EN = "Informação não disponível"
+                nota_ult_EN = None
             yield{
                 'curso': curso,
                 'inst': inst,
@@ -194,8 +194,8 @@ class inst_cursoCrawler(scrapy.Spider):
             yield{
                 'curso': curso,
                 'inst': inst,
-                'nota_ult_EN': "Informação não disponibilizada",
-                'nota_ult_ER': "Informação não disponibilizada"
+                'nota_ult_EN': None,
+                'nota_ult_ER': None
             }
 
 # Popular a tabela distritos
