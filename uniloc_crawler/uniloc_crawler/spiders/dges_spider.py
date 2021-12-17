@@ -3,7 +3,7 @@ from scrapy.crawler import CrawlerProcess
 import mysql.connector
 
 
-# Lista de instituições e os seus respetivos cursos
+# Lista de instituições e os seus respetivos cursos Old
 class dgesSpider(scrapy.Spider):
     #
     #   ESTE SCRIPT NÃO CORRESPONDE A NENHUMA TABELA
@@ -143,6 +143,12 @@ class cursoCrawler(scrapy.Spider):
 class inst_cursoCrawler(scrapy.Spider):
     name = "inst_curso"
 
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.Inst_CursosPipeline': 400
+        }
+    }
+
     start_urls = [
         'https://dges.gov.pt/guias/indest.asp?reg=11',
         'https://dges.gov.pt/guias/indest.asp?reg=12',
@@ -181,7 +187,7 @@ class inst_cursoCrawler(scrapy.Spider):
                 nota_ult_ER = "Informação não disponível"
 
             if notas[len(notas)-1] is not None:
-                nota_ult_EN = notas[len(notas)-1]
+                nota_ult_EN = notas[len(notas)-2]
             else:
                 nota_ult_EN = "Informação não disponível"
             yield{
@@ -194,8 +200,8 @@ class inst_cursoCrawler(scrapy.Spider):
             yield{
                 'curso': curso,
                 'inst': inst,
-                'nota_ult_EN': "Informação não disponibilizada",
-                'nota_ult_ER': "Informação não disponibilizada"
+                'nota_ult_EN': "Informação não disponível",
+                'nota_ult_ER': "Informação não disponível"
             }
 
 # Popular a tabela distritos
