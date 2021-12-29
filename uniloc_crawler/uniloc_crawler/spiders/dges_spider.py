@@ -3,7 +3,7 @@ from scrapy.crawler import CrawlerProcess
 import mysql.connector
 
 
-# Lista de instituições e os seus respetivos cursos
+# Lista de instituições e os seus respetivos cursos Old
 class dgesSpider(scrapy.Spider):
     #
     #   ESTE SCRIPT NÃO CORRESPONDE A NENHUMA TABELA
@@ -85,7 +85,8 @@ class instCrawler(scrapy.Spider):
             cod = div.css('div::text')[0].get()
             nome = div.css('div::text')[1].get()
             cod_tipo = response.url[-2:]
-            link = response.urljoin(div.css('.box9 + div .lin-ce-c3 a::attr(href)').get())
+            link = response.urljoin(
+                div.css('.box9 + div .lin-ce-c3 a::attr(href)').get())
             yield scrapy.Request(url=link, callback=self.parse_codigo, meta={'cod': cod, 'nome': nome, 'cod_tipo': cod_tipo})
 
     async def parse_codigo(self, response):
@@ -142,6 +143,12 @@ class cursoCrawler(scrapy.Spider):
 class inst_cursoCrawler(scrapy.Spider):
     name = "inst_curso"
 
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.Inst_CursosPipeline': 400
+        }
+    }
+
     start_urls = [
         'https://dges.gov.pt/guias/indest.asp?reg=11',
         'https://dges.gov.pt/guias/indest.asp?reg=12',
@@ -180,7 +187,7 @@ class inst_cursoCrawler(scrapy.Spider):
                 nota_ult_ER = "Informação não disponível"
 
             if notas[len(notas)-1] is not None:
-                nota_ult_EN = notas[len(notas)-1]
+                nota_ult_EN = notas[len(notas)-2]
             else:
                 nota_ult_EN = "Informação não disponível"
             yield{
@@ -193,8 +200,8 @@ class inst_cursoCrawler(scrapy.Spider):
             yield{
                 'curso': curso,
                 'inst': inst,
-                'nota_ult_EN': "Informação não disponibilizada",
-                'nota_ult_ER': "Informação não disponibilizada"
+                'nota_ult_EN': "Informação não disponível",
+                'nota_ult_ER': "Informação não disponível"
             }
 
 # Popular a tabela distritos
@@ -220,6 +227,7 @@ class distCrawler(scrapy.Spider):
                 'nome': row.css("a::text").get(),
                 'id': row.css("td.gras::text").get()
             }
+
 
 class cod_postCrawler(scrapy.Spider):
     name = "cod_post"
@@ -304,6 +312,7 @@ class apartadoCrawler(scrapy.Spider):
             'nome': response.xpath('/html/body/div[4]/div/div/div[1]/div/p[3]/span[2]/text()[3]').extract(),
             'cod': cod
         }
+
 
 class ciddCrawler(scrapy.Spider):
     name = "cidd"
@@ -390,11 +399,11 @@ class areaCrawler(scrapy.Spider):
 class cursosCrawler(scrapy.Spider):
     name = "cursos"
 
-    # custom_settings = {
-    #     'ITEM_PIPELINES': {
-    #         'uniloc_crawler.pipelines.CursosPipeline': 400
-    #     }
-    # }
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.CursosPipeline': 400
+        }
+    }
 
     start_urls = [
         'https://www.dges.gov.pt/guias/indarea.asp?area=14'
@@ -406,30 +415,24 @@ class cursosCrawler(scrapy.Spider):
             index = response.request.meta['index']
         except:
             index = -1
-        
 
         for row in response.css('.lin-area'):
             cod = row.css(" .lin-area-c1::text").get()
             curso = row.css(" a::text").get()
             cod_area = response.request.url[-2:]
-            
+
             yield{
-                'cod' : cod,
-                'curso' : curso,
-                'cod_area' : cod_area,
+                'cod': cod,
+                'curso': curso,
+                'cod_area': cod_area,
 
             }
 
-        index += 1     
+        index += 1
         links = response.css('.areas a::attr(href)').getall()
         link = response.urljoin(links[index])
-        
+
         yield response.follow(url=link, callback=self.parse, meta={'index': index})
-
-            
-
- 
-        
 
     # process = CrawlerProcess()
     # ## Popular instituições
