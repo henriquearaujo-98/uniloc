@@ -1,6 +1,75 @@
 import scrapy
 from scrapy.crawler import CrawlerProcess
 import mysql.connector
+import logging
+
+
+# Informações das cidades
+class InformaçãoCidades_Spider(scrapy.Spider):
+
+    name = "inf_cid"
+
+    start_urls = [
+       'https://www.pordata.pt/Municipios/Quadro+Resumo/Abrantes-255786'
+    ]
+
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.InformaçãoCidadesPipeline': 400
+        }
+    }
+
+    base_link = 'https://www.pordata.pt/Municipios/Quadro+Resumo/'
+
+    def parse(self, response):
+
+        for option in response.css('option'):
+
+            cidade = option.css('option::text').get()
+            codigo = option.css('option::attr(value)').get()
+
+            cid_cod = cidade + "-" + codigo
+
+            logging.info("\n\n " + cid_cod + " \n\n")
+
+            link = self.base_link + cid_cod
+
+            yield scrapy.Request(url=link, callback=self.parse_cidade, meta={'cidade': cidade})
+
+    def parse_cidade(self, response):
+
+        cidade = response.request.meta['cidade']
+        offset = 0
+        pop_resi = False # se já saiu população residente anteriormente
+
+
+        inf = dict()
+        inf['cidade'] = cidade
+
+        for reg in response.css('tr'):
+            
+            
+
+            indicador = reg.css('a.IndicatorLink::text').get()
+            lista_valores = reg.css('.QrTableCellValue::text').get()
+
+
+            # Porque estamos a sacar os indicadores do ciclo foreach e o valor de um offset de uma lista, temos um bug onde um indicador se duplica
+            # Isto causa que os valores - indicadores estajam desalinhados por 1
+            if indicador is None:
+                continue
+
+            if indicador == 'População residente' and pop_resi == True:
+                continue
+
+            if indicador == 'População residente':
+                pop_resi = True
+            
+            inf[indicador] = response.css('.QrTableCellValue::text').getall()[4+offset]
+
+            offset += 5
+        
+        yield inf
 
 
 # Lista de instituições e os seus respetivos cursos Old

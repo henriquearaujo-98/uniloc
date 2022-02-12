@@ -10,6 +10,140 @@ import mysql.connector
 import logging
 
 
+class InformaçãoCidadesPipeline:
+
+    def open_spider(self, spider):
+        self.create_connection()
+        logging.info("\n\n SPIDER INFORMAÇÕES CIDADES \n\n")
+
+    def create_connection(self):
+        self.conn = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            passwd='',
+            database='projeto_final'
+        )
+        self.curr = self.conn.cursor()
+
+    def process_item(self, item, spider):
+
+        if(item['cidade'] == 'Calheta [R.A.A]'):
+            item['cidade'] = 'Calheta de São Jorge'
+        
+        if(item['cidade'] == 'Calheta [R.A.M]'):
+            item['cidade'] = 'Calheta'
+
+        self.store_db(item)
+        return item
+
+    def store_db(self, item):
+        self.curr.execute(""" 
+                            INSERT INTO `informacoes_cidade`
+                                    (`cidade`, 
+                                    `População residente`, 
+                                    `Densidade populacional`, 
+                                    `Mulheres (%)`, 
+                                    `Homens (%)`, 
+                                    `Jovens (%)`, 
+                                    `População em idade activa (%)`, 
+                                    `Idosos (%)`, 
+                                    `Índice de envelhecimento`, 
+                                    `Indivíduos em idade activa por idoso`, 
+                                    `Solteiros (%)`, 
+                                    `Casados (%)`, 
+                                    `Divorciados (%)`, 
+                                    `Viúvos (%)`, 
+                                    `Famílias`, 
+                                    `Famílias unipessoais (%)`, 
+                                    `Famílias com 2 pessoas (%)`, 
+                                    `Alojamentos`, 
+                                    `Alojamentos familiares clássicos (%)`, 
+                                    `Alojamentos colectivos (%)`,
+                                    `Alojamentos ocupados (%)`, 
+                                    `Alojamentos próprios (%)`, 
+                                    `Alojamentos próprios com encargos de compra (%)`, 
+                                    `Alojamentos arrendados e outros casos (%)`, 
+                                    `Renda mensal: <50€`,
+                                    `Renda mensal: 50€ - 99,99€`,
+                                    `Renda mensal: 100€ - 199,99€`,
+                                    `Renda mensal: 200€ - 399,99€`,
+                                    `Renda mensal: 400€ - 649,99€`,
+                                    `Renda mensal: 650€ - 999,99€`,
+                                    `Renda mensal: >=1000€`, 
+                                    `Edificios`) 
+                                     VALUES (%s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s,
+                                            %s) """, (
+            item['cidade'],                      
+            item['População residente'],
+            item['Densidade populacional'],
+            item['Mulheres (%)'],
+            item['Homens (%)'],
+            item['Jovens (%)'],
+            item['População em idade activa (%)'],
+            item['Idosos (%)'],
+            item['Índice de envelhecimento'],
+            item['Indivíduos em idade activa por idoso'],
+            item['Solteiros (%)'],
+            item['Casados (%)'],
+            item['Divorciados (%)'],
+            item['Viúvos (%)'],
+            item['Famílias'],
+            item['Famílias unipessoais (%)'],
+            item['Famílias com 2 pessoas (%)'],
+            item['Alojamentos'],
+            item['Alojamentos familiares clássicos (%)'],
+            item['Alojamentos colectivos (%)'],
+            item['Alojamentos ocupados (%)'],
+            item['Alojamentos próprios (%)'],
+            item['Alojamentos próprios com encargos de compra (%)'],
+            item['Alojamentos arrendados e outros casos (%)'],
+            item['Renda mensal: <50€'],
+            item['Renda mensal: 50€ - 99,99€'],
+            item['Renda mensal: 100€ - 199,99€'],
+            item['Renda mensal: 200€ - 399,99€'],
+            item['Renda mensal: 400€ - 649,99€'],
+            item['Renda mensal: 650€ - 999,99€'],
+            item['Renda mensal: >=1000€'],
+            item['Edifícios'],
+
+        ))
+
+        self.conn.commit()
+
+    def close_spider(self, spider):
+        logging.info("\n\n FECHANDO SPIDER INFORMAÇÕES CIDADES \n\n")
+        self.client.close()
+
 class InstituicoesPipeline:
 
     def open_spider(self, spider):
