@@ -8,13 +8,14 @@
 from itemadapter import ItemAdapter
 import mysql.connector
 import logging
+import asyncio
 
 
-class InformaçãoCidadesPipeline:
+class InformaçãoMunicipiosPipeline:
 
     def open_spider(self, spider):
         self.create_connection()
-        logging.info("\n\n SPIDER INFORMAÇÕES CIDADES \n\n")
+        logging.info("\n\n SPIDER INFORMAÇÕES MUNICIPIOS \n\n")
 
     def create_connection(self):
         self.conn = mysql.connector.connect(
@@ -27,23 +28,67 @@ class InformaçãoCidadesPipeline:
 
     def process_item(self, item, spider):
 
-        # Mapear alguns municipios para que aja consistencia de dados com a FK
-        if(item['cidade'] == 'Calheta [R.A.A.]'):
-            item['cidade'] = 'Calheta de São Jorge'
+        # Mapear alguns municipios devido á sua repetição.
+        # Como temos nomes repetidos quando fazemos a query á BD mais abaixo, atribui-mos aqui, de vez, o ID.
+        if(item['municipio_nome'] == 'Calheta [R.A.A.]'):
+            item['municipio_ID'] = 4501
+            self.store_db(item)
+            return
         
-        if(item['cidade'] == 'Calheta [R.A.M.]'):
-            item['cidade'] = 'Calheta'
+        if(item['municipio_nome'] == 'Calheta [R.A.M.]'):
+            item['municipio_ID'] = 3101
+            self.store_db(item)
+            return
         
-        if(item['cidade'] == 'Vila da Praia da Vitória'):
-            item['cidade'] = 'Praia da Vitória'
+        if(item['municipio_nome'] == 'Lagoa [R.A.A.]'):
+            item['municipio_ID'] = 4201
+            self.store_db(item)
+            return
 
-        self.store_db(item)
+        if(item['municipio_nome'] == 'Lagoa'):
+            item['municipio_ID'] = '0806'
+            self.store_db(item)
+            return
+        
+        if(item['municipio_nome'] == 'Vila da Praia da Vitória'):
+            item['municipio_nome'] = 'Praia da Vitória'
+
+        
+        asyncio.run(self.corotina(item))
+
+        
         return item
+    
+    async def corotina(self, item):
+        mun_id = await self.fetch_municipioID(item['municipio_nome'])
+
+        if mun_id is None:
+            return
+
+        
+        item['municipio_ID'] = str(mun_id[0])
+        self.store_db(item)
+
+    async def fetch_municipioID(self, municipio_nome):
+        mydb = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='',
+            database='projeto_final'
+        )
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute("SELECT `ID` FROM `municipios` WHERE `nome` = '"+municipio_nome+"' ")
+
+        myresult = mycursor.fetchone()
+
+        return myresult
 
     def store_db(self, item):
         self.curr.execute(""" 
-                            INSERT INTO `informacoes_cidade`
-                                    (`cidade`, 
+                            INSERT INTO `informacoes_municipios`
+                                    (`municipio_ID`, 
                                     `População residente`, 
                                     `Densidade populacional`, 
                                     `Mulheres (%)`, 
@@ -76,7 +121,7 @@ class InformaçãoCidadesPipeline:
                                     `Renda mensal: >=1000€`, 
                                     `Edificios`) 
                                      VALUES (%s,%s,%s,%s,%s,%s,%s, %s,%s, %s,%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s, %s,%s,%s,%s,%s) """, (
-                                                item['cidade'],                      
+                                                item['municipio_ID'],                      
                                                 item['População residente'],
                                                 item['Densidade populacional'],
                                                 item['Mulheres (%)'],
@@ -114,7 +159,7 @@ class InformaçãoCidadesPipeline:
         self.conn.commit()
 
     def close_spider(self, spider):
-        logging.info("\n\n FECHANDO SPIDER INFORMAÇÕES CIDADES \n\n")
+        logging.info("\n\n FECHANDO SPIDER INFORMAÇÕES MUNICIPIOS \n\n")
         self.client.close()
 
 class InstituicoesPipeline:
@@ -184,11 +229,11 @@ class DistritosPipeline:
         self.client.close()
 
 
-class CidadesPipeline:
+class MunicipiosPipeline:
 
     def open_spider(self, spider):
         self.create_connection()
-        logging.info("\n\n SPIDER CIDADES \n\n")
+        logging.info("\n\n SPIDER MUNICIPIOS \n\n")
 
     def create_connection(self):
         self.conn = mysql.connector.connect(
@@ -204,12 +249,21 @@ class CidadesPipeline:
 
     def process_item(self, item, spider):
         if item['nome'] and item['dist_id']:
+
+            if(item['nome'] == 'Lisbon'):
+                item['nome'] = 'Lisboa'
+
+            if(item['nome'] == 'Bragança Municipality'):
+                iten['nome'] = 'Bragança'
+
+
             self.store_db(item)
             return item
 
     def store_db(self, item):
 
-        self.curr.execute(""" INSERT INTO `cidades`(`nome`, `distritos_ID`, `qualidade`) VALUES (%s,%s,'N/A')""", (
+        self.curr.execute(""" INSERT INTO `municipios`(`ID`, `nome`, `distritos_ID`) VALUES (%s,%s,%s)""", (
+            item['mun_id'],
             item['nome'],
             item['dist_id'],
         ))
@@ -217,7 +271,7 @@ class CidadesPipeline:
         self.conn.commit()
 
     def close_spider(self, spider):
-        logging.info("\n\n FECHANDO SPIDER CIDADES \n\n")
+        logging.info("\n\n FECHANDO SPIDER MUNICIPIOS \n\n")
         self.client.close()
 
 
@@ -249,6 +303,43 @@ class CodPostaisPipeline:
         self.curr.execute(""" INSERT INTO `codigos_postais`(`cod_postal`, `cidades_nome`) VALUES (%s,%s) """, (
             item['cod'][:4],
             item['nome'],
+        ))
+
+        self.conn.commit()
+
+    def close_spider(self, spider):
+        logging.info("\n\n FECHANDO SPIDER CIDADES \n\n")
+        self.client.close()
+
+
+class CidadesPipeline:
+    def open_spider(self, spider):
+        self.create_connection()
+        logging.info("\n\n SPIDER CIDADES \n\n")
+
+    def create_connection(self):
+        self.conn = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            passwd='',
+            database='projeto_final'
+        )
+        self.curr = self.conn.cursor()
+
+    # Apesar de enviarmos muitos registos com a PK duplicada devido á formatação do codigo postal, a BD só irá aceitar aqueles que não são duplicados, exatamente por serem PK
+    # Efetuar uma query a todos os items seria mais demoro que deixar a BD lidar com a situação
+
+    def process_item(self, item, spider):
+
+        if item['cidade'] and item['cod_municipio']:
+            self.store_db(item)
+            return item
+
+    def store_db(self, item):
+
+        self.curr.execute(""" INSERT INTO `cidades`(`nome`, `municipio_ID`) VALUES (%s,%s) """, (
+            item['cidade'][:4],
+            item['cod_municipio'].strip(),
         ))
 
         self.conn.commit()

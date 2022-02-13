@@ -4,10 +4,10 @@ import mysql.connector
 import logging
 
 
-# Informações das cidades
-class InformaçãoCidades_Spider(scrapy.Spider):
+# Informações dos municipios
+class InformaçãoMunicipio_Spider(scrapy.Spider):
 
-    name = "inf_cid"
+    name = "inf_mun"
 
     start_urls = [
        'https://www.pordata.pt/Municipios/Quadro+Resumo/Abrantes-255786'
@@ -15,7 +15,7 @@ class InformaçãoCidades_Spider(scrapy.Spider):
 
     custom_settings = {
         'ITEM_PIPELINES': {
-            'uniloc_crawler.pipelines.InformaçãoCidadesPipeline': 400
+            'uniloc_crawler.pipelines.InformaçãoMunicipiosPipeline': 400
         }
     }
 
@@ -25,22 +25,25 @@ class InformaçãoCidades_Spider(scrapy.Spider):
 
         for option in response.css('option'):
 
-            cidade = option.css('option::text').get()
+            municipio = option.css('option::text').get()
             codigo = option.css('option::attr(value)').get()
 
-            cid_cod = cidade + "-" + codigo
+            cid_cod = municipio + "-" + codigo
 
             link = self.base_link + cid_cod
 
-            yield scrapy.Request(url=link, callback=self.parse_cidade, meta={'cidade': cidade})
+            yield scrapy.Request(url=link, callback=self.parse_cidade, meta={'municipio': municipio})
 
     def parse_cidade(self, response):
 
-        cidade = response.request.meta['cidade']
+        municipio = response.request.meta['municipio']
         index = 1
 
         inf = dict()
-        inf['cidade'] = cidade
+        inf['municipio_nome'] = municipio
+
+        if inf['municipio_nome'] is None:
+            return
 
         for reg in response.css('#QrTable tr'):
             
@@ -64,7 +67,8 @@ class InformaçãoCidades_Spider(scrapy.Spider):
 
         
         yield inf
-
+    
+    
 
 # Lista de instituições e os seus respetivos cursos Old
 class dgesSpider(scrapy.Spider):
@@ -115,8 +119,6 @@ class dgesSpider(scrapy.Spider):
             }
 
 # Popular a tabela instituições
-
-
 class instCrawler(scrapy.Spider):
 
     name = "insts"
@@ -377,8 +379,49 @@ class apartadoCrawler(scrapy.Spider):
         }
 
 
-class ciddCrawler(scrapy.Spider):
-    name = "cidd"
+class municipiosCrawler(scrapy.Spider):
+    
+    name = "municipios"
+
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.MunicipiosPipeline': 400
+        }
+    }
+
+    start_urls = [
+        'http://pt.gpspostcode.com/codigo-postal/portugal/#111'
+    ]
+
+    def parse(self, response):
+
+        for row in response.css('.table_milieu tr'):
+            if row.css("a::attr(href)").get():
+                link = response.urljoin(row.css("a::attr(href)").get())
+                yield scrapy.Request(url=link, callback=self.parse_municipio)
+
+    def parse_municipio(self, response):
+
+        # O penultimo e ante-penultimo caracter
+        dist_cod = response.css("h1::text").get()[-3:-1]
+        for row in response.css('.table_milieu tr '):
+
+            municipio_nome = row.css("a::text").get()
+
+            if municipio_nome is None:
+                continue
+
+            cod_municipio = row.css('.gras::text').get()
+
+            yield{
+                'nome': municipio_nome,
+                'mun_id': cod_municipio,
+                'dist_id': dist_cod
+            }
+
+
+class cidadesCrawler(scrapy.Spider):
+    name = "cidades"
 
     custom_settings = {
         'ITEM_PIPELINES': {
@@ -395,19 +438,42 @@ class ciddCrawler(scrapy.Spider):
         for row in response.css('.table_milieu tr'):
             if row.css("a::attr(href)").get():
                 link = response.urljoin(row.css("a::attr(href)").get())
-                yield scrapy.Request(url=link, callback=self.parse_cidade)
+                yield scrapy.Request(url=link, callback=self.parse_municipio)
+
+    def parse_municipio(self, response):
+
+        for row in response.css('.table_milieu tr '):
+
+            uri = row.css("a::attr(href)").get()    # tentar arranjar o URI 
+
+            if uri is None: # se o uri não existir, também não existe uma coluna para o código do municipio válido
+                continue
+
+            cod_municipio = row.css('.gras::text').get()
+
+            link = response.urljoin(uri)
+
+            # yield {
+            #     'cod_municipio' : cod_municipio
+            # }
+            yield scrapy.Request(url=link, callback=self.parse_cidade, meta={'id_municipio' : cod_municipio})
+    
 
     def parse_cidade(self, response):
 
-        # O penultimo e ante-penultimo caracter
-        dist_cod = response.css("h1::text").get()[-3:-1]
-        for row in response.css('.table_milieu tr '):
+        cod_municipio = response.request.meta['id_municipio']
 
-            cid_nome = row.css("a::text").get()
+        for x in response.xpath("/html/body/table/tr"):
 
+            campos = x.css('td::text').getall()
+
+            if len(campos) < 3: # significa que estamos perante table headers
+                continue
+            
             yield{
-                'nome': cid_nome,
-                'dist_id': dist_cod
+                'cidade' : campos[2],
+                #'codigo_postal' : campos[1],
+                'cod_municipio' : cod_municipio 
             }
 
 
