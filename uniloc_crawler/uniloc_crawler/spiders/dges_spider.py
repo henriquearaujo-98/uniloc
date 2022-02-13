@@ -39,19 +39,19 @@ class InformaçãoCidades_Spider(scrapy.Spider):
     def parse_cidade(self, response):
 
         cidade = response.request.meta['cidade']
-        offset = 0
-        pop_resi = False # se já saiu população residente anteriormente
-
+        index = 1
 
         inf = dict()
         inf['cidade'] = cidade
 
-        for reg in response.css('tr'):
+        for reg in response.css('#QrTable tr'):
             
             
-
-            indicador = reg.css('a.IndicatorLink::text').get()
-            lista_valores = reg.css('.QrTableCellValue::text').get()
+            try:
+                indicador = response.xpath('//*[@id="QrTable"]/tbody/tr['+str(index)+']/td[1]/div[2]/a/text()').extract()[0]
+                valor = response.xpath('//*[@id="QrTable"]/tbody/tr['+str(index)+']/td[11]/text()').extract()[0]
+            except:
+                continue
 
 
             # Porque estamos a sacar os indicadores do ciclo foreach e o valor de um offset de uma lista, temos um bug onde um indicador se duplica
@@ -59,15 +59,11 @@ class InformaçãoCidades_Spider(scrapy.Spider):
             if indicador is None:
                 continue
 
-            if indicador == 'População residente' and pop_resi == True:
-                continue
-
-            if indicador == 'População residente':
-                pop_resi = True
             
-            inf[indicador] = response.css('.QrTableCellValue::text').getall()[4+offset]
+            inf[indicador] = valor
 
-            offset += 5
+            index += 1
+
         
         yield inf
 

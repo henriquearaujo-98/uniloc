@@ -1,30 +1,45 @@
 import scrapy
 
 
-class cursoCrawler(scrapy.Spider):
+class InformaçãoCidades_Spider(scrapy.Spider):
+
     name = "test"
 
     start_urls = [
-        'https://dges.gov.pt/guias/indcurso.asp?letra=A',
+       'https://www.pordata.pt/Municipios/Quadro+Resumo/Odivelas-255941'
     ]
 
-   
-
-    def next_alpha(self, s):
-        return chr((ord(s.upper())+1 - 65) % 26 + 65)
+    base_link = 'https://www.pordata.pt/Municipios/Quadro+Resumo/'
 
     def parse(self, response):
-        #.box9 é a classe que engloba os titulos de instituições
-        for post in response.css('.box10'):
-            yield {
-                'cod': post.css('div::text')[0].get(),
-                'nome': post.css('div::text')[1].get(),
-            }
+
+        index = 1
+
+        inf = dict()
+        inf['cidade'] = 'Odivelas'
+
+        for reg in response.css('#QrTable tr'):
+            
+            
+            try:
+                indicador = response.xpath('//*[@id="QrTable"]/tbody/tr['+str(index)+']/td[1]/div[2]/a/text()').extract()[0]
+                valor = response.xpath('//*[@id="QrTable"]/tbody/tr['+str(index)+']/td[11]/text()').extract()[0]
+            except:
+                continue
+
+
+            # Porque estamos a sacar os indicadores do ciclo foreach e o valor de um offset de uma lista, temos um bug onde um indicador se duplica
+            # Isto causa que os valores - indicadores estajam desalinhados por 1
+            if indicador is None:
+                continue
+
+            
+            inf[indicador] = valor
+
+            index += 1
+
         
-        next = response.request.url[-1] # Mudamos um A para o B
-        link = 'https://dges.gov.pt/guias/indcurso.asp?letra=' + self.next_alpha(next)
-        if next:
-            yield scrapy.Request(url=link, callback=self.parse)
+        yield inf
        
 
 
