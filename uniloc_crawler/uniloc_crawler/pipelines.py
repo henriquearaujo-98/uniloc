@@ -27,11 +27,15 @@ class InformaçãoCidadesPipeline:
 
     def process_item(self, item, spider):
 
-        if(item['cidade'] == 'Calheta [R.A.A]'):
+        # Mapear alguns municipios para que aja consistencia de dados com a FK
+        if(item['cidade'] == 'Calheta [R.A.A.]'):
             item['cidade'] = 'Calheta de São Jorge'
         
-        if(item['cidade'] == 'Calheta [R.A.M]'):
+        if(item['cidade'] == 'Calheta [R.A.M.]'):
             item['cidade'] = 'Calheta'
+        
+        if(item['cidade'] == 'Vila da Praia da Vitória'):
+            item['cidade'] = 'Praia da Vitória'
 
         self.store_db(item)
         return item
@@ -71,72 +75,41 @@ class InformaçãoCidadesPipeline:
                                     `Renda mensal: 650€ - 999,99€`,
                                     `Renda mensal: >=1000€`, 
                                     `Edificios`) 
-                                     VALUES (%s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s,
-                                            %s) """, (
-            item['cidade'],                      
-            item['População residente'],
-            item['Densidade populacional'],
-            item['Mulheres (%)'],
-            item['Homens (%)'],
-            item['Jovens (%)'],
-            item['População em idade activa (%)'],
-            item['Idosos (%)'],
-            item['Índice de envelhecimento'],
-            item['Indivíduos em idade activa por idoso'],
-            item['Solteiros (%)'],
-            item['Casados (%)'],
-            item['Divorciados (%)'],
-            item['Viúvos (%)'],
-            item['Famílias'],
-            item['Famílias unipessoais (%)'],
-            item['Famílias com 2 pessoas (%)'],
-            item['Alojamentos'],
-            item['Alojamentos familiares clássicos (%)'],
-            item['Alojamentos colectivos (%)'],
-            item['Alojamentos ocupados (%)'],
-            item['Alojamentos próprios (%)'],
-            item['Alojamentos próprios com encargos de compra (%)'],
-            item['Alojamentos arrendados e outros casos (%)'],
-            item['Renda mensal: <50€'],
-            item['Renda mensal: 50€ - 99,99€'],
-            item['Renda mensal: 100€ - 199,99€'],
-            item['Renda mensal: 200€ - 399,99€'],
-            item['Renda mensal: 400€ - 649,99€'],
-            item['Renda mensal: 650€ - 999,99€'],
-            item['Renda mensal: >=1000€'],
-            item['Edifícios'],
+                                     VALUES (%s,%s,%s,%s,%s,%s,%s, %s,%s, %s,%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s, %s,%s,%s,%s,%s) """, (
+                                                item['cidade'],                      
+                                                item['População residente'],
+                                                item['Densidade populacional'],
+                                                item['Mulheres (%)'],
+                                                item['Homens (%)'],
+                                                item['Jovens (%)'],
+                                                item['População em idade activa (%)'],
+                                                item['Idosos (%)'],
+                                                item['Índice de envelhecimento'],
+                                                item['Indivíduos em idade activa por idoso'],
+                                                item['Solteiros (%)'],
+                                                item['Casados (%)'],
+                                                item['Divorciados (%)'],
+                                                item['Viúvos (%)'],
+                                                item['Famílias'],
+                                                item['Famílias unipessoais (%)'],
+                                                item['Famílias com 2 pessoas (%)'],
+                                                item['Alojamentos'],
+                                                item['Alojamentos familiares clássicos (%)'],
+                                                item['Alojamentos colectivos (%)'],
+                                                item['Alojamentos ocupados (%)'],
+                                                item['Alojamentos próprios (%)'],
+                                                item['Alojamentos próprios com encargos de compra (%)'],
+                                                item['Alojamentos arrendados e outros casos (%)'],
+                                                item['Renda mensal: <50€'],
+                                                item['Renda mensal: 50€ - 99,99€'],
+                                                item['Renda mensal: 100€ - 199,99€'],
+                                                item['Renda mensal: 200€ - 399,99€'],
+                                                item['Renda mensal: 400€ - 649,99€'],
+                                                item['Renda mensal: 650€ - 999,99€'],
+                                                item['Renda mensal: >=1000€'],
+                                                item['Edifícios'],
 
-        ))
+                                        ))
 
         self.conn.commit()
 
