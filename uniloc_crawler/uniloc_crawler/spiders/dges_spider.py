@@ -30,8 +30,6 @@ class InformaçãoCidades_Spider(scrapy.Spider):
 
             cid_cod = cidade + "-" + codigo
 
-            logging.info("\n\n " + cid_cod + " \n\n")
-
             link = self.base_link + cid_cod
 
             yield scrapy.Request(url=link, callback=self.parse_cidade, meta={'cidade': cidade})
