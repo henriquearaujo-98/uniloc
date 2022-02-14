@@ -162,6 +162,7 @@ class InformaçãoMunicipiosPipeline:
         logging.info("\n\n FECHANDO SPIDER INFORMAÇÕES MUNICIPIOS \n\n")
         self.client.close()
 
+
 class InstituicoesPipeline:
 
     def open_spider(self, spider):
@@ -276,6 +277,7 @@ class MunicipiosPipeline:
 
 
 class CodPostaisPipeline:
+
     def open_spider(self, spider):
         self.create_connection()
         logging.info("\n\n SPIDER CODIGOS POSTAIS \n\n")
@@ -294,15 +296,15 @@ class CodPostaisPipeline:
 
     def process_item(self, item, spider):
 
-        if item['cod'] and item['nome']:
-            self.store_db(item)
+        if item['cidade'] and item['codigo_postal'] and item['cod_municipio']:
+            asyncio.run(self.corotina(item))
             return item
 
     def store_db(self, item):
 
-        self.curr.execute(""" INSERT INTO `codigos_postais`(`cod_postal`, `cidades_nome`) VALUES (%s,%s) """, (
-            item['cod'][:4],
-            item['nome'],
+        self.curr.execute(""" INSERT INTO `codigos_postais`(`cod_postal`, `cidade_ID`) VALUES (%s,%s) """, (
+            item['codigo_postal'][:4],
+            item['cidade_id'],
         ))
 
         self.conn.commit()
@@ -310,6 +312,32 @@ class CodPostaisPipeline:
     def close_spider(self, spider):
         logging.info("\n\n FECHANDO SPIDER CIDADES \n\n")
         self.client.close()
+    
+    async def corotina(self, item):
+        cidade_id = await self.fetch_cidadeID(item['cidade'], item['cod_municipio'])
+
+        if cidade_id is None:
+            return
+
+        
+        item['cidade_id'] = str(cidade_id[0])
+        self.store_db(item)
+
+    async def fetch_cidadeID(self, cidade_nome, municipio_ID):
+        mydb = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='',
+            database='projeto_final'
+        )
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute("SELECT `ID` FROM `cidades` WHERE `nome` = '"+cidade_nome+"' AND `municipio_ID` = '"+municipio_ID+"' ")
+
+        myresult = mycursor.fetchone()
+
+        return myresult
 
 
 class CidadesPipeline:
@@ -338,7 +366,7 @@ class CidadesPipeline:
     def store_db(self, item):
 
         self.curr.execute(""" INSERT INTO `cidades`(`nome`, `municipio_ID`) VALUES (%s,%s) """, (
-            item['cidade'][:4],
+            item['cidade'],
             item['cod_municipio'].strip(),
         ))
 
@@ -405,14 +433,15 @@ class ApartadosPipeline:
             n = ''.join(x for x in nome if x.isalpha() or x == " ")
             # Upper case on every first letter of a word, no spaces in front, no spaces behind
             item['nome'] = n.title().lstrip().rstrip()
-            self.store_db(item)
+            asyncio.run(self.corotina(item))
+            
             return item
 
     def store_db(self, item):
 
-        self.curr.execute(""" INSERT INTO `codigos_postais`(`cod_postal`, `cidades_nome`) VALUES (%s,%s) """, (
+        self.curr.execute(""" INSERT INTO `codigos_postais`(`cod_postal`, `cidade_ID`) VALUES (%s,%s) """, (
             item['cod'],
-            item['nome'],
+            item['cidade_id'],
         ))
 
         self.conn.commit()
@@ -420,6 +449,36 @@ class ApartadosPipeline:
     def close_spider(self, spider):
         logging.info("\n\n FECHANDO SPIDER APARTADOS \n\n")
         self.client.close()
+    
+    async def corotina(self, item):
+        mun_id = await self.fetch_municipioID(item['nome'])
+
+        if mun_id is None:
+            return
+
+        
+        item['cidade_id'] = str(mun_id[0])
+        self.store_db(item)
+
+    async def fetch_municipioID(self, cidade_nome):
+        mydb = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='',
+            database='projeto_final'
+        )
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(""" SELECT cidades.ID 
+                            FROM `cidades`
+                            INNER JOIN municipios ON municipios.ID = cidades.municipio_ID
+                            WHERE cidades.nome = '"""+cidade_nome+"""' AND municipios.nome = '"""+cidade_nome+"""' """
+                            )
+
+        myresult = mycursor.fetchone()
+
+        return myresult
 
 
 class AreaPipeline:

@@ -270,8 +270,6 @@ class inst_cursoCrawler(scrapy.Spider):
             }
 
 # Popular a tabela distritos
-
-
 class distCrawler(scrapy.Spider):
     name = "dist"
 
@@ -312,31 +310,40 @@ class cod_postCrawler(scrapy.Spider):
         for row in response.css('.table_milieu tr'):
             if row.css("a::attr(href)").get():
                 link = response.urljoin(row.css("a::attr(href)").get())
-                yield scrapy.Request(url=link, callback=self.parse_cidade)
+                yield scrapy.Request(url=link, callback=self.parse_municipio)
+
+    def parse_municipio(self, response):
+
+        for row in response.css('.table_milieu tr '):
+
+            uri = row.css("a::attr(href)").get()    # tentar arranjar o URI 
+
+            if uri is None: # se o uri não existir, também não existe uma coluna para o código do municipio válido
+                continue
+
+            cod_municipio = row.css('.gras::text').get()
+
+            link = response.urljoin(uri)
+
+            yield scrapy.Request(url=link, callback=self.parse_cidade, meta={'id_municipio' : cod_municipio})
+    
 
     def parse_cidade(self, response):
 
-        # O penultimo e ante-penultimo caracter
-        dist_cod = response.css("h1::text").get()[-3:-1]
-        for row in response.css('.table_milieu tr '):
+        cod_municipio = response.request.meta['id_municipio']
 
-            cid_nome = row.css("a::text").get()
-            link = response.urljoin(row.css("a::attr(href)").get())
+        for x in response.xpath("/html/body/table/tr"):
 
-            yield scrapy.Request(url=link, callback=self.parse_codigos, meta={'dist_cod': dist_cod, 'cid_nome': cid_nome})
+            campos = x.css('td::text').getall()
 
-    def parse_codigos(self, response):
-        cid_nome = response.request.meta['cid_nome']
-        dist_cod = response.request.meta['dist_cod']
-
-        for row in response.css(".table_milieu tr"):
-            cod = row.css(" td:nth-child(2n):not(.xx)::text").get()
-            yield {
-                'nome': cid_nome,
-                'cod': cod
+            if len(campos) < 3: # significa que estamos perante table headers
+                continue
+            
+            yield{
+                'cidade' : campos[2],
+                'codigo_postal' : campos[1],
+                'cod_municipio' : cod_municipio.strip() 
             }
-
-            # response.css(".table_milieu tr td:nth-child(2n):not(.xx)::text").getall() gets us the code
 
 
 class apartadoCrawler(scrapy.Spider):
@@ -453,9 +460,6 @@ class cidadesCrawler(scrapy.Spider):
 
             link = response.urljoin(uri)
 
-            # yield {
-            #     'cod_municipio' : cod_municipio
-            # }
             yield scrapy.Request(url=link, callback=self.parse_cidade, meta={'id_municipio' : cod_municipio})
     
 
