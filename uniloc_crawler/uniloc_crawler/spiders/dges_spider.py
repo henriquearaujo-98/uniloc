@@ -579,3 +579,134 @@ class cursosCrawler(scrapy.Spider):
     # ## Popular tabela associativa
     # process.crawl(cursoCrawler)
     # process.start() # the script will block here until all crawling jobs are finished
+
+
+class Provas_IngressoCrawler(scrapy.Spider):
+    name = "prov_ing"
+
+    # custom_settings = {
+    #     'ITEM_PIPELINES': {
+    #         'uniloc_crawler.pipelines.Provas_IngressoPipeline': 400
+    #     }
+    # }
+
+    start_urls = [
+        'https://dges.gov.pt/guias/indest.asp?reg=11',
+        'https://dges.gov.pt/guias/indest.asp?reg=12',
+        'https://dges.gov.pt/guias/indest.asp?reg=13',
+        'https://dges.gov.pt/guias/indest.asp?reg=21',
+        'https://dges.gov.pt/guias/indest.asp?reg=22'
+
+    ]
+
+    def parse(self, response):
+        # .box9 é a classe que engloba os titulos de instituições
+        for post in response.css('.box9'):
+
+            cod_inst = post.css('div::text')[0].get()
+
+            # seletor css para o proximo irmão (sibling)
+            concat = " + .lin-ce "
+            while(post.css('.box9 ' + concat).get() is not None):
+                cod_curso = post.css('.box9 '+concat+' .lin-ce-c2::text').get()
+
+                link = response.urljoin(
+                    post.css('.box9 '+concat+' .lin-ce-c3 a::attr(href)').get())
+                yield scrapy.Request(url=link, callback=self.parse_provas_ingresso, meta={'curso': cod_curso, 'inst': cod_inst})
+
+                concat = concat + " + .lin-ce "
+
+    def parse_provas_ingresso(self, response):
+        curso = response.request.meta['curso']  # codigo curso 
+        inst = response.request.meta['inst']    # codigo inst
+
+        
+        info = response.xpath("//*[@id='caixa-orange']/div[5]/text()").extract()
+
+        #asyncio.run(self.corotina(item))
+        exames_curso = list()
+
+        exames_lista = [
+            'Alemão',
+            'Biologia e Geologia',
+            'Desenho',
+            'Economia',
+            'Espanhol',
+            'Filosofia',
+            'Física e Química',
+            'Francês',
+            'Geografia',
+            'Geometria Descritiva',
+            'História',
+            'Hist. da Cultura e Artes',
+            'Inglês',
+            'Latim',
+            'Literatura Portuguesa',
+            'Matemática',
+            'Mat. Apl. Ciências Soc.',
+            'Português',
+            'Matemática A',
+        ]
+
+        exame1 = None
+        exame2 = None
+        
+        seguintes_provas_keyword = False
+        alternativas_keywords = False
+
+        if 'Uma das seguintes provas:' in info:
+            seguintes_provas_keyword = True
+        
+        if "\xa0\xa0\xa0\xa0\xa0\xa0ou" in info:
+            alternativas_keywords = True
+
+       
+        for x in range(0, len(info) - 1):
+            if alternativas_keywords is True:
+                if str(info[x][4:]) in exames_lista and str(info[x+1][4:]) in exames_lista:
+                    exame1 = info[x][:2] 
+                    exame2 = info[x+1][:2]
+                elif str(info[x][4:]) in exames_lista and str(info[x+1]) == "\xa0\xa0\xa0\xa0\xa0\xa0ou":
+                    exame1 = info[x][:2]
+                
+                yield{
+                    'curso': curso,
+                    'inst': inst,
+                    'seguintes_provas_keyword': seguintes_provas_keyword,
+                    'alternativas_keywords' : alternativas_keywords,
+                    'exameid1' : exame1,
+                    'exameid2' : exame2
+                }
+            
+            if seguintes_provas_keyword is True:
+                if str(info[x][4:]) in exames_lista:
+                    exame1 = info[x][:2]
+                    yield{
+                        'curso': curso,
+                        'inst': inst,
+                        'seguintes_provas_keyword': seguintes_provas_keyword,
+                        'alternativas_keywords' : alternativas_keywords,
+                        'exameid1' : exame1,
+                        'exameid2' : exame2
+                    }
+
+            if seguintes_provas_keyword is False and alternativas_keywords is False:
+                     if str(info[x][4:]) in exames_lista:
+                              exame1 = info[x][:2]
+                              yield{
+                                'curso': curso,
+                                'inst': inst,
+                                'seguintes_provas_keyword': seguintes_provas_keyword,
+                                'alternativas_keywords' : alternativas_keywords,
+                                'exameid1' : exame1,
+                                'exameid2' : None
+                            }
+        
+
+    
+
+
+                
+
+        
+       

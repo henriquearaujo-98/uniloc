@@ -580,3 +580,42 @@ class Inst_CursosPipeline:
     def close_spider(self, spider):
         logging.info("\n\n FECHANDO SPIDER Instituições por Cursos \n\n")
         self.client.close()
+
+class Provas_IngressoPipeline:
+
+    def open_spider(self, spider):
+        self.create_connection()
+        logging.info("\n\n SPIDER PROVAS INGRESSO \n\n")
+
+    def create_connection(self):
+        self.conn = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            passwd='',
+            database='projeto_final'
+        )
+        self.curr = self.conn.cursor()
+
+    def process_item(self, item, spider):
+
+        if not item['curso'] or not item['inst'] or not item['exameid1']:
+            return
+
+        self.store_db(item)
+        return item
+       
+
+    def store_db(self, item):
+
+        self.curr.execute(""" INSERT INTO `provas_ingresso`( `exame_ID`, `exame_ID2`, `cursoID`, `instituicoes_ID`) VALUES (%s,%s,%s,%s)""", (
+            item['exameid1'],
+            item['exameid2'],
+            item['curso'],
+            item['inst'],
+        ))
+ 
+        self.conn.commit()
+
+    def close_spider(self, spider):
+        logging.info("\n\n FECHANDO PROVAS INGRESSO \n\n")
+        self.client.close()
