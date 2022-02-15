@@ -647,98 +647,93 @@ class Provas_IngressoCrawler(scrapy.Spider):
             'Matemática A',
         ]
 
-        exame1 = None
-        exame2 = None
+        exames = list()
 
-        seguintes_provas_keyword = False
-        alternativas_keywords = False
-        conjunto_provas_keyword = False
+        uma_das_seguintes_provas_keyword = False
+
 
         if 'Uma das seguintes provas:' in info:
-            seguintes_provas_keyword = True
+            uma_das_seguintes_provas_keyword = True
 
-        if 'Um dos seguintes conjuntos:' in info:
-            conjunto_provas_keyword = True
+        # if conjunto_provas_keyword: # contem as keyword "Um dos seguintes conjuntos" ex: https://www.dges.gov.pt/guias/detcursopi.asp?codc=9500&code=4108
+        #     for x in info:
+                
+        #         if x[4:] in exames_lista:
+        #             exames.append(x[4:])
+        #         if x == '\xa0\xa0\xa0\xa0\xa0\xa0ou':
+        #             yield{
+        #                 'curso_id' : curso,
+        #                 'inst_id' : inst,
+        #                 'exames' : str(exames),
+        #                 'conjunto' : conjunto_provas_keyword
+        #             }
+        #             exames.clear()
+                    
+        #     if exames:
+        #         yield{
+        #             'curso_id' : curso,
+        #             'inst_id' : inst,
+        #             'exames' : str(exames),
+        #             'conjunto' : conjunto_provas_keyword
+        #         }
+        #         exames.clear()
+        # elif uma_das_seguintes_provas_keyword:
+        #     for x in info:
+        #         if x[4:] in exames_lista:
+        #             exames.append(x[4:])
+        #             yield{
+        #                 'curso_id' : curso,
+        #                 'inst_id' : inst,
+        #                 'exames' : str(exames),
+        #                 'conjunto' : conjunto_provas_keyword
+        #             }
+        #             exames.clear()
+        # else:
+        #     for x in info:
+        #         if x[4:] in exames_lista:
+        #             exames.append(x[4:])
+                    
+                
+        #     yield{
+        #             'curso_id' : curso,
+        #             'inst_id' : inst,
+        #             'exames' : str(exames),
+        #             'conjunto' : conjunto_provas_keyword
+        #         }
+        #     exames.clear()
 
-        if "\xa0\xa0\xa0\xa0\xa0\xa0ou" in info:
-            alternativas_keywords = True
-
-        for x in range(0, len(info) - 1):
-            # if alternativas_keywords is True:
-            #     if str(info[x][4:]) in exames_lista and str(info[x+1][4:]) in exames_lista:
-            #         exame1 = info[x][:2]
-            #         exame2 = info[x+1][:2]
-            #     elif str(info[x][4:]) in exames_lista and str(info[x+1]) == "\xa0\xa0\xa0\xa0\xa0\xa0ou":
-            #         exame1 = info[x][:2]
-
-            #     yield{
-            #         'curso': curso,
-            #         'inst': inst,
-            #         'seguintes_provas_keyword': seguintes_provas_keyword,
-            #         'alternativas_keywords': alternativas_keywords,
-            #         'exameid1': exame1,
-            #         'exameid2': exame2,
-            #     }
-
-            if conjunto_provas_keyword is True:
-                if str(info[x][4:]) in exames_lista and str(info[x+1][4:]) in exames_lista:
-                    exame1 = info[x][:2]
-                    exame2 = info[x+1][:2]
-                elif str(info[x][4:]) in exames_lista and str(info[x+1]) == "\xa0\xa0\xa0\xa0\xa0\xa0ou":
-                    exame1 = info[x][:2]
-                    exam2 = None
-
-                yield{
-                    'curso': curso,
-                    'inst': inst,
-                    'seguintes_provas_keyword': seguintes_provas_keyword,
-                    'alternativas_keywords': alternativas_keywords,
-                    'exameid1': exame1,
-                    'exameid2': exame2,
-                }
-
-        # # Uma das seguintes provas (check)
-            if seguintes_provas_keyword is True:
-                if str(info[x][4:]) in exames_lista:
-                    exame1 = info[x][:2]
+        
+        if uma_das_seguintes_provas_keyword:
+            for x in info:
+                if x[4:] in exames_lista:
+                    exames.append(x[4:])
                     yield{
-                        'curso': curso,
-                        'inst': inst,
-                        'seguintes_provas_keyword': seguintes_provas_keyword,
-                        'alternativas_keywords': alternativas_keywords,
-                        'exameid1': exame1,
-                        'exameid2': exame2,
+                        'curso_id' : curso,
+                        'inst_id' : inst,
+                        'exames' : str(exames),
+                        'opção' : uma_das_seguintes_provas_keyword
                     }
-
-        # Uma única Prova && Um conjunto de Provas, sem ou
-            if seguintes_provas_keyword is False and alternativas_keywords is False:
-                if str(info[x][4:]) in exames_lista:
-                    if (info[x][4:] != info[x-1][4:]):
-
-                        exame1 = info[x][:2]
-                        exame2 = info[x+1][:2]
-
-                        try:
-                            exam2 = int(exame2)
-                            yield{
-                                'curso': curso,
-                                'inst': inst,
-                                'seguintes_provas_keyword': seguintes_provas_keyword,
-                                'alternativas_keywords': alternativas_keywords,
-                                'exameid1': exame1,
-                                'exameid2': exam2,
-                            }
-                        except:
-                            yield{
-                                'curso': curso,
-                                'inst': inst,
-                                'seguintes_provas_keyword': seguintes_provas_keyword,
-                                'alternativas_keywords': alternativas_keywords,
-                                'exameid1': exame1,
-                                'exameid2': None,
-                            }
-
-    # Uma única Prova (check)
-    # Um conjunto de Provas, sem ou
-    # Uma das seguintes provas (check)
-    # Um dos seguintes conjuntos
+                    exames.clear()
+        else: # contem as keyword "Um dos seguintes conjuntos" ex: https://www.dges.gov.pt/guias/detcursopi.asp?codc=9500&code=4108
+            for x in info:
+                
+                if x[4:] in exames_lista:
+                    exames.append(x[4:])
+                if x == '\xa0\xa0\xa0\xa0\xa0\xa0ou':
+                    yield{
+                        'curso_id' : curso,
+                        'inst_id' : inst,
+                        'exames' : str(exames),
+                        'opção' : uma_das_seguintes_provas_keyword
+                    }
+                    exames.clear()
+                    
+            if exames:
+                yield{
+                    'curso_id' : curso,
+                    'inst_id' : inst,
+                    'exames' : str(exames),
+                    'opção' : uma_das_seguintes_provas_keyword
+                }
+                exames.clear()
+        
