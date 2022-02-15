@@ -10,7 +10,7 @@ class InformaçãoMunicipio_Spider(scrapy.Spider):
     name = "inf_mun"
 
     start_urls = [
-       'https://www.pordata.pt/Municipios/Quadro+Resumo/Abrantes-255786'
+        'https://www.pordata.pt/Municipios/Quadro+Resumo/Abrantes-255786'
     ]
 
     custom_settings = {
@@ -46,29 +46,26 @@ class InformaçãoMunicipio_Spider(scrapy.Spider):
             return
 
         for reg in response.css('#QrTable tr'):
-            
-            
+
             try:
-                indicador = response.xpath('//*[@id="QrTable"]/tbody/tr['+str(index)+']/td[1]/div[2]/a/text()').extract()[0]
-                valor = response.xpath('//*[@id="QrTable"]/tbody/tr['+str(index)+']/td[11]/text()').extract()[0]
+                indicador = response.xpath(
+                    '//*[@id="QrTable"]/tbody/tr['+str(index)+']/td[1]/div[2]/a/text()').extract()[0]
+                valor = response.xpath(
+                    '//*[@id="QrTable"]/tbody/tr['+str(index)+']/td[11]/text()').extract()[0]
             except:
                 continue
-
 
             # Porque estamos a sacar os indicadores do ciclo foreach e o valor de um offset de uma lista, temos um bug onde um indicador se duplica
             # Isto causa que os valores - indicadores estajam desalinhados por 1
             if indicador is None:
                 continue
 
-            
             inf[indicador] = valor
 
             index += 1
 
-        
         yield inf
-    
-    
+
 
 # Lista de instituições e os seus respetivos cursos Old
 class dgesSpider(scrapy.Spider):
@@ -119,6 +116,8 @@ class dgesSpider(scrapy.Spider):
             }
 
 # Popular a tabela instituições
+
+
 class instCrawler(scrapy.Spider):
 
     name = "insts"
@@ -270,6 +269,8 @@ class inst_cursoCrawler(scrapy.Spider):
             }
 
 # Popular a tabela distritos
+
+
 class distCrawler(scrapy.Spider):
     name = "dist"
 
@@ -316,17 +317,16 @@ class cod_postCrawler(scrapy.Spider):
 
         for row in response.css('.table_milieu tr '):
 
-            uri = row.css("a::attr(href)").get()    # tentar arranjar o URI 
+            uri = row.css("a::attr(href)").get()    # tentar arranjar o URI
 
-            if uri is None: # se o uri não existir, também não existe uma coluna para o código do municipio válido
+            if uri is None:  # se o uri não existir, também não existe uma coluna para o código do municipio válido
                 continue
 
             cod_municipio = row.css('.gras::text').get()
 
             link = response.urljoin(uri)
 
-            yield scrapy.Request(url=link, callback=self.parse_cidade, meta={'id_municipio' : cod_municipio})
-    
+            yield scrapy.Request(url=link, callback=self.parse_cidade, meta={'id_municipio': cod_municipio})
 
     def parse_cidade(self, response):
 
@@ -336,13 +336,13 @@ class cod_postCrawler(scrapy.Spider):
 
             campos = x.css('td::text').getall()
 
-            if len(campos) < 3: # significa que estamos perante table headers
+            if len(campos) < 3:  # significa que estamos perante table headers
                 continue
-            
+
             yield{
-                'cidade' : campos[2],
-                'codigo_postal' : campos[1],
-                'cod_municipio' : cod_municipio.strip() 
+                'cidade': campos[2],
+                'codigo_postal': campos[1],
+                'cod_municipio': cod_municipio.strip()
             }
 
 
@@ -387,7 +387,7 @@ class apartadoCrawler(scrapy.Spider):
 
 
 class municipiosCrawler(scrapy.Spider):
-    
+
     name = "municipios"
 
     custom_settings = {
@@ -451,17 +451,16 @@ class cidadesCrawler(scrapy.Spider):
 
         for row in response.css('.table_milieu tr '):
 
-            uri = row.css("a::attr(href)").get()    # tentar arranjar o URI 
+            uri = row.css("a::attr(href)").get()    # tentar arranjar o URI
 
-            if uri is None: # se o uri não existir, também não existe uma coluna para o código do municipio válido
+            if uri is None:  # se o uri não existir, também não existe uma coluna para o código do municipio válido
                 continue
 
             cod_municipio = row.css('.gras::text').get()
 
             link = response.urljoin(uri)
 
-            yield scrapy.Request(url=link, callback=self.parse_cidade, meta={'id_municipio' : cod_municipio})
-    
+            yield scrapy.Request(url=link, callback=self.parse_cidade, meta={'id_municipio': cod_municipio})
 
     def parse_cidade(self, response):
 
@@ -471,13 +470,13 @@ class cidadesCrawler(scrapy.Spider):
 
             campos = x.css('td::text').getall()
 
-            if len(campos) < 3: # significa que estamos perante table headers
+            if len(campos) < 3:  # significa que estamos perante table headers
                 continue
-            
+
             yield{
-                'cidade' : campos[2],
-                #'codigo_postal' : campos[1],
-                'cod_municipio' : cod_municipio 
+                'cidade': campos[2],
+                # 'codigo_postal' : campos[1],
+                'cod_municipio': cod_municipio
             }
 
 
@@ -617,13 +616,13 @@ class Provas_IngressoCrawler(scrapy.Spider):
                 concat = concat + " + .lin-ce "
 
     def parse_provas_ingresso(self, response):
-        curso = response.request.meta['curso']  # codigo curso 
+        curso = response.request.meta['curso']  # codigo curso
         inst = response.request.meta['inst']    # codigo inst
 
-        
-        info = response.xpath("//*[@id='caixa-orange']/div[5]/text()").extract()
+        info = response.xpath(
+            "//*[@id='caixa-orange']/div[5]/text()").extract()
 
-        #asyncio.run(self.corotina(item))
+        # asyncio.run(self.corotina(item))
         exames_curso = list()
 
         exames_lista = [
@@ -650,34 +649,55 @@ class Provas_IngressoCrawler(scrapy.Spider):
 
         exame1 = None
         exame2 = None
-        
+
         seguintes_provas_keyword = False
         alternativas_keywords = False
+        conjunto_provas_keyword = False
 
         if 'Uma das seguintes provas:' in info:
             seguintes_provas_keyword = True
-        
+
+        if 'Um dos seguintes conjuntos:' in info:
+            conjunto_provas_keyword = True
+
         if "\xa0\xa0\xa0\xa0\xa0\xa0ou" in info:
             alternativas_keywords = True
 
-       
         for x in range(0, len(info) - 1):
-            if alternativas_keywords is True:
+            # if alternativas_keywords is True:
+            #     if str(info[x][4:]) in exames_lista and str(info[x+1][4:]) in exames_lista:
+            #         exame1 = info[x][:2]
+            #         exame2 = info[x+1][:2]
+            #     elif str(info[x][4:]) in exames_lista and str(info[x+1]) == "\xa0\xa0\xa0\xa0\xa0\xa0ou":
+            #         exame1 = info[x][:2]
+
+            #     yield{
+            #         'curso': curso,
+            #         'inst': inst,
+            #         'seguintes_provas_keyword': seguintes_provas_keyword,
+            #         'alternativas_keywords': alternativas_keywords,
+            #         'exameid1': exame1,
+            #         'exameid2': exame2,
+            #     }
+
+            if conjunto_provas_keyword is True:
                 if str(info[x][4:]) in exames_lista and str(info[x+1][4:]) in exames_lista:
-                    exame1 = info[x][:2] 
+                    exame1 = info[x][:2]
                     exame2 = info[x+1][:2]
                 elif str(info[x][4:]) in exames_lista and str(info[x+1]) == "\xa0\xa0\xa0\xa0\xa0\xa0ou":
                     exame1 = info[x][:2]
-                
+                    exam2 = None
+
                 yield{
                     'curso': curso,
                     'inst': inst,
                     'seguintes_provas_keyword': seguintes_provas_keyword,
-                    'alternativas_keywords' : alternativas_keywords,
-                    'exameid1' : exame1,
-                    'exameid2' : exame2
+                    'alternativas_keywords': alternativas_keywords,
+                    'exameid1': exame1,
+                    'exameid2': exame2,
                 }
-            
+
+        # # Uma das seguintes provas (check)
             if seguintes_provas_keyword is True:
                 if str(info[x][4:]) in exames_lista:
                     exame1 = info[x][:2]
@@ -685,28 +705,40 @@ class Provas_IngressoCrawler(scrapy.Spider):
                         'curso': curso,
                         'inst': inst,
                         'seguintes_provas_keyword': seguintes_provas_keyword,
-                        'alternativas_keywords' : alternativas_keywords,
-                        'exameid1' : exame1,
-                        'exameid2' : exame2
+                        'alternativas_keywords': alternativas_keywords,
+                        'exameid1': exame1,
+                        'exameid2': exame2,
                     }
 
+        # Uma única Prova && Um conjunto de Provas, sem ou
             if seguintes_provas_keyword is False and alternativas_keywords is False:
-                     if str(info[x][4:]) in exames_lista:
-                              exame1 = info[x][:2]
-                              yield{
+                if str(info[x][4:]) in exames_lista:
+                    if (info[x][4:] != info[x-1][4:]):
+
+                        exame1 = info[x][:2]
+                        exame2 = info[x+1][:2]
+
+                        try:
+                            exam2 = int(exame2)
+                            yield{
                                 'curso': curso,
                                 'inst': inst,
                                 'seguintes_provas_keyword': seguintes_provas_keyword,
-                                'alternativas_keywords' : alternativas_keywords,
-                                'exameid1' : exame1,
-                                'exameid2' : None
+                                'alternativas_keywords': alternativas_keywords,
+                                'exameid1': exame1,
+                                'exameid2': exam2,
                             }
-        
+                        except:
+                            yield{
+                                'curso': curso,
+                                'inst': inst,
+                                'seguintes_provas_keyword': seguintes_provas_keyword,
+                                'alternativas_keywords': alternativas_keywords,
+                                'exameid1': exame1,
+                                'exameid2': None,
+                            }
 
-    
-
-
-                
-
-        
-       
+    # Uma única Prova (check)
+    # Um conjunto de Provas, sem ou
+    # Uma das seguintes provas (check)
+    # Um dos seguintes conjuntos
