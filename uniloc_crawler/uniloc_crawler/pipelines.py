@@ -598,20 +598,20 @@ class Provas_IngressoPipeline:
 
     def process_item(self, item, spider):
 
-        if not item['curso'] or not item['inst'] or not item['exameid1']:
+        if not item['curso_id'] or not item['inst_id']:
             return
 
         self.store_db(item)
         return item
        
 
+
     def store_db(self, item):
 
-        self.curr.execute(""" INSERT INTO `provas_ingresso`( `exame_ID`, `exame_ID2`, `cursoID`, `instituicoes_ID`) VALUES (%s,%s,%s,%s)""", (
-            item['exameid1'],
-            item['exameid2'],
-            item['curso'],
-            item['inst'],
+        self.curr.execute(""" INSERT INTO `provas_ingresso`( `cursoID`, `instituicoes_ID`, `exames_id`) VALUES (%s,%s,%s) """, (
+            item['curso_id'],
+            item['inst_id'],
+            item['exames'],
         ))
  
         self.conn.commit()

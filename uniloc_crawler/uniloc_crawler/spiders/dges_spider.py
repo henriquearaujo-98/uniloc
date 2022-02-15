@@ -583,11 +583,11 @@ class cursosCrawler(scrapy.Spider):
 class Provas_IngressoCrawler(scrapy.Spider):
     name = "prov_ing"
 
-    # custom_settings = {
-    #     'ITEM_PIPELINES': {
-    #         'uniloc_crawler.pipelines.Provas_IngressoPipeline': 400
-    #     }
-    # }
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.Provas_IngressoPipeline': 400
+        }
+    }
 
     start_urls = [
         'https://dges.gov.pt/guias/indest.asp?reg=11',
@@ -622,7 +622,7 @@ class Provas_IngressoCrawler(scrapy.Spider):
         info = response.xpath(
             "//*[@id='caixa-orange']/div[5]/text()").extract()
 
-        # asyncio.run(self.corotina(item))
+      
         exames_curso = list()
 
         exames_lista = [
@@ -655,62 +655,17 @@ class Provas_IngressoCrawler(scrapy.Spider):
         if 'Uma das seguintes provas:' in info:
             uma_das_seguintes_provas_keyword = True
 
-        # if conjunto_provas_keyword: # contem as keyword "Um dos seguintes conjuntos" ex: https://www.dges.gov.pt/guias/detcursopi.asp?codc=9500&code=4108
-        #     for x in info:
-                
-        #         if x[4:] in exames_lista:
-        #             exames.append(x[4:])
-        #         if x == '\xa0\xa0\xa0\xa0\xa0\xa0ou':
-        #             yield{
-        #                 'curso_id' : curso,
-        #                 'inst_id' : inst,
-        #                 'exames' : str(exames),
-        #                 'conjunto' : conjunto_provas_keyword
-        #             }
-        #             exames.clear()
-                    
-        #     if exames:
-        #         yield{
-        #             'curso_id' : curso,
-        #             'inst_id' : inst,
-        #             'exames' : str(exames),
-        #             'conjunto' : conjunto_provas_keyword
-        #         }
-        #         exames.clear()
-        # elif uma_das_seguintes_provas_keyword:
-        #     for x in info:
-        #         if x[4:] in exames_lista:
-        #             exames.append(x[4:])
-        #             yield{
-        #                 'curso_id' : curso,
-        #                 'inst_id' : inst,
-        #                 'exames' : str(exames),
-        #                 'conjunto' : conjunto_provas_keyword
-        #             }
-        #             exames.clear()
-        # else:
-        #     for x in info:
-        #         if x[4:] in exames_lista:
-        #             exames.append(x[4:])
-                    
-                
-        #     yield{
-        #             'curso_id' : curso,
-        #             'inst_id' : inst,
-        #             'exames' : str(exames),
-        #             'conjunto' : conjunto_provas_keyword
-        #         }
-        #     exames.clear()
+       
 
         
         if uma_das_seguintes_provas_keyword:
             for x in info:
                 if x[4:] in exames_lista:
-                    exames.append(x[4:])
+                    exames.append(x[:2])
                     yield{
                         'curso_id' : curso,
                         'inst_id' : inst,
-                        'exames' : str(exames),
+                        'exames' : str(exames).replace('[', '').replace("'", '').replace("]",'').replace(" ", ""),   # remover pelicas, espaços e paratises retos
                         'opção' : uma_das_seguintes_provas_keyword
                     }
                     exames.clear()
@@ -718,12 +673,12 @@ class Provas_IngressoCrawler(scrapy.Spider):
             for x in info:
                 
                 if x[4:] in exames_lista:
-                    exames.append(x[4:])
+                    exames.append(x[:2])
                 if x == '\xa0\xa0\xa0\xa0\xa0\xa0ou':
                     yield{
                         'curso_id' : curso,
                         'inst_id' : inst,
-                        'exames' : str(exames),
+                        'exames' : str(exames).replace('[', '').replace("'", '').replace("]",'').replace(" ", ""),   # remover pelicas, espaços e paratises retos
                         'opção' : uma_das_seguintes_provas_keyword
                     }
                     exames.clear()
@@ -732,7 +687,7 @@ class Provas_IngressoCrawler(scrapy.Spider):
                 yield{
                     'curso_id' : curso,
                     'inst_id' : inst,
-                    'exames' : str(exames),
+                    'exames' : str(exames).replace('[', '').replace("'", '').replace("]",'').replace(" ", ""),   # remover pelicas, espaços e paratises retos
                     'opção' : uma_das_seguintes_provas_keyword
                 }
                 exames.clear()
