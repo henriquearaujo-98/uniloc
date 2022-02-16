@@ -116,8 +116,6 @@ class dgesSpider(scrapy.Spider):
             }
 
 # Popular a tabela instituições
-
-
 class instCrawler(scrapy.Spider):
 
     name = "insts"
@@ -202,8 +200,6 @@ class cursoCrawler(scrapy.Spider):
             yield scrapy.Request(url=link, callback=self.parse)
 
 # Popular a tabela associativa inst_curso
-
-
 class inst_cursoCrawler(scrapy.Spider):
     name = "inst_curso"
 
@@ -269,8 +265,6 @@ class inst_cursoCrawler(scrapy.Spider):
             }
 
 # Popular a tabela distritos
-
-
 class distCrawler(scrapy.Spider):
     name = "dist"
 
@@ -515,16 +509,23 @@ class areaCrawler(scrapy.Spider):
     ]
 
     def parse(self, response):
+        # iterar sobre os elementos HTML que contém as áreas
         for row in response.css('.areas'):
-            if row.css("a::text"):
+             # a informação pode estar dentro de <a> tags                               
+            if row.css("a::text"):                                     
                 yield {
+                     # fazer slicing nos ultimos dois caracteres do link para obter o código
                     'codigo': row.css("a::attr(href)").get()[-2:],
-                    'nome': row.css("a::text").get()
+                     # armazenar o texto dentro do <a> tag para obter o nome da área         
+                    'nome': row.css("a::text").get()                       
                 }
-            elif row.css("strong::text"):
+                # ou pode estar dentro de <strong> tags
+            elif row.css("strong::text"):                               
                 yield {
+                    # para obter o código selecionamos os ultimos dois caracteres do link atual que está selecionado pelo kernel da framework
                     'codigo': response.url[-2:],
-                    'nome': row.css("strong::text").get()
+                    # para obter o nome da area retirar o texto da tag atual                            
+                    'nome': row.css("strong::text").get()                   
                 }
 
 
@@ -566,18 +567,18 @@ class cursosCrawler(scrapy.Spider):
 
         yield response.follow(url=link, callback=self.parse, meta={'index': index})
 
-    # process = CrawlerProcess()
-    # ## Popular instituições
-    # process.crawl(instCrawler)
-    # process.start() # the script will block here until all crawling jobs are finished
+# process = CrawlerProcess()
+# ## Popular instituições
+# process.crawl(instCrawler)
+# process.start() # the script will block here until all crawling jobs are finished
 
-    # ## Popular cursos
-    # process.crawl(cursoCrawler)
-    # process.start() # the script will block here until all crawling jobs are finished
+# ## Popular cursos
+# process.crawl(cursoCrawler)
+# process.start() # the script will block here until all crawling jobs are finished
 
-    # ## Popular tabela associativa
-    # process.crawl(cursoCrawler)
-    # process.start() # the script will block here until all crawling jobs are finished
+# ## Popular tabela associativa
+# process.crawl(cursoCrawler)
+# process.start() # the script will block here until all crawling jobs are finished
 
 
 class Provas_IngressoCrawler(scrapy.Spider):
