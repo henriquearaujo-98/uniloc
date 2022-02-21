@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Curso;
+use App\Models\Instituicao_has_Curso;
 use Illuminate\Http\Request;
 
 class CursoController extends Controller
@@ -14,6 +16,31 @@ class CursoController extends Controller
     public function index()
     {
         //
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function instituicoes($curso_id)
+    {
+
+        $res = Instituicao_has_Curso::with('instituicao')->with('curso')->where('cursos_ID', $curso_id)->get();
+
+        return view('welcome', [
+            'posts' => $res
+        ]);
+    }
+
+    public function areas_estudo($area_id)
+    {
+
+        $res = Curso::with('area_curso_ID')->where('area_curso_ID', $area_id)->get();
+
+        return view('welcome', [
+            'posts' => $res
+        ]);
     }
 
     /**

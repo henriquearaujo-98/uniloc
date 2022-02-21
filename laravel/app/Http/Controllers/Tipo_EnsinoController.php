@@ -1,12 +1,13 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
-use App\Models\Instituicao;
-use App\Models\Instituicao_has_Curso;
-use Illuminate\Http\Request;
 
-class InstituicaoController extends Controller
+use App\Models\Curso;
+use App\Models\Instituicao_has_Curso;
+
+class Tipo_EnsinoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,41 +17,6 @@ class InstituicaoController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function cursos($inst_id)
-    {
-
-        $res = Instituicao_has_Curso::with('instituicao')->with('curso')->where('instituicoes_ID', $inst_id)->get();
-
-        return view('welcome', [
-            'posts' => $res
-        ]);
-    }
-
-    public function tipos_ensino($tipo_id)
-    {
-
-        $res = Instituicao::with('tipos_ensino')->where('tipos_ensino_ID', $tipo_id)->get();
-
-        return view('welcome', [
-            'posts' => $res
-        ]);
-    }
-
-    public function codigos_postais($codigo_id)
-    {
-
-        $res = Instituicao::with('codigos_postais')->where('cod_postal', $codigo_id)->get();
-
-        return view('welcome', [
-            'posts' => $res
-        ]);
     }
 
     /**
@@ -72,7 +38,7 @@ class InstituicaoController extends Controller
      */
     public function show($id)
     {
-        return Instituicao::find($id);
+        //
     }
 
     /**

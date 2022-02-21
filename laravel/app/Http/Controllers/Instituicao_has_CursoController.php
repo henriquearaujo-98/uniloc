@@ -17,6 +17,19 @@ class Instituicao_has_CursoController extends Controller
         return Instituicao_has_Curso::all();
     }
 
+    public function instituicoes_cursos($curso_id, $inst_id)
+    {
+
+        $res = Instituicao_has_Curso::with('instituicao')->with('curso')
+            ->where('cursos_ID', $curso_id)
+            ->where('instituicoes_ID', $inst_id)
+            ->get();
+
+        return view('welcome', [
+            'posts' => $res
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
