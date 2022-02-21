@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\InstituicaoController;
+use App\Http\Controllers\ProvasIngressoController;
+use App\Models\Prova_Ingresso;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/cursos/{id}', [InstituicaoController::class, 'cursos']);
+Route::get('/provas_ingresso', [ProvasIngressoController::class, 'exames']);
