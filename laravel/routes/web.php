@@ -18,3 +18,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/cursos/{id}', [InstituicaoController::class, 'cursos']);
 Route::get('/provas_ingresso', [ProvasIngressoController::class, 'exames']);
+Route::get('/distritos-list', [DistritosController::class, 'index'])->name('distritos.list');
+Route::post('/add-distrito', [DistritosController::class, 'addDistrito'])->name('add.distrito');
