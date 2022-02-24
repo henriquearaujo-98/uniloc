@@ -38,7 +38,7 @@ class Instituicao_has_CursoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Instituicao_has_Curso::create($request->all());
     }
 
     /**
@@ -47,9 +47,9 @@ class Instituicao_has_CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($cursoID, $instID)
     {
-        //
+        return Instituicao_has_Curso::find($cursoID, $instID);
     }
 
     /**
@@ -59,9 +59,10 @@ class Instituicao_has_CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $cursoID, $instID)
     {
-        //
+        $inst_curso = Instituicao_has_Curso::find($cursoID, $instID);
+        return $inst_curso->update($request->all());
     }
 
     /**
@@ -70,8 +71,9 @@ class Instituicao_has_CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($cursoID, $instID)
     {
-        //
+        $inst_curso = Instituicao_has_Curso::find($cursoID, $instID);
+        return $inst_curso->delete();
     }
 }

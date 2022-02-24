@@ -16,7 +16,7 @@ class CidadesController extends Controller
      */
     public function index()
     {
-        //
+        Cidade::all();
     }
 
 
@@ -39,7 +39,7 @@ class CidadesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Cidade::create($request->all());
     }
 
     /**
@@ -50,7 +50,7 @@ class CidadesController extends Controller
      */
     public function show($id)
     {
-        //
+        return Cidade::find($id);
     }
 
     /**
@@ -62,7 +62,8 @@ class CidadesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cidade = Cidade::findOrFail($id);
+        return $cidade->update($request->all());
     }
 
     /**
@@ -73,6 +74,7 @@ class CidadesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cidade = Cidade::findOrFail($id);
+        return $cidade->delete();
     }
 }

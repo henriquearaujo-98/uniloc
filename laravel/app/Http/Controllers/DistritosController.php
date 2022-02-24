@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Distrito;
-use http\Env\Request;
+use Illuminate\Http\Request;
 use http\Env\Response;
 
 class DistritosController  extends Controller
@@ -17,7 +17,7 @@ class DistritosController  extends Controller
      */
     public function index()
     {
-        //return view('distritos-list');
+        return Distrito::all();
     }
 
     /**
@@ -28,7 +28,13 @@ class DistritosController  extends Controller
      */
     public function store(Request $request)
     {
-        $validator = \Validator::make($request->all(),[
+        $request->validate([
+            'ID' => 'required',
+            'Nome' => 'required',
+        ]);
+
+        return Distrito::create($request->all());
+        /*$validator = \Validator::make($request->all(),[
             'nome' => 'required',
         ]);
 
@@ -44,7 +50,7 @@ class DistritosController  extends Controller
             } else {
                 return response()->json(['code'=>1, 'msg'=>'Distrito adicionado com sucesso']);
             }
-        }
+        }*/
     }
 
     /**
@@ -55,7 +61,34 @@ class DistritosController  extends Controller
      */
     public function show($id)
     {
-        //
+        return Distrito::find($id);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'ID' => 'required',
+            'nome' => 'required',
+        ]);
+        $distrito = Distrito::find($id);
+        return $distrito->update($request->all());
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        return Distrito::destroy($id);
     }
 
 

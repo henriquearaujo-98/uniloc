@@ -16,7 +16,7 @@ class Informacoes_MunicipioController extends Controller
      */
     public function index()
     {
-        //
+        return Informacoes_Municipio::all();
     }
 
 
@@ -39,7 +39,7 @@ class Informacoes_MunicipioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Informacoes_Municipio::create($request->all());
     }
 
     /**
@@ -50,7 +50,7 @@ class Informacoes_MunicipioController extends Controller
      */
     public function show($id)
     {
-        //
+        return Informacoes_Municipio::find($id);
     }
 
     /**
@@ -62,7 +62,8 @@ class Informacoes_MunicipioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $inf_mun = Informacoes_Municipio::find($id);
+        return $inf_mun->update($request->all());
     }
 
     /**
@@ -73,6 +74,7 @@ class Informacoes_MunicipioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $inf_mun = Informacoes_Municipio::find($id);
+        return $inf_mun->delete();
     }
 }

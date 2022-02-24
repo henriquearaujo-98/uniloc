@@ -3,4 +3,3 @@ uniloc_crawler/uniloc_crawler/spiders/__pycache__/dges_spider.cpython-38.pyc
 uniloc_crawler/uniloc_crawler/__pycache__/pipelines.cpython-38.pyc
 uniloc_crawler/uniloc_crawler/__pycache__/settings.cpython-38.pyc
 
-*.json

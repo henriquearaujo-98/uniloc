@@ -16,7 +16,7 @@ class MunicipiosController  extends Controller
      */
     public function index()
     {
-        //
+        return Municipio::all();
     }
 
 
@@ -39,7 +39,7 @@ class MunicipiosController  extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Municipio::create($request->all());
     }
 
     /**
@@ -50,7 +50,7 @@ class MunicipiosController  extends Controller
      */
     public function show($id)
     {
-        //
+        return Municipio::find($id);
     }
 
     /**
@@ -62,7 +62,8 @@ class MunicipiosController  extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $municipio = Municipio::find($id);
+        return $municipio->update($request->all());
     }
 
     /**
@@ -73,6 +74,7 @@ class MunicipiosController  extends Controller
      */
     public function destroy($id)
     {
-        //
+        $municipio = Municipio::find($id);
+        return $municipio->delete();
     }
 }

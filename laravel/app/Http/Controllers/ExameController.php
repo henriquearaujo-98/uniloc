@@ -3,6 +3,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exame;
+use Illuminate\Http\Request;
 
 class ExameController extends Controller
 {
@@ -13,7 +15,7 @@ class ExameController extends Controller
      */
     public function index()
     {
-        //
+        return Exame::all();
     }
 
     /**
@@ -24,7 +26,11 @@ class ExameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Codigo' => 'required',
+            'Nome' => 'required',
+        ]);
+        return Exame::create($request->all());
     }
 
     /**
@@ -35,7 +41,7 @@ class ExameController extends Controller
      */
     public function show($id)
     {
-        //
+        return Exame::find($id);
     }
 
     /**
@@ -47,7 +53,12 @@ class ExameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'Codigo' => 'required',
+            'Nome' => 'required',
+        ]);
+        $exame = Exame::find($id);
+        return $exame->update($request->all());
     }
 
     /**
@@ -58,6 +69,6 @@ class ExameController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Exame::destroy($id);
     }
 }

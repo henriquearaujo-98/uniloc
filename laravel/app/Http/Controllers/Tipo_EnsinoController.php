@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Curso;
 use App\Models\Instituicao_has_Curso;
+use App\Models\Tipo_Ensino;
 
 class Tipo_EnsinoController extends Controller
 {
@@ -16,7 +17,7 @@ class Tipo_EnsinoController extends Controller
      */
     public function index()
     {
-        //
+        return Tipo_Ensino::all();
     }
 
     /**
@@ -27,7 +28,7 @@ class Tipo_EnsinoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Tipo_Ensino::create($request->all());
     }
 
     /**
@@ -38,7 +39,7 @@ class Tipo_EnsinoController extends Controller
      */
     public function show($id)
     {
-        //
+        return Tipo_Ensino::find($id);
     }
 
     /**
@@ -50,7 +51,8 @@ class Tipo_EnsinoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tipo_ensino = Tipo_Ensino::findOrFail($id);
+        $tipo_ensino->update($request->all());
     }
 
     /**
@@ -61,6 +63,7 @@ class Tipo_EnsinoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tipo_ensino = Tipo_Ensino::findOrFail($id);
+        $tipo_ensino->delete();
     }
 }

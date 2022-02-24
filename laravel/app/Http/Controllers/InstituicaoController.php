@@ -15,7 +15,7 @@ class InstituicaoController extends Controller
      */
     public function index()
     {
-        //
+        Instituicao::all();
     }
 
     /**
@@ -61,7 +61,7 @@ class InstituicaoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Instituicao::create($request->all());
     }
 
     /**
@@ -84,7 +84,8 @@ class InstituicaoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $inst = Instituicao::findOrFail($id);
+        return $inst->update($request->all());
     }
 
     /**
@@ -95,6 +96,7 @@ class InstituicaoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $inst = Instituicao::findOrFail($id);
+        return $inst->delete();
     }
 }

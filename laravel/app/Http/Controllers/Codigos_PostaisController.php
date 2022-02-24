@@ -16,7 +16,7 @@ class Codigos_PostaisController extends Controller
      */
     public function index()
     {
-        //
+        return Codigo_Postal::all();
     }
 
 
@@ -39,7 +39,7 @@ class Codigos_PostaisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Codigo_Postal::create($request->all());
     }
 
     /**
@@ -50,7 +50,7 @@ class Codigos_PostaisController extends Controller
      */
     public function show($id)
     {
-        //
+        return Codigo_Postal::all()->where('cod_postal', $id);
     }
 
     /**
@@ -62,7 +62,8 @@ class Codigos_PostaisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cod = $this->show($id);
+        return $cod->update($request->all());
     }
 
     /**
@@ -73,6 +74,7 @@ class Codigos_PostaisController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cod = $this->show($id);
+        return $cod->delete();
     }
 }

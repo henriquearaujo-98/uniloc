@@ -28,4 +28,8 @@ class Instituicao_has_Curso extends Model
         return $this->HasMany(Curso::class, 'ID', 'cursos_ID');
 
     }
+
+    public static function find($cursoID, $instID){
+        return Instituicao_has_Curso::all()->where('cursoS_ID', $cursoID)->where('instituicoes_ID', $instID);
+    }
 }
