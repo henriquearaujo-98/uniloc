@@ -46,6 +46,9 @@ class Informacoes_Municipio extends Model
     ];
 
     protected $table = 'informacoes_municipios';
+    public $timestamps = false;
+    protected $primaryKey = 'ID';
+    public $incrementing = false;
 
     public function municipio(){
         return $this->belongsTo(Municipio::class, 'municipio_ID','ID');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Instituicao_has_Curso;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class Instituicao_has_CursoController extends Controller
@@ -38,7 +39,15 @@ class Instituicao_has_CursoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'cursos_ID' => 'required',
+            'instituicoes_ID' => 'required',
+            'nota_ult_1fase' => 'required',
+            //'nota_ult_2fase' => 'optional',
+            //'plano_curso' => 'optional',
+        ]);
+
+        return Instituicao_has_Curso::create($request->all());
     }
 
     /**
@@ -47,9 +56,10 @@ class Instituicao_has_CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($cursoID, $instID)
     {
-        //
+        return Instituicao_has_Curso::find($cursoID, $instID);
+
     }
 
     /**
@@ -59,9 +69,13 @@ class Instituicao_has_CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $cursoID, $instID)
     {
-        //
+
+        if(count(Instituicao_has_Curso::find($cursoID, $instID)))
+            return Instituicao_has_Curso::where('cursoS_ID', $cursoID)->where('instituicoes_ID', $instID)->update($request->all());
+        else
+            return response('Curso da instituição não encontrado', 404);
     }
 
     /**
@@ -70,8 +84,11 @@ class Instituicao_has_CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($cursoID, $instID)
     {
-        //
+        if(count(Instituicao_has_Curso::find($cursoID, $instID)))
+            return Instituicao_has_Curso::where('cursoS_ID', $cursoID)->where('instituicoes_ID', $instID)->delete();
+        else
+            return response('Curso da instituição não encontrado', 404);
     }
 }

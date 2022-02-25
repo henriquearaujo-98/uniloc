@@ -4,6 +4,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Area_Estudo;
+use Illuminate\Http\Request;
+
 class Area_EstudoController extends Controller
 {
     /**
@@ -13,7 +16,7 @@ class Area_EstudoController extends Controller
      */
     public function index()
     {
-        //
+        return Area_Estudo::all();
     }
 
     /**
@@ -24,7 +27,12 @@ class Area_EstudoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'ID' => 'required',
+            'nome' => 'required',
+        ]);
+
+        return Area_Estudo::create($request->all());
     }
 
     /**
@@ -35,7 +43,7 @@ class Area_EstudoController extends Controller
      */
     public function show($id)
     {
-        //
+        return Area_Estudo::findOrFail($id);
     }
 
     /**
@@ -47,7 +55,8 @@ class Area_EstudoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $area_estudo = Area_Estudo::findOrFail($id);
+        return $area_estudo->update($request->all());
     }
 
     /**
@@ -58,6 +67,7 @@ class Area_EstudoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $area_estudo = Area_Estudo::findOrFail($id);
+        $area_estudo->delete();
     }
 }

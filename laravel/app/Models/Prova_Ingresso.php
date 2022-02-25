@@ -17,6 +17,9 @@ class Prova_Ingresso extends Model
     ];
 
     protected $table = 'provas_ingresso';
+    public $timestamps = false;
+    protected $primaryKey = 'ID';
+    public $incrementing = false;
 
     public function curso_instituicao(){
         return $this->belongsTo(Instituicao_has_Curso::class, ['cursoID', 'instituicoes_ID'], ['cursos_ID', 'instituicoes_ID']);

@@ -15,6 +15,9 @@ class Codigo_Postal extends Model
     ];
 
     protected $table = 'codigos_postais';
+    public $timestamps = false;
+    protected $primaryKey = 'cod_postal';
+    public $incrementing = false;
 
     public function cidade(){
         return $this->belongsTo(Cidade::class, 'cidade_ID', 'ID');

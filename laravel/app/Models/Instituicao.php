@@ -12,12 +12,15 @@ class Instituicao extends Model
     protected $fillable = [
         'ID',
         'nome',
-        'tipos_ensinos_ID',
+        'tipos_ensino_ID',
         'cod_postal',
         'rank'
     ];
 
     protected $table = 'instituicoes';
+    public $timestamps = false;
+    protected $primaryKey = 'ID';
+    public $incrementing = false;
 
     public function codigo_postal(){
         return $this->belongsTo(Codigo_Postal::class, 'cod_postal','cod_postal');

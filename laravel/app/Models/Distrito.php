@@ -15,6 +15,9 @@ class Distrito extends Model
     ];
 
     protected $table = 'distritos';
+    public $timestamps = false;
+    protected $primaryKey = 'ID';
+    public $incrementing = false;
 
     public function municipios(){
         return $this->hasMany(Municipio::class, 'distritos_id', 'ID');

@@ -4,6 +4,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Distrito;
+use Illuminate\Http\Request;
+use http\Env\Response;
+
 class DistritosController  extends Controller
 {
     /**
@@ -13,7 +17,7 @@ class DistritosController  extends Controller
      */
     public function index()
     {
-        //
+        return Distrito::all();
     }
 
     /**
@@ -24,7 +28,29 @@ class DistritosController  extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'ID' => 'required',
+            'Nome' => 'required',
+        ]);
+
+        return Distrito::create($request->all());
+        /*$validator = \Validator::make($request->all(),[
+            'nome' => 'required',
+        ]);
+
+        if(!$validator->passes()){
+            return response()->json(['code'=>0, 'error'=>$validator->errors()->toArray()]);
+        } else {
+            $distrito = new Distrito();
+            $distrito->Nome = $request->distrito_nome;
+            $query = $distrito->save();
+
+            if(!$query){
+                return response()->json(['code'=>0, 'msg'=>'Something went wrong']);
+            } else {
+                return response()->json(['code'=>1, 'msg'=>'Distrito adicionado com sucesso']);
+            }
+        }*/
     }
 
     /**
@@ -35,29 +61,101 @@ class DistritosController  extends Controller
      */
     public function show($id)
     {
-        //
+        return Distrito::find($id);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Display the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'ID' => 'required',
+            'nome' => 'required',
+        ]);
+        $distrito = Distrito::find($id);
+        return $distrito->update($request->all());
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        return Distrito::destroy($id);
+    }
+
+
+    public function GetDistritosList()
+    {
+        $distritos = Distrito::all();
+        return DataTables::of($distritos)
+            ->addIndexColumn()
+            ->addColumn('actions', function ($row){
+                return '<div class="btn-group">
+                            <button class="btn btn-sm btn-primary" data-id="'.$row['id'].'"
+                            id="editDistritosButton">Update</button>
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                        </div>';
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
+    }
+
+    //Get detalhes Distritos
+    public function getDistritosDetails(Request $request){
+        $distrito_id = $request->distrito_id;
+        $distrito_details = Distrito::find($distrito_id);
+        return response()->json(['details'=>$distrito_details]);
+    }
+
+    //Update
+    public function updateDistritoDetails(Request $request){
+        $distrito_id = $request->cid;
+
+        $validator = \Validator::make($request->all(),[
+            'nome'=>'required'.$distrito_id,
+        ]);
+
+        if(!$validator->passes()){
+            return response()->json(['code'=>0,'error'=>$validator->errors()->toArray()]);
+        }else{
+
+            $distrito = Distrito::find($distrito_id);
+            $distrito->nome = $request->nome;
+            $query = $distrito->save();
+
+            if($query){
+                return response()->json(['code'=>1, 'msg'=>'Distrito have Been updated']);
+            }else{
+                return response()->json(['code'=>0, 'msg'=>'Something went wrong']);
+            }
+        }
+    }
+
+
+    // DELETE COUNTRY RECORD
+    public function deleteDistrito(Request $request){
+        $distrito_id = $request->distrito_id;
+        $query = Distrito::find($distrito_id)->delete();
+
+        if($query){
+            return response()->json(['code'=>1, 'msg'=>'Distrito has been deleted from database']);
+        }else{
+            return response()->json(['code'=>0, 'msg'=>'Something went wrong']);
+        }
+    }
+
+
+    public function deleteSelecteddistritos(Request $request){
+        $distrito_ids = $request->distrito_ids;
+        Distrito::whereIn('id', $distrito_ids)->delete();
+        return response()->json(['code'=>1, 'msg'=>'Distritos have been deleted from database']);
     }
 }

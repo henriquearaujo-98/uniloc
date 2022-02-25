@@ -12,10 +12,13 @@ class Municipio extends Model
     protected $fillable = [
         'ID',
         'nome',
-        'distritos_id'
+        'distritos_ID'
     ];
 
     protected $table = 'municipios';
+    public $timestamps = false;
+    protected $primaryKey = 'ID';
+    public $incrementing = false;
 
     public function distrito(){
         return $this->belongsTo(Distrito::class, 'distritos_id', 'ID');

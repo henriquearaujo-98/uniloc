@@ -43,7 +43,13 @@ class ProvasIngressoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'cursoID' => 'required',
+            'instituicoes_ID' => 'required',
+            'exames_ID' => 'required',
+        ]);
+
+        return Prova_Ingresso::create($request->all());
     }
 
     /**
@@ -54,7 +60,7 @@ class ProvasIngressoController extends Controller
      */
     public function show($id)
     {
-        //
+        return Prova_Ingresso::find($id);
     }
 
     /**
@@ -66,7 +72,8 @@ class ProvasIngressoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $provas_ingresso = Prova_Ingresso::findOrFail($id);
+        return $provas_ingresso->update($request->all());
     }
 
     /**
@@ -77,6 +84,8 @@ class ProvasIngressoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $provas_ingresso = Prova_Ingresso::findOrFail($id);
+        return $provas_ingresso->delete();
+
     }
 }

@@ -15,6 +15,9 @@ class Tipo_Ensino extends Model
     ];
 
     protected $table = 'tipos_ensino';
+    public $timestamps = false;
+    protected $primaryKey = 'ID';
+    public $incrementing = false;
 
     public function Instituicao(){
         $this->hasMany(Instituicao::class, 'tipos_ensino_ID', 'ID');
