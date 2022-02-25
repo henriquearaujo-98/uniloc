@@ -17,7 +17,8 @@ class DistritosController  extends Controller
      */
     public function index()
     {
-        return Distrito::all();
+        //return Distrito::all();
+        return view('distritos-list');
     }
 
     /**
