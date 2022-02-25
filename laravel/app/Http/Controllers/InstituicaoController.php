@@ -15,7 +15,7 @@ class InstituicaoController extends Controller
      */
     public function index()
     {
-        Instituicao::all();
+        return Instituicao::all();
     }
 
     /**
@@ -61,6 +61,13 @@ class InstituicaoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'ID' => 'required',
+            'nome' => 'required',
+            'tipos_ensino_ID' => 'required',
+            'cod_postal' => 'required',
+            //'rank' => 'optional'
+        ]);
         return Instituicao::create($request->all());
     }
 
@@ -85,6 +92,15 @@ class InstituicaoController extends Controller
     public function update(Request $request, $id)
     {
         $inst = Instituicao::findOrFail($id);
+
+        $request->validate([
+            'ID' => 'required',
+            'nome' => 'required',
+            'tipos_ensino_ID' => 'required',
+            'cod_postal' => 'required',
+            //'rank' => 'optional'
+        ]);
+
         return $inst->update($request->all());
     }
 

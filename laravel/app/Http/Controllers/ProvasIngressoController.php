@@ -45,8 +45,8 @@ class ProvasIngressoController extends Controller
     {
         $request->validate([
             'cursoID' => 'required',
-            'instituicoesID' => 'required',
-            'examesID' => 'required',
+            'instituicoes_ID' => 'required',
+            'exames_ID' => 'required',
         ]);
 
         return Prova_Ingresso::create($request->all());

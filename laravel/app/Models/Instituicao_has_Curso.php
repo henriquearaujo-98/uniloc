@@ -18,6 +18,9 @@ class Instituicao_has_Curso extends Model
     ];
 
     protected $table = 'instituicoes_has_curso';
+    public $timestamps = false;
+    protected $primaryKey = 'ID';
+    public $incrementing = false;
 
     public function instituicao(){
         return $this->HasMany(Instituicao::class, 'ID', 'instituicoes_ID');
@@ -30,6 +33,7 @@ class Instituicao_has_Curso extends Model
     }
 
     public static function find($cursoID, $instID){
-        return Instituicao_has_Curso::all()->where('cursoS_ID', $cursoID)->where('instituicoes_ID', $instID);
+        return Instituicao_has_Curso::where('cursoS_ID', $cursoID)->where('instituicoes_ID', $instID)->get();
     }
+
 }

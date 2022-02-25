@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Informacoes_Municipio;
 use App\Models\Municipio;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Informacoes_MunicipioController extends Controller
 {
@@ -62,8 +64,20 @@ class Informacoes_MunicipioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $inf_mun = Informacoes_Municipio::find($id);
-        return $inf_mun->update($request->all());
+        $array_keys = array_keys($request->all());      // O pedido API substitui os espaços por underscores. Temos que reverter isso.
+        foreach ($array_keys as $array_key) {
+
+            if($array_key == 'municipio_ID')
+                continue;
+
+            $request[str_replace("_", " ", $array_key)] = $request[$array_key];
+            unset($request[$array_key]);
+        }
+
+        $inf = Informacoes_Municipio::findOrFail($id);
+        return $inf->update($request->all());
+
+
     }
 
     /**

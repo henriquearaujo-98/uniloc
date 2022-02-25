@@ -15,6 +15,9 @@ class Area_Estudo extends Model
     ];
 
     protected $table = 'area_estudo';
+    public $timestamps = false;
+    protected $primaryKey = 'ID';
+    public $incrementing = false;
 
     public function cursos(){
         $this->hasMany(Curso::class, 'area_curso_ID' , 'ID');

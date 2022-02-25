@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cidade;
 use App\Models\Municipio;
+use Illuminate\Http\Request;
 
 class CidadesController extends Controller
 {
@@ -16,7 +17,7 @@ class CidadesController extends Controller
      */
     public function index()
     {
-        Cidade::all();
+        return Cidade::all();
     }
 
 
@@ -39,6 +40,12 @@ class CidadesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'ID' => 'required',
+            'nome' => 'required',
+            'municipio_ID' => 'required',
+        ]);
+
         return Cidade::create($request->all());
     }
 
@@ -50,7 +57,7 @@ class CidadesController extends Controller
      */
     public function show($id)
     {
-        return Cidade::find($id);
+        return Cidade::findOrFail($id);
     }
 
     /**
@@ -63,6 +70,13 @@ class CidadesController extends Controller
     public function update(Request $request, $id)
     {
         $cidade = Cidade::findOrFail($id);
+
+        $request->validate([
+            'ID' => 'required',
+            'nome' => 'required',
+            'municipio_ID' => 'required',
+        ]);
+
         return $cidade->update($request->all());
     }
 

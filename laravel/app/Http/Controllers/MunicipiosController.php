@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Instituicao;
 use App\Models\Municipio;
+use Illuminate\Http\Request;
 
 class MunicipiosController  extends Controller
 {
@@ -39,6 +40,11 @@ class MunicipiosController  extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'ID' => 'required',
+            'nome' => 'required',
+            'distritos_ID' => 'required',
+        ]);
         return Municipio::create($request->all());
     }
 
@@ -50,7 +56,7 @@ class MunicipiosController  extends Controller
      */
     public function show($id)
     {
-        return Municipio::find($id);
+        return Municipio::findOrFail($id);
     }
 
     /**
@@ -62,7 +68,14 @@ class MunicipiosController  extends Controller
      */
     public function update(Request $request, $id)
     {
-        $municipio = Municipio::find($id);
+        $municipio = Municipio::findOrFail($id);
+
+        $request->validate([
+            'ID' => 'required',
+            'nome' => 'required',
+            'distritos_ID' => 'required',
+        ]);
+
         return $municipio->update($request->all());
     }
 

@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\Curso;
 use App\Models\Instituicao_has_Curso;
 use App\Models\Tipo_Ensino;
+use Illuminate\Http\Request;
 
 class Tipo_EnsinoController extends Controller
 {
@@ -28,6 +29,11 @@ class Tipo_EnsinoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'ID' => 'required',
+            'nome' => 'required',
+        ]);
+
         return Tipo_Ensino::create($request->all());
     }
 
@@ -39,7 +45,7 @@ class Tipo_EnsinoController extends Controller
      */
     public function show($id)
     {
-        return Tipo_Ensino::find($id);
+        return Tipo_Ensino::findOrFail($id);
     }
 
     /**
@@ -52,6 +58,12 @@ class Tipo_EnsinoController extends Controller
     public function update(Request $request, $id)
     {
         $tipo_ensino = Tipo_Ensino::findOrFail($id);
+
+        $request->validate([
+            'ID' => 'required',
+            'nome' => 'required',
+        ]);
+
         $tipo_ensino->update($request->all());
     }
 

@@ -16,6 +16,9 @@ class Curso extends Model
     ];
 
     protected $table = 'cursos';
+    public $timestamps = false;
+    protected $primaryKey = 'ID';
+    public $incrementing = false;
 
     public function instituicoes(){
         return $this->belongsToMany(Instituicao::class,

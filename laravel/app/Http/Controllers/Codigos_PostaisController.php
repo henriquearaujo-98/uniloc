@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Codigo_Postal;
 use App\Models\Municipio;
+use Illuminate\Http\Request;
 
 class Codigos_PostaisController extends Controller
 {
@@ -39,6 +40,11 @@ class Codigos_PostaisController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'cod_postal' => 'required',
+            'cidade_ID' => 'required',
+        ]);
+
         return Codigo_Postal::create($request->all());
     }
 
@@ -50,7 +56,7 @@ class Codigos_PostaisController extends Controller
      */
     public function show($id)
     {
-        return Codigo_Postal::all()->where('cod_postal', $id);
+        return Codigo_Postal::findOrFail($id);
     }
 
     /**
@@ -63,6 +69,12 @@ class Codigos_PostaisController extends Controller
     public function update(Request $request, $id)
     {
         $cod = $this->show($id);
+
+        $request->validate([
+            'cod_postal' => 'required',
+            'cidade_ID' => 'required',
+        ]);
+
         return $cod->update($request->all());
     }
 

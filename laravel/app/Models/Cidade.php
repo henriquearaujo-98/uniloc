@@ -16,6 +16,9 @@ class Cidade extends Model
     ];
 
     protected $table = 'cidades';
+    public $timestamps = false;
+    protected $primaryKey = 'ID';
+    public $incrementing = false;
 
     public function municipio(){
         return $this->belongsTo(Municipio::class, 'municipio_ID','ID');
