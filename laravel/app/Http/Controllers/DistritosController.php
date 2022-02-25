@@ -8,7 +8,7 @@ use App\Models\Distrito;
 use Illuminate\Http\Request;
 use http\Env\Response;
 
-class DistritosController  extends Controller
+class DistritosController extends Controller
 {
     /**
      * Display a listing of the resource.

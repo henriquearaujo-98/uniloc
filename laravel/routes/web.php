@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\InstituicaoController;
 use App\Http\Controllers\ProvasIngressoController;
+use App\Http\Controllers\DistritosController;
 use App\Models\Prova_Ingresso;
 use Illuminate\Support\Facades\Route;
 
