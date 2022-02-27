@@ -11,6 +11,7 @@ use App\Http\Controllers\Instituicao_has_CursoController;
 use App\Http\Controllers\InstituicaoController;
 use App\Http\Controllers\MunicipiosController;
 use App\Http\Controllers\ProvasIngressoController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Tipo_EnsinoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,9 +27,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Public routes
+Route::post('/search', [SearchController::class, 'search']);
 
 // --- Testes ---
 // Exames

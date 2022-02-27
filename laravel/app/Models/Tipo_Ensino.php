@@ -20,6 +20,6 @@ class Tipo_Ensino extends Model
     public $incrementing = false;
 
     public function Instituicao(){
-        $this->hasMany(Instituicao::class, 'tipos_ensino_ID', 'ID');
+        return $this->hasMany(Instituicao::class, 'tipos_ensino_ID', 'ID');
     }
 }

@@ -21,11 +21,11 @@ class Municipio extends Model
     public $incrementing = false;
 
     public function distrito(){
-        return $this->belongsTo(Distrito::class, 'distritos_id', 'ID');
+        return $this->belongsTo(Distrito::class, 'distritos_ID', 'ID');
     }
 
     public function informacoes(){
-        return $this->hasOne(Informacoes_Municipio::class, 'municipio_ID', 'municipio_ID');
+        return $this->hasOne(Informacoes_Municipio::class, 'municipio_ID', 'ID');
     }
 
     public function cidades(){

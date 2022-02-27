@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Awobaz\Compoships\Compoships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Prova_Ingresso extends Model
 {
     use HasFactory;
+    use Compoships;
 
     protected $fillable = [
         'ID',

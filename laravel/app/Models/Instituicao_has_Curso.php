@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Instituicao_has_Curso extends Model
 {
-    use HasFactory;
+
+    use \Awobaz\Compoships\Compoships;
 
     protected $fillable = [
         'cursos_ID',
@@ -32,8 +32,13 @@ class Instituicao_has_Curso extends Model
 
     }
 
+    public function provas(){
+        return $this->HasMany(Prova_Ingresso::class, ['cursoID', 'instituicoes_ID'], ['cursos_ID', 'instituicoes_ID']);
+    }
+
+
     public static function find($cursoID, $instID){
-        return Instituicao_has_Curso::where('cursoS_ID', $cursoID)->where('instituicoes_ID', $instID)->get();
+        return Instituicao_has_Curso::where('cursos_ID', $cursoID)->where('instituicoes_ID', $instID)->get();
     }
 
 }

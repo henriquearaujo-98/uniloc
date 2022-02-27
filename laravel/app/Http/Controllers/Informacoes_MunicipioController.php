@@ -41,6 +41,7 @@ class Informacoes_MunicipioController extends Controller
      */
     public function store(Request $request)
     {
+        return $request->all();
         return Informacoes_Municipio::create($request->all());
     }
 

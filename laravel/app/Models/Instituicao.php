@@ -27,7 +27,7 @@ class Instituicao extends Model
     }
 
     public function tipo_ensino(){
-        return $this->hasOne(Tipo_Ensino::class, 'tipos_ensino_ID', 'ID');
+        return $this->belongsTo(Tipo_Ensino::class, 'tipos_ensino_ID', 'ID');
     }
 
     public function cursos(){
