@@ -1,4 +1,4 @@
-@extends('areas_estudo.layout')
+@extends('distritos.layout')
 
 @section('content')
     <style>
@@ -8,7 +8,7 @@
     </style>
     <div class="card uper">
         <div class="card-header">
-            Editar Áreas de Estudo
+            Editar Distritos
         </div>
         <div class="card-body">
             @if ($errors->any())
@@ -20,21 +20,21 @@
                     </ul>
                 </div><br />
             @endif
-            <form method="post" action="{{ route('areas_estudo.update', $area_estudo->ID ) }}">
+            <form method="post" action="{{ route('distritos.update', $distrito->ID ) }}">
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
-                    <label for="id_area">ID:</label>
-                    <input type="text" class="form-control" name="ID" value="{{ $area_estudo->ID }}"/>
+                    <label for="id">ID:</label>
+                    <input type="text" class="form-control" name="ID" value="{{ $distrito->ID }}"/>
                 </div>
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
-                    <label for="area_nome">Nome:</label>
-                    <input type="text" class="form-control" name="nome" value="{{ $area_estudo->nome }}"/>
+                    <label for="nome">Nome:</label>
+                    <input type="text" class="form-control" name="Nome" value="{{ $distrito->nome }}"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Atualizar</button>
-                <a href="/areas_estudo" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>
+                <a href="/distritos" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>
             </form>
         </div>
     </div>

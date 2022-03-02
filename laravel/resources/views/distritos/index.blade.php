@@ -1,4 +1,4 @@
-@extends('areas_estudo.layout')
+@extends('distritos.layout')
 
 <style>
     .uper {
@@ -18,26 +18,26 @@
             <input type="text" name="searchfor" id="" class="form-control mb-md-2">
             <div class="card">
                 <div class="card-header">
-                    Áreas de Estudo
-                    <a href="{{ route('areas_estudo.create')}}" class="btn btn-primary">Criar</a>
+                    Distritos
+                    <a href="{{ route('distritos.create')}}" class="btn btn-primary">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
                         <thead>
                         <tr>
                             <td>#</td>
-                            <td>Área</td>
+                            <td>Distrito</td>
                             <td colspan="2"></td>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($areas_estudo as $area_estudo)
+                        @foreach($distritos as $distrito)
                             <tr>
-                                <td>{{$area_estudo->ID}}</td>
-                                <td>{{$area_estudo->nome}}</td>
-                                <td><a href="{{ route('areas_estudo.edit', $area_estudo->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td>{{$distrito->ID}}</td>
+                                <td>{{$distrito->nome}}</td>
+                                <td><a href="{{ route('distritos.edit', $distrito->ID)}}" class="btn btn-primary">Editar</a></td>
                                 <td>
-                                    <form action="{{ route('areas_estudo.destroy', $area_estudo->ID)}}" method="post">
+                                    <form action="{{ route('distritos.destroy', $distrito->ID)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>

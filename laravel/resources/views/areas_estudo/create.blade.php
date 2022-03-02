@@ -23,11 +23,11 @@
             <form method="post" action="{{ route('areas_estudo.store') }}">
                 <div class="form-group">
                     @csrf
-                    <label for="country_name">ID: </label>
+                    <label for="id_area">ID: </label>
                     <input type="text" class="form-control" name="ID"/>
                 </div>
                 <div class="form-group">
-                    <label for="cases">Nome: </label>
+                    <label for="nome_area">Nome: </label>
                     <input type="text" class="form-control" name="nome"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Criar</button>

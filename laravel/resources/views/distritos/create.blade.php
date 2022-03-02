@@ -1,4 +1,4 @@
-@extends('tipos_ensino.layout')
+@extends('distritos.layout')
 
 @section('content')
     <style>
@@ -8,7 +8,7 @@
     </style>
     <div class="card uper">
         <div class="card-header">
-            Criar Tipo de Ensino
+            Criar Distrito
         </div>
         <div class="card-body">
             @if ($errors->any())
@@ -20,18 +20,18 @@
                     </ul>
                 </div><br />
             @endif
-            <form method="post" action="{{ route('tipos_ensino.store') }}">
+            <form method="post" action="{{ route('distritos.store') }}">
                 <div class="form-group">
                     @csrf
-                    <label for="id_tipo">ID: </label>
+                    <label for="id_distrito">ID: </label>
                     <input type="text" class="form-control" name="ID"/>
                 </div>
                 <div class="form-group">
-                    <label for="nome_tipo">Nome: </label>
-                    <input type="text" class="form-control" name="nome"/>
+                    <label for="Nome_distrito">Nome: </label>
+                    <input type="text" class="form-control" name="Nome"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Criar</button>
-                <a href="/tipos_ensino" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>
+                <a href="/distritos" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>
             </form>
         </div>
     </div>

@@ -24,13 +24,13 @@
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
-                    <label for="country_name">ID:</label>
+                    <label for="id_tipo">ID:</label>
                     <input type="text" class="form-control" name="ID" value="{{ $tipo_ensino->ID }}"/>
                 </div>
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
-                    <label for="country_name">Nome:</label>
+                    <label for="nome_tipo">Nome:</label>
                     <input type="text" class="form-control" name="nome" value="{{ $tipo_ensino->nome }}"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Atualizar</button>
