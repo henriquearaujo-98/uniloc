@@ -19,7 +19,7 @@ class Tipo_EnsinoController extends Controller
     public function index()
     {
         $tipos_ensino = Tipo_Ensino::all();
-         return view('tipos_ensino.index',compact('tipos_ensino'));
+        return view('tipos_ensino.index',compact('tipos_ensino'));
     }
 
     public function create()
@@ -41,7 +41,6 @@ class Tipo_EnsinoController extends Controller
         ]);
 
          $show = Tipo_Ensino::create($validatedData);
-
          return redirect('/tipos_ensino')->with('success', 'Data is successfully saved');
     }
 
@@ -58,9 +57,8 @@ class Tipo_EnsinoController extends Controller
 
     public function edit($id)
     {
-            $tipo_ensino = Tipo_Ensino::findOrFail($id);
-
-            return view('tipos_ensino.edit', compact('tipo_ensino'));
+        $tipo_ensino = Tipo_Ensino::findOrFail($id);
+        return view('tipos_ensino.edit', compact('tipo_ensino'));
     }
 
     /**
@@ -78,11 +76,7 @@ class Tipo_EnsinoController extends Controller
         ]);
 
          Tipo_Ensino::whereId($id)->update($validatedData);
-
          return redirect('/tipos_ensino')->with('success', 'Data is successfully updated');
-
-//         $tipo_ensino = Tipo_Ensino::findOrFail($id);
-//         $tipo_ensino->update($request->all());
     }
 
     /**

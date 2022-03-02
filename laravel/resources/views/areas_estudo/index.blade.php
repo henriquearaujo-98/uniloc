@@ -1,4 +1,4 @@
-@extends('tipos_ensino.layout')
+@extends('areas_estudo.layout')
 
 <style>
     .uper {
@@ -18,26 +18,26 @@
             <input type="text" name="searchfor" id="" class="form-control mb-md-2">
             <div class="card">
                 <div class="card-header">
-                    Tipos de Ensino
-                    <a href="{{ route('tipos_ensino.create')}}" class="btn btn-primary">Criar</a>
+                    Áreas de Estudo
+                    <a href="{{ route('areas_estudo.create')}}" class="btn btn-primary">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
                         <thead>
-                            <tr>
-                                <td>#</td>
-                                <td>Tipo</td>
-                                <td colspan="2"></td>
-                            </tr>
+                        <tr>
+                            <td>#</td>
+                            <td>Área</td>
+                            <td colspan="2"></td>
+                        </tr>
                         </thead>
                         <tbody>
-                        @foreach($tipos_ensino as $tipo_ensino)
+                        @foreach($areas_estudo as $area_estudo)
                             <tr>
-                                <td>{{$tipo_ensino->ID}}</td>
-                                <td>{{$tipo_ensino->nome}}</td>
-                                <td><a href="{{ route('tipos_ensino.edit', $tipo_ensino->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td>{{$area_estudo->ID}}</td>
+                                <td>{{$area_estudo->nome}}</td>
+                                <td><a href="{{ route('areas_estudo.edit', $area_estudo->ID)}}" class="btn btn-primary">Editar</a></td>
                                 <td>
-                                    <form action="{{ route('tipos_ensino.destroy', $tipo_ensino->ID)}}" method="post">
+                                    <form action="{{ route('areas_estudo.destroy', $area_estudo->ID)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
@@ -51,6 +51,6 @@
             </div>
         </div>
     </div>
-{{--@endsection--}}
+    {{--@endsection--}}
 </div>
 
