@@ -18,7 +18,13 @@ class Tipo_EnsinoController extends Controller
      */
     public function index()
     {
-        return Tipo_Ensino::all();
+        $tipos_ensino = Tipo_Ensino::all();
+         return view('tipos_ensino.index',compact('tipos_ensino'));
+    }
+
+    public function create()
+    {
+        return view('tipos_ensino.create');
     }
 
     /**
@@ -29,12 +35,14 @@ class Tipo_EnsinoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'ID' => 'required',
             'nome' => 'required',
         ]);
 
-        return Tipo_Ensino::create($request->all());
+         $show = Tipo_Ensino::create($validatedData);
+
+         return redirect('/tipos_ensino')->with('success', 'Data is successfully saved');
     }
 
     /**
@@ -48,6 +56,13 @@ class Tipo_EnsinoController extends Controller
         return Tipo_Ensino::findOrFail($id);
     }
 
+    public function edit($id)
+    {
+            $tipo_ensino = Tipo_Ensino::findOrFail($id);
+
+            return view('tipos_ensino.edit', compact('tipo_ensino'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -57,14 +72,17 @@ class Tipo_EnsinoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tipo_ensino = Tipo_Ensino::findOrFail($id);
-
-        $request->validate([
+        $validatedData = $request->validate([
             'ID' => 'required',
             'nome' => 'required',
         ]);
 
-        $tipo_ensino->update($request->all());
+         Tipo_Ensino::whereId($id)->update($validatedData);
+
+         return redirect('/tipos_ensino')->with('success', 'Data is successfully updated');
+
+//         $tipo_ensino = Tipo_Ensino::findOrFail($id);
+//         $tipo_ensino->update($request->all());
     }
 
     /**
@@ -77,5 +95,7 @@ class Tipo_EnsinoController extends Controller
     {
         $tipo_ensino = Tipo_Ensino::findOrFail($id);
         $tipo_ensino->delete();
+
+        return redirect('/tipos_ensino');
     }
 }
