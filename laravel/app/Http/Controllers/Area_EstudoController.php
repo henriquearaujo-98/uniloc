@@ -16,7 +16,13 @@ class Area_EstudoController extends Controller
      */
     public function index()
     {
-        return Area_Estudo::all();
+        $areas_estudo = Area_Estudo::all();
+        return view('areas_estudo.index',compact('areas_estudo'));
+    }
+
+    public function create()
+    {
+        return view('areas_estudo.create');
     }
 
     /**
@@ -27,12 +33,13 @@ class Area_EstudoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'ID' => 'required',
             'nome' => 'required',
         ]);
 
-        return Area_Estudo::create($request->all());
+        $show = Area_Estudo::create($validatedData);
+        return redirect('/areas_estudo')->with('success', 'Data is successfully saved');
     }
 
     /**
@@ -55,8 +62,19 @@ class Area_EstudoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'ID' => 'required',
+            'nome' => 'required',
+        ]);
+
+         Area_Estudo::whereId($id)->update($validatedData);
+         return redirect('/areas_estudo')->with('success', 'Data is successfully updated');
+    }
+
+    public function edit($id)
+    {
         $area_estudo = Area_Estudo::findOrFail($id);
-        return $area_estudo->update($request->all());
+        return view('areas_estudo.edit', compact('area_estudo'));
     }
 
     /**
@@ -69,5 +87,6 @@ class Area_EstudoController extends Controller
     {
         $area_estudo = Area_Estudo::findOrFail($id);
         $area_estudo->delete();
+        return redirect('/areas_estudo');
     }
 }
