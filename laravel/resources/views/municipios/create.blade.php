@@ -32,7 +32,15 @@
                 </div>
                 <div class="form-group">
                     <label for="Nome_distrito">Distrito: </label>
-                    <input type="text" class="form-control" name="distritos_ID"/>
+{{--                    <input type="text" class="form-control" name="distritos_ID"/>--}}
+                    <select class="select4 form-control" name="distritos_ID" id="distritos_ID">
+                        <option value="">Seleciona um distrito..</option>
+                        @foreach($distritos as $distrito)
+                            <option value="{{$distrito->ID}}" {{$distrito->nome == $distrito->ID ? 'selected' : ''}}>
+                                {{$distrito->nome}}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Criar</button>
                 <a href="/municipios" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>

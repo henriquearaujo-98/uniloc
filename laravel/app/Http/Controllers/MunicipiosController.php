@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Instituicao;
 use App\Models\Municipio;
+use App\Models\Distrito;
 use Illuminate\Http\Request;
 
 class MunicipiosController  extends Controller
@@ -23,7 +24,8 @@ class MunicipiosController  extends Controller
 
     public function create()
     {
-        return view('municipios.create');
+        $distritos = Distrito::all();
+        return view('municipios.create', compact('distritos'));
     }
 
     public function distritos($distrito_id)
@@ -86,7 +88,8 @@ class MunicipiosController  extends Controller
     public function edit($id)
     {
         $municipio = Municipio::findOrFail($id);
-        return view('municipios.edit', compact('municipio'));
+        $distritos = Distrito::all();
+        return view('municipios.edit', compact('municipio', 'distritos'));
     }
 
     /**

@@ -49,9 +49,8 @@
                         @endforeach
                         </tbody>
                     </table>
-
                     <span>
-                        {{$municipios->links()}}
+                        {{$municipios->links("pagination::bootstrap-4")}}
                     </span>
                 </div>
             </div>

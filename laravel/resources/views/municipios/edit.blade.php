@@ -37,7 +37,15 @@
                     @csrf
                     @method('PATCH')
                     <label for="nome">Distrito:</label>
-                    <input type="text" class="form-control" name="distritos_ID" value="{{ $municipio->distritos_ID }}"/>
+{{--                    <input type="text" class="form-control" name="distritos_ID" value="{{ $municipio->distrito->nome }}"/>--}}
+                    <select class="select4 form-control" name="distritos_ID" id="distritos_ID">
+                        <option value="{{ $municipio->distritos_ID }}">{{$municipio->distrito->nome}}</option>
+                        @foreach($distritos as $distrito)
+                            <option value="{{$distrito->ID}}" {{$distrito->nome == $distrito->ID ? 'selected' : ''}}>
+                                {{$distrito->nome}}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Atualizar</button>
                 <a href="/municipios" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>
