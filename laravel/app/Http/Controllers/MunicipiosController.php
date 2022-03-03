@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Instituicao;
 use App\Models\Municipio;
+use App\Models\Distrito;
 use Illuminate\Http\Request;
 
 class MunicipiosController  extends Controller
@@ -17,13 +18,18 @@ class MunicipiosController  extends Controller
      */
     public function index()
     {
-        return Municipio::all();
+        $municipios = Municipio::paginate(15);
+        return view('municipios.index',compact('municipios'));
     }
 
+    public function create()
+    {
+        $distritos = Distrito::all();
+        return view('municipios.create', compact('distritos'));
+    }
 
     public function distritos($distrito_id)
     {
-
         $res = Municipio::with('distritos')->where('distritos_ID', $distrito_id)->get();
 
         return view('welcome', [
@@ -40,12 +46,13 @@ class MunicipiosController  extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'ID' => 'required',
             'nome' => 'required',
             'distritos_ID' => 'required',
         ]);
-        return Municipio::create($request->all());
+        $show = Municipio::create($validatedData);
+        return redirect('/municipios')->with('success', 'Data is successfully saved');
     }
 
     /**
@@ -68,15 +75,21 @@ class MunicipiosController  extends Controller
      */
     public function update(Request $request, $id)
     {
-        $municipio = Municipio::findOrFail($id);
-
-        $request->validate([
+        $validatedData = $request->validate([
             'ID' => 'required',
             'nome' => 'required',
             'distritos_ID' => 'required',
         ]);
 
-        return $municipio->update($request->all());
+         Municipio::whereId($id)->update($validatedData);
+         return redirect('/municipios')->with('success', 'Data is successfully updated');
+    }
+
+    public function edit($id)
+    {
+        $municipio = Municipio::findOrFail($id);
+        $distritos = Distrito::all();
+        return view('municipios.edit', compact('municipio', 'distritos'));
     }
 
     /**
@@ -87,7 +100,8 @@ class MunicipiosController  extends Controller
      */
     public function destroy($id)
     {
-        $municipio = Municipio::find($id);
-        return $municipio->delete();
+        $municipio = Municipio::findOrFail($id);
+        $municipio->delete();
+        return redirect('/municipios');
     }
 }
