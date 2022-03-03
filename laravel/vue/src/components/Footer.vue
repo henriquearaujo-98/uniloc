@@ -1,5 +1,5 @@
 <template>
-$END$
+<h1>Footer</h1>
 </template>
 
 <script>

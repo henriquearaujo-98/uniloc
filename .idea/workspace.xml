@@ -2,23 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="935c3ac4-6f76-462e-bd59-269a38205920" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/Area_EstudoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/Area_EstudoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/CidadesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/CidadesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/Codigos_PostaisController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/Codigos_PostaisController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/CursoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/CursoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/DistritosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/DistritosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/ExameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/ExameController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/Informacoes_MunicipioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/Informacoes_MunicipioController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/InstituicaoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/InstituicaoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/Instituicao_has_CursoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/Instituicao_has_CursoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/MunicipiosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/MunicipiosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/ProvasIngressoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/ProvasIngressoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/Tipo_EnsinoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/Tipo_EnsinoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Models/Distrito.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Models/Distrito.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Models/Exame.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Models/Exame.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Models/Instituicao_has_Curso.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Models/Instituicao_has_Curso.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/routes/api.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/vue/postcss.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/vue/src/assets/logo-full.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/vue/src/components/Footer.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/vue/src/components/Header.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/vue/src/components/Logo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/vue/src/components/Nav.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/vue/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/vue/src/views/LandingPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/vue/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uniloc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uniloc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/SearchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/SearchController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/views/AboutView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/views/HomeView.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +36,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -145,6 +153,7 @@
       <path value="$PROJECT_DIR$/laravel/vendor/psr/simple-cache" />
       <path value="$PROJECT_DIR$/laravel/vendor/psr/http-client" />
       <path value="$PROJECT_DIR$/laravel/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/laravel/vendor/awobaz/compoships" />
     </include_path>
   </component>
   <component name="ProjectId" id="25Z2p4nnxEuW5wEA5JYSGGk0bHK" />
@@ -168,6 +177,7 @@
       <updated>1645720470064</updated>
       <workItem from="1645720471952" duration="8927000" />
       <workItem from="1645740054221" duration="787000" />
+      <workItem from="1646349165583" duration="638000" />
     </task>
     <servers />
   </component>
