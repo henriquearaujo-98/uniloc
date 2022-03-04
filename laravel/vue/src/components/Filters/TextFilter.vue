@@ -7,11 +7,11 @@
         <!-- TextInput Component -->
         <div class="flex" style="position: relative; max-width: 100%">
             <div>
-                <input type="text" name="distrito" v-model="distrito" style="color: black" class="mr-5">
+                <input type="text" name="text" v-model="text" style="color: black" class="mr-5">
                 <!-- Auto complete component-->
                 <div style="background: lightslategrey">
                     <ul>
-                        <li v-for="item in options" :key="item.id" @click="select_distrito(item)">{{ item.nome }}</li>
+                        <li v-for="item in options" :key="item.id" @click="select_item(item)">{{ item.nome }}</li>
                     </ul>
                 </div>
                 <!-- Auto complete component-->
@@ -34,21 +34,21 @@
 
 
 export default {
-    name: "TextInput",
+    name: "TextFilter",
     props:{
         label: String,
         tabela: String
     },
     data(){
         return {
-            options : [],
-            selected: [],
-            distritos: [],
-            distrito: ''
+            options : [],   // opções cujo texto selecionado corresponde á pool de informação
+            selected: [],   // items selecionados do dropdown para fazer request á api
+            pool: [],  // pool de informação
+            text: ''
         }
     },
     created() {
-        this.distritos = [
+        this.pool = [
             {
                 id: 0,
                 nome: 'Açores'
@@ -92,29 +92,28 @@ export default {
         ];
     },
     methods:{
-        get_distritos_like(text){
+        get_like(text){
 
             if(text === ''){
                 this.options = [];
                 return;
             }
 
-
-            this.options = this.distritos.filter(element => {
+            this.options = this.pool.filter(element => {
                 if (element.nome.indexOf(text) !== -1) {
                     return true;
                 }
             })
-
-            console.log(this.selected)
         },
-        select_distrito(distrito){
-            this.selected.push(distrito)
+
+        select_item(item){
+            this.selected.push(item)
+            this.$emit('selected-filter-option', this.selected);
         }
     },
     watch: {
-        distrito(val) { // nome do v-model
-            this.get_distritos_like(val);
+        text(val) { // nome do v-model
+            this.get_like(val);
         }
     }
 }
