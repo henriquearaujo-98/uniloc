@@ -1,7 +1,7 @@
 <template>
     <div style="background: lightslategrey">
         <ul>
-            <li v-for="item in options" :key="item.id" @click="select_item(item)">{{ item.nome }}</li>
+            <li v-for="item in this.$store.state[this.store_name].options" :key="item.id" @click="select_item(item)">{{ item.nome }}</li>
         </ul>
     </div>
 </template>
@@ -10,7 +10,7 @@
 export default {
     name: "AutoComplete",
     props:{
-        pool : Array,
+        store_name: String,
         text: String
     },
     data(){
@@ -23,11 +23,11 @@ export default {
         get_like(text){
 
             if(text === ''){
-                this.options = [];
+                this.$store.state[this.store_name].options = [];
                 return;
             }
 
-            this.options = this.pool.filter(element => {
+            this.$store.state[this.store_name].options = this.$store.state[this.store_name].pool.filter(element => {
                 if (element.nome.indexOf(text) !== -1) {
                     return true;
                 }
@@ -36,12 +36,11 @@ export default {
         },
         select_item(item){
             this.$emit('select-item', item);
-            this.options.pop(item)
+            this.$store.state[this.store_name].options.pop(item)
         }
     },
     watch: {
         text(val) { // nome do v-model
-            console.log(val)
             this.get_like(val)
         }
     }
