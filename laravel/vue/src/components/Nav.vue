@@ -1,16 +1,13 @@
 <template>
     <nav>
         <div class="hidden sm:flex">
-            <a v-for="item in this.links" :key="item.name" :href="item.href">{{ item.name }}</a>
+            <router-link v-for="item in this.links" :key="item.name" :to="item.href">{{ item.name }}</router-link>
         </div>
-        <div class="sm:hidden relative">
-            <MenuIcon />
-        </div>
+
     </nav>
 </template>
 
 <script>
-import { MenuIcon } from "@vue-hero-icons/outline" // not supported in v3
 const links = [
     {
         'name': 'Sobre',
@@ -29,7 +26,7 @@ export default {
             links
         }
     },
-    components:{MenuIcon}
+    components:{}
 }
 </script>
 
@@ -41,5 +38,12 @@ a{
     align-items: center;
     cursor: pointer;
 
+}
+
+nav{
+    margin-left: auto;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
 }
 </style>

@@ -1,7 +1,7 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
     <header>
-        <div class="flex justify-between items-start p-5">
+        <div class="flex justify-between p-5">
             <Logo />
             <Nav />
         </div>
