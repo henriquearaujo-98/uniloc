@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import TextFilter from "@/components/Filters/TextFilter";
+import TextFilter from "@/components/Filtros/TextFilter";
 export default {
     name: "FilterForm",
     components: {TextFilter},
