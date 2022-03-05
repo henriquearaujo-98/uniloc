@@ -20,6 +20,8 @@ Route::resource('exames', ExameController::class);
 Route::resource('cidades', CidadesController::class);
 Route::resource('municipios', MunicipiosController::class);
 Route::resource('codigos_postais', Codigos_PostaisController::class);
+Route::resource('instituicoes', InstituicaoController::class);
+
 Route::get('/cursos/{id}', [InstituicaoController::class, 'cursos']);
 Route::get('/provas_ingresso', [ProvasIngressoController::class, 'exames']);
 
