@@ -25,7 +25,7 @@ class Instituicao_has_CursoController extends Controller
     {
         $cursos = Curso::all();
         $instituicoes = Instituicao::all();
-        return view('municipios.create', compact('cursos', 'instituicoes'));
+        return view('inst_cursos.create', compact('cursos', 'instituicoes'));
     }
 
     public function instituicoes_cursos($curso_id, $inst_id)
@@ -94,7 +94,9 @@ class Instituicao_has_CursoController extends Controller
             'plano_curso' => 'nullable',
         ]);
 
-        Instituicao_has_Curso::wherecursos_ID($cursoID)::whereinstituicoes_ID($instID)->update($validatedData);
+        Instituicao_has_Curso::where('cursos_ID',$cursoID)
+                             ->where('instituicoes_ID', $instID)
+                             ->update($validatedData);
         return redirect('/inst_cursos')->with('success', 'Data is successfully updated');
     }
 
@@ -118,8 +120,8 @@ class Instituicao_has_CursoController extends Controller
 //             return Instituicao_has_Curso::where('cursoS_ID', $cursoID)->where('instituicoes_ID', $instID)->delete();
 //         else
 //             return response('Curso da instituição não encontrado', 404);
-        $inst_curso = count(Instituicao_has_Curso::find($cursoID, $instID));
-        $inst_curso->Instituicao_has_Curso::where('cursoS_ID', $cursoID)->where('instituicoes_ID', $instID)->delete();
+        $inst_curso = Instituicao_has_Curso::findOrFail($cursoID, $instID);
+        $inst_curso->delete();
         return redirect('/inst_cursos');
     }
 }

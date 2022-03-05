@@ -29,6 +29,7 @@ Route::resource('prova_ingresso', ProvasIngressoController::class);
 
 Route::get('/cursos/{id}', [InstituicaoController::class, 'cursos']);
 Route::get('/provas_ingresso', [ProvasIngressoController::class, 'exames']);
+Route::get('/inst_cursos/{curso}/{inst}/edit', ProvasIngressoController::class);
 
 
 
