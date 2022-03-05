@@ -36,8 +36,8 @@
                         <tbody>
                         @foreach($inst_cursos as $inst_curso)
                             <tr>
-                                <td>{{$inst_curso->cursos_ID}}</td>
-                                <td>{{$inst_curso->instituicoes_ID}}</td>
+                                <td>{{$inst_curso->nome_curso->nome}}</td>
+                                <td>{{$inst_curso->nome_inst->nome}}</td>
                                 <td>{{$inst_curso->nota_ult_1fase}}</td>
                                 <td>{{$inst_curso->nota_ult_2fase}}</td>
                                 <td>{{$inst_curso->plano_curso}}</td>

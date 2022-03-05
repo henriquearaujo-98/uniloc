@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Exame;
 use App\Models\Prova_Ingresso;
+use App\Models\Curso;
+use App\Models\Instituicao;
 use Illuminate\Http\Request;
 
 class ProvasIngressoController extends Controller
@@ -15,7 +17,14 @@ class ProvasIngressoController extends Controller
      */
     public function index()
     {
-        return Prova_Ingresso::all();
+        $provas_ingresso = Prova_Ingresso::paginate(15);
+        return view('prova_ingresso.index',compact('provas_ingresso'));
+    }
+
+    public function create()
+    {
+        $provas_ingresso = Prova_Ingresso::all();
+        return view('prova_ingresso.create', compact('provas_ingresso'));
     }
 
     /**
@@ -43,13 +52,14 @@ class ProvasIngressoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'cursoID' => 'required',
             'instituicoes_ID' => 'required',
             'exames_ID' => 'required',
         ]);
 
-        return Prova_Ingresso::create($request->all());
+        $show = Prova_Ingresso::create($validatedData);
+        return redirect('/prova_ingresso')->with('success', 'Data is successfully saved');
     }
 
     /**
@@ -72,8 +82,24 @@ class ProvasIngressoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $provas_ingresso = Prova_Ingresso::findOrFail($id);
-        return $provas_ingresso->update($request->all());
+//         $provas_ingresso = Prova_Ingresso::findOrFail($id);
+//         return $provas_ingresso->update($request->all());
+        $validatedData = $request->validate([
+            'cursoID' => 'required',
+            'instituicoes_ID' => 'required',
+            'exames_ID' => 'required',
+        ]);
+
+        Prova_Ingresso::whereId($id)->update($validatedData);
+        return redirect('/prova_ingresso')->with('success', 'Data is successfully updated');
+    }
+
+    public function edit($id)
+    {
+        $prova_ingresso = Prova_Ingresso::findOrFail($id);
+        $cursos = Curso::all();
+        $instituicoes = Instituicao::all();
+        return view('prova_ingresso.edit', compact('prova_ingresso', 'cursos', 'instituicoes'));
     }
 
     /**
@@ -84,8 +110,9 @@ class ProvasIngressoController extends Controller
      */
     public function destroy($id)
     {
-        $provas_ingresso = Prova_Ingresso::findOrFail($id);
-        return $provas_ingresso->delete();
+        $prova_ingresso = Prova_Ingresso::findOrFail($id);
+        $prova_ingresso->delete();
+        return redirect('/prova_ingresso');
 
     }
 }

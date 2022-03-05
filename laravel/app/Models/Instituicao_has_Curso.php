@@ -24,18 +24,23 @@ class Instituicao_has_Curso extends Model
 
     public function instituicao(){
         return $this->HasMany(Instituicao::class, 'ID', 'instituicoes_ID');
-
     }
 
     public function curso(){
         return $this->HasMany(Curso::class, 'ID', 'cursos_ID');
-
     }
 
     public function provas(){
         return $this->HasMany(Prova_Ingresso::class, ['cursoID', 'instituicoes_ID'], ['cursos_ID', 'instituicoes_ID']);
     }
 
+    public function nome_curso(){
+        return $this->belongsTo(Curso::class, 'cursos_ID', 'ID');
+    }
+
+    public function nome_inst(){
+        return $this->belongsTo(Instituicao::class, 'instituicoes_ID', 'ID');
+    }
 
     public static function find($cursoID, $instID){
         return Instituicao_has_Curso::where('cursos_ID', $cursoID)->where('instituicoes_ID', $instID)->get();
