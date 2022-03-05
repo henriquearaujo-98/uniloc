@@ -9,6 +9,7 @@ use App\Http\Controllers\ExameController;
 use App\Http\Controllers\CidadesController;
 use App\Http\Controllers\MunicipiosController;
 use App\Http\Controllers\Codigos_PostaisController;
+use App\Http\Controllers\CursoController;
 use App\Models\Prova_Ingresso;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::resource('cidades', CidadesController::class);
 Route::resource('municipios', MunicipiosController::class);
 Route::resource('codigos_postais', Codigos_PostaisController::class);
 Route::resource('instituicoes', InstituicaoController::class);
+Route::resource('cursos', CursoController::class);
 
 Route::get('/cursos/{id}', [InstituicaoController::class, 'cursos']);
 Route::get('/provas_ingresso', [ProvasIngressoController::class, 'exames']);
