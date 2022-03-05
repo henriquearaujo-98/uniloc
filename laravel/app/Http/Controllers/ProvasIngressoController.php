@@ -23,8 +23,9 @@ class ProvasIngressoController extends Controller
 
     public function create()
     {
-        $provas_ingresso = Prova_Ingresso::all();
-        return view('prova_ingresso.create', compact('provas_ingresso'));
+        $instituicoes = Instituicao::all();
+        $cursos = Curso::all();
+        return view('prova_ingresso.create', compact('cursos','instituicoes'));
     }
 
     /**
