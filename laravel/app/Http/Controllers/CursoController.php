@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Curso;
 use App\Models\Instituicao_has_Curso;
 use Illuminate\Http\Request;
+use App\Models\Area_Estudo;
 
 class CursoController extends Controller
 {
@@ -15,7 +16,14 @@ class CursoController extends Controller
      */
     public function index()
     {
-        return Curso::all();
+        $cursos = Curso::paginate(15);
+        return view('cursos.index',compact('cursos'));
+    }
+
+    public function create()
+    {
+        $areas_estudo = Area_Estudo::all();
+        return view('cursos.create', compact('areas_estudo'));
     }
 
     /**
@@ -25,7 +33,6 @@ class CursoController extends Controller
      */
     public function instituicoes($curso_id)
     {
-
         $res = Instituicao_has_Curso::with('instituicao')->with('curso')->where('cursos_ID', $curso_id)->get();
 
         return view('welcome', [
@@ -35,7 +42,6 @@ class CursoController extends Controller
 
     public function areas_estudo($area_id)
     {
-
         $res = Curso::with('area_curso_ID')->where('area_curso_ID', $area_id)->get();
 
         return view('welcome', [
@@ -51,12 +57,13 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'ID' => 'required',
             'nome' => 'required',
             'area_curso_ID' => 'required',
         ]);
-        return Curso::create($request->all());
+        $show = Curso::create($validatedData);
+        return redirect('/cursos')->with('success', 'Data is successfully saved');
     }
 
     /**
@@ -79,8 +86,21 @@ class CursoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'ID' => 'required',
+            'nome' => 'required',
+            'area_curso_ID' => 'required',
+        ]);
+
+         Curso::whereId($id)->update($validatedData);
+         return redirect('/cursos')->with('success', 'Data is successfully updated');
+    }
+
+    public function edit($id)
+    {
         $curso = Curso::findOrFail($id);
-        return $curso->update($request->all());
+        $areas_estudo = Area_Estudo::all();
+        return view('cursos.edit', compact('curso', 'areas_estudo'));
     }
 
     /**
@@ -92,6 +112,7 @@ class CursoController extends Controller
     public function destroy($id)
     {
         $curso = Curso::findOrFail($id);
-        return $curso->delete();
+        $curso->delete();
+        return redirect('/cursos');
     }
 }
