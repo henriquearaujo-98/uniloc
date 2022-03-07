@@ -6,7 +6,7 @@
     }
 </style>
 
-<div class="container">
+<div class="container mb-5">
     @if(session()->get('success'))
         <div class="alert alert-success">
             {{ session()->get('success') }}
@@ -47,7 +47,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <span>
+                    <span class="pagination justify-content-center">
                         {{$codigos_postais->links("pagination::bootstrap-4")}}
                     </span>
                 </div>

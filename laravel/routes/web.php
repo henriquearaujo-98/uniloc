@@ -11,6 +11,7 @@ use App\Http\Controllers\MunicipiosController;
 use App\Http\Controllers\Codigos_PostaisController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\Instituicao_has_CursoController;
+use App\Http\Controllers\Informacoes_MunicipioController;
 use App\Models\Prova_Ingresso;
 use Illuminate\Support\Facades\Route;
 
@@ -26,10 +27,11 @@ Route::resource('instituicoes', InstituicaoController::class);
 Route::resource('cursos', CursoController::class);
 Route::resource('inst_cursos', Instituicao_has_CursoController::class);
 Route::resource('prova_ingresso', ProvasIngressoController::class);
+Route::resource('informacoes', Informacoes_MunicipioController::class);
 
 Route::get('/cursos/{id}', [InstituicaoController::class, 'cursos']);
 Route::get('/provas_ingresso', [ProvasIngressoController::class, 'exames']);
-Route::get('/inst_cursos/{curso}/{inst}/edit', ProvasIngressoController::class);
+// Route::get('/inst_cursos/{curso}/{inst}/edit', ProvasIngressoController::class);
 
 
 
