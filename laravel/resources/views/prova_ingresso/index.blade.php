@@ -1,4 +1,4 @@
-@extends('municipios.layout')
+@extends('prova_ingresso.layout')
 
 <style>
     .uper {
@@ -18,28 +18,30 @@
             <input type="text" name="searchfor" id="" class="form-control mb-md-2">
             <div class="card">
                 <div class="card-header">
-                    Municípios
-                    <a href="{{ route('municipios.create')}}" class="btn btn-primary">Criar</a>
+                    Provas de Ingresso
+                    <a href="{{ route('prova_ingresso.create')}}" class="btn btn-primary">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
                         <thead>
                         <tr>
                             <td>#</td>
-                            <td>Município</td>
-                            <td>Distrito</td>
+                            <td>Curso</td>
+                            <td>Instituição</td>
+                            <td>Código dos Exames</td>
                             <td colspan="2"></td>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($municipios as $municipio)
+                        @foreach($provas_ingresso as $prova_ingresso)
                             <tr>
-                                <td>{{$municipio->ID}}</td>
-                                <td>{{$municipio->nome}}</td>
-                                <td>{{$municipio->distrito->nome}}</td>
-                                <td><a href="{{ route('municipios.edit', $municipio->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td>{{$prova_ingresso->ID}}</td>
+                                <td>{{$prova_ingresso->cursos->nome_curso->nome}}</td>
+                                <td>{{$prova_ingresso->insts->nome_inst->nome}}</td>
+                                <td>{{$prova_ingresso->exames_id}}</td>
+                                <td><a href="{{ route('prova_ingresso.edit', $prova_ingresso->ID)}}" class="btn btn-primary">Editar</a></td>
                                 <td>
-                                    <form action="{{ route('municipios.destroy', $municipio->ID)}}" method="post">
+                                    <form action="{{ route('prova_ingresso.destroy', $prova_ingresso->ID)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
@@ -50,7 +52,7 @@
                         </tbody>
                     </table>
                     <span class="pagination justify-content-center">
-                        {{$municipios->links("pagination::bootstrap-4")}}
+                        {{$provas_ingresso->links("pagination::bootstrap-4")}}
                     </span>
                 </div>
             </div>

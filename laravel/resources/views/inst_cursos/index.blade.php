@@ -1,4 +1,4 @@
-@extends('municipios.layout')
+@extends('inst_cursos.layout')
 
 <style>
     .uper {
@@ -18,28 +18,34 @@
             <input type="text" name="searchfor" id="" class="form-control mb-md-2">
             <div class="card">
                 <div class="card-header">
-                    Municípios
-                    <a href="{{ route('municipios.create')}}" class="btn btn-primary">Criar</a>
+                    Instituições e Cursos
+                    <a href="{{ route('inst_cursos.create')}}" class="btn btn-primary">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
                         <thead>
                         <tr>
-                            <td>#</td>
-                            <td>Município</td>
-                            <td>Distrito</td>
+                            <td>Curso</td>
+                            <td>Instituição</td>
+                            <td>Nota 1ª Fase</td>
+                            <td>Nota 2ª Fase</td>
+                            <td>Plano Estudo</td>
                             <td colspan="2"></td>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($municipios as $municipio)
+                        @foreach($inst_cursos as $inst_curso)
                             <tr>
-                                <td>{{$municipio->ID}}</td>
-                                <td>{{$municipio->nome}}</td>
-                                <td>{{$municipio->distrito->nome}}</td>
-                                <td><a href="{{ route('municipios.edit', $municipio->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td>{{$inst_curso->nome_curso->nome}}</td>
+                                <td>{{$inst_curso->nome_inst->nome}}</td>
+                                <td>{{$inst_curso->nota_ult_1fase}}</td>
+                                <td>{{$inst_curso->nota_ult_2fase}}</td>
+                                <td>{{$inst_curso->plano_curso}}</td>
+                                <td><a href="{{ route('inst_cursos.edit', ['curso'=>$inst_curso->cursos_ID, 'isnt'=>$inst_curso->instituicoes_ID])}}"
+                                       class="btn btn-primary">Editar</a></td>
                                 <td>
-                                    <form action="{{ route('municipios.destroy', $municipio->ID)}}" method="post">
+                                    <form action="{{ route('inst_cursos.destroy', ['curso'=>$inst_curso->cursos_ID, 'isnt'=>$inst_curso->instituicoes_ID])}}"
+                                          method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
@@ -50,7 +56,7 @@
                         </tbody>
                     </table>
                     <span class="pagination justify-content-center">
-                        {{$municipios->links("pagination::bootstrap-4")}}
+                        {{$inst_cursos->links("pagination::bootstrap-4")}}
                     </span>
                 </div>
             </div>

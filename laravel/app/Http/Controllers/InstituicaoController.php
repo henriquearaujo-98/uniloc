@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Instituicao;
+use App\Models\Codigo_Postal;
+use App\Models\Tipo_Ensino;
 use App\Models\Instituicao_has_Curso;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,15 @@ class InstituicaoController extends Controller
      */
     public function index()
     {
-        return Instituicao::all();
+        $instituicoes = Instituicao::paginate(15);
+        return view('instituicoes.index',compact('instituicoes'));
+    }
+
+    public function create()
+    {
+        $tipos_ensino = Tipo_Ensino::all();
+        $codigos_postais = Codigo_Postal::all();
+        return view('instituicoes.create', compact('tipos_ensino', 'codigos_postais'));
     }
 
     /**
@@ -25,7 +35,6 @@ class InstituicaoController extends Controller
      */
     public function cursos($inst_id)
     {
-
         $res = Instituicao_has_Curso::with('instituicao')->with('curso')->where('instituicoes_ID', $inst_id)->get();
 
         return view('welcome', [
@@ -61,14 +70,15 @@ class InstituicaoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'ID' => 'required',
             'nome' => 'required',
             'tipos_ensino_ID' => 'required',
             'cod_postal' => 'required',
-            //'rank' => 'optional'
+            'rank' => 'nullable',
         ]);
-        return Instituicao::create($request->all());
+        $show = Instituicao::create($validatedData);
+        return redirect('/instituicoes')->with('success', 'Data is successfully saved');
     }
 
     /**
@@ -91,17 +101,25 @@ class InstituicaoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $inst = Instituicao::findOrFail($id);
-
-        $request->validate([
+        //$inst = Instituicao::findOrFail($id);
+        $validatedData = $request->validate([
             'ID' => 'required',
             'nome' => 'required',
             'tipos_ensino_ID' => 'required',
             'cod_postal' => 'required',
-            //'rank' => 'optional'
+            'rank' => 'nullable',
         ]);
 
-        return $inst->update($request->all());
+        Instituicao::whereId($id)->update($validatedData);
+        return redirect('/instituicoes')->with('success', 'Data is successfully updated');
+    }
+
+    public function edit($id)
+    {
+        $instituicao = Instituicao::findOrFail($id);
+        $codigos_postais = Codigo_Postal::all();
+        $tipos_ensino = Tipo_Ensino::all();
+        return view('instituicoes.edit', compact('instituicao', 'codigos_postais', 'tipos_ensino'));
     }
 
     /**
@@ -112,7 +130,8 @@ class InstituicaoController extends Controller
      */
     public function destroy($id)
     {
-        $inst = Instituicao::findOrFail($id);
-        return $inst->delete();
+        $instituicao = Instituicao::findOrFail($id);
+        $instituicao->delete();
+        return redirect('/instituicoes');
     }
 }

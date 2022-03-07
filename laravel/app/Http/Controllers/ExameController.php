@@ -15,7 +15,13 @@ class ExameController extends Controller
      */
     public function index()
     {
-        return Exame::all();
+        $exames = Exame::all();
+        return view('exames.index',compact('exames'));
+    }
+
+    public function create()
+    {
+        return view('exames.create');
     }
 
     /**
@@ -26,11 +32,12 @@ class ExameController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'Codigo' => 'required',
             'Nome' => 'required',
         ]);
-        return Exame::create($request->all());
+        $show = Exame::create($validatedData);
+        return redirect('/exames')->with('success', 'Data is successfully saved');
     }
 
     /**
@@ -51,14 +58,20 @@ class ExameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $codigo)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'Codigo' => 'required',
             'Nome' => 'required',
         ]);
-        $exame = Exame::find($id);
-        return $exame->update($request->all());
+         Exame::whereCodigo($codigo)->update($validatedData);
+         return redirect('/exames')->with('success', 'Data is successfully updated');
+    }
+
+    public function edit($codigo)
+    {
+        $exame = Exame::findOrFail($codigo);
+        return view('exames.edit', compact('exame'));
     }
 
     /**
@@ -69,6 +82,8 @@ class ExameController extends Controller
      */
     public function destroy($id)
     {
-        return Exame::destroy($id);
+        $exame = Exame::findOrFail($id);
+        $exame->delete();
+        return redirect('/exames');
     }
 }

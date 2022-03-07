@@ -17,13 +17,18 @@ class CidadesController extends Controller
      */
     public function index()
     {
-        return Cidade::all();
+        $cidades = Cidade::paginate(15);
+        return view('cidades.index',compact('cidades'));
     }
 
+   public function create()
+    {
+        $municipios = Municipio::all();
+        return view('cidades.create', compact('municipios'));
+    }
 
     public function municipios($municipio_id)
     {
-
         $res = Cidade::with('municipios')->where('municipios_ID', $municipio_id)->get();
 
         return view('welcome', [
@@ -40,13 +45,14 @@ class CidadesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+         $validatedData = $request->validate([
             'ID' => 'required',
             'nome' => 'required',
             'municipio_ID' => 'required',
         ]);
 
-        return Cidade::create($request->all());
+        $show = Cidade::create($validatedData);
+        return redirect('/cidades')->with('success', 'Data is successfully saved');
     }
 
     /**
@@ -69,15 +75,22 @@ class CidadesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cidade = Cidade::findOrFail($id);
-
-        $request->validate([
+//         $cidade = Cidade::findOrFail($id);
+         $validatedData = $request->validate([
             'ID' => 'required',
             'nome' => 'required',
             'municipio_ID' => 'required',
         ]);
 
-        return $cidade->update($request->all());
+         Cidade::whereId($id)->update($validatedData);
+         return redirect('/cidades')->with('success', 'Data is successfully updated');
+    }
+
+    public function edit($id)
+    {
+        $cidade = Cidade::findOrFail($id);
+        $municipios = Municipio::all();
+        return view('cidades.edit', compact('cidade', 'municipios'));
     }
 
     /**
@@ -89,6 +102,7 @@ class CidadesController extends Controller
     public function destroy($id)
     {
         $cidade = Cidade::findOrFail($id);
-        return $cidade->delete();
+        $cidade->delete();
+        return redirect('/cidades');
     }
 }

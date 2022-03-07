@@ -27,6 +27,12 @@ class Tipo_EnsinoController extends Controller
         return view('tipos_ensino.create');
     }
 
+    public function search(Request $request){
+        $search = $request->get('tipo');
+        $tipos_ensino = Tipo_Ensino::where('nome', 'LIKE', '%'.$search.'%');
+        return view('tipos_ensino.index',compact('tipos_ensino'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

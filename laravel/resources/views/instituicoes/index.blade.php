@@ -1,4 +1,4 @@
-@extends('municipios.layout')
+@extends('instituicoes.layout')
 
 <style>
     .uper {
@@ -18,28 +18,32 @@
             <input type="text" name="searchfor" id="" class="form-control mb-md-2">
             <div class="card">
                 <div class="card-header">
-                    Municípios
-                    <a href="{{ route('municipios.create')}}" class="btn btn-primary">Criar</a>
+                    Instituições
+                    <a href="{{ route('instituicoes.create')}}" class="btn btn-primary">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
                         <thead>
                         <tr>
                             <td>#</td>
-                            <td>Município</td>
-                            <td>Distrito</td>
+                            <td>Nome</td>
+                            <td>Tipo de Ensino</td>
+                            <td>Código Postal</td>
+                            <td>Rank</td>
                             <td colspan="2"></td>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($municipios as $municipio)
+                        @foreach($instituicoes as $instituicao)
                             <tr>
-                                <td>{{$municipio->ID}}</td>
-                                <td>{{$municipio->nome}}</td>
-                                <td>{{$municipio->distrito->nome}}</td>
-                                <td><a href="{{ route('municipios.edit', $municipio->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td>{{$instituicao->ID}}</td>
+                                <td>{{$instituicao->nome}}</td>
+                                <td>{{$instituicao->tipo_ensino->nome}}</td>
+                                <td>{{$instituicao->codigo_postal->cod_postal}} - {{$instituicao->codigo_postal->cidade->nome}}</td>
+                                <td>{{$instituicao->rank}}</td>
+                                <td><a href="{{ route('instituicoes.edit', $instituicao->ID)}}" class="btn btn-primary">Editar</a></td>
                                 <td>
-                                    <form action="{{ route('municipios.destroy', $municipio->ID)}}" method="post">
+                                    <form action="{{ route('instituicoes.destroy', $instituicao->ID)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
@@ -50,7 +54,7 @@
                         </tbody>
                     </table>
                     <span class="pagination justify-content-center">
-                        {{$municipios->links("pagination::bootstrap-4")}}
+                        {{$instituicoes->links("pagination::bootstrap-4")}}
                     </span>
                 </div>
             </div>

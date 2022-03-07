@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Codigo_Postal;
 use App\Models\Municipio;
+use App\Models\Cidade;
 use Illuminate\Http\Request;
 
 class Codigos_PostaisController extends Controller
@@ -17,13 +18,18 @@ class Codigos_PostaisController extends Controller
      */
     public function index()
     {
-        return Codigo_Postal::all();
+        $codigos_postais = Codigo_Postal::paginate(15);
+        return view('codigos_postais.index',compact('codigos_postais'));
     }
 
+    public function create()
+    {
+        $cidades = Cidade::all();
+        return view('codigos_postais.create', compact('cidades'));
+    }
 
     public function cidades($cidade_id)
     {
-
         $res = Codigo_Postal::with('cidades')->where('cidades_ID', $cidade_id)->get();
 
         return view('welcome', [
@@ -40,12 +46,13 @@ class Codigos_PostaisController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'cod_postal' => 'required',
             'cidade_ID' => 'required',
         ]);
 
-        return Codigo_Postal::create($request->all());
+        $show = Codigo_Postal::create($validatedData);
+        return redirect('/codigos_postais')->with('success', 'Data is successfully saved');
     }
 
     /**
@@ -68,14 +75,23 @@ class Codigos_PostaisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cod = $this->show($id);
-
-        $request->validate([
+        //$cod = $this->show($id);
+        $validatedData = $request->validate([
             'cod_postal' => 'required',
             'cidade_ID' => 'required',
         ]);
 
-        return $cod->update($request->all());
+        //return $cod->update($request->all());
+
+        Codigo_Postal::wherecod_postal($id)->update($validatedData);
+        return redirect('/codigos_postais')->with('success', 'Data is successfully updated');
+    }
+
+    public function edit($id)
+    {
+        $codigo_postal = Codigo_Postal::findOrFail($id);
+        $cidades = Cidade::all();
+        return view('codigos_postais.edit', compact('codigo_postal', 'cidades'));
     }
 
     /**
@@ -86,7 +102,8 @@ class Codigos_PostaisController extends Controller
      */
     public function destroy($id)
     {
-        $cod = $this->show($id);
-        return $cod->delete();
+        $codigo_postal = Codigo_Postal::findOrFail($id);
+        $codigo_postal->delete();
+        return redirect('/codigos_postais');
     }
 }

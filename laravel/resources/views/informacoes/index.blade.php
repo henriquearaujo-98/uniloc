@@ -1,4 +1,4 @@
-@extends('municipios.layout')
+@extends('informacoes.layout')
 
 <style>
     .uper {
@@ -18,8 +18,8 @@
             <input type="text" name="searchfor" id="" class="form-control mb-md-2">
             <div class="card">
                 <div class="card-header">
-                    Municípios
-                    <a href="{{ route('municipios.create')}}" class="btn btn-primary">Criar</a>
+                    Informações Municípios
+                    <a href="{{ route('informacoes.create')}}" class="btn btn-primary">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
@@ -27,19 +27,19 @@
                         <tr>
                             <td>#</td>
                             <td>Município</td>
-                            <td>Distrito</td>
+                            <td>População Residente</td>
                             <td colspan="2"></td>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($municipios as $municipio)
+                        @foreach($informacoes as $informacao)
                             <tr>
-                                <td>{{$municipio->ID}}</td>
-                                <td>{{$municipio->nome}}</td>
-                                <td>{{$municipio->distrito->nome}}</td>
-                                <td><a href="{{ route('municipios.edit', $municipio->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td>{{$informacao->ID}}</td>
+                                <td>{{$informacao->municipio->nome}}</td>
+                                <td>{{$informacao->Edificios}}</td>
+                                <td><a href="{{ route('informacoes.edit', $informacao->ID)}}" class="btn btn-primary">Editar</a></td>
                                 <td>
-                                    <form action="{{ route('municipios.destroy', $municipio->ID)}}" method="post">
+                                    <form action="{{ route('informacoes.destroy', $informacao->ID)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
@@ -50,7 +50,7 @@
                         </tbody>
                     </table>
                     <span class="pagination justify-content-center">
-                        {{$municipios->links("pagination::bootstrap-4")}}
+                        {{$informacoes->links("pagination::bootstrap-4")}}
                     </span>
                 </div>
             </div>

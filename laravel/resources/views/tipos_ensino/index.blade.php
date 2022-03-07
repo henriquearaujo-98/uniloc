@@ -6,7 +6,7 @@
     }
 </style>
 
-<div class="container">
+<div class="container mb-5">
     @if(session()->get('success'))
         <div class="alert alert-success">
             {{ session()->get('success') }}
@@ -15,7 +15,16 @@
 
     <div class="row" style="margin-top: 45px">
         <div class="col-md-12">
-            <input type="text" name="searchfor" id="" class="form-control mb-md-2">
+            <div class="col-md-4">
+                <form action="/search" method="get">
+                    <div class="form-group">
+                        <input type="search" name="tipo" id="tipo" class="form-control mb-md-2">
+                        <span class="form-group-btn">
+                            <button type="submit" class="btn btn-primary"> Search </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
             <div class="card">
                 <div class="card-header">
                     Tipos de Ensino

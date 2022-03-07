@@ -18,13 +18,18 @@ class Informacoes_MunicipioController extends Controller
      */
     public function index()
     {
-        return Informacoes_Municipio::all();
+        $informacoes = Informacoes_Municipio::paginate(15);
+        return view('informacoes.index',compact('informacoes'));
     }
 
+    public function create()
+    {
+        $municipios = Municipio::all();
+        return view('informacoes.create', compact('municipios'));
+    }
 
     public function municipio($municipio_id)
     {
-
         $res = Informacoes_Municipio::with('municipios')->where('municipio_ID', $municipio_id)->get();
 
         return view('welcome', [
@@ -41,8 +46,9 @@ class Informacoes_MunicipioController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
-        return Informacoes_Municipio::create($request->all());
+//         return $request->all();
+        $show = Informacoes_Municipio::create($request->all());
+        return redirect('/informacoes')->with('success', 'Data is successfully saved');
     }
 
     /**
@@ -89,7 +95,8 @@ class Informacoes_MunicipioController extends Controller
      */
     public function destroy($id)
     {
-        $inf_mun = Informacoes_Municipio::find($id);
-        return $inf_mun->delete();
+        $inf_mun = Informacoes_Municipio::findOrFail($id);
+        $inf_mun->delete();
+        return redirect('/informacoes');
     }
 }
