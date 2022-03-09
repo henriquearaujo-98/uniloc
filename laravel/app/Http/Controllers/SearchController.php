@@ -82,7 +82,6 @@ class SearchController extends Controller
 
 
 
-        //return Prova_Ingresso::with('exames')->get();
         $inst_cursos = Instituicao_has_Curso::whereBetween('nota_ult_1fase', [intval($nota_min_min), intval($nota_min_max)])
             ->with('instituicao')
             ->with('curso')
@@ -97,7 +96,8 @@ class SearchController extends Controller
             ->whereHas('instituicao', function (Builder $query) use ($rank_max, $rank_min, $instituicoes_ids) {
 
                                                     if(intval($rank_min) != null && intval($rank_max) != null)
-                                                        $query->whereIn('ID', $instituicoes_ids)->whereBetween('rank', [intval($rank_min), intval($rank_max)]);
+                                                        $query->whereIn('ID', $instituicoes_ids)
+                                                                ->whereBetween('rank', [intval($rank_min), intval($rank_max)]);
                                                     else
                                                         $query->whereIn('ID', $instituicoes_ids);
 

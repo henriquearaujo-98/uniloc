@@ -113,6 +113,7 @@
       <path value="$PROJECT_DIR$/laravel/vendor/psr/simple-cache" />
       <path value="$PROJECT_DIR$/laravel/vendor/psr/http-client" />
       <path value="$PROJECT_DIR$/laravel/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/laravel/vendor/awobaz/compoships" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
