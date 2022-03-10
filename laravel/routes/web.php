@@ -33,9 +33,12 @@ Route::get('/cursos/{id}', [InstituicaoController::class, 'cursos']);
 Route::get('/provas_ingresso', [ProvasIngressoController::class, 'exames']);
 // Route::get('/inst_cursos/{curso}/{inst}/edit', ProvasIngressoController::class);
 
-Route::get('/inst_cursos/edit/{curso}{inst}','Instituicao_has_CursoController@update')->name('inst_cursos.update');
+//Route::get('/inst_cursos/edit/{curso}{inst}','Instituicao_has_CursoController@update')->name('inst_cursos.update');
+Route::get('/inst_cursos/{cursoID}/{instID}', [Instituicao_has_CursoController::class, 'edit']);
+// Route::get('/inst_cursos/{cursoID}/{instID}','Instituicao_has_CursoController@edit')->name('inst_cursos.edit');
 
-route::get('/search', [Tipo_EnsinoController::class, 'search']);
+route::get('/searchTipo', [Tipo_EnsinoController::class, 'searchTipo']);
+route::get('/searchArea', [Area_EstudoController::class, 'searchArea']);
 
 
 

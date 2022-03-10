@@ -16,7 +16,7 @@
     <div class="row" style="margin-top: 45px">
         <div class="col-md-12">
             <div class="col-md-4">
-                <form action="/search" method="get">
+                <form action="/searchTipo" method="get">
                     <div class="form-group">
                         <input type="search" name="tipo" id="tipo" class="form-control mb-md-2">
                         <span class="form-group-btn">

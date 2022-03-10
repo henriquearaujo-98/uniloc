@@ -20,9 +20,8 @@
                     </ul>
                 </div><br />
             @endif
-            <form method="post" action="{{ route('inst_cursos.update', $prova_ingresso->ID ) }}">
+            <form method="post" action="{{ route('inst_cursos.update', $inst_curso->cursos_ID, $inst_curso->instituicoes_ID)}}">
                 @csrf
-
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
@@ -54,21 +53,21 @@
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
-                    <label for="nome">Nota 1ª Fasel:</label>
+                    <label for="nome">Nota 1ª Fase:</label>
                     <input type="number" class="form-control" step=".1" name="nota_ult_1fase" value="{{ $inst_curso->nota_ult_1fase }}"/>
                 </div>
 
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
-                    <label for="nome">Exames:</label>
+                    <label for="nome">Nota 2ª Fase:</label>
                     <input type="number" class="form-control" step=".1" name="nota_ult_2fase" value="{{ $inst_curso->nota_ult_2fase }}"/>
                 </div>
 
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
-                    <label for="nome">Exames:</label>
+                    <label for="nome">Plano de Estudo:</label>
                     <input type="text" class="form-control" name="plano_curso" value="{{ $inst_curso->plano_curso }}"/>
                 </div>
 

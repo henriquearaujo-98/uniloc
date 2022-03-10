@@ -15,7 +15,16 @@
 
     <div class="row" style="margin-top: 45px">
         <div class="col-md-12">
-            <input type="text" name="searchfor" id="" class="form-control mb-md-2">
+            <div class="col-md-4">
+                <form action="/searchArea" method="get">
+                    <div class="input-group">
+                        <input type="search" name="area" id="area" class="form-control">
+                        <span class="input-group-prepend pl-5">
+                            <button type="submit" class="btn btn-primary"> Search </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
             <div class="card">
                 <div class="card-header">
                     Áreas de Estudo

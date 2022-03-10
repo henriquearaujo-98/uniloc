@@ -41,16 +41,17 @@
                                 <td>{{$inst_curso->nota_ult_1fase}}</td>
                                 <td>{{$inst_curso->nota_ult_2fase}}</td>
                                 <td>{{$inst_curso->plano_curso}}</td>
-                                <td><a href="{{ route('inst_cursos.update', [$inst_curso->cursos_ID, $inst_curso->instituicoes_ID])}}"
-                                       class="btn btn-primary">Editar</a></td>
-                                <td>
-                                    <form action="{{ route('inst_cursos.destroy', ['curso'=>$inst_curso->cursos_ID, 'isnt'=>$inst_curso->instituicoes_ID])}}"
-                                          method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
-                                    </form>
-                                </td>
+{{--                                <td><a href="{{ route('inst_cursos.edit', ['curso'=>$inst_curso->cursos_ID, 'inst'=>$inst_curso->instituicoes_ID])}}"--}}
+{{--                                       class="btn btn-primary">Editar</a></td>--}}
+                                <td><a class="btn btn-success" href="{{route('inst_cursos.edit',['cursoID'=>$inst_curso->cursos_ID,'instID'=>$inst_curso->instituicoes_ID])}}">Show</a></td>
+{{--                                <td>--}}
+{{--                                    <form action="{{ route('inst_cursos.destroy', ['curso'=>$inst_curso->cursos_ID, 'isnt'=>$inst_curso->instituicoes_ID])}}"--}}
+{{--                                          method="post">--}}
+{{--                                        @csrf--}}
+{{--                                        @method('DELETE')--}}
+{{--                                        <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>--}}
+{{--                                    </form>--}}
+{{--                                </td>--}}
                             </tr>
                         @endforeach
                         </tbody>

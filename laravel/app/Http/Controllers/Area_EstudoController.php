@@ -42,6 +42,12 @@ class Area_EstudoController extends Controller
         return redirect('/areas_estudo')->with('success', 'Data is successfully saved');
     }
 
+    public function searchArea(Request $request){
+        $search = $request->get('area');
+        $areas_estudo = Area_Estudo::where('nome', 'LIKE', '%'.$search.'%')->get();
+        return view('areas_estudo.index',compact('areas_estudo'));
+    }
+
     /**
      * Display the specified resource.
      *

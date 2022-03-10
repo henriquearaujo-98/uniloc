@@ -100,9 +100,10 @@ class Instituicao_has_CursoController extends Controller
         return redirect('/inst_cursos')->with('success', 'Data is successfully updated');
     }
 
-    public function edit($id)
+    public function edit($cursoID, $instID)
     {
-        $inst_curso = Instituicao_has_Curso::findOrFail($id);
+        $inst_curso = Instituicao_has_Curso::where('cursos_ID',$cursoID)
+                                           ->where('instituicoes_ID', $instID);
         $cursos = Curso::all();
         $instituicoes = Instituicao::all();
         return view('inst_cursos.edit', compact('inst_curso', 'cursos', 'instituicoes'));

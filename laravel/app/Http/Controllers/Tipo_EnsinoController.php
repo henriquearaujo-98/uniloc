@@ -27,9 +27,9 @@ class Tipo_EnsinoController extends Controller
         return view('tipos_ensino.create');
     }
 
-    public function search(Request $request){
+    public function searchTipo(Request $request){
         $search = $request->get('tipo');
-        $tipos_ensino = Tipo_Ensino::where('nome', 'LIKE', '%'.$search.'%');
+        $tipos_ensino = Tipo_Ensino::where('nome', 'LIKE', '%'.$search.'%')->get();
         return view('tipos_ensino.index',compact('tipos_ensino'));
     }
 
