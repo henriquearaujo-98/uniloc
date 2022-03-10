@@ -41,7 +41,7 @@
                                 <td>{{$inst_curso->nota_ult_1fase}}</td>
                                 <td>{{$inst_curso->nota_ult_2fase}}</td>
                                 <td>{{$inst_curso->plano_curso}}</td>
-                                <td><a href="{{ route('inst_cursos.edit', ['curso'=>$inst_curso->cursos_ID, 'isnt'=>$inst_curso->instituicoes_ID])}}"
+                                <td><a href="{{ route('inst_cursos.update', [$inst_curso->cursos_ID, $inst_curso->instituicoes_ID])}}"
                                        class="btn btn-primary">Editar</a></td>
                                 <td>
                                     <form action="{{ route('inst_cursos.destroy', ['curso'=>$inst_curso->cursos_ID, 'isnt'=>$inst_curso->instituicoes_ID])}}"
