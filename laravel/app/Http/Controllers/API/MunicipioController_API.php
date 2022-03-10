@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Codigo_Postal;
+use App\Models\Municipio;
 use Illuminate\Http\Request;
 
-class CodigoPostalController_API extends Controller
+class MunicipioController_API extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +15,14 @@ class CodigoPostalController_API extends Controller
      */
     public function index()
     {
-        return Codigo_Postal::all();
+        return Municipio::all();
     }
 
 
-    public function cidades($cidade_id)
+    public function distritos($distrito_id)
     {
 
-        $res = Codigo_Postal::with('cidades')->where('cidades_ID', $cidade_id)->get();
+        $res = Municipio::with('distritos')->where('distritos_ID', $distrito_id)->get();
 
         return view('welcome', [
             'posts' => $res
@@ -39,11 +39,11 @@ class CodigoPostalController_API extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'cod_postal' => 'required',
-            'cidade_ID' => 'required',
+            'ID' => 'required',
+            'nome' => 'required',
+            'distritos_ID' => 'required',
         ]);
-
-        return Codigo_Postal::create($request->all());
+        return Municipio::create($request->all());
     }
 
     /**
@@ -54,7 +54,7 @@ class CodigoPostalController_API extends Controller
      */
     public function show($id)
     {
-        return Codigo_Postal::findOrFail($id);
+        return Municipio::findOrFail($id);
     }
 
     /**
@@ -66,14 +66,15 @@ class CodigoPostalController_API extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cod = $this->show($id);
+        $municipio = Municipio::findOrFail($id);
 
         $request->validate([
-            'cod_postal' => 'required',
-            'cidade_ID' => 'required',
+            'ID' => 'required',
+            'nome' => 'required',
+            'distritos_ID' => 'required',
         ]);
 
-        return $cod->update($request->all());
+        return $municipio->update($request->all());
     }
 
     /**
@@ -84,7 +85,7 @@ class CodigoPostalController_API extends Controller
      */
     public function destroy($id)
     {
-        $cod = $this->show($id);
-        return $cod->delete();
+        $municipio = Municipio::find($id);
+        return $municipio->delete();
     }
 }

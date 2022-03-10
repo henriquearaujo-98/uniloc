@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Codigo_Postal;
+use App\Models\Prova_Ingresso;
 use Illuminate\Http\Request;
 
-class CodigoPostalController_API extends Controller
+class ProvaIngressoController_API extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,20 +15,25 @@ class CodigoPostalController_API extends Controller
      */
     public function index()
     {
-        return Codigo_Postal::all();
+        return Prova_Ingresso::all();
     }
 
-
-    public function cidades($cidade_id)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function exames($curso_id, $instituicao_id)
     {
+        $res = Prova_Ingresso::all()->where('cursoID', $curso_id)->where('instituicoes_ID', $instituicao_id)->first();
+        $ids = explode(',', $res->exames_id);
+        $nomes = array();
+        foreach ($ids as $id){
+            array_push($nomes,Exame::all()->where('Codigo',$id));
+        }
 
-        $res = Codigo_Postal::with('cidades')->where('cidades_ID', $cidade_id)->get();
-
-        return view('welcome', [
-            'posts' => $res
-        ]);
+        return $nomes;
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -39,11 +44,12 @@ class CodigoPostalController_API extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'cod_postal' => 'required',
-            'cidade_ID' => 'required',
+            'cursoID' => 'required',
+            'instituicoes_ID' => 'required',
+            'exames_ID' => 'required',
         ]);
 
-        return Codigo_Postal::create($request->all());
+        return Prova_Ingresso::create($request->all());
     }
 
     /**
@@ -54,7 +60,7 @@ class CodigoPostalController_API extends Controller
      */
     public function show($id)
     {
-        return Codigo_Postal::findOrFail($id);
+        return Prova_Ingresso::find($id);
     }
 
     /**
@@ -66,14 +72,8 @@ class CodigoPostalController_API extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cod = $this->show($id);
-
-        $request->validate([
-            'cod_postal' => 'required',
-            'cidade_ID' => 'required',
-        ]);
-
-        return $cod->update($request->all());
+        $provas_ingresso = Prova_Ingresso::findOrFail($id);
+        return $provas_ingresso->update($request->all());
     }
 
     /**
@@ -84,7 +84,8 @@ class CodigoPostalController_API extends Controller
      */
     public function destroy($id)
     {
-        $cod = $this->show($id);
-        return $cod->delete();
+        $provas_ingresso = Prova_Ingresso::findOrFail($id);
+        return $provas_ingresso->delete();
+
     }
 }
