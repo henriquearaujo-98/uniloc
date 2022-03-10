@@ -32,23 +32,6 @@ class DistritoController_API extends Controller
         ]);
 
         return Distrito::create($request->all());
-        /*$validator = \Validator::make($request->all(),[
-            'nome' => 'required',
-        ]);
-
-        if(!$validator->passes()){
-            return response()->json(['code'=>0, 'error'=>$validator->errors()->toArray()]);
-        } else {
-            $distrito = new Distrito();
-            $distrito->Nome = $request->distrito_nome;
-            $query = $distrito->save();
-
-            if(!$query){
-                return response()->json(['code'=>0, 'msg'=>'Something went wrong']);
-            } else {
-                return response()->json(['code'=>1, 'msg'=>'Distrito adicionado com sucesso']);
-            }
-        }*/
     }
 
     /**

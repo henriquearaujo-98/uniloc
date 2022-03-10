@@ -13,6 +13,7 @@ use App\Http\Controllers\API\Instituicoes_has_CursoController_API;
 use App\Http\Controllers\API\MunicipioController_API;
 use App\Http\Controllers\API\ProvaIngressoController_API;
 use App\Http\Controllers\API\TipoEnsinoController_API;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
