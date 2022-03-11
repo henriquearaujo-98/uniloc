@@ -45,24 +45,56 @@ export default {
 
                 POPULATE_POOL(state, data){
                     state.pool = data;
+                    state.pool.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
                 },
 
                 SELECT_ITEM(state, item){
                     state.selected.push(item)
+                    state.options.splice(state.options.indexOf(item),1)
                 },
 
                 REMOVE_ITEM(state, item){
 
                     let temp = state.selected.filter((i) => {
                         if(i !== item){
-                            //console.log(item)
                             return true
                         }
                     })
                     state.selected = temp;
                     state.options.push(item)
-                    console.log(state.selected)
+                    state.options.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
+                    state.selected.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
+                },
 
+                GET_DROPDOWN(state, text){
+
+                    if(text === ''){
+                        state.options = [];
+                        return;
+                    }
+
+                    let temp = [];
+                    state.pool.forEach(element => {        // Get a selection from pool that has substring text and is not present in the selected array
+                        if (element.nome.toUpperCase().indexOf(text.toUpperCase()) !== -1) {
+                            if(state.selected.length){
+                                state.selected.forEach(item => {
+                                    if(item != element)
+                                        temp.push(element)
+                                })
+                            }else{
+                                temp.push(element)
+                            }
+                        }
+                    })
+
+                    state.options = temp;
+                    state.options.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
+                },
+
+                SORT_STATE(state){
+                    state.selected.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
+                    state.options.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
+                    state.pool.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
                 }
             },
             actions: {
@@ -77,13 +109,17 @@ export default {
 
                 remove_item({commit}, item){
                     commit('REMOVE_ITEM', item)
+                },
+
+                get_dropdown({commit}, text){
+                    commit('GET_DROPDOWN', text)
                 }
             },
         })
     },
     mounted() {
-
-        let data = axios
+        
+         axios
             .get(`http://localhost:3500/api/${this.tabela}`)
             .then(response => (this.$store.dispatch('populate_pool', response.data)[this.tabela]))
     },

@@ -23,16 +23,10 @@ export default {
     methods:{
         get_like(text){
 
-            if(text === ''){
+            /*if(text === ''){
                 this.$store.state[this.store_name].options = [];
                 return;
             }
-            //console.log(this.$store.state[this.store_name].pool)
-            /*this.$store.state[this.store_name].options = this.$store.state[this.store_name].pool.filter(element => {
-                if (element.nome.toUpperCase().indexOf(text.toUpperCase()) !== -1) {
-                    return true;
-                }
-            })*/
 
             let temp = [];
             this.$store.state[this.store_name].pool.forEach(element => {        // Get a selection from pool that has substring text and is not present in the selected array
@@ -48,12 +42,15 @@ export default {
                 }
             })
 
-            this.$store.state[this.store_name].options = temp;
+            this.$store.state[this.store_name].options = temp;*/
+
+            this.$store.dispatch('get_dropdown', text)[this.tabela]
 
         },
         select_item(item){
-            this.$store.state[this.store_name].selected.push(item)
-            this.$store.state[this.store_name].options.splice(this.$store.state[this.store_name].options.indexOf(item),1)
+            /*this.$store.state[this.store_name].selected.push(item)
+            this.$store.state[this.store_name].options.splice(this.$store.state[this.store_name].options.indexOf(item),1)*/
+            this.$store.dispatch('select_item', item)[this.tabela]
         }
     },
     watch: {
