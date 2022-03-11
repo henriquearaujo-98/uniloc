@@ -21,8 +21,7 @@ export default {
         }
     },
     methods:{
-        get_like(text){
-
+        dropdown(text){
             this.$store.dispatch(`${this.store_name}/get_dropdown`, text)[this.store_name]
 
         },
@@ -32,7 +31,7 @@ export default {
     },
     watch: {
         text(val) { // nome do v-model
-            this.get_like(val)
+            this.dropdown(val)
         }
     }
 }

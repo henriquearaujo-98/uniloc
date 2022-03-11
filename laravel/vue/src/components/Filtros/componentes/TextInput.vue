@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="text" name="text" v-model="text" style="color: black" class="mr-5">
+        <input type="text" name="text" autocomplete="off" v-model="text" style="color: black" class="mr-5">
         <AutoComplete :store_name="store_name" :text="text" @select-item="select_item"/>
     </div>
 </template>
