@@ -1,4 +1,4 @@
-<!-- TextFilter component -->
+
 <template>
     <div style="width: 100%; max-height: 15px" class="p-5;">
         <div class="flex">
@@ -14,7 +14,6 @@
 
     </div>
 </template>
-<!-- Filter component -->
 
 <script>
 import TextInput from "@/components/Filtros/componentes/TextInput";
@@ -34,6 +33,7 @@ export default {
     created() {
         // register a module
         this.$store.registerModule(this.tabela, {
+            namespaced: true,
             state: {
                 selected: [],   // items selecionados do dropdown para fazer request á api
                 options: [],
@@ -116,20 +116,22 @@ export default {
                 }
             },
         })
+        console.log(`Store ${this.tabela} exists? ${this.$store.hasModule("/"+this.tabela)}`)
     },
     mounted() {
-        
+
          axios
             .get(`http://localhost:3500/api/${this.tabela}`)
-            .then(response => (this.$store.dispatch('populate_pool', response.data)[this.tabela]))
+            .then(response => (this.$store.dispatch(`${this.tabela}/populate_pool`, response.data)[this.tabela]))
+
     },
     methods:{
         add_item(item){
-            this.$store.dispatch('select_item', item)[this.tabela]
+            this.$store.dispatch(`${this.tabela}/select_item`, item)[this.tabela]
         },
 
         remove_item(item){
-            this.$store.dispatch('remove_item', item)[this.tabela]
+            this.$store.dispatch(`${this.tabela}/remove_item`, item)[this.tabela]
         }
 
 

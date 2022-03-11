@@ -4,6 +4,9 @@
             <TextFilter label="Distritos"
                         tabela="distritos"
                         @selected-filter-option="select_distritos"/>
+            <TextFilter label="Municípios"
+                        tabela="municipios"
+                        @selected-filter-option="select_distritos" style="margin-top: 50px"/>
         </form>
     </div>
 </template>
