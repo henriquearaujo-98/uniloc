@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
 export default {
     name: "AutoComplete",
     props:{
@@ -26,17 +27,33 @@ export default {
                 this.$store.state[this.store_name].options = [];
                 return;
             }
-
-            this.$store.state[this.store_name].options = this.$store.state[this.store_name].pool.filter(element => {
-                if (element.nome.indexOf(text) !== -1) {
+            //console.log(this.$store.state[this.store_name].pool)
+            /*this.$store.state[this.store_name].options = this.$store.state[this.store_name].pool.filter(element => {
+                if (element.nome.toUpperCase().indexOf(text.toUpperCase()) !== -1) {
                     return true;
+                }
+            })*/
+
+            let temp = [];
+            this.$store.state[this.store_name].pool.forEach(element => {        // Get a selection from pool that has substring text and is not present in the selected array
+                if (element.nome.toUpperCase().indexOf(text.toUpperCase()) !== -1) {
+                    if(this.$store.state[this.store_name].selected.length){
+                        this.$store.state[this.store_name].selected.forEach(item => {
+                            if(item != element)
+                                temp.push(element)
+                        })
+                    }else{
+                        temp.push(element)
+                    }
                 }
             })
 
+            this.$store.state[this.store_name].options = temp;
+
         },
         select_item(item){
-            this.$emit('select-item', item);
-            this.$store.state[this.store_name].options.pop(item)
+            this.$store.state[this.store_name].selected.push(item)
+            this.$store.state[this.store_name].options.splice(this.$store.state[this.store_name].options.indexOf(item),1)
         }
     },
     watch: {

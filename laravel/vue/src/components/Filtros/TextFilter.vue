@@ -20,6 +20,7 @@
 import TextInput from "@/components/Filtros/componentes/TextInput";
 import AutoComplete from "@/components/Filtros/componentes/AutoComplete";
 import ResultsArea from "@/components/Filtros/componentes/ResultsArea";
+import axios from 'axios';
 
 import store from "@/store";
 
@@ -42,49 +43,8 @@ export default {
             },
             mutations: {
 
-                POPULATE_POOL(state){
-                    state.pool =  [
-                        {
-                            id: 0,
-                            nome: 'Açores'
-                        },
-                        {
-                            id: 1,
-                            nome: 'Bragança'
-                        },
-                        {
-                            id: 2,
-                            nome: 'Braga'
-                        },
-                        {
-                            id: 3,
-                            nome: 'Porto'
-                        },
-                        {
-                            id: 4,
-                            nome: 'Viana do Castelo'
-                        },
-                        {
-                            id: 5,
-                            nome: 'Vila Real'
-                        },
-                        {
-                            id: 6,
-                            nome: 'Santarem'
-                        },
-                        {
-                            id: 7,
-                            nome: 'Lisboa'
-                        },
-                        {
-                            id: 8,
-                            nome: 'Aveiro'
-                        },
-                        {
-                            id: 9,
-                            nome: 'Algarve'
-                        }
-                    ];
+                POPULATE_POOL(state, data){
+                    state.pool = data;
                 },
 
                 SELECT_ITEM(state, item){
@@ -107,8 +67,8 @@ export default {
             },
             actions: {
 
-                populate_pool({commit}){
-                    commit('POPULATE_POOL')
+                populate_pool({commit}, data){
+                    commit('POPULATE_POOL', data)
                 },
 
                 select_item({commit}, item){
@@ -122,8 +82,10 @@ export default {
         })
     },
     mounted() {
-        this.$store.dispatch('populate_pool')[this.tabela]
 
+        let data = axios
+            .get(`http://localhost:3500/api/${this.tabela}`)
+            .then(response => (this.$store.dispatch('populate_pool', response.data)[this.tabela]))
     },
     methods:{
         add_item(item){
