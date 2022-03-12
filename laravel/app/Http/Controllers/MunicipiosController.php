@@ -22,6 +22,15 @@ class MunicipiosController  extends Controller
         return view('municipios.index',compact('municipios'));
     }
 
+    public function searchMunicipio(Request $request){
+        $search = $request->get('municipio');
+        $municipios = Municipio::where('nome', 'LIKE', '%'.$search.'%')
+                         ->orWhere('distritos_ID', 'LIKE', '%'.$search.'%')
+                         ->paginate(15);
+
+        return view('municipios.index',compact('municipios'));
+    }
+
     public function create()
     {
         $distritos = Distrito::all();

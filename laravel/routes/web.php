@@ -45,4 +45,5 @@ route::get('/searchExame', [ExameController::class, 'searchExame']);
 route::get('/searchDistrito', [DistritosController::class, 'searchDistrito']);
 route::get('/searchCurso', [CursoController::class, 'searchCurso']);
 route::get('/searchInst', [InstituicaoController::class, 'searchInst']);
+route::get('/searchMunicipio', [MunicipiosController::class, 'searchMunicipio']);
 

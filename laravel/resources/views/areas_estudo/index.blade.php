@@ -14,8 +14,8 @@
     @endif
 
     <div class="row" style="margin-top: 45px">
-        <div>
-            <div class="col-md-4">
+        <div class="col-md-12">
+            <div>
                 <form action="/searchArea" method="get">
                     <div class="input-group">
                         <input type="search" name="area" id="area" class="form-control">
