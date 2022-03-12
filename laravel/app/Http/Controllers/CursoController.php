@@ -96,6 +96,15 @@ class CursoController extends Controller
          return redirect('/cursos')->with('success', 'Data is successfully updated');
     }
 
+    public function searchCurso(Request $request){
+        $search = $request->get('curso');
+        $cursos = Curso::where('nome', 'LIKE', '%'.$search.'%')
+                         ->orWhere('area_curso_ID', 'LIKE', '%'.$search.'%')
+                         ->paginate(15);
+
+        return view('cursos.index',compact('cursos'));
+    }
+
     public function edit($id)
     {
         $curso = Curso::findOrFail($id);
