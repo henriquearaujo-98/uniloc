@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="text" name="text" autocomplete="off" v-model="text" style="color: black" class="mr-5">
+        <input type="text" name="text" autocomplete="off" v-model="text" style="color: black" class="mr-5" @focusin="onFocus">
         <AutoComplete :store_name="store_name" :text="text" />
     </div>
 </template>
@@ -21,7 +21,10 @@ export default {
         }
     },
     methods:{
-
+        onFocus(){
+            console.log('focus')
+            this.$store.dispatch(`${this.store_name}/get_dropdown`, '')[this.tabela]
+        }
     },
 
 }
