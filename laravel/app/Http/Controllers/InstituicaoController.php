@@ -28,6 +28,15 @@ class InstituicaoController extends Controller
         return view('instituicoes.create', compact('tipos_ensino', 'codigos_postais'));
     }
 
+    public function searchInst(Request $request){
+        $search = $request->get('inst');
+        $instituicoes = Instituicao::where('nome', 'LIKE', '%'.$search.'%')
+                         ->orWhere('tipos_ensino_ID', 'LIKE', '%'.$search.'%')
+                         ->paginate(15);
+
+        return view('instituicoes.index',compact('instituicoes'));
+    }
+
     /**
      * Display a listing of the resource.
      *
