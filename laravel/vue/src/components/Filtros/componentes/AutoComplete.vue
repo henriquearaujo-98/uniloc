@@ -1,5 +1,5 @@
 <template>
-    <div style="background: lightslategrey">
+    <div v-show="this.$store.state[this.store_name].show">
         <ul>
             <li v-for="item in this.$store.state[this.store_name].options" :key="item.id" @click="select_item(item)">{{ item.nome }}</li>
         </ul>
@@ -32,6 +32,7 @@ export default {
     watch: {
         text(val) { // nome do v-model
             this.dropdown(val)
+            console.log(this.$store.state[this.store_name].show)
         }
     }
 }
@@ -41,5 +42,12 @@ export default {
 li:hover{
     cursor: pointer;
     background: dimgrey;
+}
+ul{
+    position: relative;
+    background: lightslategrey;
+    z-index: 2;
+    max-height: 400px;
+    overflow: auto;
 }
 </style>

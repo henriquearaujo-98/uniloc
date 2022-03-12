@@ -1,15 +1,15 @@
 
 <template>
-    <div style="width: 100%; max-height: 15px" class="p-5;">
+    <div style="width: 100%; max-height: 15px" class="p-5;"
+            @focusin="this.$store.state[this.tabela].show = true"
+            @focusout="this.$store.state[this.tabela].show = false">
         <div class="flex">
             <label class="self-start">{{ label }}</label>
         </div>
 
-        <div class="flex" style="position: relative; max-width: 100%">
+        <div class="flex" style="max-width: 100%;">
             <TextInput :store_name="this.tabela" @select-item="add_item"/>
-
             <ResultsArea :store_name="this.tabela" @remove-item="remove_item" />
-
         </div>
 
     </div>
@@ -31,6 +31,10 @@ export default {
     },
     components: {AutoComplete, TextInput, ResultsArea},
     created() {
+        axios
+            .get(`http://localhost:3500/api/${this.tabela}`)
+            .then(response => (this.$store.dispatch(`${this.tabela}/populate_pool`, response.data)[this.tabela]))
+
         // register a module
         this.$store.registerModule(this.tabela, {
             namespaced: true,
@@ -38,6 +42,7 @@ export default {
                 selected: [],   // items selecionados do dropdown para fazer request á api
                 options: [],
                 pool: [],  // pool de informação
+                show : false
             },
             getters: {
             },
@@ -46,6 +51,7 @@ export default {
                 POPULATE_POOL(state, data){
                     state.pool = data;
                     state.pool.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
+                    state.options = state.pool
                 },
 
                 SELECT_ITEM(state, item){
@@ -69,19 +75,20 @@ export default {
                 GET_DROPDOWN(state, text){
 
                     if(text === ''){
-                        state.options = [];
+                        state.options = state.pool;
                         return;
                     }
 
                     let temp = [];
-                    state.pool.forEach(element => {        // Get a selection from pool that has substring text and is not present in the selected array
-                        if (element.nome.toUpperCase().indexOf(text.toUpperCase()) !== -1) {
-                            if(state.selected.length){
-                                state.selected.forEach(item => {
-                                    if(item != element)
+                    state.pool.forEach(element => {        // Por cada elemento da pool
+                        let nome = element.nome.substr(0, element.nome.indexOf('('))    // Quero comparar a primeira parte, ou seja, o nome da cidade em si e não o municipio
+                        if (nome.toUpperCase().indexOf(text.toUpperCase()) !== -1) {    // Convertemos tudo para uppercase para se poder comparar devidamente
+                            if(state.selected.length){                                  // Se ja temos algo selecionado
+                                state.selected.forEach(item => {                        // Garantimos que não aparece nas opções
+                                    if(item != nome)
                                         temp.push(element)
                                 })
-                            }else{
+                            }else{                                                      // Caso contrário, pomos como opção
                                 temp.push(element)
                             }
                         }
@@ -120,9 +127,7 @@ export default {
     },
     mounted() {
 
-         axios
-            .get(`http://localhost:3500/api/${this.tabela}`)
-            .then(response => (this.$store.dispatch(`${this.tabela}/populate_pool`, response.data)[this.tabela]))
+
 
     },
     methods:{

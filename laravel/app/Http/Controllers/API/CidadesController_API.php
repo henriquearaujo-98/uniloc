@@ -15,7 +15,21 @@ class CidadesController_API extends Controller
      */
     public function index()
     {
-        return Cidade::all();
+        $res = Cidade::with('municipio')->get();
+        $new = [];
+
+        foreach ($res as $item){
+            $cidade_nome = $item['nome'];
+            $municipio_nome = $item['municipio']['nome'];
+            $item['nome'] = $cidade_nome.' ('.$municipio_nome.')';
+            $obj = [
+                'ID' => $item['ID'],
+                'nome' => $item['nome']
+            ];
+            array_push($new,$obj);
+        }
+
+        return $new;
     }
 
 
