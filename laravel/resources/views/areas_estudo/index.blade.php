@@ -14,12 +14,12 @@
     @endif
 
     <div class="row" style="margin-top: 45px">
-        <div class="col-md-12">
+        <div>
             <div class="col-md-4">
                 <form action="/searchArea" method="get">
                     <div class="input-group">
                         <input type="search" name="area" id="area" class="form-control">
-                        <span class="input-group-prepend pl-5">
+                        <span class="input-group-prepend pl-1">
                             <button type="submit" class="btn btn-primary"> Search </button>
                         </span>
                     </div>

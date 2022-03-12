@@ -37,6 +37,14 @@ class Codigos_PostaisController extends Controller
         ]);
     }
 
+    public function searchPostal(Request $request){
+        $search = $request->get('postal');
+        $codigos_postais = Codigo_Postal::where('cod_postal', 'LIKE', '%'.$search.'%')
+                         ->orWhere('cidade_ID', 'LIKE', '%'.$search.'%')
+                         ->paginate(15);
+
+        return view('codigos_postais.index',compact('codigos_postais'));
+    }
 
     /**
      * Store a newly created resource in storage.

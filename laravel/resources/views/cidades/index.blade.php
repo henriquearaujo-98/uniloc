@@ -15,11 +15,11 @@
 
     <div class="row" style="margin-top: 45px">
         <div class="col-md-12">
-            <div class="col-md-4">
+            <div>
                 <form action="/searchCidade" method="get">
                     <div class="input-group">
                         <input type="search" name="cidade" id="cidade" class="form-control" placeholder="Pesquisar cidade...">
-                        <span class="input-group-prepend pl-5">
+                        <span class="input-group-prepend pl-1">
                             <button type="submit" class="btn btn-primary"> Search </button>
                         </span>
                     </div>
