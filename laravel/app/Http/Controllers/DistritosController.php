@@ -26,6 +26,13 @@ class DistritosController extends Controller
         return view('distritos.create');
     }
 
+    public function searchDistrito(Request $request){
+        $search = $request->get('distrito');
+        $distritos = Distrito::where('Nome', 'LIKE', '%'.$search.'%')->get();
+
+        return view('distritos.index',compact('distritos'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
