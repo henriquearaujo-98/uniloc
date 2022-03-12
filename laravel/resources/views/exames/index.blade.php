@@ -15,7 +15,16 @@
 
     <div class="row" style="margin-top: 45px">
         <div class="col-md-12">
-            <input type="text" name="searchfor" id="" class="form-control mb-md-2">
+            <div>
+                <form action="/searchExame" method="get">
+                    <div class="input-group">
+                        <input type="search" name="exame" id="exame" class="form-control" placeholder="Pesquisar exame...">
+                        <span class="input-group-prepend pl-1">
+                            <button type="submit" class="btn btn-primary"> Search </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
             <div class="card">
                 <div class="card-header">
                     Exames

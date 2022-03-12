@@ -24,6 +24,13 @@ class ExameController extends Controller
         return view('exames.create');
     }
 
+    public function searchExame(Request $request){
+        $search = $request->get('exame');
+        $exames = Exame::where('Nome', 'LIKE', '%'.$search.'%')->get();
+
+        return view('exames.index',compact('exames'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

@@ -41,6 +41,6 @@ route::get('/searchTipo', [Tipo_EnsinoController::class, 'searchTipo']);
 route::get('/searchArea', [Area_EstudoController::class, 'searchArea']);
 route::get('/searchCidade', [CidadesController::class, 'searchCidade']);
 route::get('/searchPostal', [Codigos_PostaisController::class, 'searchPostal']);
-
+route::get('/searchExame', [ExameController::class, 'searchExame']);
 
 
