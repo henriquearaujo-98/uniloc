@@ -32,7 +32,6 @@ export default {
     watch: {
         text(val) { // nome do v-model
             this.dropdown(val)
-            console.log(this.$store.state[this.store_name].show)
         }
     }
 }

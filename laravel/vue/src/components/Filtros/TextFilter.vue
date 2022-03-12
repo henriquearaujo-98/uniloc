@@ -1,8 +1,8 @@
 
 <template>
-    <div style="width: 100%; max-height: 15px" class="p-5;"
-            @focusin="this.$store.state[this.tabela].show = true"
-            @focusout="this.$store.state[this.tabela].show = false">
+    <div style="width: 100%;" class="p-5 text-filter"
+         @focusin="this.$store.state[this.tabela].show = true"
+         >
         <div class="flex">
             <label class="self-start">{{ label }}</label>
         </div>
@@ -51,7 +51,7 @@ export default {
                 POPULATE_POOL(state, data){
                     state.pool = data;
                     state.pool.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
-                    state.options = state.pool
+
                 },
 
                 SELECT_ITEM(state, item){
@@ -74,28 +74,42 @@ export default {
 
                 GET_DROPDOWN(state, text){
 
-                    if(text === ''){
+                    state.options = [];
+
+                    if(text == '') {
                         state.options = state.pool;
                         return;
                     }
 
-                    let temp = [];
-                    state.pool.forEach(element => {        // Por cada elemento da pool
-                        let nome = element.nome.substr(0, element.nome.indexOf('('))    // Quero comparar a primeira parte, ou seja, o nome da cidade em si e não o municipio
-                        if (nome.toUpperCase().indexOf(text.toUpperCase()) !== -1) {    // Convertemos tudo para uppercase para se poder comparar devidamente
-                            if(state.selected.length){                                  // Se ja temos algo selecionado
-                                state.selected.forEach(item => {                        // Garantimos que não aparece nas opções
-                                    if(item != nome)
-                                        temp.push(element)
-                                })
-                            }else{                                                      // Caso contrário, pomos como opção
+                    if(state.selected.length){
+                        let temp  = []
+
+                        state.pool.forEach(element => {                                         // Popular uma variável temporario com elementos que correspondem ao filtro
+                            if (element.nome.toUpperCase().indexOf(text.toUpperCase()) !== -1) {
                                 temp.push(element)
                             }
-                        }
-                    })
+                        })
 
-                    state.options = temp;
-                    state.options.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
+                        temp.forEach(element => {                                           // Garantir que, dos elementos que estão nos elementos resultantes do filtro, estes não estão simultaneamente nas opções e nos elementos selecionados
+                            state.selected.forEach(sel_item => {
+                                if(element != sel_item)
+                                    state.options.push(element)
+                            })
+                        })
+
+                        let set = new Set(state.options)    // Garantir que apenas existe um de cada
+
+                        state.options = set;
+                    }else{
+                        state.pool.forEach(element => {                                         // Popular uma variável temporario com elementos que correspondem ao filtro
+                            if (element.nome.toUpperCase().indexOf(text.toUpperCase()) !== -1) {
+                                state.options.push(element)
+                            }
+                        })
+                    }
+
+
+
                 },
 
                 SORT_STATE(state){
@@ -123,7 +137,6 @@ export default {
                 }
             },
         })
-        console.log(`Store ${this.tabela} exists? ${this.$store.hasModule("/"+this.tabela)}`)
     },
     mounted() {
 
