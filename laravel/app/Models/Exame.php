@@ -17,6 +17,7 @@ class Exame extends Model
     protected $table = 'exames';
     public $timestamps = false;
     protected $primaryKey = 'Codigo';
+    public $incrementing = false;
 
     public function prova_ingresso(){
         $this->belongsTo(Prova_Ingresso::class, 'Codigo', 'exames_id');

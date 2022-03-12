@@ -66,7 +66,11 @@
                             <tr>
                                 <td>{{$informacao->ID}}</td>
                                 <td>{{$informacao->municipio->nome}}</td>
+<<<<<<< HEAD
                                 <td>{{$informacao['População residente']}}</td>
+=======
+                                <td>{{$informacao['População Residente']}}</td>
+>>>>>>> dev
                                 <td>{{$informacao['Densidade populacional']}}</td>
                                 <td>{{$informacao['Mulheres (%)']}}</td>
                                 <td>{{$informacao['Homens (%)']}}</td>
