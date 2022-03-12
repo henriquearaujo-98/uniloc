@@ -15,7 +15,16 @@
 
     <div class="row" style="margin-top: 45px">
         <div class="col-md-12">
-            <input type="text" name="searchfor" id="" class="form-control mb-md-2">
+            <div class="col-md-4">
+                <form action="/searchCidade" method="get">
+                    <div class="input-group">
+                        <input type="search" name="cidade" id="cidade" class="form-control" placeholder="Pesquisar cidade...">
+                        <span class="input-group-prepend pl-5">
+                            <button type="submit" class="btn btn-primary"> Search </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
             <div class="card">
                 <div class="card-header">
                     Cidades

@@ -27,6 +27,15 @@ class CidadesController extends Controller
         return view('cidades.create', compact('municipios'));
     }
 
+    public function searchCidade(Request $request){
+        $search = $request->get('cidade');
+        $cidades = Cidade::where('nome', 'LIKE', '%'.$search.'%')
+                         ->orWhere('municipio_ID', 'LIKE', '%'.$search.'%')
+                         ->paginate(15);
+
+        return view('cidades.index',compact('cidades'));
+    }
+
     public function municipios($municipio_id)
     {
         $res = Cidade::with('municipios')->where('municipios_ID', $municipio_id)->get();
