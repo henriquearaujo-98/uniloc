@@ -28,6 +28,15 @@ class ProvasIngressoController extends Controller
         return view('prova_ingresso.create', compact('cursos','instituicoes'));
     }
 
+        public function searchProvas(Request $request){
+            $search = $request->get('provas');
+            $provas_ingresso = ProvasIngressoController::where('cursoID', 'LIKE', '%'.$search.'%')
+                             ->orWhere('instituicoes_ID', 'LIKE', '%'.$search.'%')
+                             ->paginate(15);
+
+        return view('prova_ingresso.index',compact('provas_ingresso'));
+        }
+
     /**
      * Display a listing of the resource.
      *
