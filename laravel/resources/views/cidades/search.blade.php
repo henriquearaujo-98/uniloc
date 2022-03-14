@@ -1,4 +1,4 @@
-@extends('cursos.layout')
+@extends('cidades.layout')
 
 <style>
     .uper {
@@ -16,9 +16,9 @@
     <div class="row" style="margin-top: 45px">
         <div class="col-md-12">
             <div>
-                <form action="/searchCurso" method="get">
+                <form action="/searchCidade" method="get">
                     <div class="input-group">
-                        <input type="search" name="curso" id="curso" class="form-control" placeholder="Pesquisar curso...">
+                        <input type="search" name="cidade" id="cidade" class="form-control" placeholder="Pesquisar cidade...">
                         <span class="input-group-prepend pl-1">
                             <button type="submit" class="btn btn-primary"> Search </button>
                         </span>
@@ -29,10 +29,10 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            Cursos
+                            Search Cidades
                         </div>
                         <div class="col-md-6 text-right">
-                            <a href="{{ route('cursos.create')}}" class="btn btn-success">Criar</a>
+                            <a href="{{ route('cidades.create')}}" class="btn btn-success">Criar</a>
                         </div>
                     </div>
                 </div>
@@ -41,20 +41,20 @@
                         <thead>
                         <tr>
                             <td>#</td>
-                            <td>Nome</td>
-                            <td>Área de Estudo</td>
+                            <td>Cidade</td>
+                            <td>Município</td>
                             <td colspan="2"></td>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($cursos as $curso)
+                        @foreach($cidades as $cidade)
                             <tr>
-                                <td>{{$curso->ID}}</td>
-                                <td>{{$curso->nome}}</td>
-                                <td>{{$curso->area_estudo->nome}}</td>
-                                <td><a href="{{ route('cursos.edit', $curso->ID)}}" class="btn btn-warning">Editar</a></td>
+                                <td>{{$cidade->ID}}</td>
+                                <td>{{$cidade->nome}}</td>
+                                <td>{{$cidade->municipio->nome}}</td>
+                                <td><a href="{{ route('cidades.edit', $cidade->ID)}}" class="btn btn-warning">Editar</a></td>
                                 <td>
-                                    <form action="{{ route('cursos.destroy', $curso->ID)}}" method="post">
+                                    <form action="{{ route('cidades.destroy', $cidade->ID)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
@@ -65,7 +65,7 @@
                         </tbody>
                     </table>
                     <span class="pagination justify-content-center">
-                        {{$cursos->withQueryString()->links("pagination::bootstrap-4")}}
+                        {{$cidades->links("pagination::bootstrap-4")}}
                     </span>
                 </div>
             </div>

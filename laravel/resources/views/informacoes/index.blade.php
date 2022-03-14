@@ -125,7 +125,7 @@
                         </tbody>
                     </table>
                     <span class="pagination justify-content-center">
-                        {{$informacoes->links("pagination::bootstrap-4")}}
+                        {{$informacoes->withQueryString()->links("pagination::bootstrap-4")}}
                     </span>
                 </div>
             </div>

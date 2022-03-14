@@ -66,7 +66,7 @@
                         </tbody>
                     </table>
                     <span class="pagination justify-content-center">
-                        {{$provas_ingresso->links("pagination::bootstrap-4")}}
+                        {{$provas_ingresso->withQueryString()->links("pagination::bootstrap-4")}}
                     </span>
                 </div>
             </div>
