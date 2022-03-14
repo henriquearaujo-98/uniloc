@@ -30,11 +30,13 @@ class ProvasIngressoController extends Controller
 
         public function searchProvas(Request $request){
             $search = $request->get('provas');
-            $provas_ingresso = ProvasIngressoController::where('cursoID', 'LIKE', '%'.$search.'%')
-                             ->orWhere('instituicoes_ID', 'LIKE', '%'.$search.'%')
-                             ->paginate(15);
+            $provas_ingresso = Prova_Ingresso::join('instituicoes', 'instituicoes.ID', '=', 'provas_ingresso.instituicoes_ID')
+                                             ->join('cursos', 'cursos.ID', '=', 'provas_ingresso.cursoID')
+                                ->where('instituicoes.nome', 'LIKE', '%'.$search.'%')
+                                ->orWhere('cursos.nome', 'LIKE', '%'.$search.'%')
+                                ->paginate(15);
 
-        return view('prova_ingresso.index',compact('provas_ingresso'));
+            return view('prova_ingresso.index',compact('provas_ingresso'));
         }
 
     /**
