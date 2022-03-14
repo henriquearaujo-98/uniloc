@@ -1,5 +1,5 @@
 <template>
-<div class="flex justify-between mr-52 ml-52" >
+<div class="flex justify-between mr-52 ml-52" style="margin: 5px">
    <FilterForm />
     <div style="height: 600px;width: 50%; background: greenyellow;flex: 1" class="ml-10">
         <h1>MAPA</h1>

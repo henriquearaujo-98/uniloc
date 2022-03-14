@@ -1,8 +1,7 @@
 
 <template>
     <div style="width: 100%;" class="p-5 text-filter"
-         @focusin="this.$store.state[this.tabela].show = true"
-         >
+         @focusin="this.$store.state[this.tabela].show = true">
         <div class="flex">
             <label class="self-start">{{ label }}</label>
         </div>
@@ -57,12 +56,13 @@ export default {
                 SELECT_ITEM(state, item){
                     state.selected.push(item)
                     state.options.splice(state.options.indexOf(item),1)
+
                 },
 
                 REMOVE_ITEM(state, item){
 
                     let temp = state.selected.filter((i) => {
-                        if(i !== item){
+                        if(i != item){
                             return true
                         }
                     })
@@ -73,15 +73,14 @@ export default {
                 },
 
                 GET_DROPDOWN(state, text){
-
                     state.options = [];
 
-                    if(text == '') {
-                        state.options = state.pool;
+                    if(!text && state.selected.length  == 0) {
+                        state.options = [...state.pool];
                         return;
                     }
 
-                    if(state.selected.length){
+                    if(state.selected.length > 0){
                         let temp  = []
 
                         state.pool.forEach(element => {                                         // Popular uma variável temporario com elementos que correspondem ao filtro
@@ -90,32 +89,30 @@ export default {
                             }
                         })
 
-                        temp.forEach(element => {                                           // Garantir que, dos elementos que estão nos elementos resultantes do filtro, estes não estão simultaneamente nas opções e nos elementos selecionados
-                            state.selected.forEach(sel_item => {
-                                if(element != sel_item)
-                                    state.options.push(element)
-                            })
-                        })
+                        state.options = temp.filter(value => !state.selected.includes(value));
 
-                        let set = new Set(state.options)    // Garantir que apenas existe um de cada
 
-                        state.options = set;
                     }else{
                         state.pool.forEach(element => {                                         // Popular uma variável temporario com elementos que correspondem ao filtro
                             if (element.nome.toUpperCase().indexOf(text.toUpperCase()) !== -1) {
                                 state.options.push(element)
                             }
                         })
+
+
                     }
 
+                    /*let set = new Set(state.options)    // Garantir que apenas existe um de cada
+                    state.options = Array.from(set);*/
 
+                    //console.log(state.pool.length)
 
                 },
 
                 SORT_STATE(state){
-                    state.selected.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
+                    /*state.selected.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
                     state.options.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
-                    state.pool.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
+                    state.pool.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))*/
                 }
             },
             actions: {

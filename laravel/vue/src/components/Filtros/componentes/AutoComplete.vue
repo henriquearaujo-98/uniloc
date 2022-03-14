@@ -48,5 +48,6 @@ ul{
     z-index: 2;
     max-height: 400px;
     overflow: auto;
+    max-width: 220px;
 }
 </style>

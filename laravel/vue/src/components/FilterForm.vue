@@ -4,10 +4,10 @@
             <TextFilter label="Distritos"
                         tabela="distritos"
                         @selected-filter-option="select_distritos"/>
-<!--            <TextFilter label="Cidades"
+          <TextFilter label="Cidades"
                         tabela="cidades"
                         @selected-filter-option="select_distritos" style="margin-top: 50px"/>
-            <TextFilter label="Instituições"
+            <!--<TextFilter label="Instituições"
                         tabela="instituicoes"
                         @selected-filter-option="select_distritos" style="margin-top: 50px"/>-->
         </form>
