@@ -29,10 +29,10 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            Informações Municípios
+                    Informações Municípios
                         </div>
                         <div class="col-md-6 text-right">
-                            <a href="{{ route('informacoes.create')}}" class="btn btn-success">Criar</a>
+                    <a href="{{ route('informacoes.create')}}" class="btn btn-success">Criar</a>
                         </div>
                     </div>
                 </div>
