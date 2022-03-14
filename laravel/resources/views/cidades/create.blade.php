@@ -21,11 +21,7 @@
                 </div><br />
             @endif
             <form method="post" action="{{ route('cidades.store') }}">
-                <div class="form-group">
-                    @csrf
-                    <label for="id_cidade">ID: </label>
-                    <input type="text" class="form-control" name="ID"/>
-                </div>
+                @csrf
                 <div class="form-group">
                     <label for="Nome_cidade">Cidade: </label>
                     <input type="text" class="form-control" name="nome"/>

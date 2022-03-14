@@ -21,12 +21,7 @@
                 </div><br />
             @endif
             <form method="post" action="{{ route('cidades.update', $cidade->ID ) }}">
-                <div class="form-group">
-                    @csrf
-                    @method('PATCH')
-                    <label for="id">ID:</label>
-                    <input type="text" class="form-control" name="ID" value="{{ $cidade->ID }}"/>
-                </div>
+                @csrf
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
