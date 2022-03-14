@@ -27,8 +27,14 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    Códigos Postais
-                    <a href="{{ route('codigos_postais.create')}}" class="btn btn-success">Criar</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Códigos Postais
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="{{ route('codigos_postais.create')}}" class="btn btn-success">Criar</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">

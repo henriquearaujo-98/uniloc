@@ -27,8 +27,14 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    Áreas de Estudo
-                    <a href="{{ route('areas_estudo.create')}}" class="btn btn-success">Criar</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Áreas de Estudo
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="{{ route('areas_estudo.create')}}" class="btn btn-success">Criar</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">

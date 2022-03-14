@@ -27,9 +27,13 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <div>
-                        Municípios
-                        <a href="{{ route('municipios.create')}}" class="btn btn-success">Criar</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Municípios
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="{{ route('municipios.create')}}" class="btn btn-success">Criar</a>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
