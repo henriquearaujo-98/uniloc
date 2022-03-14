@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-header">
                     Cidades
-                    <a href="{{ route('cidades.create')}}" class="btn btn-primary">Criar</a>
+                    <a href="{{ route('cidades.create')}}" class="btn btn-success">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
@@ -46,7 +46,7 @@
                                 <td>{{$cidade->ID}}</td>
                                 <td>{{$cidade->nome}}</td>
                                 <td>{{$cidade->municipio->nome}}</td>
-                                <td><a href="{{ route('cidades.edit', $cidade->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td><a href="{{ route('cidades.edit', $cidade->ID)}}" class="btn btn-warning">Editar</a></td>
                                 <td>
                                     <form action="{{ route('cidades.destroy', $cidade->ID)}}" method="post">
                                         @csrf

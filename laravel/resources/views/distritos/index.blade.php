@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-header">
                     Distritos
-                    <a href="{{ route('distritos.create')}}" class="btn btn-primary">Criar</a>
+                    <a href="{{ route('distritos.create')}}" class="btn btn-success">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
@@ -44,7 +44,7 @@
                             <tr>
                                 <td>{{$distrito->ID}}</td>
                                 <td>{{$distrito->nome}}</td>
-                                <td><a href="{{ route('distritos.edit', $distrito->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td><a href="{{ route('distritos.edit', $distrito->ID)}}" class="btn btn-warning">Editar</a></td>
                                 <td>
                                     <form action="{{ route('distritos.destroy', $distrito->ID)}}" method="post">
                                         @csrf

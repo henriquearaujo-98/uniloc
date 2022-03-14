@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header">
                     Informações Municípios
-                    <a href="{{ route('informacoes.create')}}" class="btn btn-primary">Criar</a>
+                    <a href="{{ route('informacoes.create')}}" class="btn btn-success">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
@@ -66,11 +66,8 @@
                             <tr>
                                 <td>{{$informacao->ID}}</td>
                                 <td>{{$informacao->municipio->nome}}</td>
-<<<<<<< HEAD
                                 <td>{{$informacao['População residente']}}</td>
-=======
                                 <td>{{$informacao['População Residente']}}</td>
->>>>>>> dev
                                 <td>{{$informacao['Densidade populacional']}}</td>
                                 <td>{{$informacao['Mulheres (%)']}}</td>
                                 <td>{{$informacao['Homens (%)']}}</td>
@@ -100,7 +97,7 @@
                                 <td>{{$informacao['Renda mensal: 650€ - 999,99€']}}</td>
                                 <td>{{$informacao['Renda mensal: >=1000€']}}</td>
                                 <td>{{$informacao['Edificios']}}</td>
-                                <td><a href="{{ route('informacoes.edit', $informacao->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td><a href="{{ route('informacoes.edit', $informacao->ID)}}" class="btn btn-warning">Editar</a></td>
                                 <td>
                                     <form action="{{ route('informacoes.destroy', $informacao->ID)}}" method="post">
                                         @csrf

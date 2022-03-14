@@ -27,8 +27,10 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    Municípios
-                    <a href="{{ route('municipios.create')}}" class="btn btn-primary">Criar</a>
+                    <div>
+                        Municípios
+                        <a href="{{ route('municipios.create')}}" class="btn btn-success">Criar</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
@@ -46,7 +48,7 @@
                                 <td>{{$municipio->ID}}</td>
                                 <td>{{$municipio->nome}}</td>
                                 <td>{{$municipio->distrito->nome}}</td>
-                                <td><a href="{{ route('municipios.edit', $municipio->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td><a href="{{ route('municipios.edit', $municipio->ID)}}" class="btn btn-warning">Editar</a></td>
                                 <td>
                                     <form action="{{ route('municipios.destroy', $municipio->ID)}}" method="post">
                                         @csrf

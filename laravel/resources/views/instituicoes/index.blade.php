@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-header">
                     Instituições
-                    <a href="{{ route('instituicoes.create')}}" class="btn btn-primary">Criar</a>
+                    <a href="{{ route('instituicoes.create')}}" class="btn btn-success">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
@@ -50,7 +50,7 @@
                                 <td>{{$instituicao->tipo_ensino->nome}}</td>
                                 <td>{{$instituicao->codigo_postal->cod_postal}} - {{$instituicao->codigo_postal->cidade->nome}}</td>
                                 <td>{{$instituicao->rank}}</td>
-                                <td><a href="{{ route('instituicoes.edit', $instituicao->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td><a href="{{ route('instituicoes.edit', $instituicao->ID)}}" class="btn btn-warning">Editar</a></td>
                                 <td>
                                     <form action="{{ route('instituicoes.destroy', $instituicao->ID)}}" method="post">
                                         @csrf

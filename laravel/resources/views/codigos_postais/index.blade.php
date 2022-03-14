@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-header">
                     Códigos Postais
-                    <a href="{{ route('codigos_postais.create')}}" class="btn btn-primary">Criar</a>
+                    <a href="{{ route('codigos_postais.create')}}" class="btn btn-success">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
@@ -44,7 +44,7 @@
                             <tr>
                                 <td>{{$codigo_postal->cod_postal}}</td>
                                 <td>{{$codigo_postal->cidade->nome}}</td>
-                                <td><a href="{{ route('codigos_postais.edit', $codigo_postal->cod_postal)}}" class="btn btn-primary">Editar</a></td>
+                                <td><a href="{{ route('codigos_postais.edit', $codigo_postal->cod_postal)}}" class="btn btn-warning">Editar</a></td>
                                 <td>
                                     <form action="{{ route('codigos_postais.destroy', $codigo_postal->cod_postal)}}" method="post">
                                         @csrf

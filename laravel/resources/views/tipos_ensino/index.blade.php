@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-header">
                     Tipos de Ensino
-                    <a href="{{ route('tipos_ensino.create')}}" class="btn btn-primary">Criar</a>
+                    <a href="{{ route('tipos_ensino.create')}}" class="btn btn-success">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
@@ -44,7 +44,7 @@
                             <tr>
                                 <td>{{$tipo_ensino->ID}}</td>
                                 <td>{{$tipo_ensino->nome}}</td>
-                                <td><a href="{{ route('tipos_ensino.edit', $tipo_ensino->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td><a href="{{ route('tipos_ensino.edit', $tipo_ensino->ID)}}" class="btn btn-warning">Editar</a></td>
                                 <td>
                                     <form action="{{ route('tipos_ensino.destroy', $tipo_ensino->ID)}}" method="post">
                                         @csrf

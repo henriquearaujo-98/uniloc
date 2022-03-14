@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-header">
                     Provas de Ingresso
-                    <a href="{{ route('prova_ingresso.create')}}" class="btn btn-primary">Criar</a>
+                    <a href="{{ route('prova_ingresso.create')}}" class="btn btn-success">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
@@ -48,7 +48,7 @@
                                 <td>{{$prova_ingresso->cursos->nome_curso->nome}}</td>
                                 <td>{{$prova_ingresso->insts->nome_inst->nome}}</td>
                                 <td>{{$prova_ingresso->exames_id}}</td>
-                                <td><a href="{{ route('prova_ingresso.edit', $prova_ingresso->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td><a href="{{ route('prova_ingresso.edit', $prova_ingresso->ID)}}" class="btn btn-warning">Editar</a></td>
                                 <td>
                                     <form action="{{ route('prova_ingresso.destroy', $prova_ingresso->ID)}}" method="post">
                                         @csrf

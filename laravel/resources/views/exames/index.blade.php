@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-header">
                     Exames
-                    <a href="{{ route('exames.create')}}" class="btn btn-primary">Criar</a>
+                    <a href="{{ route('exames.create')}}" class="btn btn-success">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
@@ -44,7 +44,7 @@
                             <tr>
                                 <td>{{$exame->Codigo}}</td>
                                 <td>{{$exame->Nome}}</td>
-                                <td><a href="{{ route('exames.edit', $exame->Codigo)}}" class="btn btn-primary">Editar</a></td>
+                                <td><a href="{{ route('exames.edit', $exame->Codigo)}}" class="btn btn-warning">Editar</a></td>
                                 <td>
                                     <form action="{{ route('exames.destroy', $exame->Codigo)}}" method="post">
                                         @csrf

@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-header">
                     Cursos
-                    <a href="{{ route('cursos.create')}}" class="btn btn-primary">Criar</a>
+                    <a href="{{ route('cursos.create')}}" class="btn btn-success">Criar</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-condensed">
@@ -46,7 +46,7 @@
                                 <td>{{$curso->ID}}</td>
                                 <td>{{$curso->nome}}</td>
                                 <td>{{$curso->area_estudo->nome}}</td>
-                                <td><a href="{{ route('cursos.edit', $curso->ID)}}" class="btn btn-primary">Editar</a></td>
+                                <td><a href="{{ route('cursos.edit', $curso->ID)}}" class="btn btn-warning">Editar</a></td>
                                 <td>
                                     <form action="{{ route('cursos.destroy', $curso->ID)}}" method="post">
                                         @csrf
