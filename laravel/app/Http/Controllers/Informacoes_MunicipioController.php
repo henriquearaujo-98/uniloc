@@ -37,6 +37,14 @@ class Informacoes_MunicipioController extends Controller
         ]);
     }
 
+    public function searchInfo(Request $request){
+        $search = $request->get('info');
+        $informacoes = Informacoes_Municipio::join('municipios', 'municipios.ID', '=', 'informacoes_municipios.municipio_ID')
+                                            ->where('municipios.nome', 'LIKE', '%'.$search.'%')
+                         ->paginate(15);
+
+        return view('informacoes.index',compact('informacoes'));
+    }
 
     /**
      * Store a newly created resource in storage.

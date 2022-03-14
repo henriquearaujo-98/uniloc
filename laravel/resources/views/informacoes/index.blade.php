@@ -15,7 +15,16 @@
 
     <div class="row" style="margin-top: 45px">
         <div class="col-md-12">
-            <input type="text" name="searchfor" id="" class="form-control mb-md-2">
+            <div>
+                <form action="/searchInfo" method="get">
+                    <div class="input-group">
+                        <input type="search" name="info" id="info" class="form-control" placeholder="Pesquisar municipio...">
+                        <span class="input-group-prepend pl-1">
+                            <button type="submit" class="btn btn-primary"> Search </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
             <div class="card">
                 <div class="card-header">
                     Informações Municípios
@@ -40,7 +49,7 @@
                             <td>Casados (%)</td>
                             <td>Divorciados (%)</td>
                             <td>Viúvos (%)</td>
-                            <td>Famílias</td>
+                            <td>Famílias222</td>
                             <td>Famílias unipessoais (%)</td>
                             <td>Famílias com 2 pessoas (%)</td>
                             <td>Alojamentos</td>
@@ -67,7 +76,6 @@
                                 <td>{{$informacao->ID}}</td>
                                 <td>{{$informacao->municipio->nome}}</td>
                                 <td>{{$informacao['População residente']}}</td>
-                                <td>{{$informacao['População Residente']}}</td>
                                 <td>{{$informacao['Densidade populacional']}}</td>
                                 <td>{{$informacao['Mulheres (%)']}}</td>
                                 <td>{{$informacao['Homens (%)']}}</td>
@@ -80,6 +88,7 @@
                                 <td>{{$informacao['Casados (%)']}}</td>
                                 <td>{{$informacao['Divorciados (%)']}}</td>
                                 <td>{{$informacao['Viúvos (%)']}}</td>
+                                <td>{{$informacao['Famílias']}}</td>
                                 <td>{{$informacao['Famílias unipessoais (%)']}}</td>
                                 <td>{{$informacao['Famílias com 2 pessoas (%)']}}</td>
                                 <td>{{$informacao['Alojamentos']}}</td>
