@@ -57,7 +57,7 @@ class MunicipiosController  extends Controller
     {
         $validatedData = $request->validate([
             'ID' => 'required',
-            'nome' => 'required',
+            'nome' => 'required|unique:municipios',
             'distritos_ID' => 'required',
         ]);
         $show = Municipio::create($validatedData);
@@ -86,7 +86,7 @@ class MunicipiosController  extends Controller
     {
         $validatedData = $request->validate([
             'ID' => 'required',
-            'nome' => 'required',
+            'nome' => 'required|unique:municipios',
             'distritos_ID' => 'required',
         ]);
 

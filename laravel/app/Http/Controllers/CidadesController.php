@@ -55,7 +55,7 @@ class CidadesController extends Controller
     public function store(Request $request)
     {
          $validatedData = $request->validate([
-            'nome' => 'required',
+            'nome' => 'required|unique:cidades',
             'municipio_ID' => 'required',
         ]);
 
@@ -85,7 +85,7 @@ class CidadesController extends Controller
     {
 //         $cidade = Cidade::findOrFail($id);
          $validatedData = $request->validate([
-            'nome' => 'required',
+            'nome' => 'required|unique:cidades',
             'municipio_ID' => 'required',
         ]);
 

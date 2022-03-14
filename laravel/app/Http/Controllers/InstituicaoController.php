@@ -81,7 +81,7 @@ class InstituicaoController extends Controller
     {
         $validatedData = $request->validate([
             'ID' => 'required',
-            'nome' => 'required',
+            'nome' => 'required|unique:instituicoes',
             'tipos_ensino_ID' => 'required',
             'cod_postal' => 'required',
             'rank' => 'nullable',
@@ -113,7 +113,7 @@ class InstituicaoController extends Controller
         //$inst = Instituicao::findOrFail($id);
         $validatedData = $request->validate([
             'ID' => 'required',
-            'nome' => 'required',
+            'nome' => 'required|unique:instituicoes',
             'tipos_ensino_ID' => 'required',
             'cod_postal' => 'required',
             'rank' => 'nullable',

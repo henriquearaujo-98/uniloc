@@ -41,7 +41,7 @@ class ExameController extends Controller
     {
         $validatedData = $request->validate([
             'Codigo' => 'required',
-            'Nome' => 'required',
+            'Nome' => 'required|unique:exames',
         ]);
         $show = Exame::create($validatedData);
         return redirect('/exames')->with('success', 'Data is successfully saved');
@@ -69,7 +69,7 @@ class ExameController extends Controller
     {
         $validatedData = $request->validate([
             'Codigo' => 'required',
-            'Nome' => 'required',
+            'Nome' => 'required|unique:exames',
         ]);
          Exame::whereCodigo($codigo)->update($validatedData);
          return redirect('/exames')->with('success', 'Data is successfully updated');

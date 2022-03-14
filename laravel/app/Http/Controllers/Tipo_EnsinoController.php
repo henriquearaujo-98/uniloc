@@ -43,7 +43,7 @@ class Tipo_EnsinoController extends Controller
     {
         $validatedData = $request->validate([
             'ID' => 'required',
-            'nome' => 'required',
+            'nome' => 'required|unique:tipos_ensino',
         ]);
 
          $show = Tipo_Ensino::create($validatedData);
@@ -78,7 +78,7 @@ class Tipo_EnsinoController extends Controller
     {
         $validatedData = $request->validate([
             'ID' => 'required',
-            'nome' => 'required',
+            'nome' => 'required|unique:tipos_ensino',
         ]);
 
          Tipo_Ensino::whereId($id)->update($validatedData);

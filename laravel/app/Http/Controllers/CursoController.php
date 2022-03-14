@@ -59,7 +59,7 @@ class CursoController extends Controller
     {
         $validatedData = $request->validate([
             'ID' => 'required',
-            'nome' => 'required',
+            'nome' => 'required|unique:cursos',
             'area_curso_ID' => 'required',
         ]);
         $show = Curso::create($validatedData);
@@ -88,7 +88,7 @@ class CursoController extends Controller
     {
         $validatedData = $request->validate([
             'ID' => 'required',
-            'nome' => 'required',
+            'nome' => 'required|unique:cursos',
             'area_curso_ID' => 'required',
         ]);
 

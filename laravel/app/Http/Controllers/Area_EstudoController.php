@@ -35,7 +35,7 @@ class Area_EstudoController extends Controller
     {
         $validatedData = $request->validate([
             'ID' => 'required',
-            'nome' => 'required',
+            'nome' => 'required|unique:areas_estudo',
         ]);
 
         $show = Area_Estudo::create($validatedData);
@@ -70,7 +70,7 @@ class Area_EstudoController extends Controller
     {
         $validatedData = $request->validate([
             'ID' => 'required',
-            'nome' => 'required',
+            'nome' => 'required|unique:areas_estudo',
         ]);
 
          Area_Estudo::whereId($id)->update($validatedData);

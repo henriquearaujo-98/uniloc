@@ -43,7 +43,7 @@ class DistritosController extends Controller
     {
         $validatedData = $request->validate([
             'ID' => 'required',
-            'Nome' => 'required',
+            'Nome' => 'required|unique:distritos',
         ]);
 
         $show = Distrito::create($validatedData);
@@ -71,7 +71,7 @@ class DistritosController extends Controller
     {
         $validatedData = $request->validate([
             'ID' => 'required',
-            'Nome' => 'required',
+            'Nome' => 'required|unique:distritos',
         ]);
 
         Distrito::whereId($id)->update($validatedData);
