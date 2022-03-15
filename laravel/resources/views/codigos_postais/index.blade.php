@@ -18,7 +18,7 @@
             <div>
                 <form action="/searchPostal" method="get">
                     <div class="input-group">
-                        <input type="search" name="postal" id="postal" class="form-control" placeholder="Pesquisar código postal...">
+                        <input type="search" name="postal" id="postal" class="form-control" placeholder="Pesquisar código postal ou cidade...">
                         <span class="input-group-prepend pl-1">
                             <button type="submit" class="btn btn-primary"> Search </button>
                         </span>
