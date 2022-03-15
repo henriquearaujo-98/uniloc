@@ -24,10 +24,13 @@ class MunicipiosController  extends Controller
 
     public function searchMunicipio(Request $request){
         $search = $request->get('municipio');
-        $municipios = Municipio::where('nome', 'LIKE', '%'.$search.'%')
-                         ->orWhere('distritos_ID', 'LIKE', '%'.$search.'%')
+        $municipios = Municipio::join('distritos', 'distritos.ID', '=', 'municipios.distritos_ID')
+                         ->where('municipios.nome', 'LIKE', '%'.$search.'%')
+                         ->orWhere('distritos.nome', 'LIKE', '%'.$search.'%')
+                         ->select('municipios.ID', 'municipios.nome','municipios.distritos_ID')
                          ->paginate(15);
-
+                        //Try with 'With'
+                        //Like this 'Municipio::with('distritos')->where('distritos_ID', $distrito_id)->get();'
         return view('municipios.index',compact('municipios'));
     }
 
