@@ -28,9 +28,9 @@ class MunicipiosController  extends Controller
                          ->where('municipios.nome', 'LIKE', '%'.$search.'%')
                          ->orWhere('distritos.nome', 'LIKE', '%'.$search.'%')
                          ->select('municipios.ID', 'municipios.nome','municipios.distritos_ID')
+                         ->orderBy('municipios.ID')
                          ->paginate(15);
-                        //Try with 'With'
-                        //Like this 'Municipio::with('distritos')->where('distritos_ID', $distrito_id)->get();'
+
         return view('municipios.index',compact('municipios'));
     }
 

@@ -36,6 +36,7 @@ class ProvasIngressoController extends Controller
                             ->orWhere('cursos.nome', 'LIKE', '%'.$search.'%')
                             ->select('provas_ingresso.ID', 'provas_ingresso.cursoID','provas_ingresso.instituicoes_ID', 'exames_id')
 //                             ->toSql();
+                            ->orderBy('provas_ingresso.ID')
                             ->paginate(15);
 
         return view('prova_ingresso.index',compact('provas_ingresso'));
