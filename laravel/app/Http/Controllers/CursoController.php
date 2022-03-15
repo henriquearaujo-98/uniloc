@@ -98,8 +98,10 @@ class CursoController extends Controller
 
     public function searchCurso(Request $request){
         $search = $request->get('curso');
-        $cursos = Curso::where('nome', 'LIKE', '%'.$search.'%')
-                         ->orWhere('area_curso_ID', 'LIKE', '%'.$search.'%')
+        $cursos = Curso::join('area_estudo', 'area_estudo.ID', '=', 'cursos.area_curso_ID')
+                         ->where('cursos.nome', 'LIKE', '%'.$search.'%')
+                         ->orWhere('area_estudo.nome', 'LIKE', '%'.$search.'%')
+                         ->select('cursos.ID', 'cursos.nome', 'cursos.area_curso_ID')
                          ->paginate(15);
 
         return view('cursos.index',compact('cursos'));
