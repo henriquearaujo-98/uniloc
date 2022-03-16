@@ -18,7 +18,7 @@
             <div>
                 <form action="/searchInst" method="get">
                     <div class="input-group">
-                        <input type="search" name="inst" id="inst" class="form-control" placeholder="Pesquisar instituição...">
+                        <input type="search" name="inst" id="inst" class="form-control" placeholder="Pesquisar instituição ou ensino...">
                         <span class="input-group-prepend pl-1">
                             <button type="submit" class="btn btn-primary"> Search </button>
                         </span>

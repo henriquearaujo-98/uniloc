@@ -30,8 +30,11 @@ class InstituicaoController extends Controller
 
     public function searchInst(Request $request){
         $search = $request->get('inst');
-        $instituicoes = Instituicao::where('nome', 'LIKE', '%'.$search.'%')
-                         ->orWhere('tipos_ensino_ID', 'LIKE', '%'.$search.'%')
+        $instituicoes = Instituicao::join('tipos_ensino', 'tipos_ensino.ID', '=', 'instituicoes.tipos_ensino_ID')
+                         ->where('instituicoes.nome', 'LIKE', '%'.$search.'%')
+                         ->orWhere('tipos_ensino.nome', 'LIKE', '%'.$search.'%')
+                         ->select('instituicoes.ID', 'instituicoes.nome', 'instituicoes.tipos_ensino_ID',
+                         'instituicoes.cod_postal', 'instituicoes.rank')
                          ->paginate(15);
 
         return view('instituicoes.index',compact('instituicoes'));
