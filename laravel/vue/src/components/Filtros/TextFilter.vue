@@ -44,13 +44,14 @@ export default {
                 show : false
             },
             getters: {
+                getShow: state => () => state.show
             },
             mutations: {
 
                 POPULATE_POOL(state, data){
                     state.pool = data;
                     state.pool.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
-
+                    console.log('done loading data')
                 },
 
                 SELECT_ITEM(state, item){
