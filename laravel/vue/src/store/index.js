@@ -5,7 +5,7 @@ const search_store = {
     state: {
         distritos: [],
         cidades: [],
-        insts: [],
+        instituicoes: [],
         areas: [],
         cursos: [],
         tipos_inst: [],
@@ -24,7 +24,7 @@ const search_store = {
         add({commit}, info){
             const item = info.item;
             const where = info.where;
-            this._modules.root.state.search_store[where].push(item)
+            this._modules.root.state.search_store[where].push(item.ID)
             console.log('ADD ' + item)
             console.log(this._modules.root.state.search_store[where])
             console.log(' -------------------------- ')
@@ -32,7 +32,7 @@ const search_store = {
         remove({commit}, info){
             const item = info.item;
             const where = info.where;
-            this._modules.root.state.search_store[where].splice(this._modules.root.state.search_store[where].indexOf(item),1)
+            this._modules.root.state.search_store[where].splice(this._modules.root.state.search_store[where].indexOf(item.ID),1)
             console.log('REMOVE ' + item)
             console.log(this._modules.root.state.search_store[where])
             console.log(' -------------------------- ')

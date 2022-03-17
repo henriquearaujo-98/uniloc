@@ -4,12 +4,15 @@
             <TextFilter label="Distritos"
                         tabela="distritos"
                         @selected-filter-option="select_distritos"/>
-<!--          <TextFilter label="Cidades"
+<!--            <TextFilter label="Cidades"
                         tabela="cidades"
-                        @selected-filter-option="select_distritos" />-->
-            <!--<TextFilter label="Instituições"
+                        @selected-filter-option="select_distritos" />
+            <TextFilter label="Instituições"
                         tabela="instituicoes"
-                        @selected-filter-option="select_distritos" style="margin-top: 50px"/>-->
+                        @selected-filter-option="select_distritos" />
+            <TextFilter label="Areas"
+                        tabela="area_estudo"
+                        @selected-filter-option="select_distritos" />-->
         </form>
     </div>
 </template>

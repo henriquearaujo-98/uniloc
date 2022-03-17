@@ -28,8 +28,8 @@ export default {
         tabela: String
     },
     components: {AutoComplete, TextInput, ResultsArea},
-    created() {
-        axios
+    async created() {
+         axios
             .get(`http://localhost:3500/api/${this.tabela}`)
             .then(response => (this.$store.dispatch(`${this.tabela}/populate_pool`, response.data)[this.tabela]))
 

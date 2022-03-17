@@ -1,7 +1,8 @@
 <template>
     <div v-show="this.$store.state[this.store_name].show">
         <ul>
-            <li v-for="item in this.$store.state[this.store_name].options" :key="item.id" @click="select_item(item)">{{ item.nome }}</li>
+            <li v-if="this.$store.state[this.store_name].options.length > 0" v-for="item in this.$store.state[this.store_name].options" :key="item.id" @click="select_item(item)">{{ item.nome }}</li>
+            <li v-else>Sem opções correspondentes</li>
         </ul>
     </div>
 </template>
