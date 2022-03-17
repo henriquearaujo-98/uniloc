@@ -4,9 +4,9 @@
             <TextFilter label="Distritos"
                         tabela="distritos"
                         @selected-filter-option="select_distritos"/>
-          <TextFilter label="Cidades"
+<!--          <TextFilter label="Cidades"
                         tabela="cidades"
-                        @selected-filter-option="select_distritos" style="margin-top: 50px"/>
+                        @selected-filter-option="select_distritos" />-->
             <!--<TextFilter label="Instituições"
                         tabela="instituicoes"
                         @selected-filter-option="select_distritos" style="margin-top: 50px"/>-->
@@ -21,17 +21,7 @@ export default {
     components: {TextFilter},
     data(){
         return {
-            distritos: [],
-            cidades: [],
-            insts: [],
-            areas: [],
-            cursos: [],
-            tipos_inst: [],
-            provas: [],
-            nota_min_min: [],
-            nota_min_max: [],
-            rank_min: [],
-            rank_max: []
+
         }
     },
     methods: {

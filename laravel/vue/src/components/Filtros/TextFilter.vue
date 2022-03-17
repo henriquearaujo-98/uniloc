@@ -1,14 +1,13 @@
 
 <template>
-    <div style="width: 100%;" class="p-5 text-filter"
-         @focusin="this.$store.state[this.tabela].show = true">
+    <div style="width: 100%;" class="pl-5 pt-5 text-filter">
         <div class="flex">
             <label class="self-start">{{ label }}</label>
         </div>
 
         <div class="flex" style="max-width: 100%;">
-            <TextInput :store_name="this.tabela" @select-item="add_item"/>
-            <ResultsArea :store_name="this.tabela" @remove-item="remove_item" />
+            <TextInput :store_name="this.tabela" />
+            <ResultsArea :store_name="this.tabela" />
         </div>
 
     </div>
@@ -43,9 +42,6 @@ export default {
                 pool: [],  // pool de informação
                 show : false
             },
-            getters: {
-                getShow: state => () => state.show
-            },
             mutations: {
 
                 POPULATE_POOL(state, data){
@@ -57,7 +53,6 @@ export default {
                 SELECT_ITEM(state, item){
                     state.selected.push(item)
                     state.options.splice(state.options.indexOf(item),1)
-
                 },
 
                 REMOVE_ITEM(state, item){
@@ -138,17 +133,6 @@ export default {
     },
     mounted() {
 
-
-
-    },
-    methods:{
-        add_item(item){
-            this.$store.dispatch(`${this.tabela}/select_item`, item)[this.tabela]
-        },
-
-        remove_item(item){
-            this.$store.dispatch(`${this.tabela}/remove_item`, item)[this.tabela]
-        }
 
 
     },

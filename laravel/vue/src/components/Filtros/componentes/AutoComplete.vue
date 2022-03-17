@@ -26,7 +26,13 @@ export default {
 
         },
         select_item(item){
-            this.$store.dispatch(`${this.store_name}/select_item`, item)[this.store_name]
+            this.$store.dispatch(`${this.store_name}/select_item`, item)[this.store_name]   // local store
+
+            let info = {
+                'item' : item,
+                'where' : this.store_name
+            }
+            this.$store.dispatch(`search_store/add`, info)[this.store_name]    // search store for request
         }
     },
     watch: {
@@ -43,11 +49,11 @@ li:hover{
     background: dimgrey;
 }
 ul{
-    position: relative;
+    position: absolute;
     background: lightslategrey;
     z-index: 2;
     max-height: 400px;
     overflow: auto;
-    max-width: 220px;
+    width: 233px;
 }
 </style>
