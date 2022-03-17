@@ -9,7 +9,7 @@ const search_store = {
         areas: [],
         cursos: [],
         tipos_inst: [],
-        provas: [],
+        exames: [],
         nota_min_min: [],
         nota_min_max: [],
         rank_min: [],
@@ -31,12 +31,24 @@ const search_store = {
         },
         remove({commit}, info){
             const item = info.item;
-            const where = info.where;
+            const where = info.where; // Nome da variável
             this._modules.root.state.search_store[where].splice(this._modules.root.state.search_store[where].indexOf(item.ID),1)
             console.log('REMOVE ' + item)
             console.log(this._modules.root.state.search_store[where])
             console.log(' -------------------------- ')
         },
+        set_slider({commit}, info){
+            const min = info.min;
+            const max = info.max
+            const where_min = info.where + '_min';
+            const where_max = info.where + '_max';
+            this._modules.root.state.search_store[where_min] = min;
+            this._modules.root.state.search_store[where_max] = max;
+            console.log('Set slider ' + info.where)
+            console.log(this._modules.root.state.search_store[where_min])
+            console.log(this._modules.root.state.search_store[where_max])
+            console.log(' -------------------------- ')
+        }
     },
 }
 

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import AutoComplete from "@/components/Filtros/componentes/AutoComplete";
+import AutoComplete from "@/components/Filtros/TextFilter/componentes/AutoComplete";
 
 export default {
 
@@ -51,11 +51,6 @@ export default {
             if(this.$store.state[this.store_name].options){ // Se o utilizador ainda não clicou no input para obter o dropdown, também pode faze-lo atraves da seta
                 this.dropdown()
             }
-
-            // watch no state.show
-            // animar a seta quando tiver a mostrar
-            // ao clicar na seta, show = false
-            // ao clicar na seta show = true e mostrar tudo
 
         },
         arrow_dropdown(){

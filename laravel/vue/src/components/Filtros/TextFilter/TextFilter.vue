@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import TextInput from "@/components/Filtros/componentes/TextInput";
-import AutoComplete from "@/components/Filtros/componentes/AutoComplete";
-import ResultsArea from "@/components/Filtros/componentes/ResultsArea";
+import TextInput from "@/components/Filtros/TextFilter/componentes/TextInput";
+import AutoComplete from "@/components/Filtros/TextFilter/componentes/AutoComplete";
+import ResultsArea from "@/components/Filtros/TextFilter/componentes/ResultsArea";
 import axios from 'axios';
 
 import store from "@/store";
@@ -45,6 +45,7 @@ export default {
             mutations: {
 
                 POPULATE_POOL(state, data){
+                    console.log(data)
                     state.pool = data;
                     state.pool.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
                     console.log('done loading data')
