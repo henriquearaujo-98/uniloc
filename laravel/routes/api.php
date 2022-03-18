@@ -12,6 +12,7 @@ use App\Http\Controllers\API\InstituicaoController_API;
 use App\Http\Controllers\API\Instituicoes_has_CursoController_API;
 use App\Http\Controllers\API\MunicipioController_API;
 use App\Http\Controllers\API\ProvaIngressoController_API;
+use App\Http\Controllers\API\SearchController_API;
 use App\Http\Controllers\API\TipoEnsinoController_API;
 
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // --------- Public routes ----------- //
 // Search
-Route::post('/search', [SearchController::class, 'search']);
+Route::post('/search', [SearchController_API::class, 'search']);
 
 // Distritos
 Route::get('/distritos', [DistritoController_API::class, 'index']);
@@ -72,6 +73,8 @@ Route::get('/provas_ingresso', [ProvaIngressoController_API::class, 'index']);
 // Exames
 Route::get('/exames', [ExameController_API::class, 'index']);
 
+// Tipos de ensino
+Route::get('/tipos_ensino', [TipoEnsinoController_API::class, 'index']);
 
 
 // --- Testes ---
