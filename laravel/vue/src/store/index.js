@@ -10,10 +10,10 @@ const search_store = {
         cursos: [],
         tipos_inst: [],
         exames: [],
-        nota_min_min: [],
-        nota_min_max: [],
-        rank_min: [],
-        rank_max: []
+        nota_min_min: '0',
+        nota_min_max: '200',
+        rank_min: '',
+        rank_max: ''
     },
     getters: {
     },
@@ -42,10 +42,16 @@ const search_store = {
             const max = info.max
             const where_min = info.where + '_min';
             const where_max = info.where + '_max';
-
             this._modules.root.state.search_store[where_min] = min;
             this._modules.root.state.search_store[where_max] = max;
+        },
+        unset_slider({commit}, where){
+            const where_min = where + '_min';
+            const where_max = where + '_max';
 
+            this._modules.root.state.search_store[where_min] = '';
+            this._modules.root.state.search_store[where_max] = '';
+            console.log(this._modules.root.state.search_store)
         }
     },
 }
