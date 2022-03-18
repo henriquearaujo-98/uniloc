@@ -38,9 +38,9 @@ export default {
             namespaced: true,
             state: {
                 selected: [],   // items selecionados do dropdown para fazer request á api
-                options: [],
+                options: [],    // seleção a partir da pool correspondente ao texto dado pelo utilizador
                 pool: [],  // pool de informação
-                show : false
+                show : false    // Booleano para mostrar a caixa de sugestão
             },
             mutations: {
 
