@@ -3,7 +3,7 @@
         <form class="self-start" @submit="onSubmit">
             <TextFilter label="Distritos"
                         tabela="distritos"/>
-            <!--<TextFilter label="Cidades"
+            <TextFilter label="Cidades"
                         tabela="cidades"/>
             <TextFilter label="Instituições"
                         tabela="instituicoes"/>
@@ -14,7 +14,7 @@
             <TextFilter label="Tipo de instituição"
                         tabela="tipos_ensino"/>
             <TextFilter label="Provas de ingresso"
-                        tabela="exames"/>-->
+                        tabela="exames"/>
             <SliderFilter label="Nota Minima"
                           min=95
                           max=200
