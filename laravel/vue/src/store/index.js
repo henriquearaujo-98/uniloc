@@ -42,12 +42,10 @@ const search_store = {
             const max = info.max
             const where_min = info.where + '_min';
             const where_max = info.where + '_max';
+
             this._modules.root.state.search_store[where_min] = min;
             this._modules.root.state.search_store[where_max] = max;
-            console.log('Set slider ' + info.where)
-            console.log(this._modules.root.state.search_store[where_min])
-            console.log(this._modules.root.state.search_store[where_max])
-            console.log(' -------------------------- ')
+
         }
     },
 }

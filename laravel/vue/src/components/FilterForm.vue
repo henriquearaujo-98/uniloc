@@ -22,6 +22,7 @@
             <SliderFilter label="Rank"
                           min=1
                           max=100
+                          optional="true"
                           store_var_name="rank"/>
 
         </form>
@@ -38,11 +39,6 @@ import SliderFilter from "@/components/Filtros/SliderFilter/SliderFilter.vue";
 export default {
     name: "FilterForm",
     components: {TextFilter, SliderFilter},
-    data(){
-        return {
-            value: [0, 100]
-        }
-    },
     methods: {
         onSubmit(e){
             e.preventDefault();
