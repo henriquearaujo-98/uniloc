@@ -21,57 +21,58 @@
 
 <style>
     div.ex1 {
-        width: 15%;
         margin: 10px;
-        align: left;
     }
 </style>
 
 </head>
 
 <body>
-<div class="">
-    <div class="ex1">
-        <h2>Back-Office</h2>
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link" href="/distritos">Gerir Distritos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/municipios">Gerir Municipios</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/distritos">Gerir Distritos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/municipios">Gerir Municipios</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/distritos">Gerir Distritos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/municipios">Gerir Municipios</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/distritos">Gerir Distritos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/municipios">Gerir Municipios</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/distritos">Gerir Distritos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/municipios">Gerir Municipios</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/distritos">Gerir Distritos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/municipios">Gerir Municipios</a>
-            </li>
-        </ul>
-    </div>
+<div class="row">
+    <div class="col-2">
+        <div class="ex1">
+            <h5>Back-Office</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="/distritos">Gerir Distritos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/municipios">Gerir Municipios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/informacoes">Gerir Informacoes Municipios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cidades">Gerir Cidades</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/codigos_postais">Gerir Códigos Postais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/instituicoes">Gerir Instituições</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tipos_ensino">Gerir Tipos de Ensino</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/inst_cursos">Gerir Cursos na Instituição</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/provas_ingresso">Gerir Provas de Ingresso</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/exames">Gerir Exames</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cursos">Gerir Cursos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/areas_estudo">Gerir Áreas de Estudo</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Falta fechar um div -->
+
 </div>
 
 <script src="{{ asset('js/app.js') }}" type="text/js"></script>
