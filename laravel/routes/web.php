@@ -49,3 +49,6 @@ route::get('/searchMunicipio', [MunicipiosController::class, 'searchMunicipio'])
 route::get('/searchProvas', [ProvasIngressoController::class, 'searchProvas']);
 route::get('/searchInfo', [Informacoes_MunicipioController::class, 'searchInfo']);
 
+route::get('/menu', function(){
+    return view('menu');
+});
