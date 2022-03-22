@@ -50,8 +50,14 @@
                                 {{$codigo_postal->cod_postal }} - {{ $codigo_postal->cidade->nome}}
                             </option>
                         @endforeach
+                        <option value="">Seleciona um código postal..</option>
                     </select>
                 </div>
+{{--                <div class="form-group">--}}
+{{--                    @csrf--}}
+{{--                    <label for="id_dopostal">Cod Postal: </label>--}}
+{{--                    <input type="text" class="form-control" name="cod_postal"/>--}}
+{{--                </div>--}}
                 <div class="form-group">
                     <label for="rank_inst">Rank: </label>
                     <input type="text" class="form-control" name="rank"/>
