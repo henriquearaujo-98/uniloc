@@ -21,13 +21,6 @@ class ProvasIngressoController extends Controller
         return view('prova_ingresso.index',compact('provas_ingresso'));
     }
 
-    public function create()
-    {
-        $instituicoes = Instituicao::all();
-        $cursos = Curso::all();
-        return view('prova_ingresso.create', compact('cursos','instituicoes'));
-    }
-
     public function searchProvas(Request $request){
         $search = $request->get('provas');
         $provas_ingresso = Prova_Ingresso::join('instituicoes', 'instituicoes.ID', '=', 'provas_ingresso.instituicoes_ID')
@@ -36,35 +29,18 @@ class ProvasIngressoController extends Controller
                             ->orWhere('cursos.nome', 'LIKE', '%'.$search.'%')
                             ->select('provas_ingresso.ID', 'provas_ingresso.cursoID','provas_ingresso.instituicoes_ID', 'exames_id')
 //                             ->toSql();
-                            ->orderBy('provas_ingresso.ID')
                             ->paginate(15);
 
         return view('prova_ingresso.index',compact('provas_ingresso'));
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function exames($curso_id, $instituicao_id)
+    public function create()
     {
-        $res = Prova_Ingresso::all()->where('cursoID', $curso_id)->where('instituicoes_ID', $instituicao_id)->first();
-        $ids = explode(',', $res->exames_id);
-        $nomes = array();
-        foreach ($ids as $id){
-            array_push($nomes,Exame::all()->where('Codigo',$id));
-        }
-
-        return $nomes;
+        $instituicoes = Instituicao::all();
+        $cursos = Curso::all();
+        return view('prova_ingresso.create', compact('cursos','instituicoes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -77,28 +53,7 @@ class ProvasIngressoController extends Controller
         return redirect('/prova_ingresso')->with('success', 'Data is successfully saved');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return Prova_Ingresso::find($id);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-//         $provas_ingresso = Prova_Ingresso::findOrFail($id);
-//         return $provas_ingresso->update($request->all());
+    public function update(Request $request, $id){
         $validatedData = $request->validate([
             'cursoID' => 'required',
             'instituicoes_ID' => 'required',
@@ -117,17 +72,9 @@ class ProvasIngressoController extends Controller
         return view('prova_ingresso.edit', compact('prova_ingresso', 'cursos', 'instituicoes'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+    public function destroy($id){
         $prova_ingresso = Prova_Ingresso::findOrFail($id);
         $prova_ingresso->delete();
         return redirect('/prova_ingresso');
-
     }
 }

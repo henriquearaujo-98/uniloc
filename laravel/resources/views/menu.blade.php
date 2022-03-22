@@ -58,7 +58,7 @@
                     <a class="nav-link" href="/inst_cursos">Gerir Cursos na Instituição</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/provas_ingresso">Gerir Provas de Ingresso</a>
+                    <a class="nav-link" href="/prova_ingresso">Gerir Provas de Ingresso</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/exames">Gerir Exames</a>
