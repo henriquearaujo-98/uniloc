@@ -26,7 +26,7 @@ class ExameController extends Controller
 
     public function searchExame(Request $request){
         $search = $request->get('exame');
-        $exames = Exame::where('Nome', 'LIKE', '%'.$search.'%')->get();
+        $exames = Exame::where('nome', 'LIKE', '%'.$search.'%')->get();
 
         return view('exames.index',compact('exames'));
     }
@@ -40,8 +40,8 @@ class ExameController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'Codigo' => 'required',
-            'Nome' => 'required|unique:exames',
+            'ID' => 'required',
+            'nome' => 'required',
         ]);
         $show = Exame::create($validatedData);
         return redirect('/exames')->with('success', 'Data is successfully saved');
@@ -65,19 +65,19 @@ class ExameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $codigo)
+    public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'Codigo' => 'required',
-            'Nome' => 'required|unique:exames',
+            'ID' => 'required',
+            'nome' => 'required',
         ]);
-         Exame::whereCodigo($codigo)->update($validatedData);
+         Exame::whereId($id)->update($validatedData);
          return redirect('/exames')->with('success', 'Data is successfully updated');
     }
 
-    public function edit($codigo)
+    public function edit($id)
     {
-        $exame = Exame::findOrFail($codigo);
+        $exame = Exame::findOrFail($id);
         return view('exames.edit', compact('exame'));
     }
 

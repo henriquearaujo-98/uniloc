@@ -50,11 +50,11 @@
                             <tbody>
                             @foreach($exames as $exame)
                                 <tr>
-                                    <td>{{$exame->Codigo}}</td>
-                                    <td>{{$exame->Nome}}</td>
-                                    <td><a href="{{ route('exames.edit', $exame->Codigo)}}" class="btn btn-warning">Editar</a></td>
+                                    <td>{{$exame->ID}}</td>
+                                    <td>{{$exame->nome}}</td>
+                                    <td><a href="{{ route('exames.edit', $exame->ID)}}" class="btn btn-warning">Editar</a></td>
                                     <td>
-                                        <form action="{{ route('exames.destroy', $exame->Codigo)}}" method="post">
+                                        <form action="{{ route('exames.destroy', $exame->ID)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>

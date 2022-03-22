@@ -20,18 +20,18 @@
                     </ul>
                 </div><br />
             @endif
-            <form method="post" action="{{ route('exames.update', $exame->Codigo ) }}">
+            <form method="post" action="{{ route('exames.update', $exame->ID ) }}">
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
-                    <label for="id_exame">Código:</label>
-                    <input type="text" class="form-control" name="Codigo" value="{{ $exame->Codigo }}"/>
+                    <label for="id_exame">ID:</label>
+                    <input type="text" class="form-control" name="ID" value="{{ $exame->ID }}"/>
                 </div>
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
                     <label for="exame_nome">Nome:</label>
-                    <input type="text" class="form-control" name="Nome" value="{{ $exame->Nome }}"/>
+                    <input type="text" class="form-control" name="nome" value="{{ $exame->nome }}"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Atualizar</button>
                 <a href="/exames" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>

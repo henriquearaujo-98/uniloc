@@ -10,13 +10,13 @@ class Exame extends Model
     use HasFactory;
 
     protected $fillable = [
-        'Codigo',
-        'Nome'
+        'ID',
+        'nome'
     ];
 
     protected $table = 'exames';
     public $timestamps = false;
-    protected $primaryKey = 'Codigo';
+    protected $primaryKey = 'ID';
     public $incrementing = false;
 
     public function prova_ingresso(){
