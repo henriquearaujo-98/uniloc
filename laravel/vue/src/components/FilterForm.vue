@@ -3,7 +3,7 @@
         <form class="self-start" @submit="onSubmit">
             <TextFilter label="Distritos"
                         tabela="distritos"/>
-            <TextFilter label="Cidades"
+<!--            <TextFilter label="Cidades"
                         tabela="cidades"/>
             <TextFilter label="Instituições"
                         tabela="instituicoes"/>
@@ -23,7 +23,9 @@
                           min=1
                           max=100
                           optional="true"
-                          store_var_name="rank"/>
+                          store_var_name="rank"/>-->
+
+            <button type="submit">Procurar</button>
 
         </form>
     </div>
@@ -42,7 +44,29 @@ export default {
     methods: {
         onSubmit(e){
             e.preventDefault();
+            const distritos = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['distritos'])));
+            const data = {
+                'distritos' : distritos
+            }
+            console.log(distritos)
+            //this.$store.dispatch(`results_store/get_request`, this.$store.state.search_store)
         },
+        array_to_string(arr){
+
+            if(arr.length == 0)
+                return ''
+
+            let txt = String
+            for(let i = 0; i < arr.length; i++){
+                if(i == 0){
+                    txt = arr[i]
+                    continue
+                }
+                txt = txt + ',' + arr[i]
+            }
+
+            return txt
+        }
 
     },
 

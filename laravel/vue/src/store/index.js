@@ -1,5 +1,7 @@
 import { createStore } from 'vuex'
+import axios from "axios";
 
+/// Monitorização e manipulação de dados obrigatórios para a chamada á API laravel
 const search_store = {
     namespaced : true,
     state: {
@@ -56,9 +58,39 @@ const search_store = {
     },
 }
 
+/// Chamada á API laravel com os atributos da search store
+const results_store = {
+    namespaced : true,
+    state: {
+        results : []
+    },
+    getters: {
+    },
+    mutations: {
+
+    },
+    actions: {
+        async get_request({commit}, data){
+            /*const res = await axios.get('https://httpbin.org/get', {
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json',
+                    'Accept-Encoding': 'gzip, deflate, br',
+                    'Connection' : 'keep-alive'
+                },
+                params: {
+                    'distritos':
+                }
+            });*/
+        }
+    },
+}
+
 export default createStore({
 
   modules: {
-      search_store : search_store
+      search_store : search_store,
+      results_store : results_store
   }
 })
