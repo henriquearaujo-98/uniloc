@@ -15,12 +15,6 @@ export default {
         store_name: String,
         text: String
     },
-    data(){
-        return {
-            selected : Array,
-            options: [] // opções cujo texto selecionado corresponde á pool de informação
-        }
-    },
     methods:{
         dropdown(text){
             this.$store.dispatch(`${this.store_name}/get_dropdown`, text)[this.store_name]
