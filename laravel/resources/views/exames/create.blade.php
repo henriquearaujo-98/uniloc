@@ -23,12 +23,12 @@
             <form method="post" action="{{ route('exames.store') }}">
                 <div class="form-group">
                     @csrf
-                    <label for="id_exame">Código: </label>
-                    <input type="text" class="form-control" name="Codigo"/>
+                    <label for="id_exame">ID: </label>
+                    <input type="text" class="form-control" name="ID"/>
                 </div>
                 <div class="form-group">
                     <label for="nome_exame">Nome: </label>
-                    <input type="text" class="form-control" name="Nome"/>
+                    <input type="text" class="form-control" name="nome"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Criar</button>
                 <a href="/exames" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>

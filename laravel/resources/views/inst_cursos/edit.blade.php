@@ -54,14 +54,14 @@
                     @csrf
                     @method('PATCH')
                     <label for="nome">Nota 1ª Fase:</label>
-                    <input type="number" class="form-control" step=".1" name="nota_ult_1fase" value="{{ $inst_curso->nota_ult_1fase }}"/>
+                    <input type="number" class="form-control" step=".1" min="0" max="200.0" name="nota_ult_1fase" value="{{ $inst_curso->nota_ult_1fase }}"/>
                 </div>
 
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
                     <label for="nome">Nota 2ª Fase:</label>
-                    <input type="number" class="form-control" step=".1" name="nota_ult_2fase" value="{{ $inst_curso->nota_ult_2fase }}"/>
+                    <input type="number" class="form-control" step=".1" min="0" max="200.0" name="nota_ult_2fase" value="{{ $inst_curso->nota_ult_2fase }}"/>
                 </div>
 
                 <div class="form-group">

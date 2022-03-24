@@ -21,6 +21,20 @@ class Instituicao_has_CursoController extends Controller
         return view('inst_cursos.index',compact('inst_cursos'));
     }
 
+    public function searchInst_Curso(Request $request){
+        $search = $request->get('inst_curso');
+        $inst_cursos = Instituicao_has_Curso::join('cursos', 'cursos.ID', '=', 'instituicoes_has_curso.cursos_ID')
+                                 ->join('instituicoes', 'instituicoes.ID', '=', 'instituicoes_has_curso.instituicoes_ID')
+                                 ->where('instituicoes.nome', 'LIKE', '%'.$search.'%')
+                                 ->orWhere('cursos.nome', 'LIKE', '%'.$search.'%')
+                                 ->select('instituicoes_has_curso.cursos_ID', 'instituicoes_has_curso.instituicoes_ID'
+                                 , 'instituicoes_has_curso.nota_ult_1fase', 'instituicoes_has_curso.nota_ult_2fase',
+                                 'instituicoes_has_curso.plano_curso')
+                                 ->paginate(15);
+
+        return view('inst_cursos.index',compact('inst_cursos'));
+    }
+
     public function create()
     {
         $cursos = Curso::all();

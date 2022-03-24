@@ -1,5 +1,5 @@
 @extends('municipios.layout')
-
+@include('menu')
 <style>
     .uper {
         margin-top: 40px;
@@ -13,14 +13,15 @@
         </div>
     @endif
 
-    <div class="row" style="margin-top: 45px">
+    <div style="margin-top: 45px">
+        <div class="col">
         <div class="col-md-12">
             <div>
                 <form action="/searchMunicipio" method="get">
                     <div class="input-group">
-                        <input type="search" name="municipio" id="municipio" class="form-control" placeholder="Pesquisar municipio...">
+                        <input type="search" name="municipio" id="municipio" class="form-control mb-md-2" placeholder="Pesquisar municipio ou distrito...">
                         <span class="input-group-prepend pl-1">
-                            <button type="submit" class="btn btn-primary"> Search </button>
+                            <button type="submit" class="btn btn-primary mb-md-2"> Search </button>
                         </span>
                     </div>
                 </form>
@@ -70,6 +71,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     {{--@endsection--}}
 </div>
