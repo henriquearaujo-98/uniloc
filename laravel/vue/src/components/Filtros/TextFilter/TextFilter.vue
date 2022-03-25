@@ -52,6 +52,7 @@ export default {
                 },
 
                 SELECT_ITEM(state, item){
+
                     state.selected.push(item)
                     state.options.splice(state.options.indexOf(item),1)
                 },

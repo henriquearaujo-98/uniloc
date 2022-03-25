@@ -8,9 +8,9 @@ const search_store = {
         distritos: [],
         cidades: [],
         instituicoes: [],
-        areas: [],
+        tipos_ensino: [],
+        area_estudo: [],
         cursos: [],
-        tipos_inst: [],
         exames: [],
         nota_min_min: '0',
         nota_min_max: '200',
@@ -27,9 +27,9 @@ const search_store = {
             const item = info.item;
             const where = info.where;
             this._modules.root.state.search_store[where].push(item.ID)
-            console.log('ADD ' + item)
-            console.log(this._modules.root.state.search_store[where])
-            console.log(' -------------------------- ')
+            // console.log('ADD ' + item)
+            // console.log(this._modules.root.state.search_store[where])
+            // console.log(' -------------------------- ')
         },
         remove({commit}, info){
             const item = info.item;
