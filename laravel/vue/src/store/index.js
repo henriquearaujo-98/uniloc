@@ -71,18 +71,36 @@ const results_store = {
     },
     actions: {
         async get_request({commit}, data){
-            /*const res = await axios.get('https://httpbin.org/get', {
+
+            let formdata = new FormData();
+            formdata.append("distritos", data.distritos);
+            formdata.append("cidade", data.cidade);
+            formdata.append("insts", data.insts);
+            formdata.append("areas", data.areas);
+            formdata.append("cursos", data.cursos);
+            formdata.append("tipos_inst", data.tipos_inst);
+            formdata.append("provas", data.provas);
+            formdata.append("nota_min_min", data.nota_min_min);
+            formdata.append("nota_min_max", data.nota_min_max);
+            formdata.append("rank_min", data.rank_min);
+            formdata.append("rank_max", data.rank_max);
+
+
+            const res = await axios.post('http://localhost:3500/api/search', formdata,
+      {
                 headers: {
                     'Cache-Control': 'no-cache',
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Accept': 'application/json',
-                    'Accept-Encoding': 'gzip, deflate, br',
-                    'Connection' : 'keep-alive'
                 },
-                params: {
-                    'distritos':
-                }
-            });*/
+
+            });
+
+            
+            this.state.results = res.data
+        },
+        async mapAPI({commit}){
+            console.log(this.state.results)
         }
     },
 }

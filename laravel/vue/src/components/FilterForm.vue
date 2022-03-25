@@ -42,7 +42,7 @@ export default {
     name: "FilterForm",
     components: {TextFilter, SliderFilter},
     methods: {
-        onSubmit(e){
+        async onSubmit(e){
             e.preventDefault();
             const distritos = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['distritos'])));
             const cidade = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['cidades'])));
@@ -62,14 +62,15 @@ export default {
                 'areas' : areas,
                 'cursos' : cursos,
                 'provas' : provas,
-                'tipos_ensino' : tipos_ensino,
+                'tipos_inst' : tipos_ensino,
                 'nota_min_min' : nota_min_min,
                 'nota_min_max' : nota_min_max,
                 'rank_min' : rank_min,
                 'rank_max' : rank_max
             }
-            console.log(data)
-            //this.$store.dispatch(`results_store/get_request`, this.$store.state.search_store)
+
+            await this.$store.dispatch(`results_store/get_request`, data)
+            await this.$store.dispatch(`results_store/mapAPI`)
         },
         array_to_string(arr){
 
@@ -79,7 +80,7 @@ export default {
             let txt = String
             for(let i = 0; i < arr.length; i++){
                 if(i == 0){
-                    txt = arr[i]
+                    txt = arr[i].toString()
                     continue
                 }
                 txt = txt + ',' + arr[i]
