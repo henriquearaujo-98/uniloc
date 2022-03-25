@@ -1,14 +1,16 @@
 import { createStore } from 'vuex'
+import axios from "axios";
 
+/// Monitorização e manipulação de dados obrigatórios para a chamada á API laravel
 const search_store = {
     namespaced : true,
     state: {
         distritos: [],
         cidades: [],
         instituicoes: [],
-        areas: [],
+        tipos_ensino: [],
+        area_estudo: [],
         cursos: [],
-        tipos_inst: [],
         exames: [],
         nota_min_min: '0',
         nota_min_max: '200',
@@ -25,9 +27,9 @@ const search_store = {
             const item = info.item;
             const where = info.where;
             this._modules.root.state.search_store[where].push(item.ID)
-            console.log('ADD ' + item)
-            console.log(this._modules.root.state.search_store[where])
-            console.log(' -------------------------- ')
+            // console.log('ADD ' + item)
+            // console.log(this._modules.root.state.search_store[where])
+            // console.log(' -------------------------- ')
         },
         remove({commit}, info){
             const item = info.item;
@@ -56,9 +58,57 @@ const search_store = {
     },
 }
 
+/// Chamada á API laravel com os atributos da search store
+const results_store = {
+    namespaced : true,
+    state: {
+        results : []
+    },
+    getters: {
+    },
+    mutations: {
+
+    },
+    actions: {
+        async get_request({commit}, data){
+
+            let formdata = new FormData();
+            formdata.append("distritos", data.distritos);
+            formdata.append("cidade", data.cidade);
+            formdata.append("insts", data.insts);
+            formdata.append("areas", data.areas);
+            formdata.append("cursos", data.cursos);
+            formdata.append("tipos_inst", data.tipos_inst);
+            formdata.append("provas", data.provas);
+            formdata.append("nota_min_min", data.nota_min_min);
+            formdata.append("nota_min_max", data.nota_min_max);
+            formdata.append("rank_min", data.rank_min);
+            formdata.append("rank_max", data.rank_max);
+
+
+            const res = await axios.post('http://localhost:3500/api/search', formdata,
+      {
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json',
+                },
+
+            });
+
+            
+            this.state.results = res.data
+        },
+        async mapAPI({commit}){
+            console.log(this.state.results)
+        }
+    },
+}
+
 export default createStore({
 
   modules: {
-      search_store : search_store
+      search_store : search_store,
+      results_store : results_store
   }
 })
