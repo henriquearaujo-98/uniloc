@@ -692,4 +692,55 @@ class Provas_IngressoCrawler(scrapy.Spider):
                     'opção' : uma_das_seguintes_provas_keyword
                 }
                 exames.clear()
-        
+
+# Populacionar as coordenadas na tabela instituições
+class coordenadas_patch(scrapy.Spider):
+
+    name = "coord_patch"
+
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.coordenadas_patchPipeline': 400
+        }
+    }
+
+    start_urls = [
+        'https://dges.gov.pt/guias/indest.asp?reg=11',
+        'https://dges.gov.pt/guias/indest.asp?reg=12',
+        'https://dges.gov.pt/guias/indest.asp?reg=13',
+        'https://dges.gov.pt/guias/indest.asp?reg=21',
+        'https://dges.gov.pt/guias/indest.asp?reg=22'
+
+    ]
+
+    # 11 - Ensino Superior Público Universitário
+    # 12 - Ensino Superior Público Politécnico
+    # 13 - Ensino Superior Público Militar e Policial
+    # 21 - Ensino Superior Privado Universitário
+    # 22 - Ensino Superior Privado Universitário
+
+    def parse(self, response):
+        # .box9 é a classe que engloba os titulos de instituições
+        for div in response.css('.box9'):
+            cod = div.css('div::text')[0].get()
+            nome = div.css('div::text')[1].get()
+            cod_tipo = response.url[-2:]
+            link = response.urljoin(
+                div.css('.box9 + div .lin-ce-c3 a::attr(href)').get())
+            yield scrapy.Request(url=link, callback=self.parse_codigo, meta={'cod': cod, 'nome': nome, 'cod_tipo': cod_tipo})
+
+    async def parse_codigo(self, response):
+        cod = response.request.meta['cod']
+        link = response.xpath("//*[@id='caixa-orange']/div[5]/a[2]/@href").extract()
+
+        link = link[0]
+
+        coor = link.split(':')
+
+        coor = coor[2].split("+")
+
+        yield {
+            'cod': cod,
+            'latidude': coor[0],
+            'longitude': coor[1]
+        }

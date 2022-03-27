@@ -619,3 +619,34 @@ class Provas_IngressoPipeline:
     def close_spider(self, spider):
         logging.info("\n\n FECHANDO PROVAS INGRESSO \n\n")
         self.client.close()
+
+class coordenadas_patchPipeline:
+    def open_spider(self, spider):
+        self.create_connection()
+        logging.info("\n\n SPIDER COORDENADAS PATCH \n\n")
+
+    def create_connection(self):
+        self.conn = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            passwd='',
+            database='projeto_final'
+        )
+        self.curr = self.conn.cursor()
+
+    def process_item(self, item, spider):
+        self.store_db(item)
+        return item
+
+    def store_db(self, item):
+        self.curr.execute(""" UPDATE `instituicoes` SET `latitude`= %s,`longitude`= %s WHERE `ID` = %s """, (
+            item['latidude'],
+            item['longitude'],
+            item['cod'],
+        ))
+
+        self.conn.commit()
+
+    def close_spider(self, spider):
+        logging.info("\n\n FECHANDO COORDENADAS PATCH \n\n")
+        self.client.close()
