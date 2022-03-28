@@ -1,6 +1,6 @@
 <template>
     <div style="height: 600px;width: 50%; background: greenyellow;flex: 1" class="ml-10">
-        <ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:400px">
+        <ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:100%">
 
             <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom"
                      :projection="projection" />
