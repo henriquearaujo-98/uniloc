@@ -132,14 +132,23 @@ class Instituicao_has_CursoController extends Controller
      */
     public function destroy($cursoID, $instID)
     {
-//         if(count(Instituicao_has_Curso::find($cursoID, $instID)))
-//             return Instituicao_has_Curso::where('cursoS_ID', $cursoID)->where('instituicoes_ID', $instID)->delete();
-//         else
-//             return response('Curso da instituição não encontrado', 404);
-        $inst_curso = Instituicao_has_Curso::where('cursos_ID',$cursoID)
+// //         if(count(Instituicao_has_Curso::find($cursoID, $instID)))
+// //             return Instituicao_has_Curso::where('cursoS_ID', $cursoID)->where('instituicoes_ID', $instID)->delete();
+// //         else
+// //             return response('Curso da instituição não encontrado', 404);
+//         $inst_curso = Instituicao_has_Curso::where('cursos_ID',$cursoID)
+//                                            ->where('instituicoes_ID', $instID);
+// //         ::findOrFail($cursoID, $instID);
+//         $inst_curso->delete();
+//         return redirect('/inst_cursos');
+
+        try{
+            $inst_curso = Instituicao_has_Curso::where('cursos_ID',$cursoID)
                                            ->where('instituicoes_ID', $instID);
-//         ::findOrFail($cursoID, $instID);
-        $inst_curso->delete();
-        return redirect('/inst_cursos');
+            $inst_curso->delete();
+        } catch (\Exception $exception) {
+            return redirect('/inst_cursos')->with('danger', 'Error - Unable to delete record (Foreign Key)');
+        }
+        return redirect('/inst_cursos')->with('success', 'Data is successfully deleted');
     }
 }

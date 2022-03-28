@@ -73,8 +73,12 @@ class ProvasIngressoController extends Controller
     }
 
     public function destroy($id){
-        $prova_ingresso = Prova_Ingresso::findOrFail($id);
-        $prova_ingresso->delete();
-        return redirect('/prova_ingresso');
+        try{
+            $prova_ingresso = Prova_Ingresso::findOrFail($id);
+            $prova_ingresso->delete();
+        } catch (\Exception $exception) {
+            return redirect('/prova_ingresso')->with('danger', 'Error - Unable to delete record (Foreign Key)');
+        }
+        return redirect('/prova_ingresso')->with('success', 'Data is successfully deleted');
     }
 }

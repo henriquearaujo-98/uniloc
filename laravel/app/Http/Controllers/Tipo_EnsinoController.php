@@ -93,9 +93,12 @@ class Tipo_EnsinoController extends Controller
      */
     public function destroy($id)
     {
-        $tipo_ensino = Tipo_Ensino::findOrFail($id);
-        $tipo_ensino->delete();
-
-        return redirect('/tipos_ensino');
+        try{
+            $tipo_ensino = Tipo_Ensino::findOrFail($id);
+            $tipo_ensino->delete();
+        } catch (\Exception $exception) {
+            return redirect('/tipos_ensino')->with('danger', 'Error - Unable to delete record');
+        }
+        return redirect('/tipos_ensino')->with('success', 'Data is successfully deleted');
     }
 }

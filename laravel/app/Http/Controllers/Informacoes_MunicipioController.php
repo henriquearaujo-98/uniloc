@@ -181,8 +181,12 @@ class Informacoes_MunicipioController extends Controller
      */
     public function destroy($id)
     {
-        $inf_mun = Informacoes_Municipio::findOrFail($id);
-        $inf_mun->delete();
-        return redirect('/informacoes');
+        try{
+            $inf_mun = Informacoes_Municipio::findOrFail($id);
+            $inf_mun->delete();
+        } catch (\Exception $exception) {
+            return redirect('/informacoes')->with('danger', 'Error - Unable to delete record (Foreign Key)');
+        }
+        return redirect('/informacoes')->with('success', 'Data is successfully deleted');
     }
 }

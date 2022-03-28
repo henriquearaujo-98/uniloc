@@ -91,8 +91,12 @@ class Area_EstudoController extends Controller
      */
     public function destroy($id)
     {
-        $area_estudo = Area_Estudo::findOrFail($id);
-        $area_estudo->delete();
-        return redirect('/areas_estudo');
+        try{
+            $area_estudo = Area_Estudo::findOrFail($id);
+            $area_estudo->delete();
+        } catch (\Exception $exception) {
+            return redirect('/areas_estudo')->with('danger', 'Error - Unable to delete record (Foreign Key)');
+        }
+        return redirect('/areas_estudo')->with('success', 'Data is successfully deleted');
     }
 }

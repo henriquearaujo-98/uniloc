@@ -13,7 +13,7 @@
             {{ session()->get('success') }}
         </div>
     @endif
-    
+
     @if (session()->get('danger'))
         <div class="alert alert-danger">
             {{ session()->get('danger') }}

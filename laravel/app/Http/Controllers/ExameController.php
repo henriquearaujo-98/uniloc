@@ -89,8 +89,12 @@ class ExameController extends Controller
      */
     public function destroy($id)
     {
-        $exame = Exame::findOrFail($id);
-        $exame->delete();
-        return redirect('/exames');
+        try{
+            $exame = Exame::findOrFail($id);
+            $exame->delete();
+        } catch (\Exception $exception) {
+            return redirect('/exames')->with('danger', 'Error - Unable to delete record (Foreign Key)');
+        }
+        return redirect('/exames')->with('success', 'Data is successfully deleted');
     }
 }
