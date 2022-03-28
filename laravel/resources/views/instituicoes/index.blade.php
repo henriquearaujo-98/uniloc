@@ -13,6 +13,12 @@
             {{ session()->get('success') }}
         </div>
     @endif
+    
+    @if (session()->get('danger'))
+        <div class="alert alert-danger">
+            {{ session()->get('danger') }}
+        </div>
+    @endif
 
     <div style="margin-top: 45px">
         <div class="col">

@@ -146,8 +146,12 @@ class InstituicaoController extends Controller
      */
     public function destroy($id)
     {
-        $instituicao = Instituicao::findOrFail($id);
-        $instituicao->delete();
-        return redirect('/instituicoes');
+        try{
+            $instituicao = Instituicao::findOrFail($id);
+            $instituicao->delete();
+        } catch (\Exception $exception) {
+            return redirect('/instituicoes')->with('danger', 'Error - Unable to delete record (Foreign Key)');
+        }
+        return redirect('/instituicoes')->with('success', 'Data is successfully deleted');
     }
 }
