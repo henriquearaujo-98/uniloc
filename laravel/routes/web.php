@@ -34,12 +34,13 @@ Route::get('/provas_ingresso', [ProvasIngressoController::class, 'exames']);
 // Route::get('/inst_cursos/{curso}/{inst}/edit', ProvasIngressoController::class);
 
 //Route::get('/inst_cursos/edit/{curso}{inst}','Instituicao_has_CursoController@update')->name('inst_cursos.update');
-Route::get('/inst_cursos/{cursoID}/{instID}', [Instituicao_has_CursoController::class, 'edit']);
+// Route::get('/inst_cursos/{cursoID}/{instID}', [Instituicao_has_CursoController::class, 'edit']);
 // Route::get('/inst_cursos/{cursoID}/{instID}','Instituicao_has_CursoController@edit')->name('inst_cursos.edit');
 
 
 Route::delete('/inst_cursos/destroy/{cursoID}/{instID}','App\Http\Controllers\Instituicao_has_CursoController@destroy')->name('inst_cursos.destroy');
-
+Route::get('/inst_cursos/edit/{cursoID}/{instID}','App\Http\Controllers\Instituicao_has_CursoController@edit')->name('inst_cursos.edit');
+Route::put('/inst_cursos/update/{cursoID}/{instID}','App\Http\Controllers\Instituicao_has_CursoController@update')->name('inst_cursos.update');
 
 
 route::get('/searchTipo', [Tipo_EnsinoController::class, 'searchTipo']);

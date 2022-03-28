@@ -117,7 +117,8 @@ class Instituicao_has_CursoController extends Controller
     public function edit($cursoID, $instID)
     {
         $inst_curso = Instituicao_has_Curso::where('cursos_ID',$cursoID)
-                                           ->where('instituicoes_ID', $instID);
+                                           ->where('instituicoes_ID', $instID)
+                                           ->first();
         $cursos = Curso::all();
         $instituicoes = Instituicao::all();
         return view('inst_cursos.edit', compact('inst_curso', 'cursos', 'instituicoes'));
