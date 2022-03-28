@@ -33,10 +33,12 @@
                         @endforeach
                     </select>
                 </div>
+
                 <div class="form-group">
-                    <label for="mun">População Residente: </label>
-                    <input type="text" class="form-control" name="['População residente']"/>
+                    <label for="mun">Famílias: </label>
+                    <input type="text" class="form-control" name="Famílias"/>
                 </div>
+
                 <button type="submit" class="btn btn-primary">Criar</button>
                 <a href="/informacoes" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>
             </form>

@@ -54,8 +54,43 @@ class Informacoes_MunicipioController extends Controller
      */
     public function store(Request $request)
     {
+            $validatedData = $request->validate([
+                'municipio_ID' => 'required',
+                'População residente' => 'nullable',
+                'Densidade populacional' => 'nullable',
+                'Mulheres (%)' => 'nullable',
+                'Homens (%)' => 'nullable',
+                'Jovens (%)' => 'nullable',
+                'População em idade activa (%)' => 'nullable',
+                'Idosos (%)' => 'nullable',
+                'Índice de envelhecimento' => 'nullable',
+                'Indivíduos em idade activa por idoso' => 'nullable',
+                'Solteiros (%)' => 'nullable',
+                'Casados (%)' => 'nullable',
+                'Divorciados (%)' => 'nullable',
+                'Viúvos (%)' => 'nullable',
+                'Famílias' => 'nullable',
+                'Famílias unipessoais (%)' => 'nullable',
+                'Famílias com 2 pessoas (%)' => 'nullable',
+                'Alojamentos' => 'nullable',
+                'Alojamentos familiares clássicos (%)' => 'nullable',
+                'Alojamentos colectivos (%)' => 'nullable',
+                'Alojamentos ocupados (%)' => 'nullable',
+                'Alojamentos próprios (%)' => 'nullable',
+                'Alojamentos próprios com encargos de compra (%)' => 'nullable',
+                'Alojamentos arrendados e outros casos (%)' => 'nullable',
+                'Renda mensal: <50€' => 'nullable',
+                'Renda mensal: 50€ - 99,99€' => 'nullable',
+                'Renda mensal: 100€ - 199,99€' => 'nullable',
+                'Renda mensal: 200€ - 399,99€' => 'nullable',
+                'Renda mensal: 400€ - 649,99€' => 'nullable',
+                'Renda mensal: 650€ - 999,99€' => 'nullable',
+                'Renda mensal: >=1000€' => 'nullable',
+                'Edificios' => 'nullable',
+            ]);
+
 //         return $request->all();
-        $show = Informacoes_Municipio::create($request->all());
+        $show = Informacoes_Municipio::create($validatedData);
         return redirect('/informacoes')->with('success', 'Data is successfully saved');
     }
 
@@ -126,7 +161,6 @@ class Informacoes_MunicipioController extends Controller
             'Renda mensal: >=1000€' => 'nullable',
             'Edificios' => 'nullable',
         ]);
-
 
         Informacoes_Municipio::whereId($id)->update($validatedData);
         return redirect('/informacoes')->with('success', 'Data is successfully updated');
