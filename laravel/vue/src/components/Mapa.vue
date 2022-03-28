@@ -10,16 +10,17 @@
             </ol-tile-layer>
 
         </ol-map>
+        <Marker item=""/>
     </div>
 </template>
 
 <script>
-import {
-    ref
-} from 'vue'
+import {ref} from 'vue'
+import Marker from "@/components/Marker";
 
 export default {
     name: "Mapa",
+    components: {Marker},
     setup() {
         const center = ref([ -8.224454,39.399872])
         const projection = ref('EPSG:4326')
