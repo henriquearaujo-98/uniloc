@@ -38,7 +38,7 @@
                     <input type="text" class="form-control" name="['População residente']"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Criar</button>
-                <a href="/instituicoes" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>
+                <a href="/informacoes" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>
             </form>
         </div>
     </div>

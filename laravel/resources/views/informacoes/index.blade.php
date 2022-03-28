@@ -57,7 +57,7 @@
                                 <td>Casados (%)</td>
                                 <td>Divorciados (%)</td>
                                 <td>Viúvos (%)</td>
-                                <td>Famílias222</td>
+                                <td>Famílias</td>
                                 <td>Famílias unipessoais (%)</td>
                                 <td>Famílias com 2 pessoas (%)</td>
                                 <td>Alojamentos</td>
