@@ -135,7 +135,9 @@ class Instituicao_has_CursoController extends Controller
 //             return Instituicao_has_Curso::where('cursoS_ID', $cursoID)->where('instituicoes_ID', $instID)->delete();
 //         else
 //             return response('Curso da instituição não encontrado', 404);
-        $inst_curso = Instituicao_has_Curso::findOrFail($cursoID, $instID);
+        $inst_curso = Instituicao_has_Curso::where('cursos_ID',$cursoID)
+                                           ->where('instituicoes_ID', $instID);
+//         ::findOrFail($cursoID, $instID);
         $inst_curso->delete();
         return redirect('/inst_cursos');
     }

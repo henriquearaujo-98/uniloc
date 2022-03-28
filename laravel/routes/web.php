@@ -37,6 +37,11 @@ Route::get('/provas_ingresso', [ProvasIngressoController::class, 'exames']);
 Route::get('/inst_cursos/{cursoID}/{instID}', [Instituicao_has_CursoController::class, 'edit']);
 // Route::get('/inst_cursos/{cursoID}/{instID}','Instituicao_has_CursoController@edit')->name('inst_cursos.edit');
 
+
+Route::delete('/inst_cursos/destroy/{cursoID}/{instID}','App\Http\Controllers\Instituicao_has_CursoController@destroy')->name('inst_cursos.destroy');
+
+
+
 route::get('/searchTipo', [Tipo_EnsinoController::class, 'searchTipo']);
 route::get('/searchArea', [Area_EstudoController::class, 'searchArea']);
 route::get('/searchCidade', [CidadesController::class, 'searchCidade']);
