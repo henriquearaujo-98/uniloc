@@ -87,6 +87,8 @@ class InstituicaoController extends Controller
             'nome' => 'required|unique:instituicoes',
             'tipos_ensino_ID' => 'required',
             'cod_postal' => 'required',
+            'latitude' => 'nullable',
+            'longitude '=> 'nullable',
             'rank' => 'nullable',
         ]);
         $show = Instituicao::create($validatedData);
@@ -119,6 +121,8 @@ class InstituicaoController extends Controller
             'nome' => 'required|unique:instituicoes',
             'tipos_ensino_ID' => 'required',
             'cod_postal' => 'required',
+            'latitude' => 'nullable',
+            'longitude '=> 'nullable',
             'rank' => 'nullable',
         ]);
 

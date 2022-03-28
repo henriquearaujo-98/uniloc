@@ -14,6 +14,8 @@ class Instituicao extends Model
         'nome',
         'tipos_ensino_ID',
         'cod_postal',
+        'latitude',
+        'longitude',
         'rank'
     ];
 
