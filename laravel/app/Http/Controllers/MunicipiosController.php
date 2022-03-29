@@ -112,8 +112,12 @@ class MunicipiosController  extends Controller
      */
     public function destroy($id)
     {
-        $municipio = Municipio::findOrFail($id);
-        $municipio->delete();
-        return redirect('/municipios');
+        try{
+            $municipio = Municipio::findOrFail($id);
+            $municipio->delete();
+        } catch (\Exception $exception) {
+            return redirect('/municipios')->with('danger', 'Error - Unable to delete record');
+        }
+        return redirect('/municipios')->with('success', 'Data is successfully deleted');
     }
 }

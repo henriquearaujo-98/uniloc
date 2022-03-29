@@ -59,6 +59,14 @@
 {{--                    <input type="text" class="form-control" name="cod_postal"/>--}}
 {{--                </div>--}}
                 <div class="form-group">
+                    <label for="lat_inst">Latitude: </label>
+                    <input type="text" class="form-control" name="latitude"/>
+                </div>
+                <div class="form-group">
+                    <label for="long_inst">Longitude: </label>
+                    <input type="text" class="form-control" name="longitude"/>
+                </div>
+                <div class="form-group">
                     <label for="rank_inst">Rank: </label>
                     <input type="text" class="form-control" name="rank"/>
                 </div>

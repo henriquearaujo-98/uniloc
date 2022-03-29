@@ -14,6 +14,12 @@
         </div>
     @endif
 
+    @if (session()->get('danger'))
+        <div class="alert alert-danger">
+            {{ session()->get('danger') }}
+        </div>
+    @endif
+
     <div style="margin-top: 45px">
         <div class="col">
             <div class="col-md-12">
@@ -57,7 +63,7 @@
                                 <td>Casados (%)</td>
                                 <td>Divorciados (%)</td>
                                 <td>Viúvos (%)</td>
-                                <td>Famílias222</td>
+                                <td>Famílias</td>
                                 <td>Famílias unipessoais (%)</td>
                                 <td>Famílias com 2 pessoas (%)</td>
                                 <td>Alojamentos</td>

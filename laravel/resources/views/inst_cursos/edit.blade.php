@@ -20,11 +20,11 @@
                     </ul>
                 </div><br />
             @endif
-            <form method="post" action="{{ route('inst_cursos.update', $inst_curso->cursos_ID, $inst_curso->instituicoes_ID)}}">
+            <form method="post" action="{{ route('inst_cursos.update', ['cursoID'=>$inst_curso->cursos_ID, 'instID'=>$inst_curso->instituicoes_ID])}}">
                 @csrf
                 <div class="form-group">
                     @csrf
-                    @method('PATCH')
+                    @method('PUT')
                     <label for="nome">Curso:</label>
                     <select class="select4 form-control" name="cursos_ID" id="cursos_ID">
                         <option value="{{ $inst_curso->cursos_ID }}">{{$inst_curso->nome_curso->nome}}</option>
@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     @csrf
-                    @method('PATCH')
+                    @method('PUT')
                     <label for="nome">Instituição:</label>
                     <select class="select4 form-control" name="instituicoes_ID" id="instituicoes_ID">
                         <option value="{{ $inst_curso->instituicoes_ID }}">{{$inst_curso->nome_inst->nome}}</option>
@@ -52,21 +52,21 @@
 
                 <div class="form-group">
                     @csrf
-                    @method('PATCH')
+                    @method('PUT')
                     <label for="nome">Nota 1ª Fase:</label>
                     <input type="number" class="form-control" step=".1" min="0" max="200.0" name="nota_ult_1fase" value="{{ $inst_curso->nota_ult_1fase }}"/>
                 </div>
 
                 <div class="form-group">
                     @csrf
-                    @method('PATCH')
+                    @method('PUT')
                     <label for="nome">Nota 2ª Fase:</label>
                     <input type="number" class="form-control" step=".1" min="0" max="200.0" name="nota_ult_2fase" value="{{ $inst_curso->nota_ult_2fase }}"/>
                 </div>
 
                 <div class="form-group">
                     @csrf
-                    @method('PATCH')
+                    @method('PUT')
                     <label for="nome">Plano de Estudo:</label>
                     <input type="text" class="form-control" name="plano_curso" value="{{ $inst_curso->plano_curso }}"/>
                 </div>

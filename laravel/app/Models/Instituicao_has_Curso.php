@@ -19,7 +19,7 @@ class Instituicao_has_Curso extends Model
 
     protected $table = 'instituicoes_has_curso';
     public $timestamps = false;
-    protected $primaryKey = 'ID';
+    protected $primaryKey = (['cursos_ID', 'instituicoes_ID']);
     public $incrementing = false;
 
     public function instituicao(){

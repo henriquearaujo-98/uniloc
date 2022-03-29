@@ -112,8 +112,12 @@ class Codigos_PostaisController extends Controller
      */
     public function destroy($id)
     {
-        $codigo_postal = Codigo_Postal::findOrFail($id);
-        $codigo_postal->delete();
-        return redirect('/codigos_postais');
+        try{
+            $codigo_postal = Codigo_Postal::findOrFail($id);
+            $codigo_postal->delete();
+        } catch (\Exception $exception) {
+            return redirect('/codigos_postais')->with('danger', 'Error - Unable to delete record (Foreign Key)');
+        }
+        return redirect('/codigos_postais')->with('success', 'Data is successfully deleted');
     }
 }

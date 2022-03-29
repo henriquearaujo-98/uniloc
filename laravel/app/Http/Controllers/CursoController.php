@@ -122,8 +122,12 @@ class CursoController extends Controller
      */
     public function destroy($id)
     {
-        $curso = Curso::findOrFail($id);
-        $curso->delete();
-        return redirect('/cursos');
+        try{
+            $curso = Curso::findOrFail($id);
+            $curso->delete();
+        } catch (\Exception $exception) {
+            return redirect('/cursos')->with('danger', 'Error - Unable to delete record (Foreign Key)');
+        }
+        return redirect('/cursos')->with('success', 'Data is successfully deleted');
     }
 }

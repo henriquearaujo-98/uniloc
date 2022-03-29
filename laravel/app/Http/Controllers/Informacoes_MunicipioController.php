@@ -54,6 +54,25 @@ class Informacoes_MunicipioController extends Controller
      */
     public function store(Request $request)
     {
+        $request->request->remove('_token');
+        $request->request->remove('_method');
+
+        $array_keys = array_keys($request->all());      // O pedido API substitui os espaços por underscores. Temos que reverter isso.
+        foreach ($array_keys as $array_key) {
+
+            if($array_key == 'municipio_ID')
+                continue;
+//             if($array_key == 'Famílias')
+//                 continue;
+//             if($array_key == 'Alojamentos')
+//                 continue;
+//             if($array_key == 'Edificios')
+//                 continue;
+            if (!strpos($array_key, '_'))
+                continue;
+            $request[str_replace("_", " ", $array_key)] = $request[$array_key];
+            unset($request[$array_key]);
+        }
 //         return $request->all();
         $show = Informacoes_Municipio::create($request->all());
         return redirect('/informacoes')->with('success', 'Data is successfully saved');
@@ -79,20 +98,35 @@ class Informacoes_MunicipioController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->request->remove('_token');
+        $request->request->remove('_method');
+
         $array_keys = array_keys($request->all());      // O pedido API substitui os espaços por underscores. Temos que reverter isso.
         foreach ($array_keys as $array_key) {
 
             if($array_key == 'municipio_ID')
                 continue;
-
+//             if($array_key == 'Famílias')
+//                 continue;
+//             if($array_key == 'Alojamentos')
+//                 continue;
+//             if($array_key == 'Edificios')
+//                 continue;
+            if (!strpos($array_key, '_'))
+                continue;
             $request[str_replace("_", " ", $array_key)] = $request[$array_key];
             unset($request[$array_key]);
         }
 
-        $inf = Informacoes_Municipio::findOrFail($id);
-        return $inf->update($request->all());
+        Informacoes_Municipio::whereId($id)->update($request->all());
+        return redirect('/informacoes')->with('success', 'Data is successfully updated');
+    }
 
-
+    public function edit($id)
+    {
+        $informacao = Informacoes_Municipio::findOrFail($id);
+        $municipios = Municipio::all();
+        return view('informacoes.edit', compact('informacao', 'municipios'));
     }
 
     /**
@@ -103,8 +137,12 @@ class Informacoes_MunicipioController extends Controller
      */
     public function destroy($id)
     {
-        $inf_mun = Informacoes_Municipio::findOrFail($id);
-        $inf_mun->delete();
-        return redirect('/informacoes');
+        try{
+            $inf_mun = Informacoes_Municipio::findOrFail($id);
+            $inf_mun->delete();
+        } catch (\Exception $exception) {
+            return redirect('/informacoes')->with('danger', 'Error - Unable to delete record (Foreign Key)');
+        }
+        return redirect('/informacoes')->with('success', 'Data is successfully deleted');
     }
 }

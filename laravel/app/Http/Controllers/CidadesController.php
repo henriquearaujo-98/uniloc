@@ -110,8 +110,12 @@ class CidadesController extends Controller
      */
     public function destroy($id)
     {
-        $cidade = Cidade::findOrFail($id);
-        $cidade->delete();
-        return redirect('/cidades');
+        try{
+            $cidade = Cidade::findOrFail($id);
+            $cidade->delete();
+        } catch (\Exception $exception) {
+            return redirect('/cidades')->with('danger', 'Error - Unable to delete record (Foreign Key)');
+        }
+        return redirect('/cidades')->with('success', 'Data is successfully deleted');
     }
 }

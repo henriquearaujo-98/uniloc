@@ -62,6 +62,18 @@
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
+                    <label for="nome">Latitude:</label>
+                    <input type="text" class="form-control" name="latitude" value="{{ $instituicao->latitude }}"/>
+                </div>
+                <div class="form-group">
+                    @csrf
+                    @method('PATCH')
+                    <label for="nome">Longitude:</label>
+                    <input type="text" class="form-control" name="longitude" value="{{ $instituicao->longitude }}"/>
+                </div>
+                <div class="form-group">
+                    @csrf
+                    @method('PATCH')
                     <label for="nome">Rank:</label>
                     <input type="text" class="form-control" name="rank" value="{{ $instituicao->rank }}"/>
                 </div>

@@ -14,6 +14,12 @@
         </div>
     @endif
 
+    @if (session()->get('danger'))
+        <div class="alert alert-danger">
+            {{ session()->get('danger') }}
+        </div>
+    @endif
+
     <div style="margin-top: 45px">
         <div class="col">
             <div class="col-md-12">
@@ -46,6 +52,8 @@
                                 <td>Nome</td>
                                 <td>Tipo de Ensino</td>
                                 <td>Código Postal</td>
+                                <td>Latitude</td>
+                                <td>Longitude</td>
                                 <td>Rank</td>
                                 <td colspan="2"></td>
                             </tr>
@@ -57,6 +65,8 @@
                                     <td>{{$instituicao->nome}}</td>
                                     <td>{{$instituicao->tipo_ensino->nome}}</td>
                                     <td>{{$instituicao->codigo_postal->cod_postal}} - {{$instituicao->codigo_postal->cidade->nome}}</td>
+                                    <td>{{$instituicao->latitude}}</td>
+                                    <td>{{$instituicao->longitude}}</td>
                                     <td>{{$instituicao->rank}}</td>
                                     <td><a href="{{ route('instituicoes.edit', $instituicao->ID)}}" class="btn btn-warning">Editar</a></td>
                                     <td>

@@ -92,9 +92,13 @@ class DistritosController extends Controller
      */
     public function destroy($id)
     {
-        $distrito = Distrito::findOrFail($id);
-        $distrito->delete();
-        return redirect('/distritos');
+        try{
+            $distrito = Distrito::findOrFail($id);
+            $distrito->delete();
+        } catch (\Exception $exception) {
+            return redirect('/distritos')->with('danger', 'Error - Unable to delete record (Foreign Key)');
+        }
+        return redirect('/distritos')->with('success', 'Data is successfully deleted');
     }
 
 //     public function GetDistritosList()
