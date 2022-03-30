@@ -70,7 +70,6 @@ export default {
             }
 
             await this.$store.dispatch(`results_store/get_request`, data)
-            await this.$store.dispatch(`results_store/mapAPI`)
         },
         array_to_string(arr){
 
