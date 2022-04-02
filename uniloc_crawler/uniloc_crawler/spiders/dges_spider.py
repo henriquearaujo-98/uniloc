@@ -241,12 +241,12 @@ class inst_cursoCrawler(scrapy.Spider):
 
         try:
             notas = response.css(".body10a .tvag::text").getall()
-            if notas[len(notas)-2] is not None:
+            if notas[len(notas)-2] is not None or notas[len(notas)-2] != '\xa0':
                 nota_ult_ER = notas[len(notas)-1]
             else:
                 nota_ult_ER = "Informação não disponível"
 
-            if notas[len(notas)-1] is not None:
+            if notas[len(notas)-1] is not None or notas[len(notas)-1] != '\xa0':
                 nota_ult_EN = notas[len(notas)-2]
             else:
                 nota_ult_EN = "Informação não disponível"
@@ -744,3 +744,67 @@ class coordenadas_patch(scrapy.Spider):
             'latidude': coor[0],
             'longitude': coor[1]
         }
+
+class notas_patch(scrapy.Spider):
+    name = "notas_patch"
+
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'uniloc_crawler.pipelines.notas_patchPipeline': 400
+        }
+    }
+
+    start_urls = [
+        'https://dges.gov.pt/guias/indest.asp?reg=11',
+        'https://dges.gov.pt/guias/indest.asp?reg=12',
+        'https://dges.gov.pt/guias/indest.asp?reg=13',
+        'https://dges.gov.pt/guias/indest.asp?reg=21',
+        'https://dges.gov.pt/guias/indest.asp?reg=22'
+
+    ]
+
+    def parse(self, response):
+        # .box9 é a classe que engloba os titulos de instituições
+        for post in response.css('.box9'):
+
+            cod_inst = post.css('div::text')[0].get()
+
+            # seletor css para o proximo irmão (sibling)
+            concat = " + .lin-ce "
+            while(post.css('.box9 ' + concat).get() is not None):
+                cod_curso = post.css('.box9 '+concat+' .lin-ce-c2::text').get()
+
+                link = response.urljoin(
+                    post.css('.box9 '+concat+' .lin-ce-c3 a::attr(href)').get())
+                yield scrapy.Request(url=link, callback=self.parse_ult, meta={'curso': cod_curso, 'inst': cod_inst})
+
+                concat = concat + " + .lin-ce "
+
+    def parse_ult(self, response):
+        curso = response.request.meta['curso']
+        inst = response.request.meta['inst']
+
+        try:
+            notas = response.css(".body10a .tvag::text").getall()
+            if notas[len(notas)-2] is not None or notas[len(notas)-2] != '\xa0':
+                nota_ult_ER = notas[len(notas)-1]
+            else:
+                nota_ult_ER = "Informação não disponível"
+
+            if notas[len(notas)-1] is not None or notas[len(notas)-1] != '\xa0':
+                nota_ult_EN = notas[len(notas)-2]
+            else:
+                nota_ult_EN = "Informação não disponível"
+            yield{
+                'curso': curso,
+                'inst': inst,
+                'nota_ult_EN': nota_ult_EN,
+                'nota_ult_ER': nota_ult_ER
+            }
+        except:
+            yield{
+                'curso': curso,
+                'inst': inst,
+                'nota_ult_EN': "Informação não disponível",
+                'nota_ult_ER': "Informação não disponível"
+            }

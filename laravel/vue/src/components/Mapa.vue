@@ -8,14 +8,22 @@
             <ol-tile-layer>
                 <ol-source-osm />
             </ol-tile-layer>
-
+            <ol-overlay v-for="item in $store.state['results_store'].results" :position="[item.instituicao[0].longitude,item.instituicao[0].latitude]">
+                <Marker :item='item'
+                        :rank="item.rank"
+                        :inst="item.instituicao[0].nome"/>
+            </ol-overlay>
         </ol-map>
-        <Marker item=""/>
+        <div style="background: black;" v-for="item in $store.state['results_store'].results">
+            <Marker :item='item'
+                    :rank="item.rank"
+                    :inst="item.instituicao[0].nome"/>
+        </div>
     </div>
 </template>
 
 <script>
-import {ref} from 'vue'
+import { ref } from 'vue'
 import Marker from "@/components/Marker";
 
 export default {
@@ -26,16 +34,21 @@ export default {
         const projection = ref('EPSG:4326')
         const zoom = ref(6.5)
         const rotation = ref(0)
+
         return {
             center,
             projection,
             zoom,
-            rotation
+            rotation,
+
         }
     },
+
 }
 </script>
 
 <style scoped>
-
+.overlay-content{
+    background: red;
+}
 </style>
