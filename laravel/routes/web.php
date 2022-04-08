@@ -13,6 +13,7 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\Instituicao_has_CursoController;
 use App\Http\Controllers\Informacoes_MunicipioController;
 use App\Models\Prova_Ingresso;
+use App\Http\Controllers\CustomAuthController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -54,8 +55,15 @@ route::get('/searchInst', [InstituicaoController::class, 'searchInst']);
 route::get('/searchMunicipio', [MunicipiosController::class, 'searchMunicipio']);
 route::get('/searchProvas', [ProvasIngressoController::class, 'searchProvas']);
 route::get('/searchInfo', [Informacoes_MunicipioController::class, 'searchInfo']);
-route::get('//searchInst_Curso', [Instituicao_has_CursoController::class, 'searchInst_Curso']);
+route::get('/searchInst_Curso', [Instituicao_has_CursoController::class, 'searchInst_Curso']);
 
 route::get('/menu', function(){
     return view('menu');
 });
+
+Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
+Route::get('login', [CustomAuthController::class, 'index'])->name('login');
+Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
+Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
+Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
+Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
