@@ -17,18 +17,18 @@ use App\Http\Controllers\CustomAuthController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::resource('tipos_ensino', Tipo_EnsinoController::class);
-Route::resource('areas_estudo', Area_EstudoController::class);
-Route::resource('distritos', DistritosController::class);
-Route::resource('exames', ExameController::class);
-Route::resource('cidades', CidadesController::class);
-Route::resource('municipios', MunicipiosController::class);
-Route::resource('codigos_postais', Codigos_PostaisController::class);
-Route::resource('instituicoes', InstituicaoController::class);
-Route::resource('cursos', CursoController::class);
-Route::resource('inst_cursos', Instituicao_has_CursoController::class);
-Route::resource('prova_ingresso', ProvasIngressoController::class);
-Route::resource('informacoes', Informacoes_MunicipioController::class);
+Route::resource('tipos_ensino', Tipo_EnsinoController::class)->middleware('auth');
+Route::resource('areas_estudo', Area_EstudoController::class)->middleware('auth');
+Route::resource('distritos', DistritosController::class)->middleware('auth');
+Route::resource('exames', ExameController::class)->middleware('auth');
+Route::resource('cidades', CidadesController::class)->middleware('auth');
+Route::resource('municipios', MunicipiosController::class)->middleware('auth');
+Route::resource('codigos_postais', Codigos_PostaisController::class)->middleware('auth');
+Route::resource('instituicoes', InstituicaoController::class)->middleware('auth');
+Route::resource('cursos', CursoController::class)->middleware('auth');
+Route::resource('inst_cursos', Instituicao_has_CursoController::class)->middleware('auth');
+Route::resource('prova_ingresso', ProvasIngressoController::class)->middleware('auth');
+Route::resource('informacoes', Informacoes_MunicipioController::class)->middleware('auth');
 
 Route::get('/cursos/{id}', [InstituicaoController::class, 'cursos']);
 Route::get('/provas_ingresso', [ProvasIngressoController::class, 'exames']);
@@ -39,29 +39,29 @@ Route::get('/provas_ingresso', [ProvasIngressoController::class, 'exames']);
 // Route::get('/inst_cursos/{cursoID}/{instID}','Instituicao_has_CursoController@edit')->name('inst_cursos.edit');
 
 
-Route::delete('/inst_cursos/destroy/{cursoID}/{instID}','App\Http\Controllers\Instituicao_has_CursoController@destroy')->name('inst_cursos.destroy');
-Route::get('/inst_cursos/edit/{cursoID}/{instID}','App\Http\Controllers\Instituicao_has_CursoController@edit')->name('inst_cursos.edit');
-Route::put('/inst_cursos/update/{cursoID}/{instID}','App\Http\Controllers\Instituicao_has_CursoController@update')->name('inst_cursos.update');
+Route::delete('/inst_cursos/destroy/{cursoID}/{instID}','App\Http\Controllers\Instituicao_has_CursoController@destroy')->name('inst_cursos.destroy')->middleware('auth');
+Route::get('/inst_cursos/edit/{cursoID}/{instID}','App\Http\Controllers\Instituicao_has_CursoController@edit')->name('inst_cursos.edit')->middleware('auth');
+Route::put('/inst_cursos/update/{cursoID}/{instID}','App\Http\Controllers\Instituicao_has_CursoController@update')->name('inst_cursos.update')->middleware('auth');
 
 
-route::get('/searchTipo', [Tipo_EnsinoController::class, 'searchTipo']);
-route::get('/searchArea', [Area_EstudoController::class, 'searchArea']);
-route::get('/searchCidade', [CidadesController::class, 'searchCidade']);
-route::get('/searchPostal', [Codigos_PostaisController::class, 'searchPostal']);
-route::get('/searchExame', [ExameController::class, 'searchExame']);
-route::get('/searchDistrito', [DistritosController::class, 'searchDistrito']);
-route::get('/searchCurso', [CursoController::class, 'searchCurso']);
-route::get('/searchInst', [InstituicaoController::class, 'searchInst']);
-route::get('/searchMunicipio', [MunicipiosController::class, 'searchMunicipio']);
-route::get('/searchProvas', [ProvasIngressoController::class, 'searchProvas']);
-route::get('/searchInfo', [Informacoes_MunicipioController::class, 'searchInfo']);
-route::get('/searchInst_Curso', [Instituicao_has_CursoController::class, 'searchInst_Curso']);
+route::get('/searchTipo', [Tipo_EnsinoController::class, 'searchTipo'])->middleware('auth');
+route::get('/searchArea', [Area_EstudoController::class, 'searchArea'])->middleware('auth');
+route::get('/searchCidade', [CidadesController::class, 'searchCidade'])->middleware('auth');
+route::get('/searchPostal', [Codigos_PostaisController::class, 'searchPostal'])->middleware('auth');
+route::get('/searchExame', [ExameController::class, 'searchExame'])->middleware('auth');
+route::get('/searchDistrito', [DistritosController::class, 'searchDistrito'])->middleware('auth');
+route::get('/searchCurso', [CursoController::class, 'searchCurso'])->middleware('auth');
+route::get('/searchInst', [InstituicaoController::class, 'searchInst'])->middleware('auth');
+route::get('/searchMunicipio', [MunicipiosController::class, 'searchMunicipio'])->middleware('auth');
+route::get('/searchProvas', [ProvasIngressoController::class, 'searchProvas'])->middleware('auth');
+route::get('/searchInfo', [Informacoes_MunicipioController::class, 'searchInfo'])->middleware('auth');
+route::get('/searchInst_Curso', [Instituicao_has_CursoController::class, 'searchInst_Curso'])->middleware('auth');
 
 route::get('/menu', function(){
     return view('menu');
 });
 
-Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
+Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->middleware('auth');
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
 Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
