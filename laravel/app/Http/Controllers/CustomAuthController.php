@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Hash;
 use Session;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class CustomAuthController  extends Controller
@@ -70,6 +71,45 @@ class CustomAuthController  extends Controller
    {
        if(Auth::check()){
            return view('dashboard');
+       }
+
+       return redirect("login")->withSuccess('You are not allowed to access');
+   }
+
+   public function counter()
+   {
+       if(Auth::check()){
+           $distritos = DB::table('distritos')->count();
+           $municipios = DB::table('municipios')->count();
+           $info_mun = DB::table('informacoes_municipios')->count();
+           $cidades = DB::table('cidades')->count();
+           $cod_pos = DB::table('codigos_postais')->count();
+           $inst = DB::table('instituicoes')->count();
+           $tipos_ensino = DB::table('tipos_ensino')->count();
+           $cursos_inst = DB::table('instituicoes_has_curso')->count();
+           $provas = DB::table('provas_ingresso')->count();
+           $exames = DB::table('exames')->count();
+           $cursos = DB::table('cursos')->count();
+           $areas = DB::table('area_estudo')->count();
+           $users = DB::table('users')->count();
+           $total = $distritos+$municipios+$info_mun+$cidades+$cod_pos+$inst+$tipos_ensino+$cursos_inst
+                    +$provas+$exames+$cursos+$areas+$users;
+           return view('counter',compact(
+                'distritos',
+                'municipios',
+                'info_mun',
+                'cidades',
+                'cod_pos',
+                'inst',
+                'tipos_ensino',
+                'cursos_inst',
+                'provas',
+                'exames',
+                'cursos',
+                'areas',
+                'users',
+                'total'
+           ));
        }
 
        return redirect("login")->withSuccess('You are not allowed to access');
