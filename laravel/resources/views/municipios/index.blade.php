@@ -1,5 +1,5 @@
 @extends('municipios.layout')
-@include('menu')
+@include('dashboard')
 <style>
     .uper {
         margin-top: 40px;
@@ -19,7 +19,7 @@
         </div>
     @endif
 
-    <div style="margin-top: 45px">
+    <div style="margin-top: 10px">
         <div class="col">
         <div class="col-md-12">
             <div>

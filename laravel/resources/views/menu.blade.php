@@ -19,19 +19,11 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
-<style>
-    div.ex1 {
-        margin: 10px;
-    }
-</style>
-
 </head>
 
 <body>
 <div class="row">
     <div class="col-2">
-        <div class="ex1">
-            <h5>Back-Office</h5>
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link" href="/distritos">Gerir Distritos</a>
@@ -70,7 +62,6 @@
                     <a class="nav-link" href="/areas_estudo">Gerir Áreas de Estudo</a>
                 </li>
             </ul>
-        </div>
         <!-- Falta fechar um div -->
 
 </div>

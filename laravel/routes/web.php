@@ -59,7 +59,7 @@ route::get('/searchInst_Curso', [Instituicao_has_CursoController::class, 'search
 
 route::get('/menu', function(){
     return view('menu');
-});
+})->middleware('auth');
 
 Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->middleware('auth');
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
