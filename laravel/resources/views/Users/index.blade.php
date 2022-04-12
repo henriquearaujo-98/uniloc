@@ -22,14 +22,14 @@
 
     <div style="margin-top: 10px">
         <div>
-{{--            <form action="/searchTipo" method="get">--}}
-{{--                <div class="input-group">--}}
-{{--                    <input type="search" name="tipo" id="tipo" class="form-control mb-md-2" placeholder="Pesquisar tipo de ensino...">--}}
-{{--                    <span class="input-group-prepend pl-1">--}}
-{{--                        <button type="submit" class="btn btn-primary mb-md-2"> Search </button>--}}
-{{--                    </span>--}}
-{{--                </div>--}}
-{{--            </form>--}}
+            <form action="/searchUser" method="get">
+                <div class="input-group">
+                    <input type="search" name="user" id="user" class="form-control mb-md-2" placeholder="Pesquisar utilizador...">
+                    <span class="input-group-prepend pl-1">
+                        <button type="submit" class="btn btn-primary mb-md-2"> Search </button>
+                    </span>
+                </div>
+            </form>
         </div>
         <div class="card">
             <div class="card-header">
@@ -38,7 +38,7 @@
                         Utilizadores
                     </div>
                     <div class="col-md-6 text-right">
-{{--                        <a href="{{ route('tipos_ensino.create')}}" class="btn btn-success">Criar</a>--}}
+                        <a href="{{ route('users.create')}}" class="btn btn-success">Criar</a>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-{{--                            <td><a href="{{ route('tipos_ensino.edit', $tipo_ensino->ID)}}" class="btn btn-warning">Editar</a></td>--}}
+                            <td><a href="{{ route('users.edit', $user->id)}}" class="btn btn-warning">Editar</a></td>
                             <td>
                                 <form action="{{ route('users.destroy', $user->id)}}" method="post">
                                     @csrf
