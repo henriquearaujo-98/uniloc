@@ -12,6 +12,7 @@ use App\Http\Controllers\Codigos_PostaisController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\Instituicao_has_CursoController;
 use App\Http\Controllers\Informacoes_MunicipioController;
+use App\Http\Controllers\UserController;
 use App\Models\Prova_Ingresso;
 use App\Http\Controllers\CustomAuthController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ Route::resource('cursos', CursoController::class)->middleware('auth');
 Route::resource('inst_cursos', Instituicao_has_CursoController::class)->middleware('auth');
 Route::resource('prova_ingresso', ProvasIngressoController::class)->middleware('auth');
 Route::resource('informacoes', Informacoes_MunicipioController::class)->middleware('auth');
+Route::resource('users', UserController::class)->middleware('auth');
 
 Route::get('/cursos/{id}', [InstituicaoController::class, 'cursos']);
 Route::get('/provas_ingresso', [ProvasIngressoController::class, 'exames']);

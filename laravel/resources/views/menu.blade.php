@@ -26,6 +26,9 @@
     <div class="col-2">
             <ul class="nav flex-column">
                 <li class="nav-item">
+                    <a class="nav-link" href="/users">Gerir Utilizadores</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/distritos">Gerir Distritos</a>
                 </li>
                 <li class="nav-item">
