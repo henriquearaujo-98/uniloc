@@ -37,7 +37,7 @@ class SearchController_API extends Controller
      */
     public function search(Request $request)
     {
-        
+
         $distritos_id = explode(',', $request->distritos);
         $cidades_id = explode(',',$request->cidade);
         $instituicoes_ids = explode(',',$request->insts);
