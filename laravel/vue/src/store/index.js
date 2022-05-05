@@ -86,8 +86,8 @@ const results_store = {
             // formdata.append("cursos", data.cursos);
             // formdata.append("tipos_inst", data.tipos_inst);
             // formdata.append("provas", data.provas);
-            // formdata.append("nota_min_min", data.nota_min_min);
-            // formdata.append("nota_min_max", data.nota_min_max);
+             formdata.append("nota_min_min", data.nota_min_min);
+             formdata.append("nota_min_max", data.nota_min_max);
             // formdata.append("rank_min", data.rank_min);
             // formdata.append("rank_max", data.rank_max);
             formdata.append("distritos", 6);
