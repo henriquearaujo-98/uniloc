@@ -241,12 +241,12 @@ class inst_cursoCrawler(scrapy.Spider):
 
         try:
             notas = response.css(".body10a .tvag::text").getall()
-            if notas[len(notas)-2] is not None or notas[len(notas)-2] != '\xa0':
+            if notas[len(notas)-2] is not None and notas[len(notas)-2] != '\xa0':
                 nota_ult_ER = notas[len(notas)-1]
             else:
                 nota_ult_ER = "Informação não disponível"
 
-            if notas[len(notas)-1] is not None or notas[len(notas)-1] != '\xa0':
+            if notas[len(notas)-1] is not None and notas[len(notas)-1] != '\xa0':
                 nota_ult_EN = notas[len(notas)-2]
             else:
                 nota_ult_EN = "Informação não disponível"
@@ -786,12 +786,12 @@ class notas_patch(scrapy.Spider):
 
         try:
             notas = response.css(".body10a .tvag::text").getall()
-            if notas[len(notas)-2] is not None or notas[len(notas)-2] != '\xa0':
+            if notas[len(notas)-2] is not None and notas[len(notas)-2] != '\xa0':
                 nota_ult_ER = notas[len(notas)-1]
             else:
                 nota_ult_ER = "Informação não disponível"
 
-            if notas[len(notas)-1] is not None or notas[len(notas)-1] != '\xa0':
+            if notas[len(notas)-1] is not None and notas[len(notas)-1] != '\xa0':
                 nota_ult_EN = notas[len(notas)-2]
             else:
                 nota_ult_EN = "Informação não disponível"
