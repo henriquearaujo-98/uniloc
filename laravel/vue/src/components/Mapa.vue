@@ -8,13 +8,15 @@
             <ol-tile-layer>
                 <ol-source-osm />
             </ol-tile-layer>
-            <ol-overlay v-for="item in $store.state['results_store'].results" :position="[item.instituicao[0].longitude,item.instituicao[0].latitude]">
+
+            <ol-overlay v-for="item in $store.state['results_store'].results_unique" :position="[item.instituicao[0].longitude,item.instituicao[0].latitude]">
                 <Marker :item='item'
                         :rank="item.rank"
-                        :inst="item.instituicao[0].nome"/>
+                        :inst="item.instituicao[0].nome"
+                        />
             </ol-overlay>
         </ol-map>
-        <div style="background: black;" v-for="item in $store.state['results_store'].results">
+        <div style="background: black;" v-for="item in $store.state['results_store'].results_unique">
             <Marker :item='item'
                     :rank="item.rank"
                     :inst="item.instituicao[0].nome"/>

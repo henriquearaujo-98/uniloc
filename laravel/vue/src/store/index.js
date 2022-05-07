@@ -62,12 +62,19 @@ const results_store = {
     namespaced : true,
     state: {
         results : [],
+        results_unique : [],
         done: Boolean
     },
     mutations: {
         POPULATE_RESULTS(state, data){
             state.results = data;
-            console.log(data)
+            state.results_unique = data.filter((obj, pos, arr) => {
+                return arr
+                    .map(mapObj => mapObj.instituicoes_ID)
+                    .indexOf(obj.instituicoes_ID) == pos;
+            });
+
+            console.log(state.results_unique)
         }
     },
     getters: {

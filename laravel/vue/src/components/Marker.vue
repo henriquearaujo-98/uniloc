@@ -1,9 +1,15 @@
 <template>
-<div class="marker">
+<div class="marker" @mouseenter="this.state.hover = true" @mouseleave="this.state.hover = false">
     <div class="rank" v-show="this.item.rank"><small>#{{this.item.rank}}</small></div>
     <div class="inst">{{ this.state.sigla }}</div>
     <div class="nota">{{ this.item.nota_ult_1fase ? this.item.nota_ult_1fase : this.item.nota_ult_2fase }}</div>
+    <div class="hover_obj" v-show="this.state.hover">
+        <ul v-for="item in this.cursos">
+            <li>{{item.curso[0].nome}}</li>
+        </ul>
+    </div>
 </div>
+
 </template>
 
 <script>
@@ -16,14 +22,30 @@ export default {
         rank: ''
     },
     setup(){
-        const state = reactive({sigla: false})
+        const state = reactive({sigla: false, hover : false})
+        let cursos = []
         return{
             state,
+            cursos,
+
         }
     },
     mounted() {
+
+
+
         if(this.item.nota_ult_1fase == 'Informação não disponível'){
             this.item.nota_ult_1fase = 'ND'
+        }
+
+        this.$store.state['results_store'].results.forEach(i => {
+            if(i.instituicoes_ID == this.item.instituicoes_ID)
+                this.cursos.push(i);
+        })
+
+        if(this.cursos.length > 1){
+            this.item.nota_ult_1fase = ''
+            this.item.nota_ult_2fase = ''
         }
 
         this.state.escola = this.inst.split('-')[1]
@@ -40,12 +62,22 @@ export default {
 
 <style scoped>
 
+.hover_obj{
+    background: black;
+    width: 300px;
+    max-height: 300px;
+    position: relative;
+    z-index: 1;
+    transform: translate(50px, -120px);
+    overflow: scroll;
+}
+
 .marker {
     width: 50px;
     height: 80px;
-    position:relative;
     transform: translate(0, -80px);
     z-index:0;
+    display: block;
 }
 .marker::before {
     content:"";
