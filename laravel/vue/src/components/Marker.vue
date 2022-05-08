@@ -2,11 +2,12 @@
 <div class="marker" @mouseenter="this.state.hover = true" @mouseleave="this.state.hover = false">
     <div class="rank" v-show="this.item.rank"><small>#{{this.item.rank}}</small></div>
     <div class="inst">{{ this.state.sigla }}</div>
-    <div class="nota">{{ this.item.nota_ult_1fase ? this.item.nota_ult_1fase : this.item.nota_ult_2fase }}</div>
+    <div class="nota" v-show="cursos.length < 2">{{ this.item.nota_ult_1fase ? this.item.nota_ult_1fase : this.item.nota_ult_2fase }}</div>
     <div class="hover_obj" v-show="this.state.hover">
-        <ul v-for="item in this.cursos">
-            <li>{{item.curso[0].nome}}</li>
-        </ul>
+        <div v-for="curso in this.cursos">
+            <span>{{curso.curso[0].nome}}</span>
+            <span>{{ curso.nota_ult_1fase ? curso.nota_ult_1fase : curso.nota_ult_2fase }}</span>
+        </div>
     </div>
 </div>
 
@@ -32,8 +33,6 @@ export default {
     },
     mounted() {
 
-
-
         if(this.item.nota_ult_1fase == 'Informação não disponível'){
             this.item.nota_ult_1fase = 'ND'
         }
@@ -43,11 +42,6 @@ export default {
                 this.cursos.push(i);
         })
 
-        if(this.cursos.length > 1){
-            this.item.nota_ult_1fase = ''
-            this.item.nota_ult_2fase = ''
-        }
-
         this.state.escola = this.inst.split('-')[1]
         const temp_inst = this.inst.split('-')[0]
 
@@ -55,7 +49,8 @@ export default {
             .reduce((accumulator, word) => accumulator + word.charAt(0), '');
 
          this.state.sigla = this.state.sigla.replace( /[^A-Z]/g, '' );
-        //console.log(this.state.sigla + " - " + this.inst)
+
+         console.log(this.cursos)
     },
 }
 </script>
@@ -63,13 +58,28 @@ export default {
 <style scoped>
 
 .hover_obj{
-    background: black;
+    background: lightblue;
     width: 300px;
     max-height: 300px;
     position: relative;
     z-index: 1;
-    transform: translate(50px, -120px);
-    overflow: scroll;
+    transform: translate(50px, -35px);
+    overflow-y: scroll;
+    flex-direction: column;
+
+}
+
+.hover_obj div{
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    background: darkcyan;
+    margin-bottom: 2px;
+    padding: 0 5px 0 5px;
+}
+
+.hover_obj div:hover{
+    cursor: pointer;
 }
 
 .marker {
