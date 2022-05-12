@@ -98,7 +98,7 @@ const results_store = {
             // formdata.append("rank_min", data.rank_min);
             // formdata.append("rank_max", data.rank_max);
             formdata.append("distritos", 6);
-           // formdata.append("tipos_inst", 12);
+            // formdata.append("tipos_inst", 12);
 
 
             const res = await axios.post('http://localhost:3500/api/search', formdata,

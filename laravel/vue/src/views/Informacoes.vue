@@ -1,10 +1,14 @@
 <template>
-$END$
+
 </template>
 
 <script>
 export default {
-name: "Informacoes"
+    name: "Informacoes",
+    mounted() {
+        console.log(this.$route.query.instID)
+        console.log(this.$route.query.cursoID)
+    }
 }
 </script>
 

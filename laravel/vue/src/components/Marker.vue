@@ -1,15 +1,27 @@
 <template>
-<div class="marker" @mouseenter="this.state.hover = true" @mouseleave="this.state.hover = false">
-    <div class="rank" v-show="this.item.rank"><small>#{{this.item.rank}}</small></div>
-    <div class="inst">{{ this.state.sigla }}</div>
-    <div class="nota" v-show="cursos.length < 2">{{ this.item.nota_ult_1fase ? this.item.nota_ult_1fase : this.item.nota_ult_2fase }}</div>
-    <div class="hover_obj" v-show="this.state.hover">
-        <div v-for="curso in this.cursos">
-            <span>{{curso.curso[0].nome}}</span>
-            <span>{{ curso.nota_ult_1fase ? curso.nota_ult_1fase : curso.nota_ult_2fase }}</span>
+    <div @mouseenter="this.state.hover = true" @mouseleave="this.state.hover = false">
+
+        <div class="hover_obj" v-show="this.state.hover">
+            <!-- this.$router.push({ path: '/instituicao', query: { instID: this.item.instituicoes_ID, cursoID: curso.curso[0].ID }}) -->
+            <router-link v-for="curso in this.cursos" :to="{ path: '/instituicao', query: { instID: this.item.instituicoes_ID, cursoID: curso.curso[0].ID }}" target="_blank">
+                <div>
+                    <span>{{curso.curso[0].nome}}</span>
+                    <span>{{ curso.nota_ult_1fase ? curso.nota_ult_1fase : curso.nota_ult_2fase }}</span>
+                </div>
+            </router-link>
         </div>
+
+        <div class="marker" >
+
+            <div class="rank" v-show="this.item.rank"><small>#{{this.item.rank}}</small></div>
+            <div class="inst">{{ this.state.sigla }}</div>
+            <div class="nota" v-show="cursos.length < 2">{{ this.item.nota_ult_1fase ? this.item.nota_ult_1fase : this.item.nota_ult_2fase }}</div>
+
+        </div>
+
+
     </div>
-</div>
+
 
 </template>
 
@@ -52,18 +64,26 @@ export default {
 
          console.log(this.cursos)
     },
+    computed:{
+        open(){
+            let routeData = this.$router.resolve({name: 'routeName', query: {data: "someData"}});
+            window.open(routeData.href, '_blank');
+        }
+    }
+
 }
 </script>
 
 <style scoped>
 
 .hover_obj{
+
     background: lightblue;
     width: 300px;
     max-height: 300px;
-    position: relative;
-    z-index: 1;
-    transform: translate(50px, -35px);
+    position: fixed;
+    z-index: 999;
+    transform: translate(50px, 0px);
     overflow-y: scroll;
     flex-direction: column;
 
@@ -76,18 +96,18 @@ export default {
     background: darkcyan;
     margin-bottom: 2px;
     padding: 0 5px 0 5px;
+    position: relative;
+    z-index: 999;
 }
 
 .hover_obj div:hover{
     cursor: pointer;
+    background: #2c3e50;
 }
 
 .marker {
     width: 50px;
     height: 80px;
-    transform: translate(0, -80px);
-    z-index:0;
-    display: block;
 }
 .marker::before {
     content:"";
