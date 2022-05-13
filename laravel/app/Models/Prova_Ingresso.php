@@ -27,10 +27,6 @@ class Prova_Ingresso extends Model
         return $this->belongsTo(Instituicao_has_Curso::class, ['cursoID', 'instituicoes_ID'], ['cursos_ID', 'instituicoes_ID']);
     }
 
-   /* public function exames(){
-        return $this->hasMany(Exame::class, '0', '0');
-    }*/
-
     public function cursos(){
         return $this->belongsTo(Instituicao_has_Curso::class, 'cursoID', 'cursos_ID');
     }
@@ -38,5 +34,7 @@ class Prova_Ingresso extends Model
     public function insts(){
         return $this->belongsTo(Instituicao_has_Curso::class, 'instituicoes_ID', 'instituicoes_ID');
     }
+
+
 
 }

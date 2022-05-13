@@ -60,6 +60,7 @@ Route::get('/instituicoes', [InstituicaoController_API::class, 'index']);
 
 // Instituições - Curso
 Route::get('/instituicoes_has_curso', [Instituicoes_has_CursoController_API::class, 'index']);
+Route::get('/exames_nome', [Instituicoes_has_CursoController_API::class, 'getNomeExames']);
 
 // Curso
 Route::get('/cursos', [CursoController_API::class, 'index']);
