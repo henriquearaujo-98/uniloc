@@ -176,7 +176,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 h1{
     color: white;
     font-size: 48px;

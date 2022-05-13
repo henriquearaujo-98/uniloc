@@ -97,7 +97,7 @@ const results_store = {
              formdata.append("nota_min_max", data.nota_min_max);
             // formdata.append("rank_min", data.rank_min);
             // formdata.append("rank_max", data.rank_max);
-            formdata.append("distritos", 6);
+            formdata.append("distritos", 10);
             // formdata.append("tipos_inst", 12);
 
 

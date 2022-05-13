@@ -1,9 +1,16 @@
 <template>
-    <div style="height: 600px;width: 50%; background: greenyellow;flex: 1" class="ml-10">
+
         <ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:100%">
 
-            <ol-view ref="view" :center="center" :rotation="rotation" :zoom="zoom"
-                     :projection="projection" />
+            <ol-view ref="view"
+                     :center="center"
+                     :rotation="rotation"
+                     :zoom="zoom"
+                     :projection="projection"
+                     @zoomChanged="zoomChanged"
+                     @centerChanged="centerChanged"
+                     @resolutionChanged="resolutionChanged"
+                     @rotationChanged="rotationChanged"/>
 
             <ol-tile-layer>
                 <ol-source-osm />
@@ -17,7 +24,9 @@
             </ol-overlay>
         </ol-map>
 
-    </div>
+
+    <br>
+
 </template>
 
 <script>
@@ -28,9 +37,9 @@ export default {
     name: "Mapa",
     components: {Marker},
     setup() {
-        const center = ref([ -8.224454,39.399872])
+        const center = ref([  -7.849468119216156,39.399872])
         const projection = ref('EPSG:4326')
-        const zoom = ref(6.5)
+        const zoom = ref(7.6)
         const rotation = ref(0)
 
         return {
@@ -41,6 +50,15 @@ export default {
 
         }
     },
+    data() {
+        return {
+            currentCenter: this.center,
+            currentZoom: this.zoom,
+            currentResolution: this.resolution,
+            currentRotation: this.rotation,
+        };
+    },
+
 
 }
 </script>
