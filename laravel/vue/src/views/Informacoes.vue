@@ -1,5 +1,5 @@
 <template>
-    <div v-if="this.state.isFetching == false" style="margin: 0 60px">
+    <div v-if="this.$store.state['buffer_store'].buffering == false" style="margin: 0 60px">
         <h1>{{item[0].curso[0].nome}}</h1>
         <h2 class="inst">{{item[0].instituicao[0].nome}}</h2>
         <hr>
@@ -119,16 +119,18 @@
         </div>
     </div>
     <div v-else>
-        <h1 style="background: white; color: black; width: 300px; height: 300px">Fetching...</h1>
+        <Buffer />
     </div>
 </template>
 
 <script>
 import axios from "axios";
 import {reactive} from "vue";
+import Buffer from "@/components/Buffer";
 
 export default {
     name: "Informacoes",
+    components: {Buffer},
     setup(){
         let item;
         let dges;
@@ -142,9 +144,8 @@ export default {
     async mounted() {
         this.instID = this.$route.query.instID;
         this.cursoID = this.$route.query.cursoID
-        console.log(this.instID)
-        console.log(this.cursoID)
-        console.log(this.state.isFetching)
+        this.$store.state['buffer_store'].buffering = true
+
         await axios.get(`http://localhost:3500/api/instituicoes_has_curso?cursoID=${this.cursoID}&instID=${this.instID}`,
             {
                 headers: {
@@ -171,7 +172,7 @@ export default {
 
         console.log(this.item)
         this.dges = "https://www.dges.gov.pt/guias/detcursopi.asp?codc="+this.item[0].cursos_ID+"&code="+this.item[0].instituicoes_ID
-        this.state.isFetching = false;
+        this.$store.state['buffer_store'].buffering = false
     },
 }
 </script>

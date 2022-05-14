@@ -29,9 +29,13 @@ export default {
     },
     components: {AutoComplete, TextInput, ResultsArea},
     async created() {
-         axios
+        axios
             .get(`http://localhost:3500/api/${this.tabela}`)
-            .then(response => (this.$store.dispatch(`${this.tabela}/populate_pool`, response.data)[this.tabela]))
+            .then(response => {
+                this.$store.dispatch(`${this.tabela}/populate_pool`, response.data)[this.tabela];
+                this.$emit('done_loading');
+            })
+
 
         // register a module
         this.$store.registerModule(this.tabela, {

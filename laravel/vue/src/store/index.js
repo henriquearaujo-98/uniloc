@@ -113,11 +113,40 @@ const results_store = {
     },
 }
 
+const buffer_store = {
+    namespaced : true,
+    state: {
+        buffering: Boolean
+    },
+    mutations: {
+        SET_BUFFER_TRUE(state){
+           state.buffering = true;
+        },
+        SET_BUFFER_FALSE(state){
+            state.buffering = false;
+        }
+    },
+    getters: {
+        status (state) {
+            return state.buffering
+        }
+    },
+    actions: {
+        setBufferTrue({commit}){
+            commit('SET_BUFFER_TRUE')
+        },
+        setBufferFalse({commit}){
+            commit('SET_BUFFER_FALSE')
+        },
+    },
+}
+
 export default createStore({
 
   modules: {
       search_store : search_store,
-      results_store : results_store
+      results_store : results_store,
+      buffer_store : buffer_store
   }
 })
 

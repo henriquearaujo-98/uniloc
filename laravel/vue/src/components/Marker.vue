@@ -49,6 +49,10 @@ export default {
             this.item.nota_ult_1fase = 'ND'
         }
 
+        if(this.item.nota_ult_2fase == 'Informação não disponível'){
+            this.item.nota_ult_2fase = 'ND'
+        }
+
         this.$store.state['results_store'].results.forEach(i => {
             if(i.instituicoes_ID == this.item.instituicoes_ID)
                 this.cursos.push(i);

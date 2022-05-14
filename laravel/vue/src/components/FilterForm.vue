@@ -2,19 +2,26 @@
     <div style="background: deeppink; width: 50%" class="mr-10 flex-1 h-96 flex">
         <form class="self-start" @submit="onSubmit">
             <TextFilter label="Distritos"
-                        tabela="distritos"/>
+                        tabela="distritos"
+                        @done_loading="buffer_toggle"/>
             <TextFilter label="Cidades"
-                        tabela="cidades"/>
+                        tabela="cidades"
+                        @done_loading="buffer_toggle"/>
             <TextFilter label="Instituições"
-                        tabela="instituicoes"/>
+                        tabela="instituicoes"
+                        @done_loading="buffer_toggle"/>
             <TextFilter label="Areas"
-                        tabela="area_estudo"/>
+                        tabela="area_estudo"
+                        @done_loading="buffer_toggle"/>
             <TextFilter label="Curso"
-                        tabela="cursos"/>
+                        tabela="cursos"
+                        @done_loading="buffer_toggle"/>
             <TextFilter label="Tipo de instituição"
-                        tabela="tipos_ensino"/>
+                        tabela="tipos_ensino"
+                        @done_loading="buffer_toggle"/>
             <TextFilter label="Provas de ingresso"
-                        tabela="exames"/>
+                        tabela="exames"
+                        @done_loading="buffer_toggle"/>
             <SliderFilter label="Nota Minima"
                           min=95
                           max=200
@@ -41,6 +48,15 @@ import SliderFilter from "@/components/Filtros/SliderFilter/SliderFilter.vue";
 export default {
     name: "FilterForm",
     components: {TextFilter, SliderFilter},
+    setup(){
+        let buffNum = 0;
+        return{
+            buffNum : 0,
+        }
+    },
+    created() {
+        this.$store.state['buffer_store'].buffering = true
+    },
     methods: {
         async onSubmit(e){
             e.preventDefault();
@@ -68,8 +84,9 @@ export default {
                 'rank_min' : rank_min,
                 'rank_max' : rank_max
             }
-
+            this.$store.state['buffer_store'].buffering = true
             await this.$store.dispatch(`results_store/get_request`, data)
+            this.$store.state['buffer_store'].buffering = false
         },
         array_to_string(arr){
 
@@ -86,8 +103,14 @@ export default {
             }
 
             return txt
+        },
+        buffer_toggle(){
+            this.buffNum += 1;
+            console.log('done' + this.buffNum);
+            if(this.buffNum == 7){
+                this.$store.state['buffer_store'].buffering = false
+            }
         }
-
     },
 
 }

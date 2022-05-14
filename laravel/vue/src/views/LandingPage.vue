@@ -1,4 +1,5 @@
 <template>
+<Buffer v-if="this.$store.state['buffer_store'].buffering == true"/>
 <div class="flex justify-between mr-52 ml-52" style="margin: 5px ;max-height: 90vh" >
    <FilterForm />
 
@@ -14,6 +15,7 @@
                 :centerX="-7.849468119216156"/>
     </div>
 
+
 </div>
 </template>
 
@@ -24,10 +26,11 @@ import FilterForm from "@/components/FilterForm";
 import Mapa from  "@/components/Mapa";
 import Acores from "@/components/Acores";
 import Madeira from "@/components/Madeira";
+import Buffer from "@/components/Buffer";
 
 export default {
 name: "LandingPage",
-components: {Madeira, Acores, FilterForm, Mapa}
+components: {Madeira, Acores, FilterForm, Mapa, Buffer}
 
 }
 </script>
