@@ -1,12 +1,14 @@
 <template>
     <div>
-        <img src="../assets/logo-full.png">
+        <a href="#">
+            <img src="../assets/logo-full.png">
+        </a>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Logo"
+    name: "Logo",
 }
 </script>
 
