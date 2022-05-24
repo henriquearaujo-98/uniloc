@@ -1,4 +1,5 @@
 <template>
+
     <div v-if="this.$store.state['buffer_store'].buffering == false" style="margin: 0 60px">
         <h1>{{item[0].curso[0].nome}}</h1>
         <h2 class="inst">{{item[0].instituicao[0].nome}}</h2>
