@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <form>
+        <form @submit="sendEmail">
             <label>Name</label>
             <input
                 type="text"
@@ -15,67 +15,49 @@
                 name="email"
                 placeholder="Your Email"
             >
-            <label>Subject</label>
-            <input
-                type="text"
-                v-model="subject"
-                name="subject"
-                placeholder="Your Subject"
-            >
             <label>Message</label>
             <textarea
                 name="message"
                 v-model="message"
                 cols="30" rows="5"
                 placeholder="Message">
-          </textarea>
+            </textarea>
 
-            <input type="submit" value="Send">
+            <input type="submit" value="Send"/>
         </form>
     </div>
 </template>
 
+
 <script>
-// import emailjs from '@emailjs/browser';
+import emailjs from 'emailjs-com';
 
 export default {
+    name: 'Contacto',
     data() {
         return {
-            form: {
-                email: '',
-                name: '',
-                subject: '',
-                message: '',
-            },
-
-            show: true,
-        };
+            name: '',
+            email: '',
+            message: ''
+        }
     },
     methods: {
-        onSubmit() {
-            const config = {
-                responseType: 'text',
-            };
-
-            axios
-                .post(
-                    '../post.php',
-                    {
-                        name: this.form.name,
-                        email: this.form.email,
-                        subject: this.form.subject,
-                        message: this.form.message,
-                    },
-                    config,
-                )
-                .then(response => {
-                    console.log('success', response.data.message);
-                })
-                .catch(error => {
-                    console.log(error.response);
-                });
+        sendEmail(e) {
+            try {
+                emailjs.send('service_xvs9ekg', 'template_taw7gcb', {
+                        name: this.name,
+                        email: this.email,
+                        message: this.message
+                    });
+            } catch (error) {
+                console.log({error})
+            }
+            // Reset form field
+            this.name = ''
+            this.email = ''
+            this.message = ''
         },
-    },
+    }
 }
 </script>
 
