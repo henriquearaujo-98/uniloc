@@ -1,5 +1,5 @@
 <template>
-    <div style="background: deeppink; width: 50%" class="mr-10 flex-1 h-96 flex">
+    <div style="background: deeppink; width: 50%" class="mr-10 flex-1 h-max flex pb-6 pr-4 rounded-md">
         <form class="self-start" @submit="onSubmit">
             <TextFilter label="Distritos"
                         tabela="distritos"
@@ -25,18 +25,18 @@
             <SliderFilter label="Nota Minima"
                           min=95
                           max=200
-                          store_var_name="nota_min"/>
+                          store_var_name="nota_min"
+                          class="mt-4"/>
             <SliderFilter label="Rank"
                           min=1
                           max=100
                           optional="true"
-                          store_var_name="rank"/>
+                          store_var_name="rank"
+                          class="mt-5"/>
 
-            <button type="submit">Procurar</button>
-
+            <button type="submit" class="mt-3 inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out">Procurar</button>
         </form>
     </div>
-
 </template>
 
 <script>
