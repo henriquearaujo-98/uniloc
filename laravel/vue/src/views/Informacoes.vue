@@ -6,115 +6,140 @@
         <hr>
         <br><br>
         <div class="flex space-x-8" style="justify-content: space-between">
-            <div class="card">
-                <h4 style="color: black">
-                    Exames de ingresso
-                </h4>
-                <div v-for="(exame, index) in item[1]">
-                    {{exame}}
-                    <div v-if="item[1][index+1]">ou</div>
+            <div class="flex justify-center">
+                <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                    <div class="p-6">
+                        <h5 class="text-gray-900 text-xl font-medium mb-2">Provas de ingresso</h5>
+                        <div v-for="(exame, index) in item[1]">
+                            {{exame}}
+                            <div v-if="item[1][index+1]">ou</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <h4 style="color: black">
-                    Nota Minima
-                </h4>
-                <div>
-                    <div>1º Fase: {{item[0].nota_ult_1fase}}</div>
-                    <div>2º Fase: {{item[0].nota_ult_2fase}}</div>
+
+            <div class="flex justify-center">
+                <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                    <div class="p-6">
+                        <h5 class="text-gray-900 text-xl font-medium mb-2">Nota Minima</h5>
+                        <div>1º Fase: {{item[0].nota_ult_1fase}}</div>
+                        <div>2º Fase: {{item[0].nota_ult_2fase}}</div>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <h4 style="color: black">
-                    Tipo de Ensino
-                </h4>
-                <div>
-                    <div>{{item[0].instituicao[0].tipo_ensino.nome}}</div>
+
+            <div class="flex justify-center">
+                <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                    <div class="p-6">
+                        <h5 class="text-gray-900 text-xl font-medium mb-2">Tipo de Ensino</h5>
+                        <div>
+                            <div>{{item[0].instituicao[0].tipo_ensino.nome}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <a class="card" style="color: black; text-decoration: none" :href=item[0].plano_curso>
-                <h4 style="color: black">
-                    Plano de estudos
-                </h4>
+
+            <a :href=item[0].plano_curso>
+                <div class="flex justify-center">
+                    <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                        <div class="p-6">
+                            <h5 class="text-gray-900 text-xl font-medium mb-2">Plano de estudos</h5>
+                        </div>
+                    </div>
+                </div>
             </a>
-            <a class="card" style="color: black; text-decoration: none" :href=this.dges>
-                <h4 style="color: black">
-                    DGES
-                </h4>
+
+            <a :href=this.dges>
+                <div class="flex justify-center">
+                    <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                        <div class="p-6">
+                            <h5 class="text-gray-900 text-xl font-medium mb-2">DGES</h5>
+                        </div>
+                    </div>
+                </div>
             </a>
         </div>
+
+        <br>
         <h4>Dados geográficos</h4>
+
         <div class="flex space-x-4" style="justify-content: space-between">
-            <div class="card">
-                <h4 style="color: black">
-                    Cidade
-                </h4>
-                <div>
-                    <div>{{item[0].instituicao[0].codigo_postal.cidade.nome}}</div>
+            <div class="flex justify-center">
+                <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                    <div class="p-6">
+                        <h5 class="text-gray-900 text-xl font-medium mb-2">Cidade</h5>
+                        <div>
+                            <div>{{item[0].instituicao[0].codigo_postal.cidade.nome}}</div>
+                            <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.nome}}</div>
+                            <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.distrito.nome}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <h4 style="color: black">
-                    Cidade
-                </h4>
-                <div>
-                    <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.nome}}</div>
+
+            <div class="flex justify-center">
+                <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                    <div class="p-6">
+                        <h5 class="text-gray-900 text-xl font-medium mb-2">População residente</h5>
+                        <div>
+                            <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.informacoes['População residente']}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <h4 style="color: black">
-                    Cidade
-                </h4>
-                <div>
-                    <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.distrito.nome}}</div>
+
+            <div class="flex justify-center">
+                <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                    <div class="p-6">
+                        <h5 class="text-gray-900 text-xl font-medium mb-2">Renda mensal: 100€ - 199,99€ (%)</h5>
+                        <div>
+                            <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.informacoes['Renda mensal: 100€ - 199,99€']}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <h4 style="color: black">
-                    População residente
-                </h4>
-                <div>
-                    <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.informacoes['População residente']}}</div>
+
+            <div class="flex justify-center">
+                <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                    <div class="p-6">
+                        <h5 class="text-gray-900 text-xl font-medium mb-2">Renda mensal: 200€ - 399,99€ (%)</h5>
+                        <div>
+                            <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.informacoes['Renda mensal: 200€ - 399,99€']}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <h4 style="color: black">
-                    Renda mensal: 100€ - 199,99€ (%)
-                </h4>
-                <div>
-                    <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.informacoes['Renda mensal: 100€ - 199,99€']}}</div>
+
+            <div class="flex justify-center">
+                <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                    <div class="p-6">
+                        <h5 class="text-gray-900 text-xl font-medium mb-2">Renda mensal: 400€ - 649,99€ (%)</h5>
+                        <div>
+                            <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.informacoes['Renda mensal: 400€ - 649,99€']}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <h4 style="color: black">
-                    Renda mensal: 200€ - 399,99€ (%)
-                </h4>
-                <div>
-                    <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.informacoes['Renda mensal: 200€ - 399,99€']}}</div>
+
+            <div class="flex justify-center">
+                <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                    <div class="p-6">
+                        <h5 class="text-gray-900 text-xl font-medium mb-2">Renda mensal: 650 - 999,99€ (%)</h5>
+                        <div>
+                            <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.informacoes['Renda mensal: 650€ - 999,99€']}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <h4 style="color: black">
-                    Renda mensal: 400€ - 649,99€ (%)
-                </h4>
-                <div>
-                    <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.informacoes['Renda mensal: 400€ - 649,99€']}}</div>
-                </div>
-            </div>
-            <div class="card">
-                <h4 style="color: black">
-                    Renda mensal: 650 - 999,99€ (%)
-                </h4>
-                <div>
-                    <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.informacoes['Renda mensal: 650€ - 999,99€']}}</div>
-                </div>
-            </div>
-            <div class="card">
-                <h4 style="color: black">
-                    Renda mensal: >= 1000€ (%)
-                </h4>
-                <div>
-                    <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.informacoes['Renda mensal: >=1000€']}}</div>
+
+            <div class="flex justify-center">
+                <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                    <div class="p-6">
+                        <h5 class="text-gray-900 text-xl font-medium mb-2">Renda mensal: >= 1000€ (%)</h5>
+                        <div>
+                            <div>{{item[0].instituicao[0].codigo_postal.cidade.municipio.informacoes['Renda mensal: >=1000€']}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

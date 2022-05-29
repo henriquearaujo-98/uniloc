@@ -1,26 +1,33 @@
 <template>
     <div class="container">
         <form @submit="sendEmail">
-            <label>Name</label>
+            <label>Nome</label>
             <input
                 type="text"
                 v-model="name"
                 name="name"
-                placeholder="Your Name"
+                placeholder="Nome..."
             >
-            <label>Email</label>
+            <label>E-mail</label>
             <input
                 type="email"
                 v-model="email"
                 name="email"
-                placeholder="Your Email"
+                placeholder="E-mail..."
             >
-            <label>Message</label>
+            <label>Assunto</label>
+            <input
+                type="text"
+                v-model="assunto"
+                name="assunto"
+                placeholder="Assunto..."
+            >
+            <label>Mensagem</label>
             <textarea
                 name="message"
                 v-model="message"
                 cols="30" rows="5"
-                placeholder="Message">
+                placeholder="Mensagem...">
             </textarea>
 
             <input type="submit" value="Send"/>
@@ -38,6 +45,7 @@ export default {
         return {
             name: '',
             email: '',
+            assunto: '',
             message: ''
         }
     },
@@ -47,6 +55,7 @@ export default {
                 emailjs.send('service_xvs9ekg', 'template_taw7gcb', {
                         name: this.name,
                         email: this.email,
+                        assunto: this.assunto,
                         message: this.message
                     });
             } catch (error) {
@@ -55,6 +64,7 @@ export default {
             // Reset form field
             this.name = ''
             this.email = ''
+            this.assunto = ''
             this.message = ''
         },
     }
