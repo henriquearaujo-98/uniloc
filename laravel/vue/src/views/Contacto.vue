@@ -30,7 +30,7 @@
                 placeholder="Mensagem...">
             </textarea>
 
-            <input type="submit" value="Send"/>
+            <input type="submit" value="Enviar"/>
         </form>
     </div>
 </template>
