@@ -1,16 +1,17 @@
 
 <template>
-    <div style="width: 100%;" class="pl-5 pt-5 text-filter">
+    <div style="width: 100%;" class="pl-5  text-filter">
         <div class="flex">
             <label class="self-start">{{ label }}</label>
         </div>
 
         <div class="flex" style="max-width: 100%;">
-            <TextInput :store_name="this.tabela" />
+            <TextInput :store_name="this.tabela" style="height: 5px"/>
             <ResultsArea :store_name="this.tabela" />
         </div>
 
     </div>
+    <hr style="margin-bottom: 5px">
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="inline overflow-x-scroll flex-1" style="position: relative; height: 50px">
+    <div class="inline overflow-x-scroll flex-1" style="position: relative; height: 50px; max-width: 200px">
 
         <span v-if="this.$store.state[this.store_name].selected.length > 0" v-for="item in this.$store.state[this.store_name].selected" :key="item.id" @click="remove_item(item)" class="mr-3">
             {{item.nome}}
@@ -44,5 +44,28 @@ span{
 span:hover{
     cursor: pointer;
     background: darkgrey;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px transparent;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #506a8f;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
 }
 </style>

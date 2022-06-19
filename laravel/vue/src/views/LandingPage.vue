@@ -10,7 +10,7 @@
               :centerX="-7.849468119216156"/>
     </div>
 
-    <div style="height: 90vh;max-width: 35vw; background: greenyellow;flex: 1" class="ml-3">
+    <div style="height: 90vh;max-width: 35vw;flex: 1" class="ml-3">
         <Mapa :centerY="39.399872"
                 :centerX="-7.849468119216156"/>
     </div>
@@ -42,3 +42,4 @@ div{
 }
 
 </style>
+

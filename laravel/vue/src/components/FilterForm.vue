@@ -1,9 +1,11 @@
 <template>
-    <div style="background: deeppink; width: 50%" class="mr-10 flex-1 h-max flex pb-6 pr-4 rounded-md">
+    <div style="width: 50%" class="mr-10 flex-1 h-max flex pb-6 pr-4 rounded-md">
         <form class="self-start" @submit="onSubmit">
             <TextFilter label="Distritos"
                         tabela="distritos"
                         @done_loading="buffer_toggle"/>
+
+
             <TextFilter label="Cidades"
                         tabela="cidades"
                         @done_loading="buffer_toggle"/>
@@ -119,5 +121,9 @@ export default {
 <style scoped>
 form{
     max-width: 100%;
+}
+
+button:hover{
+    background-color: #5535ff;
 }
 </style>
