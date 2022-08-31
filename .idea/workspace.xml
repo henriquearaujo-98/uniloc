@@ -2,28 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="935c3ac4-6f76-462e-bd59-269a38205920" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/laravel/vue/postcss.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/laravel/vue/src/assets/logo-full.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/laravel/vue/src/components/Footer.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/laravel/vue/src/components/Header.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/laravel/vue/src/components/Logo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/laravel/vue/src/components/Nav.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/laravel/vue/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/laravel/vue/src/views/LandingPage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/laravel/vue/tailwind.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uniloc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uniloc.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/SearchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/SearchController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/HelloWorld.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/views/AboutView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/views/HomeView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/Acores.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/Acores.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/FilterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/FilterForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/Mapa.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/Mapa.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/Marker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/Marker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/store/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

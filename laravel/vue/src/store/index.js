@@ -68,13 +68,21 @@ const results_store = {
     mutations: {
         POPULATE_RESULTS(state, data){
             state.results = data;
-            state.results_unique = data.filter((obj, pos, arr) => {
-                return arr
-                    .map(mapObj => mapObj.instituicoes_ID)
-                    .indexOf(obj.instituicoes_ID) == pos;
+            console.log(data)
+
+            let insts_IDs = {}
+
+            data.forEach(function(obj) {
+                if(insts_IDs[obj.instituicoes_ID] === undefined)
+                    insts_IDs[obj.instituicoes_ID] = []
             });
 
-            console.log(state.results_unique)
+            data.forEach(function(obj) {
+                insts_IDs[obj.instituicoes_ID].push(obj)
+            });
+            console.log(insts_IDs)
+            state.results_unique = insts_IDs;
+
         }
     },
     getters: {
@@ -93,8 +101,11 @@ const results_store = {
             formdata.append("cursos", data.cursos);
             formdata.append("tipos_inst", data.tipos_inst);
             formdata.append("provas", data.provas);
+            formdata.append("nota_min_min", data.nota_min_min);
+            formdata.append("nota_min_max", data.nota_min_max);
             formdata.append("rank_min", data.rank_min);
             formdata.append("rank_max", data.rank_max);
+
 
 
             const res = await axios.post('http://localhost:3500/api/search', formdata,
