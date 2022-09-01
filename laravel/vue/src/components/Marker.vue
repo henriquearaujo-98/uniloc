@@ -3,7 +3,7 @@
 
         <div class="hover_obj" v-show="this.state.hover">
             <!-- this.$router.push({ path: '/instituicao', query: { instID: this.item.instituicoes_ID, cursoID: curso.curso[0].ID }}) -->
-            <router-link v-for="curso in this.cursos" :to="{ path: '/instituicao', query: { instID: this.item.instituicoes_ID, cursoID: curso.curso[0].ID }}" target="_blank">
+            <router-link v-for="curso in this.cursos" :to="{ path: '/instituicao', query: { instID: curso.instituicoes_ID, cursoID: curso.cursos_ID }}" target="_blank">
                 <div>
                     <span>{{curso.curso[0].nome}}</span>
                     <span>{{ curso.nota_ult_1fase ? curso.nota_ult_1fase : curso.nota_ult_2fase }}</span>
@@ -30,13 +30,13 @@ import { reactive } from 'vue'
 export default {
     name: "Marker",
     props:{
-        item : Object,
+        item : Array,
         inst : String,
         rank: ''
     },
     setup(){
         const state = reactive({sigla: false, hover : false})
-        let cursos = []
+        var cursos = []
         return{
             state,
             cursos,
@@ -53,10 +53,13 @@ export default {
             this.item.nota_ult_2fase = 'ND'
         }
 
-        this.$store.state['results_store'].results.forEach(i => {
-            if(i.instituicoes_ID == this.item.instituicoes_ID)
-                this.cursos.push(i);
+        let temp = [];
+
+        this.item.forEach(function (record){
+            temp.push(record)
         })
+
+        console.log(temp)
 
         this.state.escola = this.inst.split('-')[1]
         const temp_inst = this.inst.split('-')[0]
@@ -66,7 +69,8 @@ export default {
 
          this.state.sigla = this.state.sigla.replace( /[^A-Z]/g, '' );
 
-         console.log(this.cursos)
+        this.cursos = temp;
+         //console.log(this.cursos)
     },
     computed:{
         open(){

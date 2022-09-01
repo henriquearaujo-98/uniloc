@@ -68,7 +68,7 @@ const results_store = {
     mutations: {
         POPULATE_RESULTS(state, data){
             state.results = data;
-            console.log(data)
+
 
             let insts_IDs = {}
 
@@ -80,9 +80,10 @@ const results_store = {
             data.forEach(function(obj) {
                 insts_IDs[obj.instituicoes_ID].push(obj)
             });
-            console.log(insts_IDs)
+
             state.results_unique = insts_IDs;
 
+            console.log(state.results_unique)
         }
     },
     getters: {

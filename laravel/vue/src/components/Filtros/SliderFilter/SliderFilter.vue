@@ -45,7 +45,7 @@ export default {
     },
     methods:{
         log(text){
-          console.log(text)
+
         },
         onChange(){
 

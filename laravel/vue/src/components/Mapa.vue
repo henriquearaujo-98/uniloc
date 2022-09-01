@@ -16,10 +16,10 @@
                 <ol-source-osm />
             </ol-tile-layer>
 
-            <ol-overlay style="position: absolute; z-index: 0; transform: translate(0, -80px);" v-for="item in $store.state['results_store'].results_unique" :position="[item.instituicao[0].longitude,item.instituicao[0].latitude]">
+            <ol-overlay style="position: absolute; z-index: 0; transform: translate(0, -80px);" v-for="item in $store.state['results_store'].results_unique" :position="[item[0].instituicao[0].longitude,item[0].instituicao[0].latitude]">
                 <Marker :item='item'
-                        :rank="item.rank"
-                        :inst="item.instituicao[0].nome"
+                        :rank="item[0].rank"
+                        :inst="item[0].instituicao[0].nome"
                         @onMouse=""/>
             </ol-overlay>
         </ol-map>
