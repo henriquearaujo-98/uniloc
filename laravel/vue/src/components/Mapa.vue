@@ -13,8 +13,12 @@
                      @rotationChanged="rotationChanged"/>
 
             <ol-tile-layer>
-                <ol-source-osm />
+                <ol-source-xyz url="https://tile.thunderforest.com/atlas/{z}/{x}/{y}.png?apikey=737fcf9a3edb415e9309ff5888c9ecdc" />
             </ol-tile-layer>
+
+            <ol-image-layer :zIndex="1001">
+                <ol-source-image-wms url="https://sig.lneg.pt/server/services/CGP1M/MapServer/WMSServer"  :extent="[-13884991, 2870341, -7455066, 6338219]" layers="topp:states" />
+            </ol-image-layer>
 
             <ol-overlay style="position: absolute; z-index: 0; transform: translate(0, -80px);" v-for="item in $store.state['results_store'].results_unique" :position="[item[0].instituicao[0].longitude,item[0].instituicao[0].latitude]">
                 <Marker :item='item'

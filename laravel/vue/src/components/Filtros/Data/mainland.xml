@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<imagery xmlns="http://josm.openstreetmap.de/maps-1.0">
+
+    <entry>
+        <!--NOTICE: Albeit claiming a 25cm resolution the service is effectively limited to scale 1:2000 (zoom 12). Northern half of the territory only.-->
+        <name>Orthophotos of the northern portion of mainland Portugal RGB - 25cm - 2021 (DGT)</name>
+        <name lang="pt">Ortofotos 25 cm - zona norte de Portugal Continental RGB - 2021 (DGT)</name>
+        <id>ORTOS_DGT_2021_RGB</id>
+        <category>photo</category>
+        <date>2021</date>
+        <type>wmts</type>
+        <url><![CDATA[https://cartografia.dgterritorio.gov.pt/ortos2021/service?service=wmts&request=getcapabilities]]></url>
+        <permission-ref>https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/d70dd232-aaee-4e6b-a804-5a0b70c537be</permission-ref>
+        <projections>
+            <code>EPSG:3763</code>
+            <code>EPSG:4258</code>
+        </projections>
+        <default-layers><layer name="Ortos2021-RGB" style="default" tile-matrix-set="PTTM_06" /></default-layers>
+        <country-code>PT</country-code>
+        <attribution-text>Direcção-Geral do Território</attribution-text>
+        <attribution-url>https://www.dgterritorio.pt/</attribution-url>
+        <icon>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABC1BMVEX////+//////3/+/8AAQD8//0AAAAAm+P//v/8///5/f///f7//f8np+T7//7//f3//P7+/v7+/vz+//0And77/////Pv//P////b1/v39//n+/P//+/sIEgr9/v///ftVVVX9/vn7/v9ISEj/+/3/+v8FAQL9//79+f/9/f0Al+H7//kupOwQDRQAleT///j//vsUpeT4/v7//fkAjt75/f4DnOL+/f8HAQH//vn//v36//4OnOT9/fUnpeL+//o3seQCmt36//8EmuYFk9sAneT+//sCmuYAm9wDltwDmuMXo+D7/fr5//3Y9fsAmuIAldz5/v8WpOb///r7//UBm+UAAwH///sAmuCQ4vfsAAAAtklEQVQYGQXAA3YDQQAA0J9kd2cmKJPatm3bvv9J+gxRGmQkRxmIkEdUE+q0lQBgkbAARZZlWTamlseDnd3teLpXVjCptJ/SdfdTftGRFDqpnYTQbLXuG5dnsYDDo+76q/dQvqukDEKoxL+f8Pb8WI4FhHATv7/qH432zko2rqprK1w1X34fbs83l2eG+1lLeTV+NnSth1Iy0KsCxyFtrMxN12AUVlNYMtUG2vsizM92TNADAIB/t+wRb0wOkYQAAAAASUVORK5CYII=</icon>
+        <min-zoom>1</min-zoom>
+        <max-zoom>12</max-zoom>
+        <valid-georeference>true</valid-georeference>
+        <bounds min-lat='39.57456' min-lon='-9.11226' max-lat='42.16688' max-lon='-6.16784'>
+            <shape>
+                <point lat='41.8942' lon='-8.90395'/><point lat='41.89477' lon='-8.8568'/><point lat='41.91798' lon='-8.85661'/>
+                <point lat='41.91777' lon='-8.80888'/><point lat='41.94019' lon='-8.8087'/><point lat='41.93998' lon='-8.75955'/>
+                <point lat='41.98576' lon='-8.75918'/><point lat='41.98555' lon='-8.71207'/><point lat='42.00795' lon='-8.71189'/>
+                <point lat='42.00774' lon='-8.66324'/><point lat='42.05311' lon='-8.66288'/><point lat='42.05291' lon='-8.61731'/>
+                <point lat='42.07566' lon='-8.61713'/><point lat='42.07545' lon='-8.56865'/><point lat='42.0999' lon='-8.56846'/>
+                <point lat='42.09884' lon='-8.32661'/><point lat='42.14453' lon='-8.32625'/><point lat='42.14411' lon='-8.23022'/>
+                <point lat='42.16688' lon='-8.23004'/><point lat='42.16667' lon='-8.18128'/><point lat='42.09972' lon='-8.18181'/>
+                <point lat='42.09929' lon='-8.08457'/><point lat='42.05465' lon='-8.08492'/><point lat='42.05444' lon='-8.03634'/>
+                <point lat='42.00936' lon='-8.0367'/><point lat='42.00957' lon='-8.0846'/><point lat='41.98675' lon='-8.08478'/>
+                <point lat='41.98696' lon='-8.133'/><point lat='41.94196' lon='-8.13336'/><point lat='41.94218' lon='-8.18171'/>
+                <point lat='41.89766' lon='-8.18206'/><point lat='41.89745' lon='-8.13236'/><point lat='41.83016' lon='-8.13289'/>
+                <point lat='41.82995' lon='-8.08533'/><point lat='41.85126' lon='-8.08516'/><point lat='41.85105' lon='-8.03642'/>
+                <point lat='41.87427' lon='-8.03623'/><point lat='41.87406' lon='-7.988'/><point lat='41.89766' lon='-7.98782'/>
+                <point lat='41.89745' lon='-7.93968'/><point lat='41.94183' lon='-7.93933'/><point lat='41.94141' lon='-7.84354'/>
+                <point lat='41.89575' lon='-7.84391'/><point lat='41.89553' lon='-7.79488'/><point lat='41.9205' lon='-7.79468'/>
+                <point lat='41.91986' lon='-7.64845'/><point lat='41.89507' lon='-7.64864'/><point lat='41.89465' lon='-7.5537'/>
+                <point lat='41.87199' lon='-7.55388'/><point lat='41.87072' lon='-7.26549'/><point lat='41.89435' lon='-7.2653'/>
+                <point lat='41.89412' lon='-7.21425'/><point lat='41.98359' lon='-7.21354'/><point lat='41.98339' lon='-7.16711'/>
+                <point lat='42.00488' lon='-7.16694'/><point lat='42.00446' lon='-7.07124'/><point lat='41.96012' lon='-7.07159'/>
+                <point lat='41.95989' lon='-7.02104'/><point lat='41.98242' lon='-7.02086'/><point lat='41.98201' lon='-6.92712'/>
+                <point lat='41.95716' lon='-6.92732'/><point lat='41.95673' lon='-6.82853'/><point lat='42.00385' lon='-6.82816'/>
+                <point lat='42.00344' lon='-6.73442'/><point lat='41.95409' lon='-6.73481'/><point lat='41.95366' lon='-6.63583'/>
+                <point lat='41.97783' lon='-6.63564'/><point lat='41.97742' lon='-6.54165'/><point lat='41.88578' lon='-6.54238'/>
+                <point lat='41.88557' lon='-6.49522'/><point lat='41.77351' lon='-6.49611'/><point lat='41.77372' lon='-6.54388'/>
+                <point lat='41.72685' lon='-6.54425'/><point lat='41.72665' lon='-6.49961'/><point lat='41.68302' lon='-6.49995'/>
+                <point lat='41.68281' lon='-6.45248'/><point lat='41.70378' lon='-6.45232'/><point lat='41.70357' lon='-6.40494'/>
+                <point lat='41.68004' lon='-6.40513'/><point lat='41.6794' lon='-6.26039'/><point lat='41.65584' lon='-6.26058'/>
+                <point lat='41.65563' lon='-6.21293'/><point lat='41.61042' lon='-6.21329'/><point lat='41.61022' lon='-6.16784'/>
+                <point lat='41.5424' lon='-6.16838'/><point lat='41.54261' lon='-6.21662'/><point lat='41.47453' lon='-6.21716'/>
+                <point lat='41.47476' lon='-6.27002'/><point lat='41.36551' lon='-6.27088'/><point lat='41.36594' lon='-6.36613'/>
+                <point lat='41.34321' lon='-6.36631'/><point lat='41.34342' lon='-6.41438'/><point lat='41.27745' lon='-6.4149'/>
+                <point lat='41.27766' lon='-6.46398'/><point lat='41.25422' lon='-6.46417'/><point lat='41.25443' lon='-6.51138'/>
+                <point lat='41.2332' lon='-6.51154'/><point lat='41.23363' lon='-6.60921'/><point lat='41.21163' lon='-6.60939'/>
+                <point lat='41.21183' lon='-6.65547'/><point lat='41.16666' lon='-6.65583'/><point lat='41.16688' lon='-6.7049'/>
+                <point lat='41.12245' lon='-6.70525'/><point lat='41.12267' lon='-6.75417'/><point lat='41.03238' lon='-6.75488'/>
+                <point lat='41.03261' lon='-6.80493'/><point lat='41.01131' lon='-6.80509'/><point lat='41.01173' lon='-6.89864'/>
+                <point lat='40.99142' lon='-6.8988'/><point lat='40.99119' lon='-6.84806'/><point lat='40.94398' lon='-6.84843'/>
+                <point lat='40.94378' lon='-6.80268'/><point lat='40.87624' lon='-6.80321'/><point lat='40.87603' lon='-6.75795'/>
+                <point lat='40.83047' lon='-6.7583'/><point lat='40.83068' lon='-6.80662'/><point lat='40.71836' lon='-6.8075'/>
+                <point lat='40.71815' lon='-6.76095'/><point lat='40.60498' lon='-6.76183'/><point lat='40.6052' lon='-6.81084'/>
+                <point lat='40.56061' lon='-6.81119'/><point lat='40.5604' lon='-6.76438'/><point lat='40.49308' lon='-6.7649'/>
+                <point lat='40.49329' lon='-6.81222'/><point lat='40.40472' lon='-6.81291'/><point lat='40.40451' lon='-6.76584'/>
+                <point lat='40.31294' lon='-6.76655'/><point lat='40.31316' lon='-6.81548'/><point lat='40.26972' lon='-6.81582'/>
+                <point lat='40.26994' lon='-6.86499'/><point lat='40.24746' lon='-6.86516'/><point lat='40.24767' lon='-6.91134'/>
+                <point lat='40.22535' lon='-6.91151'/><point lat='40.22577' lon='-7.00546'/><point lat='40.13368' lon='-7.00618'/>
+                <point lat='40.13327' lon='-6.9147'/><point lat='40.08791' lon='-6.91505'/><point lat='40.0877' lon='-6.86739'/>
+                <point lat='40.02089' lon='-6.86791'/><point lat='40.02068' lon='-6.82156'/><point lat='39.99834' lon='-6.82173'/>
+                <point lat='39.99856' lon='-6.87075'/><point lat='39.84085' lon='-6.87196'/><point lat='39.84106' lon='-6.91718'/>
+                <point lat='39.82109' lon='-6.91733'/><point lat='39.82131' lon='-6.9661'/><point lat='39.6627' lon='-6.96732'/>
+                <point lat='39.66292' lon='-7.01501'/><point lat='39.64076' lon='-7.01518'/><point lat='39.64203' lon='-7.2952'/>
+                <point lat='39.62175' lon='-7.29536'/><point lat='39.62217' lon='-7.38769'/><point lat='39.64395' lon='-7.38753'/>
+                <point lat='39.64438' lon='-7.48151'/><point lat='39.59916' lon='-7.48185'/><point lat='39.59894' lon='-7.43463'/>
+                <point lat='39.57624' lon='-7.43484'/><point lat='39.57831' lon='-8.2533'/><point lat='39.57456' lon='-9.11068'/>
+                <point lat='39.68582' lon='-9.11226'/><point lat='39.68563' lon='-9.07007'/><point lat='39.79829' lon='-9.06921'/>
+                <point lat='39.79809' lon='-9.02356'/><point lat='39.88983' lon='-9.02285'/><point lat='39.88962' lon='-8.97635'/>
+                <point lat='39.98005' lon='-8.97565'/><point lat='39.97985' lon='-8.93189'/><point lat='40.09243' lon='-8.93102'/>
+                <point lat='40.09222' lon='-8.88589'/><point lat='40.16218' lon='-8.88535'/><point lat='40.1624' lon='-8.93385'/>
+                <point lat='40.25049' lon='-8.93317'/><point lat='40.25028' lon='-8.8876'/><point lat='40.36202' lon='-8.88673'/>
+                <point lat='40.36182' lon='-8.84341'/><point lat='40.49922' lon='-8.84234'/><point lat='40.49902' lon='-8.79722'/>
+                <point lat='40.67754' lon='-8.79583'/><point lat='40.67735' lon='-8.75298'/><point lat='40.81471' lon='-8.75191'/>
+                <point lat='40.81449' lon='-8.70283'/><point lat='40.9743' lon='-8.70158'/><point lat='40.9741' lon='-8.65714'/>
+                <point lat='41.04016' lon='-8.65662'/><point lat='41.04039' lon='-8.70676'/><point lat='41.15283' lon='-8.70587'/>
+                <point lat='41.15304' lon='-8.75388'/><point lat='41.33083' lon='-8.75248'/><point lat='41.33106' lon='-8.80403'/>
+                <point lat='41.55705' lon='-8.80225'/><point lat='41.55726' lon='-8.85104'/><point lat='41.69152' lon='-8.85341'/>
+                <point lat='41.69124' lon='-8.90247'/><point lat='41.8942' lon='-8.90395'/>
+            </shape>
+        </bounds>
+    </entry>
+
+    <entry>
+        <!--NOTICE: Albeit claiming a 25cm resolution the service is effectively limited to scale 1:2000 (zoom 12). Northern half of the territory only.-->
+        <name>Orthophotos of the northern portion of mainland Portugal IRG - 25cm - 2021 (DGT)</name>
+        <name lang="pt">Ortofotos 25 cm - zona norte de Portugal Continental IRG - 2021 (DGT)</name>
+        <id>ORTOS_DGT_2021_IRG</id>
+        <category>photo</category>
+        <date>2021</date>
+        <type>wms</type>
+        <url><![CDATA[https://cartografia.dgterritorio.gov.pt/wms/ortos2021?FORMAT=image/png&TRANSPARENT=TRUE&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap&LAYERS=Ortos2021-IRG&STYLES=&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}]]></url>
+        <permission-ref>https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/d70dd232-aaee-4e6b-a804-5a0b70c537be</permission-ref>
+        <projections>
+            <code>EPSG:3857</code>
+            <code>EPSG:4326</code>
+            <code>EPSG:3763</code>
+            <code>EPSG:4258</code>
+        </projections>
+        <country-code>PT</country-code>
+        <attribution-text>Direcção-Geral do Território</attribution-text>
+        <attribution-url>https://www.dgterritorio.pt/</attribution-url>
+        <privacy-policy-url>https://snig.dgterritorio.gov.pt/informacoes-sobre-cookies</privacy-policy-url>
+        <icon>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABC1BMVEX////+//////3/+/8AAQD8//0AAAAAm+P//v/8///5/f///f7//f8np+T7//7//f3//P7+/v7+/vz+//0And77/////Pv//P////b1/v39//n+/P//+/sIEgr9/v///ftVVVX9/vn7/v9ISEj/+/3/+v8FAQL9//79+f/9/f0Al+H7//kupOwQDRQAleT///j//vsUpeT4/v7//fkAjt75/f4DnOL+/f8HAQH//vn//v36//4OnOT9/fUnpeL+//o3seQCmt36//8EmuYFk9sAneT+//sCmuYAm9wDltwDmuMXo+D7/fr5//3Y9fsAmuIAldz5/v8WpOb///r7//UBm+UAAwH///sAmuCQ4vfsAAAAtklEQVQYGQXAA3YDQQAA0J9kd2cmKJPatm3bvv9J+gxRGmQkRxmIkEdUE+q0lQBgkbAARZZlWTamlseDnd3teLpXVjCptJ/SdfdTftGRFDqpnYTQbLXuG5dnsYDDo+76q/dQvqukDEKoxL+f8Pb8WI4FhHATv7/qH432zko2rqprK1w1X34fbs83l2eG+1lLeTV+NnSth1Iy0KsCxyFtrMxN12AUVlNYMtUG2vsizM92TNADAIB/t+wRb0wOkYQAAAAASUVORK5CYII=</icon>
+        <min-zoom>1</min-zoom>
+        <max-zoom>12</max-zoom>
+        <valid-georeference>true</valid-georeference>
+        <bounds min-lat='39.57456' min-lon='-9.11226' max-lat='42.16688' max-lon='-6.16784'>
+            <shape>
+                <point lat='41.8942' lon='-8.90395'/><point lat='41.89477' lon='-8.8568'/><point lat='41.91798' lon='-8.85661'/>
+                <point lat='41.91777' lon='-8.80888'/><point lat='41.94019' lon='-8.8087'/><point lat='41.93998' lon='-8.75955'/>
+                <point lat='41.98576' lon='-8.75918'/><point lat='41.98555' lon='-8.71207'/><point lat='42.00795' lon='-8.71189'/>
+                <point lat='42.00774' lon='-8.66324'/><point lat='42.05311' lon='-8.66288'/><point lat='42.05291' lon='-8.61731'/>
+                <point lat='42.07566' lon='-8.61713'/><point lat='42.07545' lon='-8.56865'/><point lat='42.0999' lon='-8.56846'/>
+                <point lat='42.09884' lon='-8.32661'/><point lat='42.14453' lon='-8.32625'/><point lat='42.14411' lon='-8.23022'/>
+                <point lat='42.16688' lon='-8.23004'/><point lat='42.16667' lon='-8.18128'/><point lat='42.09972' lon='-8.18181'/>
+                <point lat='42.09929' lon='-8.08457'/><point lat='42.05465' lon='-8.08492'/><point lat='42.05444' lon='-8.03634'/>
+                <point lat='42.00936' lon='-8.0367'/><point lat='42.00957' lon='-8.0846'/><point lat='41.98675' lon='-8.08478'/>
+                <point lat='41.98696' lon='-8.133'/><point lat='41.94196' lon='-8.13336'/><point lat='41.94218' lon='-8.18171'/>
+                <point lat='41.89766' lon='-8.18206'/><point lat='41.89745' lon='-8.13236'/><point lat='41.83016' lon='-8.13289'/>
+                <point lat='41.82995' lon='-8.08533'/><point lat='41.85126' lon='-8.08516'/><point lat='41.85105' lon='-8.03642'/>
+                <point lat='41.87427' lon='-8.03623'/><point lat='41.87406' lon='-7.988'/><point lat='41.89766' lon='-7.98782'/>
+                <point lat='41.89745' lon='-7.93968'/><point lat='41.94183' lon='-7.93933'/><point lat='41.94141' lon='-7.84354'/>
+                <point lat='41.89575' lon='-7.84391'/><point lat='41.89553' lon='-7.79488'/><point lat='41.9205' lon='-7.79468'/>
+                <point lat='41.91986' lon='-7.64845'/><point lat='41.89507' lon='-7.64864'/><point lat='41.89465' lon='-7.5537'/>
+                <point lat='41.87199' lon='-7.55388'/><point lat='41.87072' lon='-7.26549'/><point lat='41.89435' lon='-7.2653'/>
+                <point lat='41.89412' lon='-7.21425'/><point lat='41.98359' lon='-7.21354'/><point lat='41.98339' lon='-7.16711'/>
+                <point lat='42.00488' lon='-7.16694'/><point lat='42.00446' lon='-7.07124'/><point lat='41.96012' lon='-7.07159'/>
+                <point lat='41.95989' lon='-7.02104'/><point lat='41.98242' lon='-7.02086'/><point lat='41.98201' lon='-6.92712'/>
+                <point lat='41.95716' lon='-6.92732'/><point lat='41.95673' lon='-6.82853'/><point lat='42.00385' lon='-6.82816'/>
+                <point lat='42.00344' lon='-6.73442'/><point lat='41.95409' lon='-6.73481'/><point lat='41.95366' lon='-6.63583'/>
+                <point lat='41.97783' lon='-6.63564'/><point lat='41.97742' lon='-6.54165'/><point lat='41.88578' lon='-6.54238'/>
+                <point lat='41.88557' lon='-6.49522'/><point lat='41.77351' lon='-6.49611'/><point lat='41.77372' lon='-6.54388'/>
+                <point lat='41.72685' lon='-6.54425'/><point lat='41.72665' lon='-6.49961'/><point lat='41.68302' lon='-6.49995'/>
+                <point lat='41.68281' lon='-6.45248'/><point lat='41.70378' lon='-6.45232'/><point lat='41.70357' lon='-6.40494'/>
+                <point lat='41.68004' lon='-6.40513'/><point lat='41.6794' lon='-6.26039'/><point lat='41.65584' lon='-6.26058'/>
+                <point lat='41.65563' lon='-6.21293'/><point lat='41.61042' lon='-6.21329'/><point lat='41.61022' lon='-6.16784'/>
+                <point lat='41.5424' lon='-6.16838'/><point lat='41.54261' lon='-6.21662'/><point lat='41.47453' lon='-6.21716'/>
+                <point lat='41.47476' lon='-6.27002'/><point lat='41.36551' lon='-6.27088'/><point lat='41.36594' lon='-6.36613'/>
+                <point lat='41.34321' lon='-6.36631'/><point lat='41.34342' lon='-6.41438'/><point lat='41.27745' lon='-6.4149'/>
+                <point lat='41.27766' lon='-6.46398'/><point lat='41.25422' lon='-6.46417'/><point lat='41.25443' lon='-6.51138'/>
+                <point lat='41.2332' lon='-6.51154'/><point lat='41.23363' lon='-6.60921'/><point lat='41.21163' lon='-6.60939'/>
+                <point lat='41.21183' lon='-6.65547'/><point lat='41.16666' lon='-6.65583'/><point lat='41.16688' lon='-6.7049'/>
+                <point lat='41.12245' lon='-6.70525'/><point lat='41.12267' lon='-6.75417'/><point lat='41.03238' lon='-6.75488'/>
+                <point lat='41.03261' lon='-6.80493'/><point lat='41.01131' lon='-6.80509'/><point lat='41.01173' lon='-6.89864'/>
+                <point lat='40.99142' lon='-6.8988'/><point lat='40.99119' lon='-6.84806'/><point lat='40.94398' lon='-6.84843'/>
+                <point lat='40.94378' lon='-6.80268'/><point lat='40.87624' lon='-6.80321'/><point lat='40.87603' lon='-6.75795'/>
+                <point lat='40.83047' lon='-6.7583'/><point lat='40.83068' lon='-6.80662'/><point lat='40.71836' lon='-6.8075'/>
+                <point lat='40.71815' lon='-6.76095'/><point lat='40.60498' lon='-6.76183'/><point lat='40.6052' lon='-6.81084'/>
+                <point lat='40.56061' lon='-6.81119'/><point lat='40.5604' lon='-6.76438'/><point lat='40.49308' lon='-6.7649'/>
+                <point lat='40.49329' lon='-6.81222'/><point lat='40.40472' lon='-6.81291'/><point lat='40.40451' lon='-6.76584'/>
+                <point lat='40.31294' lon='-6.76655'/><point lat='40.31316' lon='-6.81548'/><point lat='40.26972' lon='-6.81582'/>
+                <point lat='40.26994' lon='-6.86499'/><point lat='40.24746' lon='-6.86516'/><point lat='40.24767' lon='-6.91134'/>
+                <point lat='40.22535' lon='-6.91151'/><point lat='40.22577' lon='-7.00546'/><point lat='40.13368' lon='-7.00618'/>
+                <point lat='40.13327' lon='-6.9147'/><point lat='40.08791' lon='-6.91505'/><point lat='40.0877' lon='-6.86739'/>
+                <point lat='40.02089' lon='-6.86791'/><point lat='40.02068' lon='-6.82156'/><point lat='39.99834' lon='-6.82173'/>
+                <point lat='39.99856' lon='-6.87075'/><point lat='39.84085' lon='-6.87196'/><point lat='39.84106' lon='-6.91718'/>
+                <point lat='39.82109' lon='-6.91733'/><point lat='39.82131' lon='-6.9661'/><point lat='39.6627' lon='-6.96732'/>
+                <point lat='39.66292' lon='-7.01501'/><point lat='39.64076' lon='-7.01518'/><point lat='39.64203' lon='-7.2952'/>
+                <point lat='39.62175' lon='-7.29536'/><point lat='39.62217' lon='-7.38769'/><point lat='39.64395' lon='-7.38753'/>
+                <point lat='39.64438' lon='-7.48151'/><point lat='39.59916' lon='-7.48185'/><point lat='39.59894' lon='-7.43463'/>
+                <point lat='39.57624' lon='-7.43484'/><point lat='39.57831' lon='-8.2533'/><point lat='39.57456' lon='-9.11068'/>
+                <point lat='39.68582' lon='-9.11226'/><point lat='39.68563' lon='-9.07007'/><point lat='39.79829' lon='-9.06921'/>
+                <point lat='39.79809' lon='-9.02356'/><point lat='39.88983' lon='-9.02285'/><point lat='39.88962' lon='-8.97635'/>
+                <point lat='39.98005' lon='-8.97565'/><point lat='39.97985' lon='-8.93189'/><point lat='40.09243' lon='-8.93102'/>
+                <point lat='40.09222' lon='-8.88589'/><point lat='40.16218' lon='-8.88535'/><point lat='40.1624' lon='-8.93385'/>
+                <point lat='40.25049' lon='-8.93317'/><point lat='40.25028' lon='-8.8876'/><point lat='40.36202' lon='-8.88673'/>
+                <point lat='40.36182' lon='-8.84341'/><point lat='40.49922' lon='-8.84234'/><point lat='40.49902' lon='-8.79722'/>
+                <point lat='40.67754' lon='-8.79583'/><point lat='40.67735' lon='-8.75298'/><point lat='40.81471' lon='-8.75191'/>
+                <point lat='40.81449' lon='-8.70283'/><point lat='40.9743' lon='-8.70158'/><point lat='40.9741' lon='-8.65714'/>
+                <point lat='41.04016' lon='-8.65662'/><point lat='41.04039' lon='-8.70676'/><point lat='41.15283' lon='-8.70587'/>
+                <point lat='41.15304' lon='-8.75388'/><point lat='41.33083' lon='-8.75248'/><point lat='41.33106' lon='-8.80403'/>
+                <point lat='41.55705' lon='-8.80225'/><point lat='41.55726' lon='-8.85104'/><point lat='41.69152' lon='-8.85341'/>
+                <point lat='41.69124' lon='-8.90247'/><point lat='41.8942' lon='-8.90395'/>
+            </shape>
+        </bounds>
+    </entry>
+
+    <entry>
+        <!--NOTICE: Albeit claiming a 25cm resolution, as of 18 February 2020, the service is effectively limited to scale 1:2000 (zoom 12)-->
+        <name>Orthophotos of mainland Portugal - 25cm - 2018 (DGT)</name>
+        <name lang="pt">Ortofotos 25 cm - Portugal Continental - 2018 (DGT)</name>
+        <id>ORTOS_DGT_2018</id>
+        <category>photo</category>
+        <date>2018</date>
+        <type>wmts</type>
+        <url><![CDATA[http://cartografia.dgterritorio.gov.pt:8080/ortos2018/service?service=wmts&request=getcapabilities]]></url>
+        <permission-ref>https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/daf5479d-29c8-4e0c-b7b8-0e1791891186</permission-ref>
+        <projections>
+            <code>EPSG:3763</code>
+            <code>EPSG:4258</code>
+        </projections>
+        <default-layers><layer name="Ortos2018-RGB" style="default" tile-matrix-set="PTTM_06" /></default-layers>
+        <country-code>PT</country-code>
+        <attribution-text>Direcção-Geral do Território</attribution-text>
+        <attribution-url>https://www.dgterritorio.pt/</attribution-url>
+        <icon>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABC1BMVEX////+//////3/+/8AAQD8//0AAAAAm+P//v/8///5/f///f7//f8np+T7//7//f3//P7+/v7+/vz+//0And77/////Pv//P////b1/v39//n+/P//+/sIEgr9/v///ftVVVX9/vn7/v9ISEj/+/3/+v8FAQL9//79+f/9/f0Al+H7//kupOwQDRQAleT///j//vsUpeT4/v7//fkAjt75/f4DnOL+/f8HAQH//vn//v36//4OnOT9/fUnpeL+//o3seQCmt36//8EmuYFk9sAneT+//sCmuYAm9wDltwDmuMXo+D7/fr5//3Y9fsAmuIAldz5/v8WpOb///r7//UBm+UAAwH///sAmuCQ4vfsAAAAtklEQVQYGQXAA3YDQQAA0J9kd2cmKJPatm3bvv9J+gxRGmQkRxmIkEdUE+q0lQBgkbAARZZlWTamlseDnd3teLpXVjCptJ/SdfdTftGRFDqpnYTQbLXuG5dnsYDDo+76q/dQvqukDEKoxL+f8Pb8WI4FhHATv7/qH432zko2rqprK1w1X34fbs83l2eG+1lLeTV+NnSth1Iy0KsCxyFtrMxN12AUVlNYMtUG2vsizM92TNADAIB/t+wRb0wOkYQAAAAASUVORK5CYII=</icon>
+        <min-zoom>1</min-zoom>
+        <max-zoom>12</max-zoom>
+        <valid-georeference>true</valid-georeference>
+        <bounds min-lat='36.6860435' min-lon='-9.8190335' max-lat='42.1868125' max-lon='-6.1571516'>
+            <shape>
+                <point lat='36.9839084' lon='-7.3127774'/><point lat='37.5717959' lon='-7.4446133'/><point lat='37.9701869' lon='-7.193301'/>
+                <point lat='38.0080684' lon='-6.9735745'/><point lat='38.2414171' lon='-6.9062818'/><point lat='38.2074334' lon='-7.0662702'/>
+                <point lat='38.4562784' lon='-7.2715773'/><point lat='38.7235559' lon='-7.204286'/><point lat='38.8546824' lon='-7.0133985'/>
+                <point lat='39.0383874' lon='-6.9131483'/><point lat='39.1311266' lon='-6.9735731'/><point lat='39.2365091' lon='-7.1795668'/>
+                <point lat='39.4849663' lon='-7.2866835'/><point lat='39.6183847' lon='-7.4487318'/><point lat='39.6088634' lon='-7.3416151'/>
+                <point lat='39.6490558' lon='-6.996919'/><point lat='40.0192024' lon='-6.8183912'/><point lat='40.199856' lon='-7.010652'/>
+                <point lat='40.2428479' lon='-6.8527235'/><point lat='40.3507317' lon='-6.7620863'/><point lat='40.8886019' lon='-6.7799391'/>
+                <point lat='41.0115125' lon='-6.8863691'/><point lat='41.0172117' lon='-6.7964186'/><point lat='41.2168879' lon='-6.6384901'/>
+                <point lat='41.2411593' lon='-6.4530958'/><point lat='41.3876284' lon='-6.2931067'/><point lat='41.5907979' lon='-6.1571516'/>
+                <point lat='41.6893233' lon='-6.3116468'/><point lat='41.7118809' lon='-6.5121473'/><point lat='41.88081' lon='-6.4984144'/>
+                <point lat='41.979912' lon='-6.5629591'/><point lat='42.0095105' lon='-6.8019117'/><point lat='42.0013468' lon='-7.2049726'/>
+                <point lat='41.8848997' lon='-7.2276319'/><point lat='41.8705845' lon='-7.3690809'/><point lat='41.9288477' lon='-7.7275099'/>
+                <point lat='41.9400853' lon='-7.9252638'/><point lat='41.8470598' lon='-8.0790724'/><point lat='41.918119' lon='-8.1600965'/>
+                <point lat='42.0503135' lon='-8.0179609'/><point lat='42.1868125' lon='-8.1992353'/><point lat='42.1022993' lon='-8.393556'/>
+                <point lat='42.07886' lon='-8.6606611'/><point lat='41.88081' lon='-8.8838209'/><point lat='41.8695629' lon='-9.1708401'/>
+                <point lat='41.4365515' lon='-9.0417507'/><point lat='40.6598081' lon='-9.0197781'/><point lat='40.2669545' lon='-9.1571072'/>
+                <point lat='39.5209945' lon='-9.8190335'/><point lat='38.6512005' lon='-9.7421292'/><point lat='37.8813594' lon='-9.1296414'/>
+                <point lat='36.9937806' lon='-9.2724636'/><point lat='36.6860435' lon='-9.0939358'/><point lat='36.7498907' lon='-7.8057888'/>
+                <point lat='36.9839084' lon='-7.3127774'/>
+            </shape>
+        </bounds>
+    </entry>
+
+    <entry>
+        <!--only covers coastal areas of mainland Portugal-->
+        <!--10 cm resolution-->
+        <name>Orthophotos of the coastal areas of mainland Portugal - 10cm - 2014-2015 (DGT)</name>
+        <name lang="pt">Ortofotos 10 cm - Zonas Costeiras de Portugal Continental - 2014-2015 (DGT)</name>
+        <id>ORTOS_DGT_2014_15</id>
+        <category>historicphoto</category>
+        <date>2014;2015</date>
+        <type>wms</type>
+        <url><![CDATA[https://ortos.dgterritorio.gov.pt/wms-inspire/ortos2014-2015-litoral?language=por&FORMAT=image/png&TRANSPARENT=TRUE&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap&LAYERS=Ortoimagens_2014-2015_Litoral&STYLES=&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}]]></url>
+        <permission-ref>https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/66425725-0ab4-4d7a-ad1c-b0d923881a61</permission-ref>
+        <projections>
+            <code>EPSG:3857</code>
+            <code>EPSG:4326</code>
+            <code>EPSG:3763</code>
+            <code>EPSG:4258</code>
+        </projections>
+        <country-code>PT</country-code>
+        <attribution-text>Direcção-Geral do Território</attribution-text>
+        <attribution-url>https://www.dgterritorio.pt/</attribution-url>
+        <privacy-policy-url>https://snig.dgterritorio.gov.pt/informacoes-sobre-cookies</privacy-policy-url>
+        <icon>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABC1BMVEX////+//////3/+/8AAQD8//0AAAAAm+P//v/8///5/f///f7//f8np+T7//7//f3//P7+/v7+/vz+//0And77/////Pv//P////b1/v39//n+/P//+/sIEgr9/v///ftVVVX9/vn7/v9ISEj/+/3/+v8FAQL9//79+f/9/f0Al+H7//kupOwQDRQAleT///j//vsUpeT4/v7//fkAjt75/f4DnOL+/f8HAQH//vn//v36//4OnOT9/fUnpeL+//o3seQCmt36//8EmuYFk9sAneT+//sCmuYAm9wDltwDmuMXo+D7/fr5//3Y9fsAmuIAldz5/v8WpOb///r7//UBm+UAAwH///sAmuCQ4vfsAAAAtklEQVQYGQXAA3YDQQAA0J9kd2cmKJPatm3bvv9J+gxRGmQkRxmIkEdUE+q0lQBgkbAARZZlWTamlseDnd3teLpXVjCptJ/SdfdTftGRFDqpnYTQbLXuG5dnsYDDo+76q/dQvqukDEKoxL+f8Pb8WI4FhHATv7/qH432zko2rqprK1w1X34fbs83l2eG+1lLeTV+NnSth1Iy0KsCxyFtrMxN12AUVlNYMtUG2vsizM92TNADAIB/t+wRb0wOkYQAAAAASUVORK5CYII=</icon>
+        <min-zoom>14</min-zoom>
+        <max-zoom>20</max-zoom>
+        <valid-georeference>true</valid-georeference>
+        <bounds min-lat='36.936722' min-lon='-9.5320143' max-lat='41.9308911' max-lon='-7.3896803'>
+            <shape>
+                <point lat='37.1920499' lon='-7.3896803'/><point lat='37.1800151' lon='-7.5242628'/><point lat='36.9817132' lon='-7.8950514'/>
+                <point lat='37.1088614' lon='-8.1518568'/><point lat='37.1406152' lon='-8.6503614'/><point lat='37.0354484' lon='-8.9511122'/>
+                <point lat='37.3483272' lon='-8.7863172'/><point lat='37.5511113' lon='-8.7643446'/><point lat='38.3825758' lon='-8.7561048'/>
+                <point lat='38.3346558' lon='-8.4766401'/><point lat='38.4014116' lon='-8.4718329'/><point lat='38.4659558' lon='-8.6606604'/>
+                <point lat='38.6088236' lon='-8.6695875'/><point lat='38.5368884' lon='-9.1419996'/><point lat='38.6737182' lon='-8.8110365'/>
+                <point lat='38.8546824' lon='-8.7931837'/><point lat='38.9828989' lon='-8.9593519'/><point lat='38.849335' lon='-9.1873182'/>
+                <point lat='38.728377' lon='-9.2395033'/><point lat='38.7465874' lon='-9.3782057'/><point lat='39.0789092' lon='-9.3823255'/>
+                <point lat='39.2513989' lon='-9.2916883'/><point lat='39.3364229' lon='-9.3191542'/><point lat='39.3852649' lon='-9.1708387'/>
+                <point lat='39.4881459' lon='-9.063722'/><point lat='39.696622' lon='-9.0225233'/><point lat='40.1452904' lon='-8.7863172'/>
+                <point lat='40.2092956' lon='-8.8632215'/><point lat='40.5315466' lon='-8.7258924'/><point lat='40.5085798' lon='-8.6407484'/>
+                <point lat='40.6306312' lon='-8.6242689'/><point lat='40.6003999' lon='-8.5308851'/><point lat='40.712916' lon='-8.535005'/>
+                <point lat='40.8927545' lon='-8.6146559'/><point lat='41.104192' lon='-8.6187757'/><point lat='41.1672842' lon='-8.5308851'/>
+                <point lat='41.2168879' lon='-8.6695875'/><point lat='41.4108069' lon='-8.7231459'/><point lat='41.6595763' lon='-8.7698377'/>
+                <point lat='41.7395543' lon='-8.6654676'/><point lat='41.7231567' lon='-8.8110365'/><point lat='41.8521746' lon='-8.8110365'/>
+                <point lat='41.9124985' lon='-8.7464918'/><point lat='41.9308911' lon='-8.8357557'/><point lat='41.8450137' lon='-8.9181532'/>
+                <point lat='41.7077801' lon='-8.8934339'/><point lat='41.50755' lon='-8.8206495'/><point lat='41.1631489' lon='-8.7313856'/>
+                <point lat='41.0689995' lon='-8.6750807'/><point lat='40.9072866' lon='-8.6846937'/><point lat='40.1757266' lon='-8.9332594'/>
+                <point lat='40.1221917' lon='-8.8810743'/><point lat='39.646941' lon='-9.1145338'/><point lat='39.5622956' lon='-9.1186537'/>
+                <point lat='39.4054288' lon='-9.3013014'/><point lat='39.3757116' lon='-9.4303907'/><point lat='39.2386364' lon='-9.3479933'/>
+                <point lat='39.0479868' lon='-9.4509901'/><point lat='38.8931717' lon='-9.4578565'/><point lat='38.7883465' lon='-9.5320143'/>
+                <point lat='38.6855109' lon='-9.5004286'/><point lat='38.6629959' lon='-9.2889418'/><point lat='38.5417221' lon='-9.1941847'/>
+                <point lat='38.3847288' lon='-9.2532362'/><point lat='38.4234712' lon='-9.0348829'/><point lat='38.4675692' lon='-8.9250196'/>
+                <point lat='38.3599658' lon='-8.8124098'/><point lat='38.1496787' lon='-8.7973036'/><point lat='37.9528621' lon='-8.9195265'/>
+                <point lat='37.8650978' lon='-8.8426222'/><point lat='37.4061658' lon='-8.8398756'/><point lat='37.0102305' lon='-9.0266432'/>
+                <point lat='36.9751308' lon='-8.9291395'/><point lat='37.0990041' lon='-8.6146559'/><point lat='37.059562' lon='-8.1504835'/>
+                <point lat='36.936722' lon='-7.8923048'/><point lat='37.1515616' lon='-7.4899305'/><point lat='37.1581288' lon='-7.3910536'/>
+                <point lat='37.1920499' lon='-7.3896803'/>
+            </shape>
+        </bounds>
+    </entry>
+
+    <entry>
+        <!--only for mainland Portugal-->
+        <!--50 cm resolution-->
+        <name>Orthophotos of mainland Portugal - 50 cm - 2004-2006 (DGT)</name>
+        <name lang="pt">Ortofotos 50cm - Portugal Continental - 2004-2006 (DGT)</name>
+        <id>ORTOS_DGT_2004_06</id>
+        <oldid date="2021-07-13">ORTOS_DGRF_2004_06</oldid>
+        <category>historicphoto</category>
+        <date>2004;2006</date>
+        <type>wms</type>
+        <url><![CDATA[https://ortos.dgterritorio.gov.pt/wms-inspire/ortos2004-2006?FORMAT=image/jpeg&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap&LAYERS=Ortos2004-2006-RGB&STYLES=default&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}]]></url>
+        <permission-ref>https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/5fd2c1e18f5f4c3f814a3e7212937ce7</permission-ref>
+        <projections>
+            <code>EPSG:3857</code>
+            <code>EPSG:4326</code>
+            <code>EPSG:3763</code>
+            <code>EPSG:4258</code>
+        </projections>
+        <country-code>PT</country-code>
+        <attribution-text>Direcção-Geral do Território</attribution-text>
+        <attribution-url>https://www.dgterritorio.pt/</attribution-url>
+        <privacy-policy-url>https://snig.dgterritorio.gov.pt/informacoes-sobre-cookies</privacy-policy-url>
+        <icon>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABC1BMVEX////+//////3/+/8AAQD8//0AAAAAm+P//v/8///5/f///f7//f8np+T7//7//f3//P7+/v7+/vz+//0And77/////Pv//P////b1/v39//n+/P//+/sIEgr9/v///ftVVVX9/vn7/v9ISEj/+/3/+v8FAQL9//79+f/9/f0Al+H7//kupOwQDRQAleT///j//vsUpeT4/v7//fkAjt75/f4DnOL+/f8HAQH//vn//v36//4OnOT9/fUnpeL+//o3seQCmt36//8EmuYFk9sAneT+//sCmuYAm9wDltwDmuMXo+D7/fr5//3Y9fsAmuIAldz5/v8WpOb///r7//UBm+UAAwH///sAmuCQ4vfsAAAAtklEQVQYGQXAA3YDQQAA0J9kd2cmKJPatm3bvv9J+gxRGmQkRxmIkEdUE+q0lQBgkbAARZZlWTamlseDnd3teLpXVjCptJ/SdfdTftGRFDqpnYTQbLXuG5dnsYDDo+76q/dQvqukDEKoxL+f8Pb8WI4FhHATv7/qH432zko2rqprK1w1X34fbs83l2eG+1lLeTV+NnSth1Iy0KsCxyFtrMxN12AUVlNYMtUG2vsizM92TNADAIB/t+wRb0wOkYQAAAAASUVORK5CYII=</icon>
+        <min-zoom>14</min-zoom>
+        <max-zoom>19</max-zoom>
+        <valid-georeference>true</valid-georeference>
+        <bounds min-lat='36.6860435' min-lon='-9.8190335' max-lat='42.1868125' max-lon='-6.1571516'>
+            <shape>
+                <point lat='36.9839084' lon='-7.3127774'/><point lat='37.5717959' lon='-7.4446133'/><point lat='37.9701869' lon='-7.193301'/>
+                <point lat='38.0080684' lon='-6.9735745'/><point lat='38.2414171' lon='-6.9062818'/><point lat='38.2074334' lon='-7.0662702'/>
+                <point lat='38.4562784' lon='-7.2715773'/><point lat='38.7235559' lon='-7.204286'/><point lat='38.8546824' lon='-7.0133985'/>
+                <point lat='39.0383874' lon='-6.9131483'/><point lat='39.1311266' lon='-6.9735731'/><point lat='39.2365091' lon='-7.1795668'/>
+                <point lat='39.4849663' lon='-7.2866835'/><point lat='39.6183847' lon='-7.4487318'/><point lat='39.6088634' lon='-7.3416151'/>
+                <point lat='39.6490558' lon='-6.996919'/><point lat='40.0192024' lon='-6.8183912'/><point lat='40.199856' lon='-7.010652'/>
+                <point lat='40.2428479' lon='-6.8527235'/><point lat='40.3507317' lon='-6.7620863'/><point lat='40.8886019' lon='-6.7799391'/>
+                <point lat='41.0115125' lon='-6.8863691'/><point lat='41.0172117' lon='-6.7964186'/><point lat='41.2168879' lon='-6.6384901'/>
+                <point lat='41.2411593' lon='-6.4530958'/><point lat='41.3876284' lon='-6.2931067'/><point lat='41.5907979' lon='-6.1571516'/>
+                <point lat='41.6893233' lon='-6.3116468'/><point lat='41.7118809' lon='-6.5121473'/><point lat='41.88081' lon='-6.4984144'/>
+                <point lat='41.979912' lon='-6.5629591'/><point lat='42.0095105' lon='-6.8019117'/><point lat='42.0013468' lon='-7.2049726'/>
+                <point lat='41.8848997' lon='-7.2276319'/><point lat='41.8705845' lon='-7.3690809'/><point lat='41.9288477' lon='-7.7275099'/>
+                <point lat='41.9400853' lon='-7.9252638'/><point lat='41.8470598' lon='-8.0790724'/><point lat='41.918119' lon='-8.1600965'/>
+                <point lat='42.0503135' lon='-8.0179609'/><point lat='42.1868125' lon='-8.1992353'/><point lat='42.1022993' lon='-8.393556'/>
+                <point lat='42.07886' lon='-8.6606611'/><point lat='41.88081' lon='-8.8838209'/><point lat='41.8695629' lon='-9.1708401'/>
+                <point lat='41.4365515' lon='-9.0417507'/><point lat='40.6598081' lon='-9.0197781'/><point lat='40.2669545' lon='-9.1571072'/>
+                <point lat='39.5209945' lon='-9.8190335'/><point lat='38.6512005' lon='-9.7421292'/><point lat='37.8813594' lon='-9.1296414'/>
+                <point lat='36.9937806' lon='-9.2724636'/><point lat='36.6860435' lon='-9.0939358'/><point lat='36.7498907' lon='-7.8057888'/>
+                <point lat='36.9839084' lon='-7.3127774'/>
+            </shape>
+        </bounds>
+    </entry>
+
+    <entry>
+        <!--hillshading from lidar of coastal areas of mainland Portugal-->
+        <!--2m resolution-->
+        <name>Elevation hillshade of the coastal areas of mainland Portugal - 2m - 2014-2015 (DGT)</name>
+        <name lang="pt">Modelo Digital do Terreno (Resolução 2 m) - Zonas Costeiras de Portugal Continental - 2014-2015 (DGT)</name>
+        <id>MDT2M_LITORAL_2014_15</id>
+        <category>elevation</category>
+        <date>2014;2015</date>
+        <type>wms</type>
+        <url><![CDATA[https://ortos.dgterritorio.gov.pt/wms-inspire/mdt2014-2015-litoral?FORMAT=image/jpeg&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap&LAYERS=MDT2M-2014-2015-litoral&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}]]></url>
+        <permission-ref>https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/e803532f-7760-4714-bfbf-914546309d86</permission-ref>
+        <projections>
+            <code>EPSG:3857</code>
+            <code>EPSG:4326</code>
+            <code>EPSG:3763</code>
+            <code>EPSG:4258</code>
+        </projections>
+        <country-code>PT</country-code>
+        <attribution-text>Direcção-Geral do Território</attribution-text>
+        <attribution-url>https://www.dgterritorio.pt/</attribution-url>
+        <privacy-policy-url>https://snig.dgterritorio.gov.pt/informacoes-sobre-cookies</privacy-policy-url>
+        <icon>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABC1BMVEX////+//////3/+/8AAQD8//0AAAAAm+P//v/8///5/f///f7//f8np+T7//7//f3//P7+/v7+/vz+//0And77/////Pv//P////b1/v39//n+/P//+/sIEgr9/v///ftVVVX9/vn7/v9ISEj/+/3/+v8FAQL9//79+f/9/f0Al+H7//kupOwQDRQAleT///j//vsUpeT4/v7//fkAjt75/f4DnOL+/f8HAQH//vn//v36//4OnOT9/fUnpeL+//o3seQCmt36//8EmuYFk9sAneT+//sCmuYAm9wDltwDmuMXo+D7/fr5//3Y9fsAmuIAldz5/v8WpOb///r7//UBm+UAAwH///sAmuCQ4vfsAAAAtklEQVQYGQXAA3YDQQAA0J9kd2cmKJPatm3bvv9J+gxRGmQkRxmIkEdUE+q0lQBgkbAARZZlWTamlseDnd3teLpXVjCptJ/SdfdTftGRFDqpnYTQbLXuG5dnsYDDo+76q/dQvqukDEKoxL+f8Pb8WI4FhHATv7/qH432zko2rqprK1w1X34fbs83l2eG+1lLeTV+NnSth1Iy0KsCxyFtrMxN12AUVlNYMtUG2vsizM92TNADAIB/t+wRb0wOkYQAAAAASUVORK5CYII=</icon>
+        <min-zoom>1</min-zoom>
+        <max-zoom>20</max-zoom>
+        <valid-georeference>true</valid-georeference>
+        <bounds min-lat='36.936722' min-lon='-9.5320143' max-lat='41.9308911' max-lon='-7.3896803'>
+            <shape>
+                <point lat='37.1920499' lon='-7.3896803'/><point lat='37.1800151' lon='-7.5242628'/><point lat='36.9817132' lon='-7.8950514'/>
+                <point lat='37.1088614' lon='-8.1518568'/><point lat='37.1406152' lon='-8.6503614'/><point lat='37.0354484' lon='-8.9511122'/>
+                <point lat='37.3483272' lon='-8.7863172'/><point lat='37.5511113' lon='-8.7643446'/><point lat='38.3825758' lon='-8.7561048'/>
+                <point lat='38.3346558' lon='-8.4766401'/><point lat='38.4014116' lon='-8.4718329'/><point lat='38.4659558' lon='-8.6606604'/>
+                <point lat='38.6088236' lon='-8.6695875'/><point lat='38.5368884' lon='-9.1419996'/><point lat='38.6737182' lon='-8.8110365'/>
+                <point lat='38.8546824' lon='-8.7931837'/><point lat='38.9828989' lon='-8.9593519'/><point lat='38.849335' lon='-9.1873182'/>
+                <point lat='38.728377' lon='-9.2395033'/><point lat='38.7465874' lon='-9.3782057'/><point lat='39.0789092' lon='-9.3823255'/>
+                <point lat='39.2513989' lon='-9.2916883'/><point lat='39.3364229' lon='-9.3191542'/><point lat='39.3852649' lon='-9.1708387'/>
+                <point lat='39.4881459' lon='-9.063722'/><point lat='39.696622' lon='-9.0225233'/><point lat='40.1452904' lon='-8.7863172'/>
+                <point lat='40.2092956' lon='-8.8632215'/><point lat='40.5315466' lon='-8.7258924'/><point lat='40.5085798' lon='-8.6407484'/>
+                <point lat='40.6306312' lon='-8.6242689'/><point lat='40.6003999' lon='-8.5308851'/><point lat='40.712916' lon='-8.535005'/>
+                <point lat='40.8927545' lon='-8.6146559'/><point lat='41.104192' lon='-8.6187757'/><point lat='41.1672842' lon='-8.5308851'/>
+                <point lat='41.2168879' lon='-8.6695875'/><point lat='41.4108069' lon='-8.7231459'/><point lat='41.6595763' lon='-8.7698377'/>
+                <point lat='41.7395543' lon='-8.6654676'/><point lat='41.7231567' lon='-8.8110365'/><point lat='41.8521746' lon='-8.8110365'/>
+                <point lat='41.9124985' lon='-8.7464918'/><point lat='41.9308911' lon='-8.8357557'/><point lat='41.8450137' lon='-8.9181532'/>
+                <point lat='41.7077801' lon='-8.8934339'/><point lat='41.50755' lon='-8.8206495'/><point lat='41.1631489' lon='-8.7313856'/>
+                <point lat='41.0689995' lon='-8.6750807'/><point lat='40.9072866' lon='-8.6846937'/><point lat='40.1757266' lon='-8.9332594'/>
+                <point lat='40.1221917' lon='-8.8810743'/><point lat='39.646941' lon='-9.1145338'/><point lat='39.5622956' lon='-9.1186537'/>
+                <point lat='39.4054288' lon='-9.3013014'/><point lat='39.3757116' lon='-9.4303907'/><point lat='39.2386364' lon='-9.3479933'/>
+                <point lat='39.0479868' lon='-9.4509901'/><point lat='38.8931717' lon='-9.4578565'/><point lat='38.7883465' lon='-9.5320143'/>
+                <point lat='38.6855109' lon='-9.5004286'/><point lat='38.6629959' lon='-9.2889418'/><point lat='38.5417221' lon='-9.1941847'/>
+                <point lat='38.3847288' lon='-9.2532362'/><point lat='38.4234712' lon='-9.0348829'/><point lat='38.4675692' lon='-8.9250196'/>
+                <point lat='38.3599658' lon='-8.8124098'/><point lat='38.1496787' lon='-8.7973036'/><point lat='37.9528621' lon='-8.9195265'/>
+                <point lat='37.8650978' lon='-8.8426222'/><point lat='37.4061658' lon='-8.8398756'/><point lat='37.0102305' lon='-9.0266432'/>
+                <point lat='36.9751308' lon='-8.9291395'/><point lat='37.0990041' lon='-8.6146559'/><point lat='37.059562' lon='-8.1504835'/>
+                <point lat='36.936722' lon='-7.8923048'/><point lat='37.1515616' lon='-7.4899305'/><point lat='37.1581288' lon='-7.3910536'/>
+                <point lat='37.1920499' lon='-7.3896803'/>
+            </shape>
+        </bounds>
+    </entry>
+
+    <entry>
+        <!-- Landuse for mainland Portugal 2018 -->
+        <!-- Legend available here: http://mapas.dgterritorio.pt/wms-inspire/cos2018v1?language=por&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=COS2018v1.0&format=image/png&STYLE=default" -->
+        <name>Land Use and Soil Occupation Charter of mainland Portugal - 2018 (DGT)</name>
+        <name lang="pt">Carta de Uso e Ocupação do Solo - 2018 (DGT)</name>
+        <id>COS2018_v1.0</id>
+        <oldid date="2021-07-11">COS2018</oldid>
+        <category>other</category>
+        <date>2018</date>
+        <type>wms</type>
+        <url><![CDATA[http://mapas.dgterritorio.pt/wms-inspire/cos2018v1?language=por&FORMAT=image/png&TRANSPARENT=TRUE&VERSION=1.1.1&SERVICE=WMS&REQUEST=GetMap&LAYERS=COS2018v1.0&STYLES=&SRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}]]></url>
+        <permission-ref>https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/b498e89c-1093-4793-ad22-63516062891b</permission-ref>
+        <projections>
+            <code>EPSG:3763</code>
+            <code>EPSG:4326</code>
+            <code>EPSG:4258</code>
+            <code>EPSG:3857</code>
+        </projections>
+        <country-code>PT</country-code>
+        <attribution-text>Direcção-Geral do Território</attribution-text>
+        <attribution-url>https://www.dgterritorio.gov.pt/Carta-de-Uso-e-Ocupacao-do-Solo-para-2018</attribution-url>
+        <privacy-policy-url>https://snig.dgterritorio.gov.pt/informacoes-sobre-cookies</privacy-policy-url>
+        <icon>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABC1BMVEX////+//////3/+/8AAQD8//0AAAAAm+P//v/8///5/f///f7//f8np+T7//7//f3//P7+/v7+/vz+//0And77/////Pv//P////b1/v39//n+/P//+/sIEgr9/v///ftVVVX9/vn7/v9ISEj/+/3/+v8FAQL9//79+f/9/f0Al+H7//kupOwQDRQAleT///j//vsUpeT4/v7//fkAjt75/f4DnOL+/f8HAQH//vn//v36//4OnOT9/fUnpeL+//o3seQCmt36//8EmuYFk9sAneT+//sCmuYAm9wDltwDmuMXo+D7/fr5//3Y9fsAmuIAldz5/v8WpOb///r7//UBm+UAAwH///sAmuCQ4vfsAAAAtklEQVQYGQXAA3YDQQAA0J9kd2cmKJPatm3bvv9J+gxRGmQkRxmIkEdUE+q0lQBgkbAARZZlWTamlseDnd3teLpXVjCptJ/SdfdTftGRFDqpnYTQbLXuG5dnsYDDo+76q/dQvqukDEKoxL+f8Pb8WI4FhHATv7/qH432zko2rqprK1w1X34fbs83l2eG+1lLeTV+NnSth1Iy0KsCxyFtrMxN12AUVlNYMtUG2vsizM92TNADAIB/t+wRb0wOkYQAAAAASUVORK5CYII=</icon>
+        <min-zoom>13</min-zoom>
+        <max-zoom>18</max-zoom>
+        <bounds min-lat='36.6860435' min-lon='-9.8190335' max-lat='42.1868125' max-lon='-6.1571516'>
+            <shape>
+                <point lat='36.9839084' lon='-7.3127774'/><point lat='37.5717959' lon='-7.4446133'/><point lat='37.9701869' lon='-7.193301'/>
+                <point lat='38.0080684' lon='-6.9735745'/><point lat='38.2414171' lon='-6.9062818'/><point lat='38.2074334' lon='-7.0662702'/>
+                <point lat='38.4562784' lon='-7.2715773'/><point lat='38.7235559' lon='-7.204286'/><point lat='38.8546824' lon='-7.0133985'/>
+                <point lat='39.0383874' lon='-6.9131483'/><point lat='39.1311266' lon='-6.9735731'/><point lat='39.2365091' lon='-7.1795668'/>
+                <point lat='39.4849663' lon='-7.2866835'/><point lat='39.6183847' lon='-7.4487318'/><point lat='39.6088634' lon='-7.3416151'/>
+                <point lat='39.6490558' lon='-6.996919'/><point lat='40.0192024' lon='-6.8183912'/><point lat='40.199856' lon='-7.010652'/>
+                <point lat='40.2428479' lon='-6.8527235'/><point lat='40.3507317' lon='-6.7620863'/><point lat='40.8886019' lon='-6.7799391'/>
+                <point lat='41.0115125' lon='-6.8863691'/><point lat='41.0172117' lon='-6.7964186'/><point lat='41.2168879' lon='-6.6384901'/>
+                <point lat='41.2411593' lon='-6.4530958'/><point lat='41.3876284' lon='-6.2931067'/><point lat='41.5907979' lon='-6.1571516'/>
+                <point lat='41.6893233' lon='-6.3116468'/><point lat='41.7118809' lon='-6.5121473'/><point lat='41.88081' lon='-6.4984144'/>
+                <point lat='41.979912' lon='-6.5629591'/><point lat='42.0095105' lon='-6.8019117'/><point lat='42.0013468' lon='-7.2049726'/>
+                <point lat='41.8848997' lon='-7.2276319'/><point lat='41.8705845' lon='-7.3690809'/><point lat='41.9288477' lon='-7.7275099'/>
+                <point lat='41.9400853' lon='-7.9252638'/><point lat='41.8470598' lon='-8.0790724'/><point lat='41.918119' lon='-8.1600965'/>
+                <point lat='42.0503135' lon='-8.0179609'/><point lat='42.1868125' lon='-8.1992353'/><point lat='42.1022993' lon='-8.393556'/>
+                <point lat='42.07886' lon='-8.6606611'/><point lat='41.88081' lon='-8.8838209'/><point lat='41.8695629' lon='-9.1708401'/>
+                <point lat='41.4365515' lon='-9.0417507'/><point lat='40.6598081' lon='-9.0197781'/><point lat='40.2669545' lon='-9.1571072'/>
+                <point lat='39.5209945' lon='-9.8190335'/><point lat='38.6512005' lon='-9.7421292'/><point lat='37.8813594' lon='-9.1296414'/>
+                <point lat='36.9937806' lon='-9.2724636'/><point lat='36.6860435' lon='-9.0939358'/><point lat='36.7498907' lon='-7.8057888'/>
+                <point lat='36.9839084' lon='-7.3127774'/>
+            </shape>
+        </bounds>
+    </entry>
+
+    <entry>
+        <!-- Landuse for mainland Portugal 2015 -->
+        <!-- Legend available here: http://mapas.dgterritorio.pt/wms-inspire/cos2015v1?language=por&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=COS2015v1.0&format=image/png&STYLE=default" -->
+        <name>Land Use and Soil Occupation Charter of mainland Portugal - 2015 (DGT)</name>
+        <name lang="pt">Carta de Uso e Ocupação do Solo - 2015 (DGT)</name>
+        <id>COS2015_v1.0</id>
+        <category>other</category>
+        <date>2015</date>
+        <type>wms</type>
+        <url><![CDATA[http://mapas.dgterritorio.pt/wms-inspire/cos2015v1?language=por&FORMAT=image/png&TRANSPARENT=TRUE&VERSION=1.1.1&SERVICE=WMS&REQUEST=GetMap&LAYERS=COS2015v1.0&STYLES=&SRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}]]></url>
+        <permission-ref>https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/94dab05c-513d-4a40-b9e3-9ddd775f8543</permission-ref>
+        <projections>
+            <code>EPSG:3763</code>
+            <code>EPSG:4326</code>
+            <code>EPSG:4258</code>
+            <code>EPSG:3857</code>
+        </projections>
+        <country-code>PT</country-code>
+        <attribution-text>Direcção-Geral do Território</attribution-text>
+        <attribution-url>https://www.dgterritorio.pt/</attribution-url>
+        <icon>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABC1BMVEX////+//////3/+/8AAQD8//0AAAAAm+P//v/8///5/f///f7//f8np+T7//7//f3//P7+/v7+/vz+//0And77/////Pv//P////b1/v39//n+/P//+/sIEgr9/v///ftVVVX9/vn7/v9ISEj/+/3/+v8FAQL9//79+f/9/f0Al+H7//kupOwQDRQAleT///j//vsUpeT4/v7//fkAjt75/f4DnOL+/f8HAQH//vn//v36//4OnOT9/fUnpeL+//o3seQCmt36//8EmuYFk9sAneT+//sCmuYAm9wDltwDmuMXo+D7/fr5//3Y9fsAmuIAldz5/v8WpOb///r7//UBm+UAAwH///sAmuCQ4vfsAAAAtklEQVQYGQXAA3YDQQAA0J9kd2cmKJPatm3bvv9J+gxRGmQkRxmIkEdUE+q0lQBgkbAARZZlWTamlseDnd3teLpXVjCptJ/SdfdTftGRFDqpnYTQbLXuG5dnsYDDo+76q/dQvqukDEKoxL+f8Pb8WI4FhHATv7/qH432zko2rqprK1w1X34fbs83l2eG+1lLeTV+NnSth1Iy0KsCxyFtrMxN12AUVlNYMtUG2vsizM92TNADAIB/t+wRb0wOkYQAAAAASUVORK5CYII=</icon>
+        <min-zoom>14</min-zoom>
+        <max-zoom>18</max-zoom>
+        <bounds min-lat='36.6860435' min-lon='-9.8190335' max-lat='42.1868125' max-lon='-6.1571516'>
+            <shape>
+                <point lat='36.9839084' lon='-7.3127774'/><point lat='37.5717959' lon='-7.4446133'/><point lat='37.9701869' lon='-7.193301'/>
+                <point lat='38.0080684' lon='-6.9735745'/><point lat='38.2414171' lon='-6.9062818'/><point lat='38.2074334' lon='-7.0662702'/>
+                <point lat='38.4562784' lon='-7.2715773'/><point lat='38.7235559' lon='-7.204286'/><point lat='38.8546824' lon='-7.0133985'/>
+                <point lat='39.0383874' lon='-6.9131483'/><point lat='39.1311266' lon='-6.9735731'/><point lat='39.2365091' lon='-7.1795668'/>
+                <point lat='39.4849663' lon='-7.2866835'/><point lat='39.6183847' lon='-7.4487318'/><point lat='39.6088634' lon='-7.3416151'/>
+                <point lat='39.6490558' lon='-6.996919'/><point lat='40.0192024' lon='-6.8183912'/><point lat='40.199856' lon='-7.010652'/>
+                <point lat='40.2428479' lon='-6.8527235'/><point lat='40.3507317' lon='-6.7620863'/><point lat='40.8886019' lon='-6.7799391'/>
+                <point lat='41.0115125' lon='-6.8863691'/><point lat='41.0172117' lon='-6.7964186'/><point lat='41.2168879' lon='-6.6384901'/>
+                <point lat='41.2411593' lon='-6.4530958'/><point lat='41.3876284' lon='-6.2931067'/><point lat='41.5907979' lon='-6.1571516'/>
+                <point lat='41.6893233' lon='-6.3116468'/><point lat='41.7118809' lon='-6.5121473'/><point lat='41.88081' lon='-6.4984144'/>
+                <point lat='41.979912' lon='-6.5629591'/><point lat='42.0095105' lon='-6.8019117'/><point lat='42.0013468' lon='-7.2049726'/>
+                <point lat='41.8848997' lon='-7.2276319'/><point lat='41.8705845' lon='-7.3690809'/><point lat='41.9288477' lon='-7.7275099'/>
+                <point lat='41.9400853' lon='-7.9252638'/><point lat='41.8470598' lon='-8.0790724'/><point lat='41.918119' lon='-8.1600965'/>
+                <point lat='42.0503135' lon='-8.0179609'/><point lat='42.1868125' lon='-8.1992353'/><point lat='42.1022993' lon='-8.393556'/>
+                <point lat='42.07886' lon='-8.6606611'/><point lat='41.88081' lon='-8.8838209'/><point lat='41.8695629' lon='-9.1708401'/>
+                <point lat='41.4365515' lon='-9.0417507'/><point lat='40.6598081' lon='-9.0197781'/><point lat='40.2669545' lon='-9.1571072'/>
+                <point lat='39.5209945' lon='-9.8190335'/><point lat='38.6512005' lon='-9.7421292'/><point lat='37.8813594' lon='-9.1296414'/>
+                <point lat='36.9937806' lon='-9.2724636'/><point lat='36.6860435' lon='-9.0939358'/><point lat='36.7498907' lon='-7.8057888'/>
+                <point lat='36.9839084' lon='-7.3127774'/>
+            </shape>
+        </bounds>
+    </entry>
+
+    <entry>
+        <!-- Landuse for mainland Portugal 2010. NOTICE: Had more fine-grained categories which were suppressed/simplified in later versions. -->
+        <!-- Legend available here: http://mapas.dgterritorio.pt/wms-inspire/cos2010v1?language=por&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=COS2010_v1.0&format=image/png&STYLE=inspire_common:DEFAULT -->
+        <name>Land Use and Soil Occupation Charter of mainland Portugal - 2010 (DGT)</name>
+        <name lang="pt">Carta de Uso e Ocupação do Solo - 2010 (DGT)</name>
+        <id>COS2010_v1.0</id>
+        <category>other</category>
+        <date>2010</date>
+        <type>wms</type>
+        <url><![CDATA[http://mapas.dgterritorio.pt/wms-inspire/cos2010v1?language=por&FORMAT=image/png&TRANSPARENT=TRUE&VERSION=1.1.1&SERVICE=WMS&REQUEST=GetMap&LAYERS=COS2010_v1.0&STYLES=&SRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}]]></url>
+        <permission-ref>https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/e581be49-7202-4160-9190-d07a43c6e8a6</permission-ref>
+        <projections>
+            <code>EPSG:3763</code>
+            <code>EPSG:4258</code>
+            <code>EPSG:4326</code>
+            <code>EPSG:3857</code>
+        </projections>
+        <country-code>PT</country-code>
+        <attribution-text>Direcção-Geral do Território</attribution-text>
+        <attribution-url>https://www.dgterritorio.pt/</attribution-url>
+        <icon>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABC1BMVEX////+//////3/+/8AAQD8//0AAAAAm+P//v/8///5/f///f7//f8np+T7//7//f3//P7+/v7+/vz+//0And77/////Pv//P////b1/v39//n+/P//+/sIEgr9/v///ftVVVX9/vn7/v9ISEj/+/3/+v8FAQL9//79+f/9/f0Al+H7//kupOwQDRQAleT///j//vsUpeT4/v7//fkAjt75/f4DnOL+/f8HAQH//vn//v36//4OnOT9/fUnpeL+//o3seQCmt36//8EmuYFk9sAneT+//sCmuYAm9wDltwDmuMXo+D7/fr5//3Y9fsAmuIAldz5/v8WpOb///r7//UBm+UAAwH///sAmuCQ4vfsAAAAtklEQVQYGQXAA3YDQQAA0J9kd2cmKJPatm3bvv9J+gxRGmQkRxmIkEdUE+q0lQBgkbAARZZlWTamlseDnd3teLpXVjCptJ/SdfdTftGRFDqpnYTQbLXuG5dnsYDDo+76q/dQvqukDEKoxL+f8Pb8WI4FhHATv7/qH432zko2rqprK1w1X34fbs83l2eG+1lLeTV+NnSth1Iy0KsCxyFtrMxN12AUVlNYMtUG2vsizM92TNADAIB/t+wRb0wOkYQAAAAASUVORK5CYII=</icon>
+        <min-zoom>14</min-zoom>
+        <max-zoom>18</max-zoom>
+        <bounds min-lat='36.6860435' min-lon='-9.8190335' max-lat='42.1868125' max-lon='-6.1571516'>
+            <shape>
+                <point lat='36.9839084' lon='-7.3127774'/><point lat='37.5717959' lon='-7.4446133'/><point lat='37.9701869' lon='-7.193301'/>
+                <point lat='38.0080684' lon='-6.9735745'/><point lat='38.2414171' lon='-6.9062818'/><point lat='38.2074334' lon='-7.0662702'/>
+                <point lat='38.4562784' lon='-7.2715773'/><point lat='38.7235559' lon='-7.204286'/><point lat='38.8546824' lon='-7.0133985'/>
+                <point lat='39.0383874' lon='-6.9131483'/><point lat='39.1311266' lon='-6.9735731'/><point lat='39.2365091' lon='-7.1795668'/>
+                <point lat='39.4849663' lon='-7.2866835'/><point lat='39.6183847' lon='-7.4487318'/><point lat='39.6088634' lon='-7.3416151'/>
+                <point lat='39.6490558' lon='-6.996919'/><point lat='40.0192024' lon='-6.8183912'/><point lat='40.199856' lon='-7.010652'/>
+                <point lat='40.2428479' lon='-6.8527235'/><point lat='40.3507317' lon='-6.7620863'/><point lat='40.8886019' lon='-6.7799391'/>
+                <point lat='41.0115125' lon='-6.8863691'/><point lat='41.0172117' lon='-6.7964186'/><point lat='41.2168879' lon='-6.6384901'/>
+                <point lat='41.2411593' lon='-6.4530958'/><point lat='41.3876284' lon='-6.2931067'/><point lat='41.5907979' lon='-6.1571516'/>
+                <point lat='41.6893233' lon='-6.3116468'/><point lat='41.7118809' lon='-6.5121473'/><point lat='41.88081' lon='-6.4984144'/>
+                <point lat='41.979912' lon='-6.5629591'/><point lat='42.0095105' lon='-6.8019117'/><point lat='42.0013468' lon='-7.2049726'/>
+                <point lat='41.8848997' lon='-7.2276319'/><point lat='41.8705845' lon='-7.3690809'/><point lat='41.9288477' lon='-7.7275099'/>
+                <point lat='41.9400853' lon='-7.9252638'/><point lat='41.8470598' lon='-8.0790724'/><point lat='41.918119' lon='-8.1600965'/>
+                <point lat='42.0503135' lon='-8.0179609'/><point lat='42.1868125' lon='-8.1992353'/><point lat='42.1022993' lon='-8.393556'/>
+                <point lat='42.07886' lon='-8.6606611'/><point lat='41.88081' lon='-8.8838209'/><point lat='41.8695629' lon='-9.1708401'/>
+                <point lat='41.4365515' lon='-9.0417507'/><point lat='40.6598081' lon='-9.0197781'/><point lat='40.2669545' lon='-9.1571072'/>
+                <point lat='39.5209945' lon='-9.8190335'/><point lat='38.6512005' lon='-9.7421292'/><point lat='37.8813594' lon='-9.1296414'/>
+                <point lat='36.9937806' lon='-9.2724636'/><point lat='36.6860435' lon='-9.0939358'/><point lat='36.7498907' lon='-7.8057888'/>
+                <point lat='36.9839084' lon='-7.3127774'/>
+            </shape>
+        </bounds>
+    </entry>
+
+    <entry>
+        <!-- Map of Portugal (mainland, Madeira and Azores) based on modified version of OpenTopoMap -->
+        <name>Portugal Topographic Map (valentim.org)</name>
+        <name lang="pt">Mapa Topográfico de Portugal (valentim.org)</name>
+        <id>otmpt</id>
+        <category>osmbasedmap</category>
+        <type>tms</type>
+        <url><![CDATA[https://map.valentim.org/otmpt/{zoom}/{x}/{y}.png]]></url>
+        <min-zoom>5</min-zoom>
+        <max-zoom>17</max-zoom>
+        <projections>
+            <code>EPSG:3857</code>
+        </projections>
+        <country-code>PT</country-code>
+        <attribution-text mandatory='true'>Tiles valentim.org | Data OpenStreetMap contributors, Copernicus, Instituto Hidrográfico, GEBCO, IGN-ES | Style OpenTopoMap</attribution-text>
+        <attribution-url>https://valentim.org/mapa-topografico-de-portugal-madeira-e-acores</attribution-url>
+        <icon>https://map.valentim.org/favicon.png</icon>
+        <bounds min-lat='29.7847195' min-lon='-31.5' max-lat='42.1639' max-lon='-6.179513'>
+            <shape>
+                <point lat='38.77245' lon='-31.5'/><point lat='40.22068' lon='-31.5'/><point lat='41.86973' lon='-9.149313'/>
+                <point lat='41.87687' lon='-8.872632'/><point lat='41.91973' lon='-8.822866'/><point lat='41.93948' lon='-8.766831'/>
+                <point lat='41.97613' lon='-8.746853'/><point lat='42.00722' lon='-8.675412'/><point lat='42.03585' lon='-8.665008'/>
+                <point lat='42.05836' lon='-8.636998'/><point lat='42.06489' lon='-8.550038'/><point lat='42.08908' lon='-8.521691'/>
+                <point lat='42.09654' lon='-8.337626'/><point lat='42.1639' lon='-8.200073'/><point lat='42.14699' lon='-8.178741'/>
+                <point lat='42.08167' lon='-8.173535'/><point lat='42.09101' lon='-8.113456'/><point lat='42.07755' lon='-8.088217'/>
+                <point lat='42.0468' lon='-8.074117'/><point lat='42.0102' lon='-8.078365'/><point lat='41.97337' lon='-8.151888'/>
+                <point lat='41.90987' lon='-8.204349'/><point lat='41.88898' lon='-8.189175'/><point lat='41.88325' lon='-8.162739'/>
+                <point lat='41.82868' lon='-8.151119'/><point lat='41.82082' lon='-8.133216'/><point lat='41.82742' lon='-8.062139'/>
+                <point lat='41.84329' lon='-8.020497'/><point lat='41.87995' lon='-7.988638'/><point lat='41.8863' lon='-7.935049'/>
+                <point lat='41.93737' lon='-7.903804'/><point lat='41.92862' lon='-7.876159'/><point lat='41.8674' lon='-7.87259'/>
+                <point lat='41.8902' lon='-7.849255'/><point lat='41.91765' lon='-7.700171'/><point lat='41.89159' lon='-7.647288'/>
+                <point lat='41.88954' lon='-7.579852'/><point lat='41.87289' lon='-7.574732'/><point lat='41.84361' lon='-7.59398'/>
+                <point lat='41.85063' lon='-7.530001'/><point lat='41.87253' lon='-7.518211'/><point lat='41.88078' lon='-7.48959'/>
+                <point lat='41.87182' lon='-7.445455'/><point lat='41.83025' lon='-7.414555'/><point lat='41.86089' lon='-7.37216'/>
+                <point lat='41.85471' lon='-7.319131'/><point lat='41.89148' lon='-7.203621'/><point lat='41.9171' lon='-7.19048'/>
+                <point lat='41.97514' lon='-7.195032'/><point lat='41.99914' lon='-7.148157'/><point lat='41.98404' lon='-7.085872'/>
+                <point lat='41.961' lon='-7.067789'/><point lat='41.96221' lon='-7.013841'/><point lat='41.98326' lon='-6.975144'/>
+                <point lat='41.95736' lon='-6.935636'/><point lat='41.95112' lon='-6.895092'/><point lat='41.95567' lon='-6.831398'/>
+                <point lat='42.00226' lon='-6.812031'/><point lat='41.99349' lon='-6.765693'/><point lat='41.95341' lon='-6.741309'/>
+                <point lat='41.94566' lon='-6.703719'/><point lat='41.95254' lon='-6.621982'/><point lat='41.97731' lon='-6.587926'/>
+                <point lat='41.94576' lon='-6.539123'/><point lat='41.89049' lon='-6.551255'/><point lat='41.87322' lon='-6.505794'/>
+                <point lat='41.74727' lon='-6.549595'/><point lat='41.69121' lon='-6.535665'/><point lat='41.66848' lon='-6.49594'/>
+                <point lat='41.6945' lon='-6.447085'/><point lat='41.67219' lon='-6.300824'/><point lat='41.60338' lon='-6.196409'/>
+                <point lat='41.5758' lon='-6.179513'/><point lat='41.44858' lon='-6.290237'/><point lat='41.37802' lon='-6.311569'/>
+                <point lat='41.37256' lon='-6.367957'/><point lat='41.35143' lon='-6.370644'/><point lat='41.33705' lon='-6.408457'/>
+                <point lat='41.29857' lon='-6.430419'/><point lat='41.28662' lon='-6.470876'/><point lat='41.27141' lon='-6.469485'/>
+                <point lat='41.25742' lon='-6.490534'/><point lat='41.25927' lon='-6.523051'/><point lat='41.22946' lon='-6.56971'/>
+                <point lat='41.23396' lon='-6.641498'/><point lat='41.16514' lon='-6.70243'/><point lat='41.12812' lon='-6.755517'/>
+                <point lat='41.09886' lon='-6.745774'/><point lat='41.02714' lon='-6.806023'/><point lat='41.02141' lon='-6.917228'/>
+                <point lat='40.95648' lon='-6.851683'/><point lat='40.90355' lon='-6.834025'/><point lat='40.88953' lon='-6.802379'/>
+                <point lat='40.86308' lon='-6.792098'/><point lat='40.84136' lon='-6.79296'/><point lat='40.82543' lon='-6.812308'/>
+                <point lat='40.7528' lon='-6.818674'/><point lat='40.65962' lon='-6.784387'/><point lat='40.57434' lon='-6.828443'/>
+                <point lat='40.55589' lon='-6.792891'/><point lat='40.50909' lon='-6.785861'/><point lat='40.45039' lon='-6.836342'/>
+                <point lat='40.41328' lon='-6.824935'/><point lat='40.36372' lon='-6.771152'/><point lat='40.321' lon='-6.787403'/>
+                <point lat='40.29261' lon='-6.850221'/><point lat='40.25521' lon='-6.864391'/><point lat='40.24592' lon='-6.943456'/>
+                <point lat='40.2058' lon='-7.007502'/><point lat='40.1343' lon='-6.998491'/><point lat='40.12013' lon='-6.934736'/>
+                <point lat='40.01239' lon='-6.85401'/><point lat='39.92031' lon='-6.891037'/><point lat='39.86511' lon='-6.8955'/>
+                <point lat='39.82017' lon='-6.941575'/><point lat='39.8077' lon='-6.973363'/><point lat='39.72487' lon='-6.977815'/>
+                <point lat='39.66567' lon='-7.007006'/><point lat='39.64803' lon='-7.061832'/><point lat='39.64308' lon='-7.147802'/>
+                <point lat='39.65551' lon='-7.255493'/><point lat='39.63136' lon='-7.331678'/><point lat='39.65316' lon='-7.515605'/>
+                <point lat='39.59952' lon='-7.489218'/><point lat='39.54882' lon='-7.430701'/><point lat='39.53869' lon='-7.386628'/>
+                <point lat='39.50118' lon='-7.370725'/><point lat='39.46294' lon='-7.286718'/><point lat='39.38298' lon='-7.30703'/>
+                <point lat='39.34168' lon='-7.295019'/><point lat='39.28274' lon='-7.222837'/><point lat='39.25206' lon='-7.234451'/>
+                <point lat='39.21079' lon='-7.225419'/><point lat='39.1775' lon='-7.127009'/><point lat='39.11784' lon='-7.133004'/>
+                <point lat='39.12841' lon='-7.039389'/><point lat='39.1063' lon='-6.988124'/><point lat='39.06614' lon='-6.953994'/>
+                <point lat='39.0243' lon='-6.941426'/><point lat='38.90447' lon='-7.033073'/><point lat='38.8778' lon='-7.023217'/>
+                <point lat='38.85702' lon='-7.032834'/><point lat='38.84038' lon='-7.065354'/><point lat='38.80988' lon='-7.08753'/>
+                <point lat='38.80219' lon='-7.126728'/><point lat='38.71824' lon='-7.246551'/><point lat='38.64445' lon='-7.260361'/>
+                <point lat='38.6212' lon='-7.234287'/><point lat='38.53938' lon='-7.290807'/><point lat='38.49533' lon='-7.304708'/>
+                <point lat='38.47534' lon='-7.286802'/><point lat='38.44462' lon='-7.302239'/><point lat='38.4266' lon='-7.272665'/>
+                <point lat='38.39672' lon='-7.259125'/><point lat='38.2806' lon='-7.142004'/><point lat='38.23832' lon='-7.128449'/>
+                <point lat='38.18959' lon='-7.09047'/><point lat='38.19571' lon='-7.031294'/><point lat='38.2136' lon='-7.014845'/>
+                <point lat='38.23017' lon='-6.939052'/><point lat='38.20422' lon='-6.922525'/><point lat='38.16791' lon='-6.951877'/>
+                <point lat='38.14999' lon='-6.942791'/><point lat='38.08965' lon='-6.977497'/><point lat='38.01465' lon='-6.996062'/>
+                <point lat='38.00494' lon='-7.049468'/><point lat='38.02944' lon='-7.100684'/><point lat='37.99403' lon='-7.119873'/>
+                <point lat='37.97917' lon='-7.239804'/><point lat='37.92034' lon='-7.245515'/><point lat='37.83539' lon='-7.293746'/>
+                <point lat='37.75015' lon='-7.407361'/><point lat='37.66047' lon='-7.434778'/><point lat='37.5929' lon='-7.48595'/>
+                <point lat='37.54569' lon='-7.504437'/><point lat='37.49046' lon='-7.454374'/><point lat='37.23923' lon='-7.408833'/>
+                <point lat='37.16817' lon='-7.383708'/><point lat='36.96211' lon='-7.361888'/><point lat='35.95961' lon='-8.472506'/>
+                <point lat='35.98587' lon='-9.611205'/><point lat='29.787103' lon='-15.001365'/><point lat='29.7847195' lon='-16.681995'/>
+                <point lat='38.77245' lon='-31.5'/>
+            </shape>
+        </bounds>
+        <valid-georeference>true</valid-georeference>
+        <mod-tile-features>true</mod-tile-features>
+    </entry>
+
+    <entry>
+        <name>Portugal Cultural Patrimony - classified and under classification (DGPC)</name>
+        <name lang="pt">Património Cultural classificado e em vias de classificação (DGPC)</name>
+        <id>PATRIMONIO_DGPC</id>
+        <category>other</category>
+        <date>2021</date>
+        <type>wms_endpoint</type>
+        <url><![CDATA[http://geo.patrimoniocultural.pt:6080/arcgis/services/INSPIRE/Inspire_PatrimonioClassificado_2021/MapServer/WMSServer?service=WMS&REQUEST=GetCapabilities&VERSION=1.3.0]]></url>
+        <permission-ref>https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/e161388f-dca4-4d8c-bfcf-1725e144f7bb</permission-ref>
+        <projections>
+            <code>EPSG:3763</code>
+            <code>EPSG:4326</code>
+            <code>CRS:84</code>
+        </projections>
+        <country-code>PT</country-code>
+        <attribution-text>Direção-Geral do Património Cultural</attribution-text>
+        <attribution-url>http://www.patrimoniocultural.gov.pt</attribution-url>
+        <icon>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflBRYJDASTxhc4AAAA7klEQVQoz4XRsUqCARTF8Z+fn4Wl2OLgJoiBo6/g1tbikoGbm3NB9QBtPoCgDr1KkaJjDeITCCI4fIPK12IWKHjOcrj8L4fLhbov8RF/qxO61fNkamrtTyllZT1rJtpGYjMP+91HM7GRtkmgaqGiY+xadeeysY6KhWpgKRJoGSr4cKfhXcFQSyCyDPU9a+DVmxtnSPvUco8XfdIGNra6SmIdHbGSrq2NgXQg0pSVEartb6gJZWQ1RQGIRIpyeyCnKBJB4IROAuE+5WVxBbLyh8DcCkuwMj+sSEj8y0cqkhJI7oDwELiQwvnul5e/4x/oj0qGQJAlwgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMS0wNS0yMlQwOToxMjowMSswMDowMJI7NI0AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjEtMDUtMjJUMDk6MTI6MDErMDA6MDDjZowxAAAAAElFTkSuQmCC</icon>
+        <min-zoom>1</min-zoom>
+        <max-zoom>20</max-zoom>
+        <valid-georeference>false</valid-georeference>
+        <bounds min-lat='36.6860435' min-lon='-9.8190335' max-lat='42.1868125' max-lon='-6.1571516'>
+            <shape>
+                <point lat='36.9839084' lon='-7.3127774'/><point lat='37.5717959' lon='-7.4446133'/><point lat='37.9701869' lon='-7.193301'/>
+                <point lat='38.0080684' lon='-6.9735745'/><point lat='38.2414171' lon='-6.9062818'/><point lat='38.2074334' lon='-7.0662702'/>
+                <point lat='38.4562784' lon='-7.2715773'/><point lat='38.7235559' lon='-7.204286'/><point lat='38.8546824' lon='-7.0133985'/>
+                <point lat='39.0383874' lon='-6.9131483'/><point lat='39.1311266' lon='-6.9735731'/><point lat='39.2365091' lon='-7.1795668'/>
+                <point lat='39.4849663' lon='-7.2866835'/><point lat='39.6183847' lon='-7.4487318'/><point lat='39.6088634' lon='-7.3416151'/>
+                <point lat='39.6490558' lon='-6.996919'/><point lat='40.0192024' lon='-6.8183912'/><point lat='40.199856' lon='-7.010652'/>
+                <point lat='40.2428479' lon='-6.8527235'/><point lat='40.3507317' lon='-6.7620863'/><point lat='40.8886019' lon='-6.7799391'/>
+                <point lat='41.0115125' lon='-6.8863691'/><point lat='41.0172117' lon='-6.7964186'/><point lat='41.2168879' lon='-6.6384901'/>
+                <point lat='41.2411593' lon='-6.4530958'/><point lat='41.3876284' lon='-6.2931067'/><point lat='41.5907979' lon='-6.1571516'/>
+                <point lat='41.6893233' lon='-6.3116468'/><point lat='41.7118809' lon='-6.5121473'/><point lat='41.88081' lon='-6.4984144'/>
+                <point lat='41.979912' lon='-6.5629591'/><point lat='42.0095105' lon='-6.8019117'/><point lat='42.0013468' lon='-7.2049726'/>
+                <point lat='41.8848997' lon='-7.2276319'/><point lat='41.8705845' lon='-7.3690809'/><point lat='41.9288477' lon='-7.7275099'/>
+                <point lat='41.9400853' lon='-7.9252638'/><point lat='41.8470598' lon='-8.0790724'/><point lat='41.918119' lon='-8.1600965'/>
+                <point lat='42.0503135' lon='-8.0179609'/><point lat='42.1868125' lon='-8.1992353'/><point lat='42.1022993' lon='-8.393556'/>
+                <point lat='42.07886' lon='-8.6606611'/><point lat='41.88081' lon='-8.8838209'/><point lat='41.8695629' lon='-9.1708401'/>
+                <point lat='41.4365515' lon='-9.0417507'/><point lat='40.6598081' lon='-9.0197781'/><point lat='40.2669545' lon='-9.1571072'/>
+                <point lat='39.5209945' lon='-9.8190335'/><point lat='38.6512005' lon='-9.7421292'/><point lat='37.8813594' lon='-9.1296414'/>
+                <point lat='36.9937806' lon='-9.2724636'/><point lat='36.6860435' lon='-9.0939358'/><point lat='36.7498907' lon='-7.8057888'/>
+                <point lat='36.9839084' lon='-7.3127774'/>
+            </shape>
+        </bounds>
+    </entry>
+
+    <entry>
+        <name>Institute for Nature Conservation and Forests - GIS</name>
+        <name lang="pt">Instituto da Conservação da Natureza e das Florestas - SIG</name>
+        <id>ICNF_SIG</id>
+        <category>other</category>
+        <date>2021</date>
+        <type>wms_endpoint</type>
+        <url><![CDATA[http://si.icnf.pt/wms/bdg?service=wms&version=1.3.0&request=GetCapabilities]]></url>
+        <permission-ref>https://geocatalogo.icnf.pt</permission-ref>
+        <!-- Open Data defined under menu item "Condições de Uso" (Terms of Use) -->
+        <projections>
+            <code>EPSG:3763</code>
+            <code>CRS:84</code>
+        </projections>
+        <country-code>PT</country-code>
+        <attribution-text>Instituto da Conservação da Natureza e das Florestas</attribution-text>
+        <attribution-url>https://www.icnf.pt</attribution-url>
+        <icon>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAYFBMVEX///9DmL2Mlhw+msFFmLz///9Dl739/f2wsLBEmLr8/Pz+//yMlRxBmr7+/f6MlxhEl7xDl7j///6NlSKLlR/9/fshZYr+/v1ZYwAfZY0fZYtgaBMbZ4wiY45YYgRYYgUw3f8DAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAHdElNRQflCA8NIAfhdllUAAAAeElEQVQY02XN2xLCIAwE0ARdjXfUivWC/f+/dAPY6rgvYc9kiMhf1MMZPJyzAnN2VCmwUAlLwwS6ggHfoFjbJmwddrX7xv5QftUY45H9hHPXjbcvvtHeyQO7omfYbw2sQD9B7SOY2S+k1gn3CvL4gDxzzonzNTAibxgeCgkL/5XUAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIxLTA4LTE1VDEzOjMyOjA3KzAwOjAwl58M6AAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMS0wOC0xNVQxMzozMjowNyswMDowMObCtFQAAAAASUVORK5CYII=</icon>
+        <min-zoom>1</min-zoom>
+        <max-zoom>20</max-zoom>
+        <valid-georeference>false</valid-georeference>
+        <!-- Accuracy is variable, sometimes a given point is just the centroid of a number of features around -->
+        <bounds min-lat='36.6860435' min-lon='-9.8190335' max-lat='42.1868125' max-lon='-6.1571516'>
+            <shape>
+                <point lat='36.9839084' lon='-7.3127774'/><point lat='37.5717959' lon='-7.4446133'/><point lat='37.9701869' lon='-7.193301'/>
+                <point lat='38.0080684' lon='-6.9735745'/><point lat='38.2414171' lon='-6.9062818'/><point lat='38.2074334' lon='-7.0662702'/>
+                <point lat='38.4562784' lon='-7.2715773'/><point lat='38.7235559' lon='-7.204286'/><point lat='38.8546824' lon='-7.0133985'/>
+                <point lat='39.0383874' lon='-6.9131483'/><point lat='39.1311266' lon='-6.9735731'/><point lat='39.2365091' lon='-7.1795668'/>
+                <point lat='39.4849663' lon='-7.2866835'/><point lat='39.6183847' lon='-7.4487318'/><point lat='39.6088634' lon='-7.3416151'/>
+                <point lat='39.6490558' lon='-6.996919'/><point lat='40.0192024' lon='-6.8183912'/><point lat='40.199856' lon='-7.010652'/>
+                <point lat='40.2428479' lon='-6.8527235'/><point lat='40.3507317' lon='-6.7620863'/><point lat='40.8886019' lon='-6.7799391'/>
+                <point lat='41.0115125' lon='-6.8863691'/><point lat='41.0172117' lon='-6.7964186'/><point lat='41.2168879' lon='-6.6384901'/>
+                <point lat='41.2411593' lon='-6.4530958'/><point lat='41.3876284' lon='-6.2931067'/><point lat='41.5907979' lon='-6.1571516'/>
+                <point lat='41.6893233' lon='-6.3116468'/><point lat='41.7118809' lon='-6.5121473'/><point lat='41.88081' lon='-6.4984144'/>
+                <point lat='41.979912' lon='-6.5629591'/><point lat='42.0095105' lon='-6.8019117'/><point lat='42.0013468' lon='-7.2049726'/>
+                <point lat='41.8848997' lon='-7.2276319'/><point lat='41.8705845' lon='-7.3690809'/><point lat='41.9288477' lon='-7.7275099'/>
+                <point lat='41.9400853' lon='-7.9252638'/><point lat='41.8470598' lon='-8.0790724'/><point lat='41.918119' lon='-8.1600965'/>
+                <point lat='42.0503135' lon='-8.0179609'/><point lat='42.1868125' lon='-8.1992353'/><point lat='42.1022993' lon='-8.393556'/>
+                <point lat='42.07886' lon='-8.6606611'/><point lat='41.88081' lon='-8.8838209'/><point lat='41.8695629' lon='-9.1708401'/>
+                <point lat='41.4365515' lon='-9.0417507'/><point lat='40.6598081' lon='-9.0197781'/><point lat='40.2669545' lon='-9.1571072'/>
+                <point lat='39.5209945' lon='-9.8190335'/><point lat='38.6512005' lon='-9.7421292'/><point lat='37.8813594' lon='-9.1296414'/>
+                <point lat='36.9937806' lon='-9.2724636'/><point lat='36.6860435' lon='-9.0939358'/><point lat='36.7498907' lon='-7.8057888'/>
+                <point lat='36.9839084' lon='-7.3127774'/>
+            </shape>
+        </bounds>
+    </entry>
+</imagery>
