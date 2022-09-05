@@ -13,7 +13,7 @@
                  @rotationChanged="rotationChanged"/>
 
         <ol-tile-layer>
-            <ol-source-xyz url="https://tile.thunderforest.com/atlas/{z}/{x}/{y}.png?apikey=737fcf9a3edb415e9309ff5888c9ecdc" />
+            <ol-source-osm />
         </ol-tile-layer>
 
         <ol-overlay style="position: absolute; z-index: 0; transform: translate(0, -80px);" v-for="item in $store.state['results_store'].results_unique" :position="[item[0].instituicao[0].longitude,item[0].instituicao[0].latitude]">

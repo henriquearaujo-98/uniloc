@@ -59,7 +59,6 @@ export default {
             temp.push(record)
         })
 
-        console.log(temp)
 
         this.state.escola = this.inst.split('-')[1]
         const temp_inst = this.inst.split('-')[0]

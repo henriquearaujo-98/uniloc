@@ -83,7 +83,6 @@ const results_store = {
 
             state.results_unique = insts_IDs;
 
-            console.log(state.results_unique)
         }
     },
     getters: {
