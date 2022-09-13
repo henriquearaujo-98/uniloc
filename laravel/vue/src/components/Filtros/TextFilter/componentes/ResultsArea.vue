@@ -84,7 +84,7 @@ span:hover{
 @media screen and (max-height: 859px){
     span{
         font-size: 14px;
-        top: 0;
+        top: 3px;
     }
 }
 </style>

@@ -48,11 +48,18 @@ export default {
         },
         toggle_dropdown(){
 
-            this.$store.state[this.store_name].show = !this.$store.state[this.store_name].show
+            var messages = document.querySelectorAll(".dropdown");
+            for (var i = 0; i < messages.length; i++) {
+               messages[i].style.display = 'none';
+               this.$store.state[messages[i].id].show = false;
+            }
 
             if(this.$store.state[this.store_name].options){ // Se o utilizador ainda não clicou no input para obter o dropdown, também pode faze-lo atraves da seta
                 this.dropdown()
             }
+
+            this.$store.state[this.store_name].show = !this.$store.state[this.store_name].show
+            document.querySelector("#"+this.store_name).style.display = "block";
 
         },
         arrow_dropdown(){
@@ -78,7 +85,8 @@ input{
     padding-right: 25px;
     color: black;
     height: 30px;
-    border-radius: 15px
+    border-radius: 15px;
+    z-index: 1;
 }
 
 svg:hover{
@@ -91,6 +99,7 @@ svg{
     right: 50px;
     color: black;
     transition: 0.5s;
+    z-index: 1;
 }
 
 .rotate{
