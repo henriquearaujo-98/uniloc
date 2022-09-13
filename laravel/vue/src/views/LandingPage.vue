@@ -1,16 +1,16 @@
 <template>
 <Buffer v-if="this.$store.state['buffer_store'].buffering == true"/>
-<div class="flex justify-between mr-52 ml-52" style="margin: 5px ;max-height: 90vh" >
-   <FilterForm />
+<div class="flex mr-52 ml-52" style="margin: 5px ;max-height: 90vh;align-content: stretch" >
 
-    <div style="max-height: 45vh;max-width: 35vw; background: greenyellow;flex: 1; flex-direction: column" class="ml-10">
+    <FilterForm />
+
+    <div style="max-height: 42vh;max-width: 50vw; background: greenyellow;flex: 1; flex-direction: column;" class="ml-5">
         <Acores :centerY="39.399872"
               :centerX="-7.849468119216156"/>
         <Madeira :centerY="39.399872"
               :centerX="-7.849468119216156"/>
     </div>
-
-    <div style="height: 90vh;max-width: 35vw;flex: 1" class="ml-3">
+    <div style="height: 87vh;max-width: 50vw;flex: 1" class="ml-3">
         <Mapa :centerY="39.399872"
                 :centerX="-7.849468119216156"/>
     </div>
