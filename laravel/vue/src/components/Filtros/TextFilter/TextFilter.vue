@@ -5,8 +5,8 @@
             <label class="self-start">{{ label }}</label>
         </div>
 
-        <div class="flex" style="max-width: 100%;">
-            <TextInput :store_name="this.tabela" style="height: 5px"/>
+        <div class="flex input">
+            <TextInput :store_name="this.tabela"/>
             <ResultsArea :store_name="this.tabela" />
         </div>
 
@@ -155,7 +155,20 @@ export default {
 
 <style scoped>
 
+.input{
+    max-width: 100%; margin-bottom: 15px
+}
 
+@media screen and (max-height: 859px){
+    label{
+        font-size: 16px;
+    }
+
+    .input{
+        max-width: 100%;
+        margin-bottom: 0px
+    }
+}
 
 
 </style>

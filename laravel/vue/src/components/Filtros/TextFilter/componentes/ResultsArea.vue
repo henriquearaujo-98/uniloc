@@ -1,5 +1,5 @@
 <template>
-    <div class="inline overflow-x-scroll flex-1" style="position: relative; height: 50px; max-width: 200px">
+    <div class="inline overflow-x-scroll flex-1" style="">
 
         <span v-if="this.$store.state[this.store_name].selected.length > 0" v-for="item in this.$store.state[this.store_name].selected" :key="item.id" @click="remove_item(item)" class="mr-3">
             {{item.nome}}
@@ -32,13 +32,25 @@ export default {
 </script>
 
 <style scoped>
+
+div{
+    position: relative;
+    height: 40px;
+    max-width: 200px;
+    overflow-y: hidden;
+}
+
 span{
     overflow-x: auto;
-    overflow-y: hidden;
+
     white-space: nowrap;
     border-radius: 15px;
     background: dimgrey;
-    padding: 5px 10px;
+    padding: 6px 15px;
+    margin-top: 3px;
+    position: relative;
+    height: 10px;
+    top: 5px;
 }
 
 span:hover{
@@ -66,6 +78,13 @@ span:hover{
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #b30000;
+    background: #a9a9a9;
+}
+
+@media screen and (max-height: 859px){
+    span{
+        font-size: 14px;
+        top: 0;
+    }
 }
 </style>
