@@ -1,10 +1,10 @@
 <template>
-<!--    <div>-->
-<!--        <div class="loading">-->
-<!--            <img src="../assets/buffer.gif">-->
-<!--        </div>-->
+    <div>
+        <div class="loading">
+            <img src="../assets/buffer.gif">
+        </div>
 
-<!--    </div>-->
+    </div>
 </template>
 
 <script>
