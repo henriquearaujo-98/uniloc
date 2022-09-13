@@ -140,7 +140,13 @@ export default {
     },
     mounted() {
 
+        const el = this.$el;
 
+        document.addEventListener('click', (e) => {
+           if(!el.contains(e.target)){
+               this.$store.state[this.tabela].show = false
+           }
+        });
 
     },
 

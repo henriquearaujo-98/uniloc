@@ -39,6 +39,8 @@ export default {
             {
                 deep : true
             })
+
+
     },
     methods:{
         dropdown(){
