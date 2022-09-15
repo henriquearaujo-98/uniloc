@@ -48,10 +48,10 @@ export default {
         },
         toggle_dropdown(){
 
-            var messages = document.querySelectorAll(".dropdown");
-            for (var i = 0; i < messages.length; i++) {
-               messages[i].style.display = 'none';
-               this.$store.state[messages[i].id].show = false;
+            var elements = document.querySelectorAll(".dropdown");
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.display = 'none';
+               this.$store.state[elements[i].id].show = false;
             }
 
             if(this.$store.state[this.store_name].options){ // Se o utilizador ainda não clicou no input para obter o dropdown, também pode faze-lo atraves da seta

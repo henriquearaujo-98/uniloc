@@ -33,7 +33,7 @@ export default {
         const diffTime = Math.abs(now - last_updated); // milliseconds
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-        if(diffTime > 10000)
+        if(diffDays > 1)
             localStorage.clear()
     }
 }
