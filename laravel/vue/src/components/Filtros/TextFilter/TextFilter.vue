@@ -26,16 +26,11 @@ export default {
     name: "TextFilter",
     props:{
         label: String,
-        tabela: String
+        tabela: String,
     },
     components: {AutoComplete, TextInput, ResultsArea},
-    async created() {
-        axios
-            .get(`http://localhost:3500/api/${this.tabela}`)
-            .then(response => {
-                this.$store.dispatch(`${this.tabela}/populate_pool`, response.data)[this.tabela];
-                this.$emit('done_loading');
-            })
+    created() {
+
 
 
         // register a module
@@ -52,7 +47,7 @@ export default {
                 POPULATE_POOL(state, data){
                     //console.log(data)
                     state.pool = data;
-                    state.pool.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
+                    //state.pool.sort((a,b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
                     //console.log('done loading data')
                 },
 
@@ -139,6 +134,22 @@ export default {
         })
     },
     mounted() {
+        console.log(JSON.parse(localStorage.getItem(this.tabela)))
+        if(!localStorage.hasOwnProperty(this.tabela)){
+            axios
+                .get(`http://localhost:3500/api/${this.tabela}`)
+                .then(response => {
+                    this.$store.dispatch(`${this.tabela}/populate_pool`, response.data)[this.tabela];
+                    console.log('fetching from DB')
+                    localStorage.setItem(this.tabela, JSON.stringify(response.data))
+                    this.$emit('done_loading');
+                })
+        }else{
+            console.log('fetching from LocalStorage')
+            this.$store.dispatch(`${this.tabela}/populate_pool`,JSON.parse(localStorage.getItem(this.tabela)))[this.tabela];
+            this.$emit('done_loading','', '');
+        }
+
 
         const el = this.$el;
 
@@ -147,6 +158,8 @@ export default {
                this.$store.state[this.tabela].show = false
            }
         });
+
+
 
     },
 

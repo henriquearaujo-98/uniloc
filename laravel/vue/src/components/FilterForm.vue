@@ -3,27 +3,42 @@
         <form class="self-start" @submit="onSubmit">
             <TextFilter label="Distritos"
                         tabela="distritos"
+                        :data="this.distritos"
                         @done_loading="buffer_toggle"/>
 
 
             <TextFilter label="Cidades"
                         tabela="cidades"
+                        :data="this.cidades"
                         @done_loading="buffer_toggle"/>
+
             <TextFilter label="Instituições"
                         tabela="instituicoes"
+                        :data="this.instituicoes"
                         @done_loading="buffer_toggle"/>
+
             <TextFilter label="Areas"
                         tabela="area_estudo"
+                        :data="this.area_estudo"
                         @done_loading="buffer_toggle"/>
+
             <TextFilter label="Curso"
                         tabela="cursos"
+                        :data="this.cursos"
                         @done_loading="buffer_toggle"/>
+
             <TextFilter label="Tipo de instituição"
                         tabela="tipos_ensino"
+                        :data="this.tipos_ensino"
                         @done_loading="buffer_toggle"/>
+
+
             <TextFilter label="Provas de ingresso"
                         tabela="exames"
+                        :data="this.exames"
                         @done_loading="buffer_toggle"/>
+
+
             <SliderFilter label="Nota Minima"
                           min=95
                           max=200
@@ -57,6 +72,7 @@ export default {
         }
     },
     created() {
+
         this.$store.state['buffer_store'].buffering = true
     },
     methods: {
@@ -109,10 +125,11 @@ export default {
         buffer_toggle(){
             this.buffNum += 1;
             console.log('done' + this.buffNum);
+
             if(this.buffNum == 7){
                 this.$store.state['buffer_store'].buffering = false
             }
-        }
+        },
     },
 
 }
