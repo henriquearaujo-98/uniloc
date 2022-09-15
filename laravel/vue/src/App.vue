@@ -26,6 +26,15 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 export default {
-    components: {Footer, Header}
+    components: {Footer, Header},
+    created() {
+        const last_updated = new Date(localStorage.getItem('last_updated'))
+        const now = new Date()
+        const diffTime = Math.abs(now - last_updated); // milliseconds
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        if(diffTime > 10000)
+            localStorage.clear()
+    }
 }
 </script>

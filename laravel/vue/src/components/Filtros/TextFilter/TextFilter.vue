@@ -141,13 +141,16 @@ export default {
                 .then(response => {
                     this.$store.dispatch(`${this.tabela}/populate_pool`, response.data)[this.tabela];
                     console.log('fetching from DB')
+                    localStorage.setItem('last_updated', new Date())
+                    console.log(response.data)
                     localStorage.setItem(this.tabela, JSON.stringify(response.data))
                     this.$emit('done_loading');
                 })
         }else{
             console.log('fetching from LocalStorage')
+
             this.$store.dispatch(`${this.tabela}/populate_pool`,JSON.parse(localStorage.getItem(this.tabela)))[this.tabela];
-            this.$emit('done_loading','', '');
+            this.$emit('done_loading');
         }
 
 
