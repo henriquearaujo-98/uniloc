@@ -23,9 +23,9 @@ class Instituicoes_has_CursoController_API extends Controller
         $instID = $request->get('instID');
 
         if(!isset($cursoID) || !isset($instID))
-            return Instituicao_has_Curso::all();
+            $res = Instituicao_has_Curso::all();
         else
-            return Instituicao_has_Curso::where('instituicoes_ID', $instID)
+            $res = Instituicao_has_Curso::where('instituicoes_ID', $instID)
                 ->where('cursos_ID', $cursoID)
                 ->with('instituicao')
                 ->with('curso')
@@ -39,6 +39,9 @@ class Instituicoes_has_CursoController_API extends Controller
                 ->with('instituicao.codigo_postal.cidade.municipio.distrito')
                 ->get();
 
+        return cache()->remember('inst_curso', 60*60*365, function() use ($res) {
+            return $res;
+        });
 
     }
 
@@ -66,7 +69,10 @@ class Instituicoes_has_CursoController_API extends Controller
            }
         }
 
-        return $exames_nome;
+        return cache()->remember('exames_nome', 60*60*365, function() use ($exames_nome){
+            return $exames_nome;
+        });
+
 
     }
 

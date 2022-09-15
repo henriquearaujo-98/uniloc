@@ -15,7 +15,10 @@ class ExameController_API extends Controller
      */
     public function index()
     {
-        return Exame::all();
+        return cache()->remember('exame', 60*60*365, function(){
+            return Exame::all();
+        });
+
     }
 
     /**

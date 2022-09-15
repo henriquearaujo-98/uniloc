@@ -15,7 +15,10 @@ class InformacoesMunicipioController_API extends Controller
      */
     public function index()
     {
-        return Informacoes_Municipio::all();
+        return cache()->remember('info_mun', 60*60*365, function(){
+            return Informacoes_Municipio::all();
+        });
+
     }
 
 

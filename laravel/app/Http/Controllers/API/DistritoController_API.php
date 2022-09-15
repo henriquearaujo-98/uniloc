@@ -15,7 +15,10 @@ class DistritoController_API extends Controller
      */
     public function index()
     {
-        return Distrito::all();
+        return cache()->remember('distritos', 60*60*365, function(){
+            return Distrito::all();
+        });
+
     }
 
     /**

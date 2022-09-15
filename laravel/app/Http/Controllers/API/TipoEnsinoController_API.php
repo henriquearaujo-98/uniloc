@@ -15,7 +15,10 @@ class TipoEnsinoController_API extends Controller
      */
     public function index()
     {
-        return Tipo_Ensino::all();
+        return cache()->remember('tipos_ensino', 60*60*365, function(){
+            return Tipo_Ensino::all();
+        });
+
     }
 
     /**

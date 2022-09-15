@@ -15,7 +15,10 @@ class MunicipioController_API extends Controller
      */
     public function index()
     {
-        return Municipio::all();
+        return cache()->remember('municipios', 60*60*365, function(){
+            return Municipio::all();
+        });
+
     }
 
 

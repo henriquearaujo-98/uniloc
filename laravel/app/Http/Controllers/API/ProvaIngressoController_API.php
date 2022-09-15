@@ -15,7 +15,10 @@ class ProvaIngressoController_API extends Controller
      */
     public function index()
     {
-        return Prova_Ingresso::all();
+        return cache()->remember('provas', 60*60*365, function(){
+            return Prova_Ingresso::all();
+        });
+
     }
 
     /**
