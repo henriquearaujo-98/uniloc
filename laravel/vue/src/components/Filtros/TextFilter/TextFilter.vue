@@ -30,9 +30,6 @@ export default {
     },
     components: {AutoComplete, TextInput, ResultsArea},
     created() {
-
-
-
         // register a module
         this.$store.registerModule(this.tabela, {
             namespaced: true,

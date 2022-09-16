@@ -29,9 +29,8 @@ class CidadesController_API extends Controller
             array_push($new,$obj);
         }
 
-        return cache()->remember('cidades', 60*60*365, function() use ($new) {
-            return $new;
-        });
+        return $new;
+
 
     }
 

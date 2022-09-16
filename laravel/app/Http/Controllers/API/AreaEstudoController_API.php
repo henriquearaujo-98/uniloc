@@ -15,9 +15,9 @@ class AreaEstudoController_API extends Controller
      */
     public function index()
     {
-        return cache()->remember('area_estudo', 60*60*365, function(){
+
             return Area_Estudo::all();
-        });
+
 
     }
 

@@ -39,9 +39,9 @@ class Instituicoes_has_CursoController_API extends Controller
                 ->with('instituicao.codigo_postal.cidade.municipio.distrito')
                 ->get();
 
-        return cache()->remember('inst_curso', 60*60*365, function() use ($res) {
+
             return $res;
-        });
+
 
     }
 
@@ -69,9 +69,8 @@ class Instituicoes_has_CursoController_API extends Controller
            }
         }
 
-        return cache()->remember('exames_nome', 60*60*365, function() use ($exames_nome){
             return $exames_nome;
-        });
+
 
 
     }

@@ -15,9 +15,8 @@ class InstituicaoController_API extends Controller
      */
     public function index()
     {
-        return cache()->remember('inst', 60*60*365, function(){
             return Instituicao::all();
-        });
+
 
     }
 

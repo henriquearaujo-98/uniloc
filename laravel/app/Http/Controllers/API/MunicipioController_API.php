@@ -15,9 +15,8 @@ class MunicipioController_API extends Controller
      */
     public function index()
     {
-        return cache()->remember('municipios', 60*60*365, function(){
             return Municipio::all();
-        });
+
 
     }
 
@@ -25,11 +24,9 @@ class MunicipioController_API extends Controller
     public function distritos($distrito_id)
     {
 
-        $res = Municipio::with('distritos')->where('distritos_ID', $distrito_id)->get();
+        return Municipio::with('distritos')->where('distritos_ID', $distrito_id)->get();
 
-        return view('welcome', [
-            'posts' => $res
-        ]);
+
     }
 
 

@@ -15,9 +15,8 @@ class CursoController_API extends Controller
      */
     public function index()
     {
-        return cache()->remember('curso', 60*60*365, function(){
             return Curso::all();
-        });
+
 
     }
 

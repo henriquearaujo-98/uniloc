@@ -3,39 +3,32 @@
         <form class="self-start" @submit="onSubmit">
             <TextFilter label="Distritos"
                         tabela="distritos"
-                        :data="this.distritos"
                         @done_loading="buffer_toggle"/>
 
 
             <TextFilter label="Cidades"
                         tabela="cidades"
-                        :data="this.cidades"
                         @done_loading="buffer_toggle"/>
 
             <TextFilter label="Instituições"
                         tabela="instituicoes"
-                        :data="this.instituicoes"
                         @done_loading="buffer_toggle"/>
 
             <TextFilter label="Areas"
                         tabela="area_estudo"
-                        :data="this.area_estudo"
                         @done_loading="buffer_toggle"/>
 
             <TextFilter label="Curso"
                         tabela="cursos"
-                        :data="this.cursos"
                         @done_loading="buffer_toggle"/>
 
             <TextFilter label="Tipo de instituição"
                         tabela="tipos_ensino"
-                        :data="this.tipos_ensino"
                         @done_loading="buffer_toggle"/>
 
 
             <TextFilter label="Provas de ingresso"
                         tabela="exames"
-                        :data="this.exames"
                         @done_loading="buffer_toggle"/>
 
 
@@ -102,6 +95,7 @@ export default {
                 'rank_min' : rank_min,
                 'rank_max' : rank_max
             }
+            console.log(data)
             this.$store.state['buffer_store'].buffering = true
             await this.$store.dispatch(`results_store/get_request`, data)
             this.$store.state['buffer_store'].buffering = false

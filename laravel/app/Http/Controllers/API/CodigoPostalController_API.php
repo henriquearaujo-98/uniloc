@@ -15,9 +15,9 @@ class CodigoPostalController_API extends Controller
      */
     public function index()
     {
-        return cache()->remember('cod_postal', 60*60*365, function(){
+
             return Codigo_Postal::all();
-        });
+
 
     }
 
