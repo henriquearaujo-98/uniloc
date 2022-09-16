@@ -39,7 +39,7 @@ class SearchController_API extends Controller
     {
 
         $distritos_id = explode(',', $request->distritos);
-        $cidades_id = explode(',',$request->cidade);
+        $municipios_id = explode(',',$request->municipios);
         $instituicoes_ids = explode(',',$request->insts);
         $areas_id = explode(',',$request->areas);
         $cursos_ids = explode(',',$request->cursos);
@@ -55,8 +55,8 @@ class SearchController_API extends Controller
             $distritos_id = Distrito::all()->pluck('ID');
         }
 
-        if(empty($cidades_id[0])){
-            $cidades_id = Cidade::all()->pluck('ID');
+        if(empty($municipios_id[0])){
+            $municipios_id = Municipio::all()->pluck('ID');
         }
 
         if(empty($instituicoes_ids[0])){
@@ -79,8 +79,7 @@ class SearchController_API extends Controller
             $provas_ids = Exame::all()->pluck('Codigo');
         }
 
-
-
+        $cidades_id = Cidade::all()->whereIn('municipio_ID', $municipios_id)->pluck('ID');
 
         $inst_cursos = Instituicao_has_Curso::whereBetween('nota_ult_1fase', [intval($nota_min_min), intval($nota_min_max)])
             ->with('instituicao')

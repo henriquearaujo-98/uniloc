@@ -6,7 +6,7 @@ const search_store = {
     namespaced : true,
     state: {
         distritos: [],
-        cidades: [],
+        municipios: [],
         instituicoes: [],
         tipos_ensino: [],
         area_estudo: [],
@@ -95,7 +95,7 @@ const results_store = {
             this.state.done = false
             let formdata = new FormData();
             formdata.append("distritos", data.distritos);
-            formdata.append("cidade", data.cidade);
+            formdata.append("municipios", data.municipios);
             formdata.append("insts", data.insts);
             formdata.append("areas", data.areas);
             formdata.append("cursos", data.cursos);

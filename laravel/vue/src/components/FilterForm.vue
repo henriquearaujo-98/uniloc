@@ -6,8 +6,8 @@
                         @done_loading="buffer_toggle"/>
 
 
-            <TextFilter label="Cidades"
-                        tabela="cidades"
+            <TextFilter label="Municipios"
+                        tabela="municipios"
                         @done_loading="buffer_toggle"/>
 
             <TextFilter label="Instituições"
@@ -72,7 +72,7 @@ export default {
         async onSubmit(e){
             e.preventDefault();
             const distritos = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['distritos'])));
-            const cidade = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['cidades'])));
+            const municipios = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['municipios'])));
             const insts = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['instituicoes'])));
             const areas = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['area_estudo'])));
             const cursos = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['cursos'])));
@@ -84,7 +84,7 @@ export default {
             const rank_max = this.$store.state.search_store['rank_max'];
             const data = {
                 'distritos' : distritos,
-                'cidade' : cidade,
+                'municipios' : municipios,
                 'insts' : insts,
                 'areas' : areas,
                 'cursos' : cursos,
