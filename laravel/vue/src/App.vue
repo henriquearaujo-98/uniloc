@@ -28,13 +28,18 @@ import Footer from "@/components/Footer";
 export default {
     components: {Footer, Header},
     created() {
+        // Local cache
         const last_updated = new Date(localStorage.getItem('last_updated'))
         const now = new Date()
         const diffTime = Math.abs(now - last_updated); // milliseconds
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-        if(diffTime > 10000)
+        if(diffDays > 10000)
             localStorage.clear()
+
+        // User
+        if(sessionStorage.getItem('user') != null)
+            this.$store.state['user_store'].user = sessionStorage.getItem('user');
     }
 }
 </script>

@@ -32,7 +32,7 @@ export default {
             password: '',
         }
     },
-    methods:{
+    computed:{
         login(){
             const params = new URLSearchParams();
             params.append('email', this.email);
@@ -43,8 +43,9 @@ export default {
                     'Accept': 'application/json',
                 }
             }).then( (res) => {
-                sessionStorage.setItem('user', JSON.stringify(res.data));
-                console.log(sessionStorage.getItem('user'));
+                sessionStorage.setItem('user', JSON.stringify(res.data))
+                this.$store.state['user_store'].user = res.data
+                console.log(this.$store.state['user_store'].user.user)
             }).catch( (err) => {
                 console.log(err);
             } );

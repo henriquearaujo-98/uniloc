@@ -148,12 +148,35 @@ const buffer_store = {
     },
 }
 
+const user_store = {
+    namespaced : true,
+    state: {
+        user: JSON
+    },
+    mutations: {
+        SET_USER(state, user){
+            state.user = user;
+        },
+    },
+    getters: {
+        user (state) {
+            return state.user
+        }
+    },
+    actions: {
+        set_user({commit}, user){
+            commit('SET_USER', user)
+        },
+    },
+}
+
 export default createStore({
 
   modules: {
       search_store : search_store,
       results_store : results_store,
-      buffer_store : buffer_store
+      buffer_store : buffer_store,
+      user_store : user_store
   }
 })
 
