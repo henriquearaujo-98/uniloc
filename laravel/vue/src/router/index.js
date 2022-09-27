@@ -3,6 +3,7 @@ import LandingPage from "@/views/LandingPage";
 import Sobre from "@/views/Sobre";
 import Contacto from "@/views/Contacto";
 import Informacoes from "@/views/Informacoes";
+import Login from "@/views/Login";
 
 const routes = [
     {
@@ -24,6 +25,11 @@ const routes = [
         path: '/instituicao',
         name: 'instituicao',
         component: Informacoes
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
     },
 
 ]

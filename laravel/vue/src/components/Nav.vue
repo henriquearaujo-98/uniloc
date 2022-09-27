@@ -3,7 +3,6 @@
         <div class="hidden sm:flex">
             <router-link v-for="item in this.links" :key="item.name" :to="item.href">{{ item.name }}</router-link>
         </div>
-
     </nav>
 </template>
 
@@ -17,6 +16,10 @@ const links = [
         'name': 'Contacto',
         'href': '/contacto'
     },
+    {
+        'name': 'Login',
+        'href': '/login'
+    }
 ]
 
 export default {
