@@ -10,10 +10,19 @@
             <router-link v-else key="Login" to="/login">Login</router-link>
         </div>
     </nav>
+
+
+    <Buffer v-if="this.$store.state['buffer_store'].buffering == true"/>
 </template>
 
 <script>
 import axios from "axios";
+import Madeira from "@/components/Madeira";
+import Acores from "@/components/Acores";
+import FilterForm from "@/components/FilterForm";
+import Mapa from "@/components/Mapa";
+import Buffer from "@/components/Buffer";
+
 const links = [
     {
         'name': 'Sobre',
@@ -37,12 +46,24 @@ export default {
         }
     },
     created() {
-        console.log(this.$store.state.user_store.user )
-         if(this.$store.state.user_store.user != '')
+
+        function testJSON(text) {
+            if (typeof text !== "string") {
+                return false;
+            }
+            try {
+                JSON.parse(text);
+                return true;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        if(testJSON(this.$store.state.user_store.user))
              this.$store.state.user_store.user = JSON.parse(this.$store.state.user_store.user)
 
     },
-    components:{},
+    components:{Buffer},
     computed:{
         logout(){
             console.log('logging out ' + this.$store.state.user_store.user.token);
@@ -53,6 +74,8 @@ export default {
             const bodyParameters = {
             };
 
+            this.$store.state['buffer_store'].buffering = true
+
             axios.post(
                 'http://localhost:3500/api/logout',
                 bodyParameters,
@@ -61,9 +84,10 @@ export default {
                 this.$store.state.user_store.user = {}
                 sessionStorage.setItem('user', '');
                 console.log('logged out')
+                this.$store.state['buffer_store'].buffering = false
             }).catch(console.log);
 
-        }
+        },
     }
 }
 </script>

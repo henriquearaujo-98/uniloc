@@ -1,6 +1,7 @@
 <template>
     <div>
         <div class="loading">
+            <h3>{{message}}</h3>
             <img src="../assets/buffer.gif">
         </div>
 
@@ -9,7 +10,18 @@
 
 <script>
 export default {
-    name: "Buffer"
+    name: "Buffer",
+
+    computed:{
+        message(){
+            return this.$store.state['buffer_store'].message
+        }
+    },
+    watch: {
+        message(n, o){
+            this.message = n;
+        }
+    }
 }
 </script>
 
@@ -20,6 +32,7 @@ div{
     top:0;
     left: 0;
     background: rgba(110, 110, 110,0.5);
+
     position: fixed;
     z-index: 999;
 }
@@ -31,10 +44,16 @@ div{
     background: transparent;
 }
 
+.loading img{
+    transform: translate(-9%, 0);
+}
+
 div h3{
     position: relative;
-    top: 55vh;
+    top: 50%;
+    transform: translate(-25%, 0);
     font-size: 38px;
+    color: white;
 }
 
 </style>

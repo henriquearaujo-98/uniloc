@@ -123,7 +123,8 @@ const results_store = {
 const buffer_store = {
     namespaced : true,
     state: {
-        buffering: Boolean
+        buffering: Boolean,
+        message: '',
     },
     mutations: {
         SET_BUFFER_TRUE(state){
@@ -131,7 +132,8 @@ const buffer_store = {
         },
         SET_BUFFER_FALSE(state){
             state.buffering = false;
-        }
+        },
+
     },
     getters: {
         status (state) {

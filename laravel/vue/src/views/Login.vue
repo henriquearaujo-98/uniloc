@@ -20,6 +20,9 @@
             <input type="submit" value="Login"/>
         </form>
     </div>
+    <p>
+        Ainda não tens conta? Cria a tua <router-link class="link" to="/register">aqui</router-link>.
+    </p>
 </template>
 
 <script>
@@ -32,8 +35,16 @@ export default {
             password: '',
         }
     },
-    computed:{
+    methods:{
         login(){
+            console.log('logging in')
+            if(this.email == ''){
+                this.$store.state['buffer_store'].message = 'Email must not be empty'
+                return;
+            }
+
+            this.$store.state['buffer_store'].buffering = true
+
             const params = new URLSearchParams();
             params.append('email', this.email);
             params.append('password', this.password);
@@ -46,6 +57,7 @@ export default {
                 sessionStorage.setItem('user', JSON.stringify(res.data))
                 this.$store.state['user_store'].user = res.data
                 console.log(this.$store.state['user_store'].user.user)
+                this.$store.state['buffer_store'].buffering = false
             }).catch( (err) => {
                 console.log(err);
             } );
@@ -62,13 +74,15 @@ export default {
     margin:auto;
     text-align: center;
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: #465773;
     padding: 20px;
     width: 50%;
+    border: 1px solid lightgrey;
 }
 
 label {
     float: left;
+    color: white;
 }
 
 input[type=text], [type=email], [type=password], textarea {
@@ -93,5 +107,15 @@ input[type=submit] {
 
 input[type=submit]:hover {
     background-color: #45a049;
+}
+
+p {
+    color: white;
+    margin-top: 20px;
+}
+
+.link{
+    cursor: pointer;
+    text-decoration: underline;
 }
 </style>

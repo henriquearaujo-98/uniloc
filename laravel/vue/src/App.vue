@@ -4,6 +4,7 @@
 <!--    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />-->
 
     <Header />
+    <Message />
 
   <router-view/>
 
@@ -25,8 +26,9 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Message from "@/components/Message";
 export default {
-    components: {Footer, Header},
+    components: {Footer, Header, Message},
     created() {
         // Local cache
         const last_updated = new Date(localStorage.getItem('last_updated'))
@@ -40,6 +42,9 @@ export default {
         // User
         if(sessionStorage.getItem('user') != null)
             this.$store.state['user_store'].user = sessionStorage.getItem('user');
+
+        //this.$store.dispatch('buffer_store/setMessage', 'test');
+
     }
 }
 </script>

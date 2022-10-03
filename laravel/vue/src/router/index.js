@@ -4,6 +4,7 @@ import Sobre from "@/views/Sobre";
 import Contacto from "@/views/Contacto";
 import Informacoes from "@/views/Informacoes";
 import Login from "@/views/Login";
+import Register from "@/views/Register";
 
 const routes = [
     {
@@ -30,6 +31,11 @@ const routes = [
         path: '/login',
         name: 'login',
         component: Login
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        component: Register
     },
 
 ]
