@@ -5,6 +5,7 @@ import Contacto from "@/views/Contacto";
 import Informacoes from "@/views/Informacoes";
 import Login from "@/views/Login";
 import Register from "@/views/Register";
+import VerificarEmail from "@/views/VerificarEmail";
 
 const routes = [
     {
@@ -36,6 +37,11 @@ const routes = [
         path: '/register',
         name: 'Register',
         component: Register
+    },
+    {
+        path: '/verificar_email',
+        name: 'VerificarEmail',
+        component: VerificarEmail
     },
 
 ]

@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
 
 
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
-            $spaUrl = "localhost:8080?email_verify_url=".$url;
+            $spaUrl = "localhost:8080/verificar_email?email_verify_url=".$url;
 
             return (new MailMessage)
                 ->subject('Verify Email Address')

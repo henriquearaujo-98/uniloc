@@ -63,6 +63,22 @@ export default {
                 );
             this.email_check = !val;
             return !val;
+        },
+        EmailVerification(){
+            axios.post('http://localhost:3500/api/verification-notification', {}, {
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json',
+                    Authorization: `Bearer ${this.$store.state.user_store.user.token}`
+                }
+            }).then( (res) => {
+                this.$store.state['buffer_store'].message = 'Foi enviado um email de verificação para o seu email. Por favor verifique a sua conta.'
+                this.$store.state['buffer_store'].color = 'green'
+            }).catch( (err) => {
+                this.$store.state['buffer_store'].message = 'Algo de errado não está certo. '
+                this.$store.state['buffer_store'].color = 'red'
+                console.log(err)
+            } );
         }
     },
     computed:{
@@ -86,10 +102,12 @@ export default {
                 sessionStorage.setItem('user', JSON.stringify(res.data))
                 this.$store.state['user_store'].user = res.data
                 console.log(this.$store.state['user_store'].user.user)
+                this.EmailVerification()
             }).catch( (err) => {
                 console.log(err);
             } );
-        }
+        },
+
     },
     watch: {
         password2(n, o) {
