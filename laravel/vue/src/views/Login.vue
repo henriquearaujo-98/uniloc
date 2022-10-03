@@ -40,6 +40,13 @@ export default {
             console.log('logging in')
             if(this.email == ''){
                 this.$store.state['buffer_store'].message = 'Email must not be empty'
+                this.$store.state['buffer_store'].color = 'red'
+                return;
+            }
+
+            if(this.password == ''){
+                this.$store.state['buffer_store'].message = 'Password must be set'
+                this.$store.state['buffer_store'].color = 'blue'
                 return;
             }
 
@@ -72,6 +79,7 @@ export default {
 .container {
     display: block;
     margin:auto;
+    height: 100%;
     text-align: center;
     border-radius: 5px;
     background-color: #465773;

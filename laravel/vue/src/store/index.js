@@ -125,6 +125,7 @@ const buffer_store = {
     state: {
         buffering: Boolean,
         message: '',
+        color: ''
     },
     mutations: {
         SET_BUFFER_TRUE(state){

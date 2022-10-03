@@ -1,5 +1,5 @@
 <template>
-<div ref="message-container" :class="message === '' ? '' : 'open-message'">
+<div ref="message-container" :class="message === '' ? '' : 'open-message'" :style="'background:'+color">
     <div ref="message-content" :class=" message === '' ? 'content' : 'content fadein'">
         <span   class="message" ref="message-text">{{ message }}</span>
         <span   @click="close" class="close" >{{message === '' ? '' : 'X'}}</span>
@@ -12,18 +12,21 @@ export default {
     name: "Message",
     setup(){
         return{
-            message: String,
+            message: '',
+            color: '',
             hide: false
         }
     },
     methods:{
         close(){
             this.$store.state['buffer_store'].message = ''
+            this.$store.state['buffer_store'].color = ''
             this.hide = true
         },
     },
     computed:{
         message(){
+            this.color = this.$store.state['buffer_store'].color
             return this.$store.state['buffer_store'].message
         }
     },
@@ -31,6 +34,7 @@ export default {
         message(n, o){
             this.message = n;
             this.hide = false
+
             console.log(n)
         }
     }
@@ -40,10 +44,10 @@ export default {
 <style scoped>
 div{
     width: 100%;
-    background-color: red;
     margin-bottom: 10px;
     height: 0;
     transition: 0.5s;
+    position: absolute;
 }
 
 .content{
