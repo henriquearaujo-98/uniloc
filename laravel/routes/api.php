@@ -7,6 +7,7 @@ use App\Http\Controllers\API\CidadesController_API;
 use App\Http\Controllers\API\CodigoPostalController_API;
 use App\Http\Controllers\API\CursoController_API;
 use App\Http\Controllers\API\DistritoController_API;
+use App\Http\Controllers\API\EmailVerificationController;
 use App\Http\Controllers\API\ExameController_API;
 use App\Http\Controllers\API\InformacoesMunicipioController_API;
 use App\Http\Controllers\API\InstituicaoController_API;
@@ -85,6 +86,9 @@ Route::post('/register', [AuthController_API::class, 'register']);
 Route::post('/login', [AuthController_API::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
-   Route::post('/logout', [AuthController_API::class, 'logout']);
+    Route::post('/logout', [AuthController_API::class, 'logout']);
+    Route::post('/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
+    Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
 });
+
 
