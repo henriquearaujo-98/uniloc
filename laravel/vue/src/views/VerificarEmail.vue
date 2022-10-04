@@ -12,7 +12,7 @@ export default {
     name: "VerificarEmail",
     setup(){
       return{
-          message: String
+          message: ''
       }
     },
     mounted() {

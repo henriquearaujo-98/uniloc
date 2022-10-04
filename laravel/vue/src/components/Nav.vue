@@ -3,7 +3,7 @@
         <div class="hidden sm:flex">
             <router-link v-for="item in this.links" :key="item.name" :to="item.href">{{ item.name }}</router-link>
             <span v-if=" this.$store.state.user_store.user.user != null">
-                <router-link  key="Profile" to="/profile">{{ this.$store.state.user_store.user.user.name }}</router-link>
+                <router-link  key="Perfil" to="/perfil">{{ this.$store.state.user_store.user.user.name }}</router-link>
                 <a @click="this.logout">Logout</a>
             </span>
 

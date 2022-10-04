@@ -6,6 +6,7 @@ import Informacoes from "@/views/Informacoes";
 import Login from "@/views/Login";
 import Register from "@/views/Register";
 import VerificarEmail from "@/views/VerificarEmail";
+import Perfil from "@/views/Perfil";
 
 const routes = [
     {
@@ -42,6 +43,11 @@ const routes = [
         path: '/verificar_email',
         name: 'VerificarEmail',
         component: VerificarEmail
+    },
+    {
+        path: '/perfil',
+        name: 'Profile',
+        component: Perfil
     },
 
 ]
