@@ -17,6 +17,7 @@ use App\Http\Controllers\API\ProvaIngressoController_API;
 use App\Http\Controllers\API\SearchController_API;
 use App\Http\Controllers\API\TipoEnsinoController_API;
 
+use App\Http\Controllers\API\UserController_API;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -79,9 +80,11 @@ Route::get('/exames', [ExameController_API::class, 'index']);
 // Tipos de ensino
 Route::get('/tipos_ensino', [TipoEnsinoController_API::class, 'index']);
 
+// User
+Route::get('/user/{id}', [UserController_API::class, 'show']);
+Route::get('/user', [UserController_API::class, 'index']);
 
-
-// ## User
+// Auth
 Route::post('/register', [AuthController_API::class, 'register']);
 Route::post('/login', [AuthController_API::class, 'login']);
 
@@ -89,6 +92,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/logout', [AuthController_API::class, 'logout']);
     Route::post('/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
     Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
+    Route::put('/user/{id}', [UserController_API::class, 'update']);
 });
 
 

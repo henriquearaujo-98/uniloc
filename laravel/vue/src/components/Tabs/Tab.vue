@@ -31,6 +31,7 @@ export default {
 
         if(this.react.show == true){
             this.$emit('openTab', this.content)
+
         }
 
 
@@ -53,5 +54,6 @@ div{
     color: white;
     cursor: pointer;
     text-decoration: none;
+
 }
 </style>
