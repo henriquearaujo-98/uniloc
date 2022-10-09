@@ -52,6 +52,15 @@ class QuartoController_API extends Controller
         return Quarto::findOrFail($id);
     }
 
+    public function users($userID)
+    {
+        $res = Quarto::with('userID')->where('userID', $userID)->get();
+
+        return view('welcome', [
+            'posts' => $res
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      *

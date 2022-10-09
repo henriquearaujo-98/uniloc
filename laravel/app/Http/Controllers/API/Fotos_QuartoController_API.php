@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Fotos_Quarto;
+use Faker\Provider\Address;
 use Illuminate\Http\Request;
 
 class Fotos_QuartoController_API extends Controller
@@ -34,7 +35,7 @@ class Fotos_QuartoController_API extends Controller
 
         return $new;
     }
-
+    
 
     public function quarto($quarto_id)
     {
