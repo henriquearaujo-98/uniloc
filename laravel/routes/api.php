@@ -82,9 +82,6 @@ Route::get('/tipos_ensino', [TipoEnsinoController_API::class, 'index']);
 // Quartos
 Route::get('/quartos', [\App\Http\Controllers\API\QuartoController_API::class, 'index']);
 
-// Comenatio_Rating
-Route::get('/quartos', [\App\Http\Controllers\API\QuartoController_API::class, 'index']);
-
 //Fotos Quarto
 Route::get('/fotos', [\App\Http\Controllers\API\Fotos_QuartoController_API::class, 'index']);
 
