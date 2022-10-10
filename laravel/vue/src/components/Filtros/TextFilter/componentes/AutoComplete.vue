@@ -19,9 +19,6 @@ export default {
     methods:{
         dropdown(text){
             this.$store.dispatch(`${this.store_name}/get_dropdown`, text)[this.store_name]
-
-
-
         },
         select_item(item){
             this.$store.dispatch(`${this.store_name}/select_item`, item)[this.store_name]   // local store

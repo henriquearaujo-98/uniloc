@@ -89,10 +89,15 @@ Route::post('/register', [AuthController_API::class, 'register']);
 Route::post('/login', [AuthController_API::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
+    //auth
     Route::post('/logout', [AuthController_API::class, 'logout']);
+
+    //account verification
     Route::post('/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
     Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
-    Route::put('/user/{id}', [UserController_API::class, 'update']);
+
+    //update information
+    Route::post('/user/{id}', [UserController_API::class, 'update']);
 });
 
 

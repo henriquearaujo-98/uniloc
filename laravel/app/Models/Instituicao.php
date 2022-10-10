@@ -36,7 +36,10 @@ class Instituicao extends Model
         return $this->belongsToMany(Curso::class,
             'instituicoes_has_curso',
             'instituicoes_ID', 'cursos_ID');
-        //$this->hasMany(Instituicao_has_Curso::class, 'instituicoes_ID', 'ID');
 
+    }
+
+    public function user(){
+        return $this->belongsToMany(User::class);
     }
 }

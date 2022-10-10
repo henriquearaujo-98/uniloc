@@ -1,6 +1,6 @@
 <template>
     <div class="container pr-8 pl-8">
-        <h1>{{this.name}}</h1>
+        <h1>{{this.$store.state.user_store.user.user.name }}</h1>
         <div class="flex mt-6">
             <div class="flex-2 mr-10" style="height: auto; width: 300px; background-color: green">
                 <Tab name = 'Perfil'
@@ -29,12 +29,7 @@
                     Perfil aqui
                 </div>
                 <div ref="inf_pes" class="tab-content">
-                    Informações pessoais
-                    <form @submit="inf_pes">
-                        <label>Nome</label><br>
-                        <input type="text" :placeholder="this.name" v-model="this.inf_pes.name"><br>
-                        <input type="submit" value="Guardar">
-                    </form>
+                    <InformacoesPessoais />
                 </div>
             </div>
         </div>
@@ -45,17 +40,15 @@
 <script>
 
 
-import Tab from "@/components/Tabs/Tab";
+import Tab from "@/components/Perfil/Tabs/Tab";
 import {ref} from "vue";
+import InformacoesPessoais from "@/components/Perfil/InformacoesPessoais";
+
 export default {
     name: "Perfil",
-    components: {Tab},
+    components: {InformacoesPessoais, Tab},
     setup(){
       return{
-        name : '',
-        inf_pes: {
-            name : ''
-        },
         own: Boolean
       }
     },
@@ -77,12 +70,7 @@ export default {
             console.log(this.$refs[String(tab)].style.display = 'block')
         },
         inf_pes(e){
-            e.preventDefault();
-            if(this.inf_pes.name == this.name){
-                this.$store.state['buffer_store'].message = 'Nada a mudar'
-                this.$store.state['buffer_store'].color = 'yellow'
-                return;
-            }
+
 
 
         }
@@ -110,13 +98,5 @@ li.active{
     display: none;
 }
 
-input[type=button], input[type=submit], input[type=reset] {
-    background-color: #04AA6D;
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+
 </style>

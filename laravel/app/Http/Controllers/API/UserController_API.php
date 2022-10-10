@@ -6,27 +6,35 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use function PHPUnit\Framework\isEmpty;
 
 class UserController_API extends Controller
 {
     public function index()
     {
-        return User::all();
+        return User::with('instituicao')->with('curso')->get();
     }
 
     public function show($id)
     {
-        return User::findOrFail($id);
+        $res = User::with('instituicao')->with('curso')->where('ID','=',$id)->get();
+        if(isEmpty($res))
+            return response('404 not found', 404);
+
+        return $res;
     }
 
     public function update(Request $request, $id)
     {
+
         $authID = auth('sanctum')->user()->id;
 
         if($id != $authID)
             return response('Forbiden', 403);
 
-        return User::whereId($id)->update($request->all());
+
+        if(User::whereId($id)->update($request->all()))
+            return User::with('curso')->with('instituicao')->whereId($id)->get();
 
     }
 }

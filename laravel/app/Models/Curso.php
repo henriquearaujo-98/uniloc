@@ -29,4 +29,8 @@ class Curso extends Model
     public function area_estudo(){
         return $this->belongsTo(Area_Estudo::class, 'area_curso_ID', 'ID');
     }
+
+    public function user(){
+        return $this->belongsToMany(User::class);
+    }
 }

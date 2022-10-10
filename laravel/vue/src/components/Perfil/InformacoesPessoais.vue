@@ -1,0 +1,130 @@
+<template>
+    Informações pessoais
+    <form @submit="Save">
+        <label>Nome</label><br>
+        <input type="text" v-model="this.react.inf_pes.name"><br>
+
+        <TextFilterOneOption label="Instituição"
+                            :placeholder="this.inst"
+                             localStorageItem="instituicoes"
+                             @clicked="set_data"/>
+        <TextFilterOneOption label="Curso"
+                             :placeholder="this.curso"
+                             localStorageItem="cursos"
+                             @clicked="set_data"/>
+
+        <input type="submit" value="Guardar">
+    </form>
+</template>
+
+<script>
+
+import {reactive} from "vue";
+import TextFilterOneOption from "@/components/Perfil/TextFilterOneOption/TextFilterOneOption";
+import axios from "axios";
+
+
+export default {
+    name: "InformacoesPessoais",
+    components: {TextFilterOneOption},
+
+    setup(){
+        return{
+            react : reactive({
+                cursos : [],
+                insts: [],
+                inf_pes:{
+                    name,
+                    cursoID : '',
+                    instID : ''
+                },
+            }),
+
+            curso: '',
+            inst: '',
+            user : {},
+
+        }
+    },
+    mounted() {
+        this.user = this.$store.state.user_store.user
+
+        if(this.user.user.name != null)
+            this.react.inf_pes.name = this.user.user.name
+
+        if(this.user.user.curso != null){
+            this.react.inf_pes.cursoID = this.user.user.curso_ID
+            this.curso = this.user.user.curso.nome
+        }
+
+
+        if(this.user.user.instituicao !== null){
+            this.react.inf_pes.instID = this.user.user.instituicao_ID
+            this.inst = this.user.user.instituicao.nome
+        }
+
+
+        this.react.cursos = JSON.parse(localStorage.getItem('cursos'))
+        this.react.insts =  JSON.parse(localStorage.getItem('instituicoes'))
+
+    },
+    methods:{
+        Save(e){
+            e.preventDefault();
+            console.log(this.react.inf_pes)
+
+            let params = new URLSearchParams();
+
+
+            params.append('name', this.react.inf_pes.name );
+
+            params.append('instituicao_ID', this.react.inf_pes.instID );
+
+            params.append('curso_ID', this.react.inf_pes.cursoID );
+
+
+            const url = `http://localhost:3500/api/user/${this.$store.state.user_store.user.user.id}`
+
+
+            axios.post(url, params, {
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    Authorization: `Bearer ${this.user.token.split("|")[1]}`
+                }
+            }).then( (res) => {
+                this.$store.state.user_store.user.user = res.data[0]
+
+                let info = JSON.parse(sessionStorage.getItem('user'))
+                info.user = res.data[0]
+                sessionStorage.setItem('user', JSON.stringify(info))
+
+                this.$store.state['buffer_store'].message = 'Mudanças aplicadas com sucesso.'
+                this.$store.state['buffer_store'].color = 'green'
+            }).catch( (err) => {
+                this.$store.state['buffer_store'].message = 'Algo correu mal. Por favor tente mais tarde ou contacte os responsáveis pelo site.'
+                this.$store.state['buffer_store'].color = 'red'
+            } );
+
+        },
+        set_data(data){
+            switch (data.LS){
+                case 'instituicoes': this.react.inf_pes.instID = data.item.ID; break;
+                case 'cursos': this.react.inf_pes.cursoID = data.item.ID; break;
+            }
+        }
+    }
+}
+</script>
+
+<style scoped>
+
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+</style>

@@ -42,7 +42,7 @@ class AuthController_API extends Controller
             'password' => 'required|string'
         ]);
 
-        $user = User::where('email', $fields['email'])->first();    //Check email
+        $user = User::where('email', $fields['email'])->with('instituicao')->with('curso')->first();    //Check email
 
         if(!$user || !Hash::check($fields['password'], $user->password)){   //Check password
             return response([
