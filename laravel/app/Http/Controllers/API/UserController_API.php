@@ -18,7 +18,7 @@ class UserController_API extends Controller
     public function show($id)
     {
         $res = User::with('instituicao')->with('curso')->where('ID','=',$id)->get();
-        if(isEmpty($res))
+        if(count($res) === 0)
             return response('404 not found', 404);
 
         return $res;

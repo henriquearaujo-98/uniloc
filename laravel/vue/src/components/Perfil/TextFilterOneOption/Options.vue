@@ -1,6 +1,6 @@
 <template>
     <ul  v-if="this.data.options.length > 0 && this.data.show">
-        <li v-for="item in this.data.options" :key="item.id" @click="this.$emit('clicked', {LS: this.LSI, item: item})">{{ item.nome }}</li>
+        <li v-for="item in this.data.options" :key="item.id" @click="clicked(item)">{{ item.nome }}</li>
     </ul>
 </template>
 
@@ -32,6 +32,12 @@ export default {
                 this.data.show = true
             }
         });
+    },
+    methods:{
+      clicked(item){
+          this.data.show = false
+          this.$emit('clicked', {LS: this.LSI, item: item})
+      }
     },
     watch: {
         text(val) { // nome do v-model
@@ -66,12 +72,13 @@ li:hover{
 }
 ul{
     position: absolute;
+
     background-color: lightslategrey;
     max-height: 450px;
     overflow: auto;
-    width: 233px;
+    width: auto;
     border-radius: 0 0 10px 10px;
-    margin-top: -15px;
+    margin-top: 0px;
     z-index: 4;
     padding-bottom: 15px;
 }

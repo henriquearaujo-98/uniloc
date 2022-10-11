@@ -1,16 +1,16 @@
 <template>
-    <div class="container pr-8 pl-8">
+    <div class="container pr-8 pl-8" v-if="this.own">
         <h1>{{this.$store.state.user_store.user.user.name }}</h1>
         <div class="flex mt-6">
             <div class="flex-2 mr-10" style="height: auto; width: 300px; background-color: green">
                 <Tab name = 'Perfil'
                      content = "perfil"
-                     active=false
+                     active=true
                      @open-tab="openTab"
                     />
                 <Tab name = 'Informações pessoais'
                      content = "inf_pes"
-                     active=true
+                     active=false
                      @open-tab="openTab"
                 />
                 <Tab name = 'Alterar senha'
@@ -35,21 +35,29 @@
         </div>
     </div>
 
+    <div class="container pr-8 pl-8" v-else>
+        <h1>{{this.data.f_user.name }}</h1>
+        <p v-if="this.data.f_user.curso_ID !== null && this.data.f_user.curso_ID !== undefined">{{this.data.f_user.curso.nome}}</p>
+        <p v-if="this.data.f_user.instituicao_ID !== null && this.data.f_user.instituicao_ID !== undefined">{{this.data.f_user.instituicao.nome}}</p>
+    </div>
+
 </template>
 
 <script>
 
 
 import Tab from "@/components/Perfil/Tabs/Tab";
-import {ref} from "vue";
+import {reactive, ref} from "vue";
 import InformacoesPessoais from "@/components/Perfil/InformacoesPessoais";
+import axios from "axios";
 
 export default {
     name: "Perfil",
     components: {InformacoesPessoais, Tab},
     setup(){
       return{
-        own: Boolean
+        own: Boolean,
+          data:reactive({f_user: {}})
       }
     },
     beforeCreate() {
@@ -58,7 +66,22 @@ export default {
             this.own = true
             this.name = this.$store.state.user_store.user.user.name
             console.log(this.$store.state.user_store.user.user.name)
+        }else{
+            this.own = false
+            const url = `http://localhost:3500/api/user/${userID}`
+            this.$store.state['buffer_store'].buffering = true
+            axios.get(url).then(res =>{
+                this.data.f_user = res.data[0]
+                console.log(this.data.f_user.name)
+                console.log()
+                this.$store.state['buffer_store'].buffering = false
+            }).catch(err => {
+               console.log(err)
+                this.$store.state['buffer_store'].buffering = false
+            });
         }
+
+
     },
     methods:{
         openTab(tab){
@@ -69,11 +92,6 @@ export default {
             });
             console.log(this.$refs[String(tab)].style.display = 'block')
         },
-        inf_pes(e){
-
-
-
-        }
     }
 }
 </script>

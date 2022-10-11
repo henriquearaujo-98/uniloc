@@ -72,7 +72,7 @@ export default {
         Save(e){
             e.preventDefault();
             console.log(this.react.inf_pes)
-
+            return
             let params = new URLSearchParams();
 
 

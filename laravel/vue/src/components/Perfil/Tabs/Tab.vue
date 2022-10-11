@@ -1,5 +1,5 @@
 <template>
-    <div @click="clicked" :class="this.react.show == true ? 'active' : ''">{{this.name }}</div>
+    <div @click="clicked" :class="this.react.show === true ? 'active' : ''">{{this.name }}</div>
 </template>
 
 <script>
@@ -28,7 +28,6 @@ export default {
                 this.react.show = false
             }
         });
-
         if(this.react.show == true){
             this.$emit('openTab', this.content)
 
@@ -41,7 +40,7 @@ export default {
             this.react.show = true
             this.$emit('openTab', this.content)
         }
-    }
+    },
 }
 </script>
 
