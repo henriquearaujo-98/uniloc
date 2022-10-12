@@ -15,10 +15,12 @@ class CreateFotosQuartoTable extends Migration
     {
         Schema::create('fotos_quarto', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('quartoID');
             $table->string('PATH');
             $table->string('Name');
-            $table->foreign('quartoID')->references('id')->on('quarto');
             $table->timestamps();
+
+            $table->foreign('quartoID')->references('id')->on('quarto');
         });
     }
 
