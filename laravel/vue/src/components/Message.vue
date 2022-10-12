@@ -46,6 +46,7 @@ div{
     height: 0;
     transition: 0.5s;
     position: absolute;
+    z-index: 9999;
 }
 
 .content{

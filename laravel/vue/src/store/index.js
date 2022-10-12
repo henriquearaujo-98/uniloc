@@ -68,12 +68,6 @@ const results_store = {
     mutations: {
         POPULATE_RESULTS(state, data){
 
-            if(data.length === 0){
-                store.state['message_store'].message = store.state['message_store'].error.empty_response
-                store.state['message_store'].color = store.state['message_store'].error.color
-                return;
-            }
-
             state.results = data;
             let insts_IDs = {}
 
@@ -98,33 +92,11 @@ const results_store = {
     actions: {
         async get_request({commit}, data){
             this.state.done = false
-            let formdata = new FormData();
-            formdata.append("distritos", data.distritos);
-            formdata.append("municipios", data.municipios);
-            formdata.append("insts", data.insts);
-            formdata.append("areas", data.areas);
-            formdata.append("cursos", data.cursos);
-            formdata.append("tipos_inst", data.tipos_inst);
-            formdata.append("provas", data.provas);
-            formdata.append("nota_min_min", data.nota_min_min);
-            formdata.append("nota_min_max", data.nota_min_max);
-            formdata.append("rank_min", data.rank_min);
-            formdata.append("rank_max", data.rank_max);
+
+            commit('POPULATE_RESULTS', data)
 
 
 
-            const res = await axios.post('http://localhost:3500/api/search', formdata,
-      {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Accept': 'application/json',
-                },
-
-            }).then(r => commit('POPULATE_RESULTS', r.data))
-            .catch(err=>{
-                store.state.message_store.message = store.state.message_store.error.general
-                store.state.message_store.color = store.state.message_store.error.color
-            });
         },
     },
 }

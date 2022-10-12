@@ -52,6 +52,7 @@
 <script>
 import TextFilter from "@/components/Filtros/TextFilter/TextFilter.vue";
 import SliderFilter from "@/components/Filtros/SliderFilter/SliderFilter.vue";
+import axios from "axios";
 
 
 
@@ -71,36 +72,48 @@ export default {
     methods: {
         async onSubmit(e){
             e.preventDefault();
-            const distritos = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['distritos'])));
-            const municipios = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['municipios'])));
-            const insts = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['instituicoes'])));
-            const areas = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['area_estudo'])));
-            const cursos = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['cursos'])));
-            const provas = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['exames'])));
-            const tipos_ensino = this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['tipos_ensino'])));
-            const nota_min_min = this.$store.state.search_store['nota_min_min'];
-            const nota_min_max = this.$store.state.search_store['nota_min_max'];
-            const rank_min = this.$store.state.search_store['rank_min'];
-            const rank_max = this.$store.state.search_store['rank_max'];
-            const data = {
-                'distritos' : distritos,
-                'municipios' : municipios,
-                'insts' : insts,
-                'areas' : areas,
-                'cursos' : cursos,
-                'provas' : provas,
-                'tipos_inst' : tipos_ensino,
-                'nota_min_min' : nota_min_min,
-                'nota_min_max' : nota_min_max,
-                'rank_min' : rank_min,
-                'rank_max' : rank_max
-            }
+
+            let formdata = new FormData();
+            formdata.append("distritos", this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['distritos']))));
+            formdata.append("municipios", this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['municipios']))));
+            formdata.append("insts", this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['instituicoes']))));
+            formdata.append("areas", this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['area_estudo']))));
+            formdata.append("cursos", this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['cursos']))));
+            formdata.append("tipos_inst", this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['tipos_ensino']))));
+            formdata.append("provas", this.array_to_string(JSON.parse(JSON.stringify(this.$store.state.search_store['exames']))));
+            formdata.append("nota_min_min", this.$store.state.search_store['nota_min_min']);
+            formdata.append("nota_min_max", this.$store.state.search_store['nota_min_max']);
+            formdata.append("rank_min", this.$store.state.search_store['rank_min']);
+            formdata.append("rank_max", this.$store.state.search_store['rank_max']);
 
 
 
             this.$store.state['buffer_store'].buffering = true
-            await this.$store.dispatch(`results_store/get_request`, data)
-            this.$store.state['buffer_store'].buffering = false
+
+             axios.post('http://localhost:3500/api/search', formdata,
+                {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Accept': 'application/json',
+                    },
+
+                })
+                .then(r => {
+                    if(r.data.length === 0){
+                        this.$store.state['message_store'].message = this.$store.state['message_store'].error.empty_response
+                        this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
+                    }else{
+                        this.$store.dispatch(`results_store/get_request`, r.data)
+                    }
+
+                    this.$store.state['buffer_store'].buffering = false
+                })
+                .catch(err=>{
+                    this.$store.state.message_store.message = this.$store.state.message_store.error.general
+                    this.$store.state.message_store.color = this.$store.state.message_store.error.color
+                    this.$store.state['buffer_store'].buffering = false
+                });
+
         },
         array_to_string(arr){
 
