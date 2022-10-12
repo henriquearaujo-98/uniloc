@@ -35,6 +35,7 @@ class QuartoController_API extends Controller
             'CasaBanhoPrivada',
             'Recibos',
             'Sexo',
+            'NViews',
             'userID'
         ]);
 
@@ -81,6 +82,7 @@ class QuartoController_API extends Controller
             'CasaBanhoPrivada',
             'Recibos',
             'Sexo',
+            'NViews',
             'userID'
         ]);
 

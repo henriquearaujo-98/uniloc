@@ -13,7 +13,6 @@ class Comentario_Rating extends Model
         'id',
         'Comentario',
         'Rating',
-        'NViews',
         'quartoID',
         'userID'
     ];

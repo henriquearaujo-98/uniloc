@@ -22,6 +22,7 @@ class CreateQuartoTable extends Migration
             $table->boolean('CasaBanhoPrivada')->nullable();; //Boolean, ver se tem casa de banho privada ou não
             $table->boolean('Recibos')->nullable();; //Boolean, ver se passa recibos ou não
             $table->string('Sexo')->nullable();
+            $table->integer('NViews')->nullable();
             $table->foreign('userID')->references('id')->on('users');
             $table->timestamps();
         });

@@ -47,7 +47,6 @@ class Comentario_RatingController_API extends Controller
             'id' => 'required',
             'Comentario',
             'Rating',
-            'NViews',
             'quartoID' => 'required',
             'userID' => 'required',
         ]);

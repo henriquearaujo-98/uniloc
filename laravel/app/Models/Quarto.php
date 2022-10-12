@@ -18,6 +18,7 @@ class Quarto extends Model
         'CasaBanhoPrivada',
         'Recibos',
         'Sexo',
+        'NViews',
         'userID'
     ];
 

@@ -17,7 +17,6 @@ class CreateComentarioRatingTable extends Migration
             $table->increments('id');
             $table->string('Comentario')->nullable();
             $table->integer('Rating')->nullable();
-            $table->integer('NViews');
             $table->foreign('quartoID')->references('id')->on('quarto');
             $table->foreign('userID')->references('id')->on('users');
             $table->timestamps();
