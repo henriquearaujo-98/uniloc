@@ -98,6 +98,6 @@ class QuartoController_API extends Controller
     public function destroy($id)
     {
         $quarto = Quarto::findOrFail($id);
-        $quarto->delete();
+        return $quarto->delete();
     }
 }
