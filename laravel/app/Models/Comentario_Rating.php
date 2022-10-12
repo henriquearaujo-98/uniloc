@@ -20,7 +20,7 @@ class Comentario_Rating extends Model
     protected $table = 'comentario_rating';
     public $timestamps = false;
     protected $primaryKey = 'id';
-    public $incrementing = false;
+    public $incrementing = true;
 
     public function quarto(){
         return $this->HasMany(Quarto::class, 'id', 'quartoID');

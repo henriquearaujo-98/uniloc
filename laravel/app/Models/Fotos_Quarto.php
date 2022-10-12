@@ -19,7 +19,7 @@ class Fotos_Quarto extends Model
     protected $table = 'fotos_quarto';
     public $timestamps = false;
     protected $primaryKey = 'id';
-    public $incrementing = false;
+    public $incrementing = true;
 
     public function quarto(){
         return $this->belongsTo(Quarto::class, 'quartoID','id');

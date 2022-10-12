@@ -25,7 +25,7 @@ class Quarto extends Model
     protected $table = 'quarto';
     public $timestamps = false;
     protected $primaryKey = 'id';
-    public $incrementing = false;
+    public $incrementing = true;
 
     public function fotos(){
         $this->hasMany(Fotos_Quartos::class, 'idQuarto' , 'id');
