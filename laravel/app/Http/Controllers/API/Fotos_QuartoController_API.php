@@ -14,28 +14,19 @@ class Fotos_QuartoController_API extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $res = Fotos_Quarto::with('quarto')->get();
-        $new = [];
+        $quartoID = $request->get('quartoID');
 
-        //TODO
-        /*
-        foreach ($res as $item){
-            $cidade_nome = $item['nome'];
-            $municipio_nome = $item['municipio']['nome'];
-            $item['nome'] = $cidade_nome.' ('.$municipio_nome.')';
-            $obj = [
-                'ID' => $item['ID'],
-                'nome' => $item['nome']
-            ];
-            array_push($new,$obj);
-        }
-        */
+        if(!isset($quartoID))
+            $res = Fotos_Quarto::all();
+        else
+            $res = Fotos_Quarto::where('quartoID', $quartoID)
+                ->get();
 
-        return $new;
+        return $res;
     }
-    
+
 
     public function quarto($quarto_id)
     {
