@@ -83,9 +83,15 @@ export default {
             ).then(()=>{
                 this.$store.state.user_store.user = {}
                 sessionStorage.setItem('user', '');
-                console.log('logged out')
                 this.$store.state['buffer_store'].buffering = false
-            }).catch(console.log);
+            }).catch(err => {
+
+                this.$store.state['buffer_store'].buffering = false
+                this.$store.state['message_store'].color = this.$store.state['message_store'].error.logout
+                this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
+
+            });
+
 
         },
     }

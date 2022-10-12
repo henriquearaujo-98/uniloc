@@ -95,7 +95,9 @@ export default {
                 'rank_min' : rank_min,
                 'rank_max' : rank_max
             }
-            console.log(data)
+
+
+
             this.$store.state['buffer_store'].buffering = true
             await this.$store.dispatch(`results_store/get_request`, data)
             this.$store.state['buffer_store'].buffering = false

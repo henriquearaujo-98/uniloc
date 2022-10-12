@@ -76,8 +76,18 @@ export default {
                 console.log()
                 this.$store.state['buffer_store'].buffering = false
             }).catch(err => {
-               console.log(err)
                 this.$store.state['buffer_store'].buffering = false
+                if(err.response){
+                    if(err.response.status === 404){
+                        this.$router.push({name: '404'})
+                    }else{
+                        this.$store.state['buffer_store'].color = "red"
+                        this.$store.state['buffer_store'].message = "Algo correu mal. Por favor tente mais tarde ou contacte os administradores do website."
+                    }
+                }else{
+                    this.$store.state['buffer_store'].color = "red"
+                    this.$store.state['buffer_store'].message = "Algo correu mal. Por favor tente mais tarde ou contacte os administradores do website."
+                }
             });
         }
 

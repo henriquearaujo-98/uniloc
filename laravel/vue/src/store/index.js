@@ -67,9 +67,14 @@ const results_store = {
     },
     mutations: {
         POPULATE_RESULTS(state, data){
+
+            if(data.length === 0){
+                store.state['message_store'].message = store.state['message_store'].error.empty_response
+                store.state['message_store'].color = store.state['message_store'].error.color
+                return;
+            }
+
             state.results = data;
-
-
             let insts_IDs = {}
 
             data.forEach(function(obj) {
@@ -115,7 +120,11 @@ const results_store = {
                     'Accept': 'application/json',
                 },
 
-            }).then(r => commit('POPULATE_RESULTS', r.data));
+            }).then(r => commit('POPULATE_RESULTS', r.data))
+            .catch(err=>{
+                store.state.message_store.message = store.state.message_store.error.general
+                store.state.message_store.color = store.state.message_store.error.color
+            });
         },
     },
 }
@@ -124,8 +133,6 @@ const buffer_store = {
     namespaced : true,
     state: {
         buffering: Boolean,
-        message: '',
-        color: ''
     },
     mutations: {
         SET_BUFFER_TRUE(state){
@@ -173,13 +180,44 @@ const user_store = {
     },
 }
 
+const message_store = {
+    namespaced : true,
+    state: {
+        message: '',
+        color: '',
+        error: {
+            color:'red',
+            general: 'Algo correu mal. Por favor tente mais tarde ou contacte os administradores do website.',
+            login: 'Combinação de senha e email não coincidem.',
+            logout: 'Algo correu mal. O logout não foi executado com successo.',
+            register: 'Algo correu mal. O registo não foi executado com successo.',
+            fields: 'Verifique se os campos estão devidamente preenchidos',
+            empty_response: 'Nenhum resultados retornados da pesquisa',
+            email:{
+                verification_sent: 'Não foi possível enviar um email de confirmação para o seu email. Porfavor tente mais tarde.'
+            }
+
+        },
+        success:{
+            color:'green',
+            general: 'Sucesso.',
+            email:{
+                verification_sent: 'Foi enviado um email de verificação para o seu email. Por favor verifique a sua conta.'
+            }
+        },
+
+    },
+}
+
 export default createStore({
 
   modules: {
-      search_store : search_store,
-      results_store : results_store,
-      buffer_store : buffer_store,
-      user_store : user_store
+      search_store,
+      results_store,
+      buffer_store,
+      user_store,
+      message_store
+
   }
 })
 

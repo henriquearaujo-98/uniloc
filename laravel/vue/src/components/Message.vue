@@ -19,23 +19,21 @@ export default {
     },
     methods:{
         close(){
-            this.$store.state['buffer_store'].message = ''
-            this.$store.state['buffer_store'].color = ''
+            this.$store.state['message_store'].message = ''
+            this.$store.state['message_store'].color = ''
             this.hide = true
         },
     },
     computed:{
         message(){
-            this.color = this.$store.state['buffer_store'].color
-            return this.$store.state['buffer_store'].message
+            this.color = this.$store.state['message_store'].color
+            return this.$store.state['message_store'].message
         }
     },
     watch: {
         message(n, o){
             this.message = n;
             this.hide = false
-
-            console.log(n)
         }
     }
 }

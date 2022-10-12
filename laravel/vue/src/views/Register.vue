@@ -72,20 +72,24 @@ export default {
                     Authorization: `Bearer ${this.$store.state.user_store.user.token}`
                 }
             }).then( (res) => {
-                this.$store.state['buffer_store'].message = 'Foi enviado um email de verificação para o seu email. Por favor verifique a sua conta.'
-                this.$store.state['buffer_store'].color = 'green'
+                this.$store.state['message_store'].message = this.$store.state['message_store'].success.email.verification_sent
+                this.$store.state['message_store'].color = this.$store.state['message_store'].success.color
+                //redirect
             }).catch( (err) => {
-                this.$store.state['buffer_store'].message = 'Algo de errado não está certo. '
-                this.$store.state['buffer_store'].color = 'red'
-                console.log(err)
+                this.$store.state['message_store'].message = this.$store.state['message_store'].error.email.verification_sent
+                this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
             } );
         }
     },
     computed:{
         register(){
 
-            if(this.email_check == true || this.pass_check == true)
+            if(this.email_check == true || this.pass_check == true){
+                this.$store.state['message_store'].message = this.$store.state['message_store'].error.fields
+                this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
                 return
+            }
+
 
             const params = new URLSearchParams();
             params.append('name', this.nome);
@@ -104,7 +108,18 @@ export default {
                 console.log(this.$store.state['user_store'].user.user)
                 this.EmailVerification()
             }).catch( (err) => {
-                console.log(err);
+                this.$store.state['buffer_store'].buffering = false
+                if(err.response){
+                    if(err.response.status === 404){
+                        this.$router.push({name: '404'})
+                    }else{
+                        this.$store.state['buffer_store'].color = "red"
+                        this.$store.state['buffer_store'].message = "Algo correu mal. Por favor tente mais tarde ou contacte os administradores do website."
+                    }
+                }else{
+                    this.$store.state['buffer_store'].color = "red"
+                    this.$store.state['buffer_store'].message = "Algo correu mal. Por favor tente mais tarde ou contacte os administradores do website."
+                }
             } );
         },
 
@@ -118,6 +133,9 @@ export default {
                 this.pass_check=false
 
         },
+        email(n, o){
+
+        }
     },
 }
 </script>

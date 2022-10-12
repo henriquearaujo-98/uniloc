@@ -179,8 +179,22 @@ export default {
                     'Accept': 'application/json',
                 },
 
-            }).then(res => this.item = res.data);
-        console.log(this.item)
+            })
+            .then(res => this.item = res.data)
+            .catch(err=>{
+                this.$store.state['buffer_store'].buffering = false
+                if(err.response){
+                    if(err.response.status === 404){
+                        this.$router.push({name: '404'})
+                    }else{
+                        this.$store.state['buffer_store'].color = "red"
+                        this.$store.state['buffer_store'].message = "Algo correu mal. Por favor tente mais tarde ou contacte os administradores do website."
+                    }
+                }else{
+                    this.$store.state['buffer_store'].color = "red"
+                    this.$store.state['buffer_store'].message = "Algo correu mal. Por favor tente mais tarde ou contacte os administradores do website."
+                }
+            });
 
         await axios.get(`http://localhost:3500/api/exames_nome?cursoID=${this.cursoID}&instID=${this.instID}`,
             {
@@ -189,7 +203,22 @@ export default {
                     'Accept': 'application/json',
                 },
 
-            }).then(res => this.item.push(res.data));
+            })
+            .then(res => this.item.push(res.data))
+            .catch(err=>{
+                this.$store.state['buffer_store'].buffering = false
+                if(err.response){
+                    if(err.response.status === 404){
+                        this.$router.push({name: '404'})
+                    }else{
+                        this.$store.state['message_store'].message = this.$store.state['message_store'].error.general
+                        this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
+                    }
+                }else{
+                    this.$store.state['message_store'].message = this.$store.state['message_store'].error.general
+                    this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
+                }
+            });
 
         this.item[1].forEach((x, index) => {
             if(x.includes(','))

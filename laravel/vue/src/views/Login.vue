@@ -39,14 +39,14 @@ export default {
         login(){
             console.log('logging in')
             if(this.email == ''){
-                this.$store.state['buffer_store'].message = 'Email must not be empty'
-                this.$store.state['buffer_store'].color = 'red'
+                this.$store.state['message_store'].message = this.$store.state['message_store'].error.fields
+                this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
                 return;
             }
 
             if(this.password == ''){
-                this.$store.state['buffer_store'].message = 'Password must be set'
-                this.$store.state['buffer_store'].color = 'blue'
+                this.$store.state['message_store'].message = this.$store.state['message_store'].error.fields
+                this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
                 return;
             }
 
@@ -66,8 +66,16 @@ export default {
                 console.log(this.$store.state['user_store'].user.user)
                 this.$store.state['buffer_store'].buffering = false
             }).catch( (err) => {
-                console.log(err);
-            } );
+                this.$store.state['buffer_store'].buffering = false
+
+                if(err.response.status == 401){
+                    this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
+                    this.$store.state['message_store'].message = this.$store.state['message_store'].error.login
+                }
+
+
+
+            });
         }
     }
 }

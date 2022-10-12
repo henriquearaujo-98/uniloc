@@ -7,6 +7,7 @@ import Login from "@/views/Login";
 import Register from "@/views/Register";
 import VerificarEmail from "@/views/VerificarEmail";
 import Perfil from "@/views/Perfil";
+import NotFound from "@/views/NotFound";
 
 const routes = [
     {
@@ -48,6 +49,11 @@ const routes = [
         path: '/perfil',
         name: 'Profile',
         component: Perfil
+    },
+    {
+        path: '/404',
+        name: '404',
+        component: NotFound
     },
 
 ]
