@@ -5,15 +5,18 @@ use App\Http\Controllers\API\AreaEstudoController_API;
 use App\Http\Controllers\API\AuthController_API;
 use App\Http\Controllers\API\CidadesController_API;
 use App\Http\Controllers\API\CodigoPostalController_API;
+use App\Http\Controllers\API\Comentario_RatingController_API;
 use App\Http\Controllers\API\CursoController_API;
 use App\Http\Controllers\API\DistritoController_API;
 use App\Http\Controllers\API\EmailVerificationController;
 use App\Http\Controllers\API\ExameController_API;
+use App\Http\Controllers\API\Fotos_QuartoController_API;
 use App\Http\Controllers\API\InformacoesMunicipioController_API;
 use App\Http\Controllers\API\InstituicaoController_API;
 use App\Http\Controllers\API\Instituicoes_has_CursoController_API;
 use App\Http\Controllers\API\MunicipioController_API;
 use App\Http\Controllers\API\ProvaIngressoController_API;
+use App\Http\Controllers\API\QuartoController_API;
 use App\Http\Controllers\API\SearchController_API;
 use App\Http\Controllers\API\TipoEnsinoController_API;
 
@@ -80,14 +83,18 @@ Route::get('/exames', [ExameController_API::class, 'index']);
 Route::get('/tipos_ensino', [TipoEnsinoController_API::class, 'index']);
 
 // Quartos
-Route::get('/quartos', [\App\Http\Controllers\API\QuartoController_API::class, 'index']);
+Route::get('/quartos', [QuartoController_API::class, 'index']);
+Route::get('/quartos/{id}', [QuartoController_API::class, 'show']);
+Route::delete('/quartos/{id}', [QuartoController_API::class, 'destroy']);
+Route::post('/quartos/{id}', [QuartoController_API::class, 'update']);
+Route::post('/quartos', [QuartoController_API::class, 'store']);
 
 //Fotos Quarto
-Route::get('/fotos', [\App\Http\Controllers\API\Fotos_QuartoController_API::class, 'index']);
+Route::get('/fotos', [Fotos_QuartoController_API::class, 'index']);
 
 //Comentarios Rating
 // ### REVER NOME ### ----
-Route::get('/info', [\App\Http\Controllers\API\Comentario_RatingController_API::class, 'index']);
+Route::get('/info', [Comentario_RatingController_API::class, 'index']);
 
 
 // ## User

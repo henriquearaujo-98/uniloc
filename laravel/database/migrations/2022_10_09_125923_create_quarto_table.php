@@ -15,17 +15,18 @@ class CreateQuartoTable extends Migration
     {
         Schema::create('quarto', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('userID');
             $table->string('descricao');
             $table->integer('MetrosQuadrados')->default('1');
             $table->decimal('Preco')->default('1');
-            $table->string('Localizacao');
+            $table->integer('municipioID');
             $table->boolean('CasaBanhoPrivada')->nullable();; //Boolean, ver se tem casa de banho privada ou não
             $table->boolean('Recibos')->nullable();; //Boolean, ver se passa recibos ou não
             $table->string('Sexo')->nullable();
             $table->integer('NViews')->nullable();
+            $table->unsignedInteger('userID');
             $table->timestamps();
 
+            $table->foreign('municipioID')->references('ID')->on('municipios');
             $table->foreign('userID')->references('id')->on('users');
         });
     }

@@ -14,7 +14,7 @@ class Quarto extends Model
         'descricao',
         'MetrosQuadrados',
         'Preco',
-        'Localizacao',
+        'municipioID',
         'CasaBanhoPrivada',
         'Recibos',
         'Sexo',
