@@ -74,7 +74,7 @@ export default {
             }).then( (res) => {
                 this.$store.state['message_store'].message = this.$store.state['message_store'].success.email.verification_sent
                 this.$store.state['message_store'].color = this.$store.state['message_store'].success.color
-                //redirect
+                this.$router.push({name:'VerificarEmail'})
             }).catch( (err) => {
                 this.$store.state['message_store'].message = this.$store.state['message_store'].error.email.verification_sent
                 this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
@@ -105,21 +105,12 @@ export default {
             }).then( (res) => {
                 sessionStorage.setItem('user', JSON.stringify(res.data))
                 this.$store.state['user_store'].user = res.data
-                console.log(this.$store.state['user_store'].user.user)
+
                 this.EmailVerification()
             }).catch( (err) => {
                 this.$store.state['buffer_store'].buffering = false
-                if(err.response){
-                    if(err.response.status === 404){
-                        this.$router.push({name: '404'})
-                    }else{
-                        this.$store.state['buffer_store'].color = "red"
-                        this.$store.state['buffer_store'].message = "Algo correu mal. Por favor tente mais tarde ou contacte os administradores do website."
-                    }
-                }else{
-                    this.$store.state['buffer_store'].color = "red"
-                    this.$store.state['buffer_store'].message = "Algo correu mal. Por favor tente mais tarde ou contacte os administradores do website."
-                }
+                this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
+                this.$store.state['buffer_store'].message = this.$store.state['message_store'].error.register
             } );
         },
 

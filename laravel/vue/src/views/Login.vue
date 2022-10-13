@@ -65,6 +65,7 @@ export default {
                 this.$store.state['user_store'].user = res.data
                 console.log(this.$store.state['user_store'].user.user)
                 this.$store.state['buffer_store'].buffering = false
+                this.$router.go(-1)
             }).catch( (err) => {
                 this.$store.state['buffer_store'].buffering = false
 

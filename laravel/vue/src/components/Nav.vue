@@ -84,6 +84,9 @@ export default {
                 this.$store.state.user_store.user = {}
                 sessionStorage.setItem('user', '');
                 this.$store.state['buffer_store'].buffering = false
+
+                this.$router.push({name:'home'})
+
             }).catch(err => {
 
                 this.$store.state['buffer_store'].buffering = false
