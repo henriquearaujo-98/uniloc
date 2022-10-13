@@ -65,29 +65,32 @@ export default {
         if(userID == undefined){
             this.own = true
             this.name = this.$store.state.user_store.user.user.name
-            console.log(this.$store.state.user_store.user.user.name)
+
         }else{
             this.own = false
             const url = `http://localhost:3500/api/user/${userID}`
             this.$store.state['buffer_store'].buffering = true
-            axios.get(url).then(res =>{
+
+            axios
+            .get(url).then(res =>{
                 this.data.f_user = res.data[0]
                 console.log(this.data.f_user.name)
                 console.log()
                 this.$store.state['buffer_store'].buffering = false
-            }).catch(err => {
-                this.$store.state['buffer_store'].buffering = false
-                if(err.response){
-                    if(err.response.status === 404){
-                        this.$router.push({name: '404'})
+            })
+            .catch(err => {
+                    this.$store.state['buffer_store'].buffering = false
+                    if(err.response){
+                        if(err.response.status === 404){
+                            this.$router.push({name: '404'})
+                        }else{
+                            this.$store.state['message_store'].message = this.$store.state['message_store'].error.general
+                            this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
+                        }
                     }else{
-                        this.$store.state['buffer_store'].color = "red"
-                        this.$store.state['buffer_store'].message = "Algo correu mal. Por favor tente mais tarde ou contacte os administradores do website."
+                        this.$store.state['message_store'].message = this.$store.state['message_store'].error.general
+                        this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
                     }
-                }else{
-                    this.$store.state['buffer_store'].color = "red"
-                    this.$store.state['buffer_store'].message = "Algo correu mal. Por favor tente mais tarde ou contacte os administradores do website."
-                }
             });
         }
 
