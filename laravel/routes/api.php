@@ -91,10 +91,17 @@ Route::post('/quartos', [QuartoController_API::class, 'store']);
 
 //Fotos Quarto
 Route::get('/fotos', [Fotos_QuartoController_API::class, 'index']);
+Route::post('/fotos', [Fotos_QuartoController_API::class, 'store']);
+Route::get('/fotos/{id}', [Fotos_QuartoController_API::class, 'show']);
+Route::delete('/fotos/{id}', [Fotos_QuartoController_API::class, 'destroy']);
+
 
 //Comentarios Rating
-// ### REVER NOME ### ----
 Route::get('/info', [Comentario_RatingController_API::class, 'index']);
+Route::get('/info/{id}', [Comentario_RatingController_API::class, 'show']);
+Route::delete('/info/{id}', [Comentario_RatingController_API::class, 'destroy']);
+Route::post('/info/{id}', [Comentario_RatingController_API::class, 'update']);
+Route::post('/info', [Comentario_RatingController_API::class, 'store']);
 
 
 // ## User
@@ -106,5 +113,3 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
     Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
 });
-
-
