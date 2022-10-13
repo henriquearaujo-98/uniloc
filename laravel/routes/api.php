@@ -5,15 +5,18 @@ use App\Http\Controllers\API\AreaEstudoController_API;
 use App\Http\Controllers\API\AuthController_API;
 use App\Http\Controllers\API\CidadesController_API;
 use App\Http\Controllers\API\CodigoPostalController_API;
+use App\Http\Controllers\API\Comentario_RatingController_API;
 use App\Http\Controllers\API\CursoController_API;
 use App\Http\Controllers\API\DistritoController_API;
 use App\Http\Controllers\API\EmailVerificationController;
 use App\Http\Controllers\API\ExameController_API;
+use App\Http\Controllers\API\Fotos_QuartoController_API;
 use App\Http\Controllers\API\InformacoesMunicipioController_API;
 use App\Http\Controllers\API\InstituicaoController_API;
 use App\Http\Controllers\API\Instituicoes_has_CursoController_API;
 use App\Http\Controllers\API\MunicipioController_API;
 use App\Http\Controllers\API\ProvaIngressoController_API;
+use App\Http\Controllers\API\QuartoController_API;
 use App\Http\Controllers\API\SearchController_API;
 use App\Http\Controllers\API\TipoEnsinoController_API;
 
@@ -80,9 +83,32 @@ Route::get('/exames', [ExameController_API::class, 'index']);
 // Tipos de ensino
 Route::get('/tipos_ensino', [TipoEnsinoController_API::class, 'index']);
 
+<<<<<<< HEAD
 // User
 Route::get('/user/{id}', [UserController_API::class, 'show']);
 Route::get('/user', [UserController_API::class, 'index']);
+=======
+// Quartos
+Route::get('/quartos', [QuartoController_API::class, 'index']);
+Route::get('/quartos/{id}', [QuartoController_API::class, 'show']);
+Route::delete('/quartos/{id}', [QuartoController_API::class, 'destroy']);
+Route::post('/quartos/{id}', [QuartoController_API::class, 'update']);
+Route::post('/quartos', [QuartoController_API::class, 'store']);
+
+//Fotos Quarto
+Route::get('/fotos', [Fotos_QuartoController_API::class, 'index']);
+Route::post('/fotos', [Fotos_QuartoController_API::class, 'store']);
+Route::get('/fotos/{id}', [Fotos_QuartoController_API::class, 'show']);
+Route::delete('/fotos/{id}', [Fotos_QuartoController_API::class, 'destroy']);
+
+
+//Comentarios Rating
+Route::get('/info', [Comentario_RatingController_API::class, 'index']);
+Route::get('/info/{id}', [Comentario_RatingController_API::class, 'show']);
+Route::delete('/info/{id}', [Comentario_RatingController_API::class, 'destroy']);
+Route::post('/info/{id}', [Comentario_RatingController_API::class, 'update']);
+Route::post('/info', [Comentario_RatingController_API::class, 'store']);
+>>>>>>> UL65
 
 // Auth
 Route::post('/register', [AuthController_API::class, 'register']);
@@ -99,5 +125,3 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     //update information
     Route::post('/user/{id}', [UserController_API::class, 'update']);
 });
-
-
