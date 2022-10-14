@@ -68,7 +68,9 @@ export default {
 
         }else{
             this.own = false
-            const url = `http://localhost:3500/api/user/${userID}`
+
+            const url = `${this.$store.state['networking_store'].API_BASE_URL}/api/user/${userID}`
+
             this.$store.state['buffer_store'].buffering = true
 
             axios

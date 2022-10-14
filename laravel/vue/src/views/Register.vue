@@ -97,7 +97,9 @@ export default {
             params.append('password', this.password);
             params.append('password_confirmation', this.password2);
 
-            axios.post('http://localhost:3500/api/register', params, {
+            const url = `${this.$store.state['networking_store'].API_BASE_URL}/register`
+
+            axios.post(url, params, {
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded',
                     'Accept': 'application/json',

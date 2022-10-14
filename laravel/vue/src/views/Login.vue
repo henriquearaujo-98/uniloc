@@ -55,7 +55,10 @@ export default {
             const params = new URLSearchParams();
             params.append('email', this.email);
             params.append('password', this.password);
-            axios.post('http://localhost:3500/api/login', params, {
+
+            const url = `${this.$store.state['networking_store'].API_BASE_URL}/login`
+
+            axios.post(url, params, {
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded',
                     'Accept': 'application/json',

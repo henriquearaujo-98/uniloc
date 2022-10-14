@@ -181,6 +181,13 @@ const message_store = {
     },
 }
 
+const networking_store = {
+    namespaced : true,
+    state: {
+        API_BASE_URL: 'http://localhost:3500/api'
+    },
+}
+
 export default createStore({
 
   modules: {
@@ -188,8 +195,8 @@ export default createStore({
       results_store,
       buffer_store,
       user_store,
-      message_store
-
+      message_store,
+      networking_store
   }
 })
 

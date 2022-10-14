@@ -172,7 +172,9 @@ export default {
         this.cursoID = this.$route.query.cursoID
         this.$store.state['buffer_store'].buffering = true
 
-        await axios.get(`http://localhost:3500/api/instituicoes_has_curso?cursoID=${this.cursoID}&instID=${this.instID}`,
+        const url_inst_curso = `${this.$store.state['networking_store'].API_BASE_URL}/instituicoes_has_curso?cursoID=${this.cursoID}&instID=${this.instID}`
+
+        await axios.get(url_inst_curso,
             {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -196,7 +198,9 @@ export default {
                 }
             });
 
-        await axios.get(`http://localhost:3500/api/exames_nome?cursoID=${this.cursoID}&instID=${this.instID}`,
+        const url_exames = `${this.$store.state['networking_store'].API_BASE_URL}/exames_nome?cursoID=${this.cursoID}&instID=${this.instID}`
+
+        await axios.get(url_exames,
             {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

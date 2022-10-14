@@ -83,11 +83,10 @@ Route::get('/exames', [ExameController_API::class, 'index']);
 // Tipos de ensino
 Route::get('/tipos_ensino', [TipoEnsinoController_API::class, 'index']);
 
-<<<<<<< HEAD
-// User
+
 Route::get('/user/{id}', [UserController_API::class, 'show']);
 Route::get('/user', [UserController_API::class, 'index']);
-=======
+
 // Quartos
 Route::get('/quartos', [QuartoController_API::class, 'index']);
 Route::get('/quartos/{id}', [QuartoController_API::class, 'show']);
@@ -108,7 +107,7 @@ Route::get('/info/{id}', [Comentario_RatingController_API::class, 'show']);
 Route::delete('/info/{id}', [Comentario_RatingController_API::class, 'destroy']);
 Route::post('/info/{id}', [Comentario_RatingController_API::class, 'update']);
 Route::post('/info', [Comentario_RatingController_API::class, 'store']);
->>>>>>> UL65
+
 
 // Auth
 Route::post('/register', [AuthController_API::class, 'register']);

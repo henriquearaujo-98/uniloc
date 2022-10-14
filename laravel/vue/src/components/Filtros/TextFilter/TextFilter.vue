@@ -133,8 +133,9 @@ export default {
     mounted() {
         console.log(JSON.parse(localStorage.getItem(this.tabela)))
         if(!localStorage.hasOwnProperty(this.tabela)){
+            const url = `${this.$store.state['networking_store'].API_BASE_URL}/${this.tabela}`
             axios
-                .get(`http://localhost:3500/api/${this.tabela}`)
+                .get(url)
                 .then(response => {
                     this.$store.dispatch(`${this.tabela}/populate_pool`, response.data)[this.tabela];
                     console.log('fetching from DB')

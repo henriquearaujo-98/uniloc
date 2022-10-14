@@ -74,10 +74,12 @@ export default {
             const bodyParameters = {
             };
 
+            const url = `${this.$store.state['networking_store'].API_BASE_URL}/logout`
+
             this.$store.state['buffer_store'].buffering = true
 
             axios.post(
-                'http://localhost:3500/api/logout',
+                url,
                 bodyParameters,
                 config
             ).then(()=>{

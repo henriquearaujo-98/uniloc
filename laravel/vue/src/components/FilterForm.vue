@@ -90,7 +90,9 @@ export default {
 
             this.$store.state['buffer_store'].buffering = true
 
-             axios.post('http://localhost:3500/api/search', formdata,
+            const url = `${this.$store.state['networking_store'].API_BASE_URL}/search`
+
+             axios.post(url, formdata,
                 {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',

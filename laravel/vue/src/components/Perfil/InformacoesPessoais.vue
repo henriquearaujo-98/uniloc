@@ -71,8 +71,8 @@ export default {
     methods:{
         Save(e){
             e.preventDefault();
-            console.log(this.react.inf_pes)
-            return
+            this.$store.state.buffer_store.buffering = true
+
             let params = new URLSearchParams();
 
 
@@ -83,7 +83,7 @@ export default {
             params.append('curso_ID', this.react.inf_pes.cursoID );
 
 
-            const url = `http://localhost:3500/api/user/${this.$store.state.user_store.user.user.id}`
+            const url = `${this.$store.state.networking_store.API_BASE_URL}/user/${this.$store.state.user_store.user.user.id}`
 
 
             axios.post(url, params, {
@@ -92,6 +92,7 @@ export default {
                     Authorization: `Bearer ${this.user.token.split("|")[1]}`
                 }
             }).then( (res) => {
+                console.log(res)
                 this.$store.state.user_store.user.user = res.data[0]
 
                 let info = JSON.parse(sessionStorage.getItem('user'))
@@ -104,6 +105,8 @@ export default {
                 this.$store.state['buffer_store'].message = 'Algo correu mal. Por favor tente mais tarde ou contacte os responsáveis pelo site.'
                 this.$store.state['buffer_store'].color = 'red'
             } );
+
+            this.$store.state.buffer_store.buffering = false
 
         },
         set_data(data){

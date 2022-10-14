@@ -55,7 +55,10 @@ export default {
     },
     methods:{
         sendEmail(){
-            axios.post('http://localhost:3500/api/verification-notification', {}, {
+
+            const url = `${this.$store.state['networking_store'].API_BASE_URL}/verification-notification`
+
+            axios.post(url, {}, {
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded',
                     'Accept': 'application/json',
