@@ -173,9 +173,11 @@ const message_store = {
         success:{
             color:'green',
             general: 'Sucesso.',
+            changes: 'As alterações foram executadas com successo.',
             email:{
                 verification_sent: 'Foi enviado um email de verificação para o seu email. Por favor verifique a sua conta.'
-            }
+            },
+
         },
 
     },
@@ -184,7 +186,8 @@ const message_store = {
 const networking_store = {
     namespaced : true,
     state: {
-        API_BASE_URL: 'http://localhost:3500/api'
+        API_BASE_URL: 'http://localhost:3500/api',
+        WEB_SERVICE_URL: 'http://localhost:3500'
     },
 }
 

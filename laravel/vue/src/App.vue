@@ -26,6 +26,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Message from "@/components/Message";
+import axios from "axios";
+
 export default {
     components: {Footer, Header, Message},
     created() {
@@ -42,7 +44,9 @@ export default {
         if(sessionStorage.getItem('user') != null)
             this.$store.state['user_store'].user = sessionStorage.getItem('user');
 
-        //this.$store.dispatch('buffer_store/setMessage', 'test');
+        // CRFS cookie
+        axios.get(`${this.$store.state.networking_store.WEB_SERVICE_URL}/sanctum/csrf-cookie`, {withCredentials : true})
+
 
     }
 }

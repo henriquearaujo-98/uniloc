@@ -99,11 +99,11 @@ export default {
                 info.user = res.data[0]
                 sessionStorage.setItem('user', JSON.stringify(info))
 
-                this.$store.state['buffer_store'].message = 'Mudanças aplicadas com sucesso.'
-                this.$store.state['buffer_store'].color = 'green'
+                this.$store.state['message_store'].color = this.$store.state['message_store'].success.color
+                this.$store.state['message_store'].message = this.$store.state['message_store'].success.changes
             }).catch( (err) => {
-                this.$store.state['buffer_store'].message = 'Algo correu mal. Por favor tente mais tarde ou contacte os responsáveis pelo site.'
-                this.$store.state['buffer_store'].color = 'red'
+                this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
+                this.$store.state['message_store'].message = this.$store.state['message_store'].error.general
             } );
 
             this.$store.state.buffer_store.buffering = false
