@@ -13,16 +13,12 @@ class Role extends Middleware
         if (!Auth::check())
             return redirect('login');
 
-        $user = Auth::user();
-
-        if ($user->isAdmin())
-            return $next($request);
-
-        foreach ($roles as $role) {
-            if ($user->hasRole($role))
-                return $next($request);
+        if (Auth::user()->role == 1) {
+            return redirect()->route('index');
         }
 
-        return redirect('login');
+        if (Auth::user()->role == 2) {
+            return redirect()->route('AdminController');
+        }
     }
 }
