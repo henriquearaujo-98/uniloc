@@ -18,11 +18,15 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('phome', 13);
+            $table->string('phone', 13);
             $table->string('password');
-            $table->string('user_type');
+            $table->foreignId('role_id')->default(1);
             $table->rememberToken();
             $table->timestamps();
+
+             $table->foreign('role_id')
+                 ->references('id')->on('roles')
+                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

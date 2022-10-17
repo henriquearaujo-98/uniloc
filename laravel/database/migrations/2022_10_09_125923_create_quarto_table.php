@@ -23,11 +23,12 @@ class CreateQuartoTable extends Migration
             $table->boolean('Recibos')->nullable();; //Boolean, ver se passa recibos ou não
             $table->string('Sexo')->nullable();
             $table->integer('NViews')->nullable();
-            $table->unsignedInteger('userID');
+            $table->foreignId('userID');
             $table->timestamps();
 
             $table->foreign('municipioID')->references('ID')->on('municipios');
-            $table->foreign('userID')->references('id')->on('users');
+            $table->foreign('userID')->references('id')->on('users')
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

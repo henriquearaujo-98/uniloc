@@ -56,11 +56,14 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function quarto(){
-        $this->hasMany(Quarto::class, 'userID' , 'id');
+        return $this->hasMany(Quarto::class, 'userID' , 'id');
     }
 
     public function comentario_rating(){
-        $this->hasMany(Comentario_Rating::class, 'userID' , 'id');
+        return $this->hasMany(Comentario_Rating::class, 'userID' , 'id');
+    }
 
+    public function role(){
+        return $this->belongsTo(Roles::class, 'role_id', 'id');
     }
 }
