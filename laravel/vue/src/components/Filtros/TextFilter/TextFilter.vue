@@ -29,7 +29,7 @@ export default {
         tabela: String,
     },
     components: {AutoComplete, TextInput, ResultsArea},
-    created() {
+    beforeMount() {
         // register a module
         this.$store.registerModule(this.tabela, {
             namespaced: true,
@@ -163,7 +163,9 @@ export default {
 
 
     },
-
+    beforeUnmount() {
+        this.$store.unregisterModule(this.tabela);
+    }
 }
 </script>
 
