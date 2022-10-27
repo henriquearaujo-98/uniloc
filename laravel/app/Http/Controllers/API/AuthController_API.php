@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\PasswordReset;
 use App\Models\User;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Http\Request;
 use http\Env\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController_API extends Controller
 {
@@ -66,5 +70,74 @@ class AuthController_API extends Controller
         return [
             'message' => 'Logged Out'
         ];
+    }
+
+
+    /**
+     * @throws \Exception
+     */
+    public function sendResetPasswordEmail(Request $request){
+
+        $user = User::query()->where("email", "=", $request->email)->first();
+
+        if(!$user || !$user->email){
+            return \response("Email not found", 404);
+        }
+
+        $resetPasswordToken = str_pad(random_int(1, 9999), 4 , '0', STR_PAD_LEFT);
+
+        if(!$userPassReset = PasswordReset::where("email", $user->email)->first()){
+            PasswordReset::create([
+                "email" => $user->email,
+                "token" => $resetPasswordToken
+            ]);
+        } else {
+            $userPassReset->update([
+                "email" => $user->email,
+                "token" => $resetPasswordToken
+            ]);
+        }
+
+        $user->notify(
+            new ResetPasswordNotification($resetPasswordToken)
+        );
+
+        return \response("A code has been sent to your email address", 200);
+
+    }
+
+    public function resetPassword(Request $request){
+
+        $attributes = $request->all();
+
+        $user = User::where("email", $attributes["email"])->first();
+
+        if(!$user){
+            return \response("No user found", 404);
+        }
+
+        $resetRequest = PasswordReset::where("email", $user->email)->first();
+
+        if(!$resetRequest || $resetRequest->token != $request->token){
+            return \response("Bad request", 400);
+        }
+
+
+        $user->fill([
+            "password" => bcrypt($attributes['password'])
+        ]);
+        $user->save();
+
+        $user->tokens()->delete();
+
+        $token = $user->createToken("myapptoken")->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return $response;
+
     }
 }
