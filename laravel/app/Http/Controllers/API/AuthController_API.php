@@ -81,7 +81,6 @@ class AuthController_API extends Controller
 
         $request->validate([
             'email' => 'required|string|email',
-
         ]);
 
         $user = User::query()->where("email", "=", $request->email)->first();
@@ -113,13 +112,31 @@ class AuthController_API extends Controller
     }
 
     /**
+     * Checks if entered token corresponds
+     * @param Request $request
+     * @return void
+     */
+    public function checkCode(Request $request){
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|string|email',
+        ]);
+
+        $user = User::query()->where("email", "=", $request->email)->first();
+
+        $db_token = PasswordReset::where("email", $user->email)->first()->token;
+
+        return $db_token == $request->token;
+    }
+
+    /**
      * Perform reset password
      * @param Request $request
      * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function resetPassword(Request $request){
 
-        $fields = $request->validate([
+        $request->validate([
             'token' => 'required',
             'password' => 'required|string',
             'email' => 'required|email'
@@ -157,4 +174,6 @@ class AuthController_API extends Controller
         return $response;
 
     }
+
+
 }

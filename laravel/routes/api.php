@@ -114,6 +114,7 @@ Route::post('/register', [AuthController_API::class, 'register']);
 Route::post('/login', [AuthController_API::class, 'login']);
 Route::post('/forgot-password', [AuthController_API::class, 'sendResetPasswordEmail']);
 Route::post('/reset-password', [AuthController_API::class, 'resetPassword']);
+Route::post('/check-reset-token', [AuthController_API::class, 'checkCode']);
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
     //auth

@@ -112,7 +112,7 @@ export default {
             }).catch( (err) => {
                 this.$store.state['buffer_store'].buffering = false
                 this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
-                this.$store.state['buffer_store'].message = this.$store.state['message_store'].error.register
+                this.$store.state['message_store'].message = this.$store.state['message_store'].error.register
             } );
         },
 

@@ -164,9 +164,13 @@ const message_store = {
             logout: 'Algo correu mal. O logout não foi executado com successo.',
             register: 'Algo correu mal. O registo não foi executado com successo.',
             fields: 'Verifique se os campos estão devidamente preenchidos',
+            field:{
+              email: 'O email submetido não é válido.'
+            },
             empty_response: 'Nenhum resultados retornados da pesquisa',
             email:{
-                verification_sent: 'Não foi possível enviar um email de confirmação para o seu email. Porfavor tente mais tarde.'
+                verification_sent: 'Não foi possível enviar um email de confirmação para o seu email. Por favor tente mais tarde.',
+                not_found: 'O email submetido não foi encontrado.'
             }
 
         },
@@ -175,7 +179,7 @@ const message_store = {
             general: 'Sucesso.',
             email:{
                 verification_sent: 'Foi enviado um email de verificação para o seu email. Por favor verifique a sua conta.'
-            }
+            },
         },
 
     },

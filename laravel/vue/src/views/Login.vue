@@ -16,6 +16,9 @@
                 placeholder="Password..."
             >
 
+            <p>
+                 <router-link class="link" to="/pw_reset">Esqueceu-se da password?</router-link>.
+            </p>
 
             <input type="submit" value="Login"/>
         </form>
@@ -68,7 +71,7 @@ export default {
                 this.$store.state['user_store'].user = res.data
                 console.log(this.$store.state['user_store'].user.user)
                 this.$store.state['buffer_store'].buffering = false
-                this.$router.go(-1)
+                this.$router.push('/')
             }).catch( (err) => {
                 this.$store.state['buffer_store'].buffering = false
 

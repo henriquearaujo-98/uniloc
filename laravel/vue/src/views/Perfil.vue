@@ -14,12 +14,12 @@
                      @open-tab="openTab"
                 />
                 <Tab name = 'Alterar senha'
-                     content = "inf_pes"
+                     content = "alterar_senha"
                      active=false
                      @open-tab="openTab"
                 />
-                <Tab name = 'Alterar email'
-                     content = "inf_pes"
+                <Tab name = 'Confirmar email'
+                     content = "confirm_email"
                      active=false
                      @open-tab="openTab"
                 />
@@ -28,9 +28,15 @@
                 <div ref="perfil" class="tab-content">
                     Perfil aqui
                 </div>
+
                 <div ref="inf_pes" class="tab-content">
                     <InformacoesPessoais />
                 </div>
+
+                <div ref="alterar_senha" class="tab-content">
+                    <AlterarSenha />
+                </div>
+
             </div>
         </div>
     </div>
@@ -50,10 +56,11 @@ import Tab from "@/components/Perfil/Tabs/Tab";
 import {reactive, ref} from "vue";
 import InformacoesPessoais from "@/components/Perfil/InformacoesPessoais";
 import axios from "axios";
+import AlterarSenha from "@/components/Perfil/AlterarSenha";
 
 export default {
     name: "Perfil",
-    components: {InformacoesPessoais, Tab},
+    components: {AlterarSenha, InformacoesPessoais, Tab},
     setup(){
       return{
         own: Boolean,

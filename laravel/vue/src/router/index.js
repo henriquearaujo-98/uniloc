@@ -8,6 +8,7 @@ import Register from "@/views/Register";
 import VerificarEmail from "@/views/VerificarEmail";
 import Perfil from "@/views/Perfil";
 import NotFound from "@/views/NotFound";
+import PassowrdReset from "@/views/PassowrdReset";
 
 const routes = [
     {
@@ -54,6 +55,11 @@ const routes = [
         path: '/404',
         name: '404',
         component: NotFound
+    },
+    {
+        path: '/pw_reset',
+        name: 'PasswordReset',
+        component: PassowrdReset
     },
 
 ]
