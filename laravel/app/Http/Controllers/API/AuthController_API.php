@@ -74,9 +74,15 @@ class AuthController_API extends Controller
 
 
     /**
+     * Sends code to email for resetting password
      * @throws \Exception
      */
     public function sendResetPasswordEmail(Request $request){
+
+        $request->validate([
+            'email' => 'required|string|email',
+
+        ]);
 
         $user = User::query()->where("email", "=", $request->email)->first();
 
@@ -106,7 +112,18 @@ class AuthController_API extends Controller
 
     }
 
+    /**
+     * Perform reset password
+     * @param Request $request
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function resetPassword(Request $request){
+
+        $fields = $request->validate([
+            'token' => 'required',
+            'password' => 'required|string',
+            'email' => 'required|email'
+        ]);
 
         $attributes = $request->all();
 
