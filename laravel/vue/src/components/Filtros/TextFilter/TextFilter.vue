@@ -131,23 +131,28 @@ export default {
         })
     },
     mounted() {
-        console.log(JSON.parse(localStorage.getItem(this.tabela)))
-        if(!localStorage.hasOwnProperty(this.tabela)){
+
+        const data = JSON.parse(localStorage.getItem('filtros'))[this.tabela]
+        console.log(data)
+        if( Object.keys(data).length === 0 ){
             const url = `${this.$store.state['networking_store'].API_BASE_URL}/${this.tabela}`
             axios
                 .get(url)
                 .then(response => {
                     this.$store.dispatch(`${this.tabela}/populate_pool`, response.data)[this.tabela];
-                    console.log('fetching from DB')
-                    localStorage.setItem('last_updated', new Date())
-                    console.log(response.data)
-                    localStorage.setItem(this.tabela, JSON.stringify(response.data))
+
+                    let filtros = JSON.parse(localStorage.getItem('filtros'))
+
+                    filtros[this.tabela] = response.data
+
+                    localStorage.setItem('filtros', JSON.stringify(filtros))
+
                     this.$emit('done_loading');
                 })
         }else{
             console.log('fetching from LocalStorage')
-
-            this.$store.dispatch(`${this.tabela}/populate_pool`,JSON.parse(localStorage.getItem(this.tabela)))[this.tabela];
+            const data = JSON.parse(localStorage.getItem('filtros'))[this.tabela]
+            this.$store.dispatch(`${this.tabela}/populate_pool`, data )[this.tabela];
             this.$emit('done_loading');
         }
 

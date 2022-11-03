@@ -30,20 +30,51 @@ export default {
     components: {Footer, Header, Message},
     created() {
         // Local cache
-        const last_updated = new Date(localStorage.getItem('last_updated'))
-        const now = new Date()
-        const diffTime = Math.abs(now - last_updated); // milliseconds
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-        if(diffDays > 10000)
-            localStorage.clear()
+        /// Filtros
+        if(!localStorage.hasOwnProperty('filtros')){
 
-        // User
+           this.resetFiltros()
+
+        }else{
+            let filtros = JSON.parse(localStorage.getItem('filtros'))
+
+            const last_updated = Date.parse(filtros.last_updated)
+            const now = new Date()
+            const diffTime = Math.abs(now - last_updated); // milliseconds
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            if(diffDays > 1 || last_updated === null){
+                this.resetFiltros()
+
+            }
+
+            console.log(diffDays)
+
+        }
+
+
+        /// User
         if(sessionStorage.getItem('user') != null)
             this.$store.state['user_store'].user = sessionStorage.getItem('user');
 
-        //this.$store.dispatch('buffer_store/setMessage', 'test');
 
+    },
+    methods:{
+        resetFiltros(){
+            const filtros = {
+                last_updated : new Date(),
+                distritos: {},
+                municipios: {},
+                instituicoes: {},
+                area_estudo: {},
+                cursos: {},
+                tipos_ensino: {},
+                exames: {},
+            }
+
+            localStorage.setItem('filtros', JSON.stringify(filtros))
+        },
     }
 }
 </script>

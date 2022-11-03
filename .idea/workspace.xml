@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="935c3ac4-6f76-462e-bd59-269a38205920" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/Acores.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/Acores.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/Filtros/SliderFilter/SliderFilter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/Filtros/SliderFilter/SliderFilter.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/Madeira.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/Madeira.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/Mapa.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/Mapa.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/Marker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/Marker.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/FilterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/FilterForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/Filtros/TextFilter/TextFilter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/Filtros/TextFilter/TextFilter.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +136,9 @@
       <path value="$PROJECT_DIR$/laravel/vendor/psr/http-client" />
       <path value="$PROJECT_DIR$/laravel/vendor/hamcrest/hamcrest-php" />
       <path value="$PROJECT_DIR$/laravel/vendor/awobaz/compoships" />
+      <path value="$PROJECT_DIR$/laravel/vendor/laravel/socialite" />
+      <path value="$PROJECT_DIR$/laravel/vendor/yajra/laravel-datatables-oracle" />
+      <path value="$PROJECT_DIR$/laravel/vendor/league/oauth1-client" />
     </include_path>
   </component>
   <component name="ProjectId" id="25Z2p4nnxEuW5wEA5JYSGGk0bHK" />

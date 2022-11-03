@@ -66,7 +66,6 @@ export default {
         }
     },
     created() {
-        //localStorage.clear()
         this.$store.state['buffer_store'].buffering = true
     },
     methods: {
