@@ -18,6 +18,7 @@ class Personal_Access_Token extends Model
     protected $fillable = [
         'id',
         'tokenable_id',
+        'token'
 
     ];
 

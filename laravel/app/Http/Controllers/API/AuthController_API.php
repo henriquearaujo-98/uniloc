@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\PasswordReset;
+use App\Models\Personal_Access_Token;
 use App\Models\User;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Http\Request;
@@ -177,6 +178,10 @@ class AuthController_API extends Controller
 
         return $response;
 
+    }
+
+    public function checkToken(Request $request){
+        return true;
     }
 
 

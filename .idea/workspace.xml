@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="935c3ac4-6f76-462e-bd59-269a38205920" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/laravel/app/Console/Commands/CleanJWT.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/laravel/app/Models/Personal_Access_Token.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Console/Kernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/API/AuthController_API.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/API/AuthController_API.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Models/Personal_Access_Token.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Models/Personal_Access_Token.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/vue/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/Nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/Nav.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/vue/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/views/Login.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,11 +171,5 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="690" y="310" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1645729071738">
-      <screen x="0" y="30" width="1920" height="1050" />
-    </state>
-    <state x="690" y="310" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.30.1920.1050/-1920.30.1536.834@0.30.1920.1050" timestamp="1645729071738" />
   </component>
 </project>

@@ -124,6 +124,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     //auth
     Route::post('/logout', [AuthController_API::class, 'logout']);
 
+    //check if JWT still exists
+    Route::post('/check-token', [AuthController_API::class, 'checkToken']);
+
     //account verification
     Route::post('/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
     Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');

@@ -26,6 +26,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Message from "@/components/Message";
+import axios from "axios";
 export default {
     components: {Footer, Header, Message},
     created() {
@@ -55,9 +56,47 @@ export default {
 
 
         /// User
-        if(localStorage.getItem('user') != null)
-            this.$store.state['user_store'].user = localStorage.getItem('user');
+        if(localStorage.getItem('user') != null){
+            let user = JSON.parse(localStorage.getItem('user'))
 
+            const url = `${this.$store.state['networking_store'].API_BASE_URL}/check-token`
+
+            const params = new URLSearchParams();
+            params.append('token', user.token);
+
+            axios.post(url, params, {
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json',
+                    Authorization: `Bearer ${user.user.token}`
+                }
+            }).then( (res) => {
+
+                localStorage.setItem('user', JSON.stringify(res.data))
+                this.$store.state['user_store'].user = res.data
+
+            }).catch( (err) => {
+                localStorage.removeItem('user')
+                this.$store.state['user_store'].user = []
+
+                if(err.response.status === 401)
+                    return
+
+                this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
+                this.$store.state['message_store'].message = this.$store.state['message_store'].error.general
+
+            });
+
+            this.$store.state['user_store'].user = localStorage.getItem('user');
+        }
+    },
+    beforeUnmount() {
+
+       /* if(localStorage.getItem('user') != null){
+            let user = JSON.parse(localStorage.getItem('user'))
+            if(user.remember_me === 'false')
+                localStorage.removeItem('user')
+        }*/
 
     },
     methods:{

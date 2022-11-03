@@ -38,12 +38,13 @@ export default {
         return {
             email: '',
             password: '',
-            remember_me: ''
+            remember_me: 'false'
         }
     },
     methods:{
         login(){
-            console.log('logging in')
+            console.log(this.remember_me);
+
             if(this.email === ''){
                 this.$store.state['message_store'].message = this.$store.state['message_store'].error.fields
                 this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
@@ -61,7 +62,7 @@ export default {
             const params = new URLSearchParams();
             params.append('email', this.email);
             params.append('password', this.password);
-            params.append('remember_me', this.remember_me);
+            params.append('remember_me', String(this.remember_me));
 
             const url = `${this.$store.state['networking_store'].API_BASE_URL}/login`
 
