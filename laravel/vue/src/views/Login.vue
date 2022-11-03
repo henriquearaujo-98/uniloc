@@ -16,6 +16,8 @@
                 placeholder="Password..."
             >
 
+            <input type="checkbox" v-model="remember_me">
+
             <p>
                  <router-link class="link" to="/pw_reset">Esqueceu-se da password?</router-link>.
             </p>
@@ -36,18 +38,19 @@ export default {
         return {
             email: '',
             password: '',
+            remember_me: ''
         }
     },
     methods:{
         login(){
             console.log('logging in')
-            if(this.email == ''){
+            if(this.email === ''){
                 this.$store.state['message_store'].message = this.$store.state['message_store'].error.fields
                 this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
                 return;
             }
 
-            if(this.password == ''){
+            if(this.password === ''){
                 this.$store.state['message_store'].message = this.$store.state['message_store'].error.fields
                 this.$store.state['message_store'].color = this.$store.state['message_store'].error.color
                 return;
@@ -58,6 +61,7 @@ export default {
             const params = new URLSearchParams();
             params.append('email', this.email);
             params.append('password', this.password);
+            params.append('remember_me', this.remember_me);
 
             const url = `${this.$store.state['networking_store'].API_BASE_URL}/login`
 
@@ -67,7 +71,7 @@ export default {
                     'Accept': 'application/json',
                 }
             }).then( (res) => {
-                sessionStorage.setItem('user', JSON.stringify(res.data))
+                localStorage.setItem('user', JSON.stringify(res.data))
                 this.$store.state['user_store'].user = res.data
                 console.log(this.$store.state['user_store'].user.user)
                 this.$store.state['buffer_store'].buffering = false

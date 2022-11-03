@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="935c3ac4-6f76-462e-bd59-269a38205920" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/laravel/app/Console/Commands/CleanJWT.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/app/Models/Personal_Access_Token.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Console/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/API/AuthController_API.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/API/AuthController_API.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/vue/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/FilterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/FilterForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/vue/src/components/Filtros/TextFilter/TextFilter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/components/Filtros/TextFilter/TextFilter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/vue/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/vue/src/views/Login.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

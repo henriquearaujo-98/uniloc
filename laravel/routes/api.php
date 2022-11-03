@@ -116,6 +116,10 @@ Route::post('/forgot-password', [AuthController_API::class, 'sendResetPasswordEm
 Route::post('/reset-password', [AuthController_API::class, 'resetPassword']);
 Route::post('/check-reset-token', [AuthController_API::class, 'checkCode']);
 
+Route::get('/test', function(){
+    return \App\Models\Personal_Access_Token::with('user')->get();
+});
+
 Route::group(['middleware' => ['auth:sanctum']], function(){
     //auth
     Route::post('/logout', [AuthController_API::class, 'logout']);

@@ -55,8 +55,8 @@ export default {
 
 
         /// User
-        if(sessionStorage.getItem('user') != null)
-            this.$store.state['user_store'].user = sessionStorage.getItem('user');
+        if(localStorage.getItem('user') != null)
+            this.$store.state['user_store'].user = localStorage.getItem('user');
 
 
     },

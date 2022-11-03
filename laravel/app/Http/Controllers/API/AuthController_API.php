@@ -43,7 +43,8 @@ class AuthController_API extends Controller
 
         $fields = $request->validate([
             'email' => 'required|string',
-            'password' => 'required|string'
+            'password' => 'required|string',
+            'remember_me' => 'required'
         ]);
 
         $user = User::where('email', $fields['email'])->with('instituicao')->with('curso')->first();    //Check email
@@ -55,6 +56,9 @@ class AuthController_API extends Controller
         }
 
         $token = $user->createToken('myapptoken')->plainTextToken;
+
+
+        User::where('email', $fields['email'])->update(['remember_token' => $fields['remember_me'] ]);
 
         $response = [
             'user' => $user,
