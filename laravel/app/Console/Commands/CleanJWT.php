@@ -12,7 +12,7 @@ class CleanJWT extends Command
      *
      * @var string
      */
-    protected $signature = 'db:cleanjwt';
+    protected $signature = 'jwt:timeout';
 
     /**
      * The console command description.
@@ -38,6 +38,7 @@ class CleanJWT extends Command
      */
     public function handle()
     {
+        // Remove authentication tokens from users with the renmember_token set to false
         $tokens = Personal_Access_Token::with('user')->get();
         $n = 0;
         foreach ($tokens as &$token){
@@ -47,7 +48,7 @@ class CleanJWT extends Command
             }
         }
 
-        $this->info('JWT clean up job.'. $n .' records were affected.\n');
+        $this->info('JWT timeout executed. '. $n .' records were affected.');
 
     }
 }

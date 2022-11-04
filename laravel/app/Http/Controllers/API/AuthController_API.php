@@ -56,14 +56,24 @@ class AuthController_API extends Controller
             ], 401);
         }
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        // If user is already logged with the same machine, remove duplicate
+        $tokens = Personal_Access_Token::where('tokenable_id', $user->id)->where('last_used_at', $request->ip())->get();
+        if(count($tokens) >= 1){
+            foreach ($tokens as &$t){
+                $t->delete();
+            }
+        }
 
+
+        $token = $user->createToken('myapptoken');
+
+        Personal_Access_Token::where('id', $token->accessToken->id)->update(['last_used_at' => $request->ip()]);
 
         User::where('email', $fields['email'])->update(['remember_token' => $fields['remember_me'] ]);
 
         $response = [
             'user' => $user,
-            'token' => $token
+            'token' => $token->plainTextToken
         ];
 
         return response($response, 201);
