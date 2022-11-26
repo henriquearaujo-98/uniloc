@@ -65,9 +65,9 @@ class AuthController_API extends Controller
         }
 
 
-        $token = $user->createToken('myapptoken');
+        $token = $user->createToken('myapptoken', "127.0.0.1");
 
-        Personal_Access_Token::where('id', $token->accessToken->id)->update(['last_used_at' => $request->ip()]);
+       // Personal_Access_Token::where('id', $token->accessToken->id)->update(['last_used_at' => $request->ip()]);
 
         User::where('email', $fields['email'])->update(['remember_token' => $fields['remember_me'] ]);
 
