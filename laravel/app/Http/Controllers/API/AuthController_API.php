@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Http\Request;
 use http\Env\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
@@ -194,5 +195,22 @@ class AuthController_API extends Controller
         return true;
     }
 
+    public function changePassword(Request $request){
 
+        $fields = $request->validate([
+            'old_password' => 'required|string',
+            'new_password' => 'required|string|confirmed'
+        ]);
+        $id = auth('sanctum')->user()->id;
+        $db_password = User::where('id', $id)->pluck('password')[0];
+
+        if(!Hash::check($fields['old_password'], $db_password)){   //Check password
+            return response([
+                'message' => 'Bad creds'
+            ], 401);
+        }
+
+        return User::whereId($id)->update(['password' => bcrypt($fields['new_password'])]);
+
+    }
 }

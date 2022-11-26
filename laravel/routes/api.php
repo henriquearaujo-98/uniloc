@@ -133,4 +133,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 
     //update information
     Route::post('/user/{id}', [UserController_API::class, 'update']);
+
+    //change password
+    Route::post('/change-password', [AuthController_API::class, 'changePassword']);
 });
