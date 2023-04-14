@@ -1,41 +1,41 @@
-# Projeto P064
+Project carried out within the scope of the Project subject of the Computer Engineering course at the Polytechnic Institute of Bragança
 
-Projeto realizado no âmbito da cadeira Projeto do curso de Engenharia Informática do Instituto Politécnico de Bragança
+The project revolves around gathering information about the portuguese higher education instituitions and make them searchable through an interactive map powered by OpenLayers.
 
 ## Crawler
 
-O web crawler pode ser localizado na pasta ```uniloc_crawler```. Dentro dessa pasta haverá uma outra sub pasta com o meu nome. É necessário instalar a framework ```Scrapy``` em Python com o seguinte comando:
+The web crawler can be found in the ```uniloc_crawler``` folder. Within that folder there will be another subfolder with my name. It is necessary to install the ```Scrapy``` framework in Python with the following command:
 
 ```bash
 pip install scrapy
 ```
 
-Pode-se correr o comando seguinte para executar cada spider individualmente e produzir o output para o ficheiro
+You can run the following command to execute each spider individually and produce the output to the file
 
 ```bash
-scrapy crawl <nome da spider> -o ficheiro.json
+scrapy crawl <spider name> -o.json file
 ```
 
 ## Laravel
 
-O projeto laravel está localizado na pasta ```laravel``` pode ser inicializado com o comando seguinte comando:
+The laravel project located in the ```laravel``` folder can be started with the following command:
 
 ```bash
 php artisan serve --port=3500
 ```
 
-No ficheiro .env encontra-se os parâmetros de configuração para a conexão à base de dados MySQL.
+The .env file contains the configuration parameters for connecting to the MySQL database.
 
 ## VueJS
 
-O projeto VueJS pode ser encontrado em ```laravel > vue```. Para inicializar o projeto, utiliza-se o seguinte comando:
+The VueJS project can be found at ```laravel > vue```. To initialize the project, use the following command:
 
 ```bash
-npm run serve
+npm run serves
 ```
 
 
-## Contribuidores
+## Contributors
 
 Diogo Castro
-Henrique Araújo
+Henrique Araujo
